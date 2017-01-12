@@ -94,3 +94,6 @@ build/Release
 /android/app/build/
 /android/.gradle/
 /__tests__/
+!/external/
+/ios/Pods/
+/ios/Podfile.lock
