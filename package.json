@@ -6,24 +6,30 @@
 	"private": true,
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"bundle:ios": "node ./node_modules/react-native/local-cli/cli.js bundle --platform ios --entry-file index.ios.js --bundle-output ios/CarFitNative/main.jsbundle --dev=false --minify --verbose",
+		"bundle:ios": "node ./node_modules/react-native/local-cli/cli.js bundle --platform ios --entry-file index.ios.js --bundle-output ios/CARFIT/main.jsbundle --dev=false --minify --verbose",
 		"test": "jest",
 		"test:watch": "jest --watch",
 		"lint": "eslint src test",
 		"coverage": "rimraf coverage && jest --coverage"
 	},
+	"rnpm": {
+		"assets": [ "./fonts" ]
+	},
 	"dependencies": {
 		"aws-sdk-react-native-core": "./external/aws-sdk-react-native-core-0.0.2.tgz",
-		"aws-sdk-react-native-lambda": "./external/aws-sdk-react-native-lambda-0.0.1.tgz",
 		"bluebird": "^3.4.6",
 		"es6-symbol": "^3.1.0",
 		"event-emitter": "^0.3.4",
 		"immutable": "^3.8.1",
 		"lodash": "^4.17.2",
 		"moment": "^2.17.1",
+		"multiplier": "^0.1.0",
+		"native-base": "^0.5.20",
 		"react": "15.4.2",
 		"react-dom": "~15.4.1",
 		"react-native": "0.40.0",
+		"react-native-swiper": "^1.5.4",
+		"react-native-vector-icons": "^4.0.0",
 		"react-redux": "^5.0.1",
 		"realm": "^0.15.0",
 		"redux": "^3.6.0",
