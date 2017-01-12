@@ -1,6 +1,8 @@
 {
 	"name": "CARFIT",
 	"version": "0.0.1",
+	"author": "Brian McBride",
+	"description": "CarFit React Native App",
 	"private": true,
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
