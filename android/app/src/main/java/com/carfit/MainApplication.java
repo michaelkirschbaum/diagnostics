@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.facebook.react.ReactApplication;
 import io.realm.react.RealmReactPackage;
-import com.amazonaws.reactnative.lambda.AWSRNLambdaPackage;
 import com.amazonaws.reactnative.core.AWSRNCorePackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
@@ -29,7 +28,6 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
             new RealmReactPackage(),
-            new AWSRNLambdaPackage(),
             new AWSRNCorePackage()
       );
     }
