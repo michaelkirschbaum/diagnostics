@@ -10,6 +10,7 @@ target 'CARFIT' do
      pod 'AWSCognito'
      pod 'AWSCognitoIdentityProvider'
      pod 'AWSS3'
+     pod 'Realm'
 #    pod 'AWSLambda'
 #    pod 'AWSAutoScaling'
 #    pod 'AWSCloudWatch'
