@@ -27,6 +27,7 @@ Podspecs/
 
 # Android/IntelliJ
 #
+build/
 .idea
 .gradle
 local.properties
@@ -97,3 +98,4 @@ build/Release
 !/external/
 /ios/Pods/
 /ios/Podfile.lock
+/yarn.lock
