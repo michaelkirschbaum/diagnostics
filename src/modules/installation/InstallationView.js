@@ -21,6 +21,7 @@ import * as NavigationState from '../../modules/navigation/NavigationState';
 const InstallationView = React.createClass({
   propTypes: {
     // dispatch: PropTypes.func.isRequired
+    installation: PropTypes.object.isRequired
   },
 
   onNextPress() {
@@ -31,7 +32,12 @@ const InstallationView = React.createClass({
   },
 
   popRoute() {
+    this.props.setPageIndex(0);
     this.props.onNavigateBack();
+  },
+
+  setPage(index) {
+    this.props.setPageIndex(index);
   },
 
   render() {
@@ -54,10 +60,12 @@ const InstallationView = React.createClass({
 
             <Swiper
               loop={false}
+              index={this.props.installation.pageIndex}
               height={windowHeight - 100}
               style={styles.container}
               dot={<View style={{backgroundColor:colors.inputBackground, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
               activeDot={<View style={{backgroundColor:colors.primary, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+              onMomentumScrollEnd={(e, state, context) => this.setPage(state.index)}
             >
               <View style={styles.instructionsContainer}>
                 <Image source={require('../../../images/pull-tab-02.png')} style={styles.image}/>
@@ -80,7 +88,8 @@ const InstallationView = React.createClass({
                 <Text style={{marginTop: 17, textAlign: "center"}}>{loc.instructions.ensurePairing}</Text>
               </View>
               <View style={styles.instructionsContainer}>
-                <Text>Instructions 5</Text>
+                <H3 style={{fontWeight: "bold", textAlign: "center", marginTop: 25}}>Discuss with Chris</H3>
+                <Text style={{marginTop: 17, textAlign: "center"}}>This view is dynamic pulling from the BLE device.</Text>
               </View>
             </Swiper>
 
