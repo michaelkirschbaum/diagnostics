@@ -20,7 +20,7 @@ import * as NavigationState from '../../modules/navigation/NavigationState';
  */
 const InstallationView = React.createClass({
   propTypes: {
-    dispatch: PropTypes.func.isRequired
+    // dispatch: PropTypes.func.isRequired
   },
 
   onNextPress() {
@@ -30,10 +30,12 @@ const InstallationView = React.createClass({
     }));
   },
 
+  popRoute() {
+    this.props.onNavigateBack();
+  },
+
   render() {
     let windowHeight = Dimensions.get('window').height;
-
-    let pulltabSprite = '../../../images/pulltab-sprite.png';
 
     return (
         <Container theme={carfitTheme}>
@@ -58,16 +60,24 @@ const InstallationView = React.createClass({
               activeDot={<View style={{backgroundColor:colors.primary, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
             >
               <View style={styles.instructionsContainer}>
-                <Text>Instructions 1</Text>
+                <Image source={require('../../../images/pull-tab-02.png')} style={styles.image}/>
+                <H3 style={{fontWeight: "bold", textAlign: "center", marginTop: 25}}>{loc.instructions.enableBattery}</H3>
+                <Text style={{marginTop: 17, textAlign: "center"}}>{loc.instructions.pullTab}</Text>
               </View>
               <View style={styles.instructionsContainer}>
-                <Text>Instructions 2</Text>
+                <Image source={require('../../../images/activate-ble-02.png')} style={styles.image}/>
+                <H3 style={{fontWeight: "bold", textAlign: "center", marginTop: 25}}>{loc.instructions.activateBluetooth}</H3>
+                <Text style={{marginTop: 17, textAlign: "center"}}>{loc.instructions.turnOnBLE}</Text>
               </View>
               <View style={styles.instructionsContainer}>
-                <Text>Instructions 3</Text>
+                <Image source={require('../../../images/reset-connection-01.png')} style={styles.image}/>
+                <H3 style={{fontWeight: "bold", textAlign: "center", marginTop: 25}}>{loc.instructions.resetConnection}</H3>
+                <Text style={{marginTop: 17, textAlign: "center"}}>{loc.instructions.pressAndHold}</Text>
               </View>
               <View style={styles.instructionsContainer}>
-                <Text>Instructions 4</Text>
+                <Image source={require('../../../images/ble-pairing-02.png')} style={styles.image}/>
+                <H3 style={{fontWeight: "bold", textAlign: "center", marginTop: 25}}>{loc.instructions.blePairing}</H3>
+                <Text style={{marginTop: 17, textAlign: "center"}}>{loc.instructions.ensurePairing}</Text>
               </View>
               <View style={styles.instructionsContainer}>
                 <Text>Instructions 5</Text>
@@ -96,12 +106,15 @@ const styles = StyleSheet.create({
   instructionsContainer: {
     marginLeft: 20,
     marginRight: 20,
-  },
-  logo: {
-    width: 200,
-    height: 200,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  image: {
+    width: 300,
+    height: 300,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 25,
   },
   titles: {
     marginTop: 17,

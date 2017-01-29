@@ -26,9 +26,6 @@ const VerificationView = React.createClass({
   },
 
   popRoute() {
-    // this.props.dispatch(
-    //   NavigationState.popRoute()
-    // );
     this.props.onNavigateBack();
   },
 

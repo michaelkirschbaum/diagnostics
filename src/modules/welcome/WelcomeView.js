@@ -16,14 +16,14 @@ import * as NavigationState from '../../modules/navigation/NavigationState';
  */
 const WelcomeView = React.createClass({
   propTypes: {
-    dispatch: PropTypes.func.isRequired
+    // dispatch: PropTypes.func.isRequired
   },
 
   onNextPress() {
-    this.props.dispatch(NavigationState.pushRoute({
+    this.props.pushRoute({
       key: 'Installation',
       title: loc.welcome.welcome
-    }));
+    });
   },
 
   render() {

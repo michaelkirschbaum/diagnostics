@@ -43,6 +43,12 @@ const en = {
   instructions: {
     enableBattery: 'Enable battery power',
     pullTab: 'Pull the plastic tab out of the CARFIT PULS sensor.',
+    activateBluetooth: 'Activate Bluetooth',
+    turnOnBLE: 'Turn your phone\'s Bluetooth on.',
+    resetConnection: 'Reset connection',
+    pressAndHold: 'Press & hold the center of the CARFIT PULS sensor for 10s to reset the sensor. \nTap to turn it on.',
+    blePairing: 'Enable battery power',
+    ensurePairing: 'Ensure the CARFIT PULS sensoris in pairing mode with the center LED flashing.',
   }
 };
 export default en;

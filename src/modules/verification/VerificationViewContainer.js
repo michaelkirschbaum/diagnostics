@@ -12,7 +12,6 @@ export default connect(
     },
     pushRoute(index) {
       dispatch(pushRoute(index));
-      dispatch(pushRoute(index));
     },
     onNavigateBack() {
       dispatch(popRoute());
