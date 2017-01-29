@@ -35,11 +35,7 @@ const LoginView = React.createClass({
   },
 
   setPage(index) {
-    // this.props.setPageIndex(index);
-    // if (index == 4) {
-    //   // Start discovery of BLE devices
-    //   this.props.discover();
-    // }
+    this.props.setPageIndex(index);
   },
 
   render() {
@@ -59,7 +55,7 @@ const LoginView = React.createClass({
         <View style={styles.scrollContainer}>
           <Swiper
             loop={false}
-            index={0}
+            index={this.props.login.pageIndex}
             dot={<View style={{backgroundColor:colors.inputBackground, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
             activeDot={<View style={{backgroundColor:colors.primary, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
             onMomentumScrollEnd={(e, state, context) => this.setPage(state.index)}

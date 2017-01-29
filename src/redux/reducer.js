@@ -2,6 +2,7 @@ import {Map, fromJS} from 'immutable';
 import {loop, combineReducers} from 'redux-loop';
 import NavigationStateReducer from '../modules/navigation/NavigationState';
 import InstallationStateReducer from '../modules/installation/InstallationState';
+import LoginStateReducer from '../modules/login/LoginState';
 import SessionStateReducer, {RESET_STATE} from '../modules/session/SessionState';
 
 const reducers = {
@@ -11,7 +12,9 @@ const reducers = {
 
   session: SessionStateReducer,
 
-  installation: InstallationStateReducer
+  installation: InstallationStateReducer,
+
+  login: LoginStateReducer,
 
 };
 

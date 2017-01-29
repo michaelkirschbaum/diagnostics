@@ -1,10 +1,12 @@
 import {connect} from 'react-redux';
 import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted} from '../navigation/NavigationState';
+import {setPageIndex, discover, clearDevices} from './LoginState';
 import LoginView from './LoginView';
 
 export default connect(
   state => ({
-    navigationState: state.get('navigationState').toJS()
+    navigationState: state.get('navigationState').toJS(),
+    login: state.get('login').toJS(),
   }),
   dispatch => ({
     switchRoute(index) {
@@ -21,6 +23,15 @@ export default connect(
     },
     closeDrawer() {
       dispatch(closeDrawer());
+    },
+    setPageIndex(index) {
+      dispatch(setPageIndex(index));
+    },
+    setPageIndex(index) {
+      dispatch(setPageIndex(index));
+    },
+    setPageIndex(index) {
+      dispatch(setPageIndex(index));
     },
   })
 )(LoginView);
