@@ -182,8 +182,8 @@ module.exports = {
 
 
   // List
-  listBorderColor: '#ddd',
-  listDividerBg: '#ddd',
+  listBorderColor: colors.headerTextColor,
+  listDividerBg: colors.headerTextColor,
   listItemHeight: 45,
   listItemPadding: (Platform.OS === 'ios' ) ? 12 : 16,
   listNoteColor: '#808080',

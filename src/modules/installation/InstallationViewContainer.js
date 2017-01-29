@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted} from '../navigation/NavigationState';
-import {setPageIndex} from './InstallationState';
+import {setPageIndex, discover, clearDevices} from './InstallationState';
 import InstallationView from './InstallationView';
 
 export default connect(
@@ -26,6 +26,12 @@ export default connect(
     },
     setPageIndex(index) {
       dispatch(setPageIndex(index));
+    },
+    discover() {
+      dispatch(discover());
+    },
+    clearDevices() {
+      dispatch(clearDevices());
     }
   })
 )(InstallationView);

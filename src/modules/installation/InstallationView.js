@@ -5,7 +5,20 @@ import {
   Image,
   Dimensions
 } from 'react-native';
-import { Container, Header, Title, Content, InputGroup, Input, Button, Icon, Text, H3 } from 'native-base';
+import {
+  Container,
+  Header,
+  Title,
+  Content,
+  InputGroup,
+  Input,
+  Button,
+  Icon,
+  Text,
+  H3,
+  List,
+  ListItem
+} from 'native-base';
 import colors from '../../config/colors';
 import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
@@ -33,15 +46,23 @@ const InstallationView = React.createClass({
 
   popRoute() {
     this.props.setPageIndex(0);
+    this.props.clearDevices();
     this.props.onNavigateBack();
   },
 
   setPage(index) {
     this.props.setPageIndex(index);
+    if (index == 4) {
+      // Start discovery of BLE devices
+      this.props.discover();
+    }
   },
 
   render() {
     let windowHeight = Dimensions.get('window').height;
+    let windowWidth = Dimensions.get('window').width;
+
+    let items = this.props.installation.foundDevices;
 
     return (
         <Container theme={carfitTheme}>
@@ -90,6 +111,16 @@ const InstallationView = React.createClass({
               <View style={styles.instructionsContainer}>
                 <H3 style={{fontWeight: "bold", textAlign: "center", marginTop: 25}}>Discuss with Chris</H3>
                 <Text style={{marginTop: 17, textAlign: "center"}}>This view is dynamic pulling from the BLE device.</Text>
+                <List dataArray={items}
+                      style={{width: windowWidth - 40, marginTop: 25}}
+                      renderRow={(item) =>
+                            <ListItem>
+                                <Text>{item.name}  -  {item.id}</Text>
+                            </ListItem>
+                        }>
+                </List>
+                <Text style={{marginTop: 25, textAlign: "center"}}>The connection will happen in:</Text>
+                <H3 style={{marginTop: 5, textAlign: "center"}}>src/carfit/sdkConnector.js</H3>
               </View>
             </Swiper>
 
