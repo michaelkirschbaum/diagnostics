@@ -58,6 +58,14 @@ const InstallationView = React.createClass({
     }
   },
 
+  componentWillUpdate(nextProps, nextState) {
+    // console.log('nextProps');
+    // console.log(JSON.stringify(nextProps, null, 2));
+    this.numberOfItems = nextProps.installation.foundDevices.length;
+
+    return true;
+  },
+
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
@@ -119,6 +127,7 @@ const InstallationView = React.createClass({
                             </ListItem>
                         }>
                 </List>
+                <Text>Found: {this.numberOfItems}</Text>
                 <Text style={{marginTop: 25, textAlign: "center"}}>The connection will happen in:</Text>
                 <H3 style={{marginTop: 5, textAlign: "center"}}>src/carfit/sdkConnector.js</H3>
               </View>
