@@ -8,7 +8,17 @@ const en = {
   login: {
     email: 'Email',
     password: 'Password',
-    forgotPassword: 'Forgot Password?'
+    forgotPassword: 'Forgot Password?',
+    marketingTitle1a: 'CARFIT PULS',
+    marketingTitle1b: 'THE VIBRATION SENSOR',
+    marketingText1a: 'CARFIT monitors the vibrations of your car at the steering wheel, like a doctor monitors your pulse.',
+    marketingTitle2a: 'Works on any car',
+    marketingText2a: 'CARFIT PULS is easily installed on any steering wheel.',
+    marketingText2b: 'The CARFIT PULS automatically turns on whenever you get into your car and turns off after each drive to save battery. The battery lasts up to 2 years.',
+    marketingTitle3a: 'Service made simple',
+    marketingText3a: 'One button press away to schedule and visit your autoshop.',
+    marketingText3b: 'The CARFIT PULS notifies you when it is time to check up your car.'
+
   },
   verification: {
     verification: 'Verification',

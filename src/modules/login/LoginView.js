@@ -2,14 +2,15 @@ import React, {PropTypes} from 'react';
 import {
   View,
   StyleSheet,
-  Image
+  Image,
+  Dimensions,
+  Platform
 } from 'react-native';
-import { Container, Content, InputGroup, Input, Button, Text, H3 } from 'native-base';
+import {Container, Content, InputGroup, Input, Button, Text, H3} from 'native-base';
 import colors from '../../config/colors';
 import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
-
-import * as NavigationState from '../navigation/NavigationState';
+import Swiper from 'react-native-swiper';
 
 /**
  * Login view
@@ -23,7 +24,7 @@ const LoginView = React.createClass({
   },
 
   onNextPress() {
-    this.props.pushRoute({key:'Verification', title: loc.verification.verification});
+    this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
   },
 
   onPasswordPress() {
@@ -33,57 +34,133 @@ const LoginView = React.createClass({
     // }));
   },
 
+  setPage(index) {
+    // this.props.setPageIndex(index);
+    // if (index == 4) {
+    //   // Start discovery of BLE devices
+    //   this.props.discover();
+    // }
+  },
+
   render() {
 
     const index = this.props.index;
+    let windowHeight = Dimensions.get('window').height;
+    let windowWidth = Dimensions.get('window').width;
+
     return (
-        <Container>
-          <Content
-            padder
-            keyboardShouldPersistTaps="always"
-            theme={carfitTheme}
-            style={{backgroundColor: colors.backgroundPrimary}}
-            ref={c => this._content = c}>
-            <View style={styles.container}>
-              <Image source={require('../../../images/carfit-logo-black-bg.png')} style={styles.logo}/>
+      <Container>
+        {/*<Content*/}
+        {/*padder*/}
+        {/*keyboardShouldPersistTaps="always"*/}
+        {/*theme={carfitTheme}*/}
+        {/*style={{backgroundColor: colors.backgroundPrimary, paddingLeft: 0}}*/}
+        {/*ref={c => this._content = c}>*/}
+        <View style={styles.scrollContainer}>
+          <Swiper
+            loop={false}
+            index={0}
+            dot={<View style={{backgroundColor:colors.inputBackground, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+            activeDot={<View style={{backgroundColor:colors.primary, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+            onMomentumScrollEnd={(e, state, context) => this.setPage(state.index)}
+          >
+            <View style={styles.instructionsContainer}>
+              <Image source={require('../../../images/intro-01.jpg')}
+                     style={{width: windowWidth, height: windowWidth * 1.2, marginBottom: 15}}/>
+              <Text style={styles.textTitle}>{loc.login.marketingTitle1a}</Text>
+              <Text style={styles.textTitle}>{loc.login.marketingTitle1b}</Text>
+              <Text style={styles.textBody}>{loc.login.marketingText1a}</Text>
             </View>
-            <View style={styles.inputContainer}>
-              <H3 style={styles.titles}>{loc.login.email}</H3>
-              <InputGroup borderType='rounded' style={styles.textInput}>
-                <Input
-                  placeholder='Email Address'
-                  onSubmitEditing={(event) => {
+            <View style={styles.instructionsContainer}>
+              <Image source={require('../../../images/intro-02.jpg')}
+                     style={{width: windowWidth, height: windowWidth * 1.1, marginBottom: 15}}/>
+              <Text style={styles.textTitle}>{loc.login.marketingTitle2a}</Text>
+              <Text style={styles.textBody}>{loc.login.marketingText2a}</Text>
+              <Text style={styles.textBody}>{loc.login.marketingText2b}</Text>
+            </View>
+            <View style={styles.instructionsContainer}>
+              <Image source={require('../../../images/intro-03.jpg')}
+                     style={{width: windowWidth, height: windowWidth * 1.1, marginBottom: 15}}/>
+              <Text style={styles.textTitle}>{loc.login.marketingTitle3a}</Text>
+              <Text style={styles.textBody}>{loc.login.marketingText3a}</Text>
+              <Text style={styles.textBody}>{loc.login.marketingText3b}</Text>
+            </View>
+            {/*<View style={{height: windowHeight, flex: 1, marginTop: 52}}>*/}
+              <Content
+                padder
+                keyboardShouldPersistTaps="always"
+                theme={carfitTheme}
+                style={{backgroundColor: colors.backgroundPrimary, paddingLeft: 0}}
+                ref={c => this._content = c}>
+                <View style={styles.container}>
+                  <Image source={require('../../../images/carfit-logo-black-bg.png')} style={styles.logo}/>
+                </View>
+                <View style={styles.inputContainer}>
+                  <H3 style={styles.titles}>{loc.login.email}</H3>
+                  <InputGroup borderType='rounded' style={styles.textInput}>
+                    <Input
+                      placeholder='Email Address'
+                      onSubmitEditing={(event) => {
                     this.refs.PasswordInput._textInput.focus();
                   }}/>
-              </InputGroup>
-              <H3 style={styles.titles}>{loc.login.password}</H3>
-              <InputGroup borderType='rounded' style={styles.textInput}>
-                <Input
-                  ref='PasswordInput'
-                  placeholder='Password'/>
-              </InputGroup>
-              <View style={styles.bottomContainer}>
-                <Text style={{marginBottom: 12}} onPress={this.onPasswordPress}>{loc.login.forgotPassword}</Text>
-                <Button rounded
-                        style={{alignSelf: 'auto'}}
-                        textStyle={{color: colors.textPrimary}}
-                        onPress={this.onNextPress}
-                >{loc.general.continue}</Button>
-              </View>
-            </View>
-          </Content>
-        </Container>
+                  </InputGroup>
+                  <H3 style={styles.titles}>{loc.login.password}</H3>
+                  <InputGroup borderType='rounded' style={styles.textInput}>
+                    <Input
+                      ref='PasswordInput'
+                      placeholder='Password'/>
+                  </InputGroup>
+                  <View style={styles.bottomContainer}>
+                    <Text style={{marginBottom: 12}} onPress={this.onPasswordPress}>{loc.login.forgotPassword}</Text>
+                    <Button rounded
+                            style={{alignSelf: 'auto'}}
+                            textStyle={{color: colors.textPrimary}}
+                            onPress={this.onNextPress}
+                    >{loc.general.continue}</Button>
+                  </View>
+                </View>
+              </Content>
+            {/*</View>*/}
+          </Swiper>
+          {/*</Content>*/}
+        </View>
+      </Container>
     );
   }
 });
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    backgroundColor: colors.backgroundPrimary
+  },
+  textTitle: {
+    color: colors.textPrimary,
+    fontFamily: (Platform.OS === 'ios' ) ? 'HelveticaNeue' : 'Roboto',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginTop: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 16,
+    marginRight: 16,
+  },
+  textBody: {
+    color: colors.textPrimary,
+    fontFamily: (Platform.OS === 'ios' ) ? 'HelveticaNeue' : 'Roboto',
+    fontSize: 18,
+    marginTop: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 16,
+    marginRight: 16,
+    textAlign: 'center'
+  },
   container: {
-    flex: 1,
+    // flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 52,
-    marginBottom: 20,
+    // marginBottom: 20,
   },
   textInput: {
     backgroundColor: colors.inputBackground,
@@ -93,6 +170,24 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginLeft: 20,
     marginRight: 20,
+  },
+  image: {
+    left: 0,
+    right: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 0,
+    marginBottom: 24
+  },
+  instructionsContainer: {
+    marginLeft: 0,
+    marginRight: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0
   },
   logo: {
     width: 200,
@@ -105,7 +200,7 @@ const styles = StyleSheet.create({
     marginBottom: 8
   },
   bottomContainer: {
-    flex: 1,
+    // flex: 1,
     marginTop: 17,
     justifyContent: 'center',
     alignItems: 'center'

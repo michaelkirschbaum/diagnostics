@@ -19,13 +19,13 @@ const AppView = React.createClass({
         const {dispatch} = this.props;
 
         // // TODO REMOVE ME - RESETTING STATE ON LOAD
-        // dispatch(SessionStateActions.initializeSessionState());
+        dispatch(SessionStateActions.initializeSessionState());
 
-        if (snapshot) {
-          dispatch(SessionStateActions.resetSessionStateFromSnapshot(snapshot));
-        } else {
-          dispatch(SessionStateActions.initializeSessionState());
-        }
+        // if (snapshot) {
+        //   dispatch(SessionStateActions.resetSessionStateFromSnapshot(snapshot));
+        // } else {
+        //   dispatch(SessionStateActions.initializeSessionState());
+        // }
 
         store.subscribe(() => {
           snapshotUtil.saveSnapshot(store.getState());
