@@ -24,7 +24,7 @@ module.exports = {
 
 
   // Font
-  fontFamily: (Platform.OS === 'ios' ) ? 'Poppins' : 'Poppins',
+  fontFamily: (Platform.OS === 'ios' ) ? 'HelveticaNeue' : 'Roboto',
   fontSizeBase: 15,
 
   get fontSizeH1 () {
@@ -39,7 +39,7 @@ module.exports = {
 
 
   // Button
-  btnFontFamily: (Platform.OS === 'ios' ) ? 'Poppins' : 'Poppins',
+  btnFontFamily: (Platform.OS === 'ios' ) ? 'HelveticaNeue' : 'Roboto_medium',
   btnDisabledBg: '#b5b5b5',
   btnDisabledClr: '#f1f1f1',
 
@@ -132,13 +132,13 @@ module.exports = {
 
 
   // Header
-  iosToolbarBtnColor: '#007aff',
-  toolbarDefaultBg: (Platform.OS === 'ios' ) ? '#F8F8F8' : '#4179F7',
+  iosToolbarBtnColor: '#61b037',
+  toolbarDefaultBg: (Platform.OS === 'ios' ) ? '#000' : '#000',
   toolbarHeight: (Platform.OS === 'ios' ) ? 64 : 56,
   toolbarIconSize: (Platform.OS === 'ios' ) ? 20 : 22,
   toolbarInputColor: '#CECDD2',
   toolbarInverseBg: '#222',
-  toolbarTextColor: (Platform.OS==='ios') ? '#000' : '#fff',
+  toolbarTextColor: (Platform.OS==='ios') ? colors.headerTextColor : colors.headerTextColor,
   get statusBarColor() {
     return Color(this.toolbarDefaultBg).darken(0.2).hexString();
   },

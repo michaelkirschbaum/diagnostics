@@ -8,5 +8,6 @@ const colors = {
   backgroundPrimary: 'black',
   backgroundSecondary: '#333333',
   inputBackground: '#fff',
+  headerTextColor: '#bbbbbb',
 };
 export default colors;
