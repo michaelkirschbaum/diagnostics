@@ -59,6 +59,28 @@ const en = {
     pressAndHold: 'Press & hold the center of the CARFIT PULS sensor for 10s to reset the sensor. \nTap to turn it on.',
     blePairing: 'Enable battery power',
     ensurePairing: 'Ensure the CARFIT PULS sensoris in pairing mode with the center LED flashing.',
+  },
+  carInstallation: {
+    installation: 'installation',
+    // Page One
+    inCarInstallation: 'In-car installation',
+    header1: 'Go to your car',
+    message1: 'CARFIT PULS in-car installation',
+    header2: 'Activate adhesive',
+    message2: 'remove protective tape',
+    header3: 'Position CARFIT PULS sensor',
+    message3: 'stick onto steering wheel',
+    header4: 'Register car',
+    message4: 'enter LICENSE PLATE or VIN',
+    header5: 'Configure your car',
+    message5: 'verify & add your car\'s details',
+    // Page two
+    detail2a: 'Remove the protective tape from the bottom of the CARFIT PULS sensor',
+    // Page three
+    detail3a: 'Place the CARFIT PULS sensor on the top of the steering wheel hub with the lights facing the driver',
+    detail3b: 'Ensure that the sensor is flat when the steering wheel is horizontal.',
+    // Page four
+
   }
 };
 export default en;

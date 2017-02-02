@@ -62,7 +62,7 @@ const VerificationView = React.createClass({
                 <Input
                   placeholder='Enter code from email'
                   onSubmitEditing={(event) => {
-                    this.refs.PasswordInput._textInput.focus();
+                    // Some Event for pressing ENTER
                   }}/>
               </InputGroup>
             </View>
