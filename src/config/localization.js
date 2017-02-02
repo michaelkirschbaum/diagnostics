@@ -80,7 +80,11 @@ const en = {
     detail3a: 'Place the CARFIT PULS sensor on the top of the steering wheel hub with the lights facing the driver',
     detail3b: 'Ensure that the sensor is flat when the steering wheel is horizontal.',
     // Page four
-
+    registerCar: 'registerCar',
+    enterLicensePlate: 'Enter license plate here',
+    enterByVin: 'Enter by Vin',
+    enterVin: 'Enter VIN here',
+    enterByLicensePlate: 'Enter by license plate',
   }
 };
 export default en;

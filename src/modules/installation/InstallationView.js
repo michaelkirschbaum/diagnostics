@@ -97,29 +97,6 @@ const InstallationView = React.createClass({
               onMomentumScrollEnd={(e, state, context) => this.setPage(state.index)}
             >
               <View style={styles.instructionsContainer}>
-                <View style={styles.askMilesContainer}>
-                  <H3>{loc.welcome.welcomeToCarfit}</H3>
-                  <Text style={{marginTop: 12}}>{loc.welcome.helloMiles}</Text>
-                  <Text style={{marginTop: 12}}>{loc.welcome.welcomeParagraph1}</Text>
-                  <Text style={{marginTop: 12}}>{loc.welcome.welcomeParagraph2}</Text>
-                  <Text style={{marginTop: 12}}>{loc.welcome.welcomeParagraph3}</Text>
-                  <Text style={{marginTop: 12}}>{loc.welcome.welcomeParagraph4}</Text>
-
-                  <Text style={{marginTop: 12}}>
-                    <Text style={{fontWeight: "bold"}}>1. {loc.welcome.step1}</Text>
-                    <Text>{loc.welcome.stepDescription1}</Text>
-                  </Text>
-                  <Text style={{marginTop: 3}}>
-                    <Text style={{fontWeight: "bold"}}>2. {loc.welcome.step2}</Text>
-                    <Text>{loc.welcome.stepDescription1}</Text>
-                  </Text>
-                  <Text style={{marginTop: 3}}>
-                    <Text style={{fontWeight: "bold"}}>3. {loc.welcome.step3}</Text>
-                    <Text>{loc.welcome.stepDescription2}</Text>
-                  </Text>
-                </View>
-              </View>
-              <View style={styles.instructionsContainer}>
                 <Image source={require('../../../images/pull-tab-02.png')} style={styles.image}/>
                 <H3 style={{fontWeight: "bold", textAlign: "center", marginTop: 25}}>{loc.instructions.enableBattery}</H3>
                 <Text style={{marginTop: 17, textAlign: "center"}}>{loc.instructions.pullTab}</Text>
