@@ -73,6 +73,50 @@ const CarInstallationStateView = React.createClass({
         headerTitle = loc.carInstallation.inCarInstallation;
     }
 
+    let enterView = 'license';
+
+    function getFinalView() {
+      if (enterView == 'vin') {
+        return (
+          <View>
+            <Image source={require('../../../images/activate-ble-02.png')} style={styles.image}/>
+            <InputGroup borderType='rounded' style={styles.textInput}>
+              <Input
+                ref='licenseInput'
+                placeholder={loc.carInstallation.enterLicensePlate}/>
+            </InputGroup>
+            <Text style={{marginTop: 22, textAlign: "center"}}>{loc.carInstallation.enterByVin}</Text>
+            <View style={styles.bottomContainer}>
+              <Button rounded
+                      style={{alignSelf: 'auto'}}
+                      textStyle={{color: colors.textPrimary}}
+                      onPress={this.onNextPress}
+              >{loc.general.continue}</Button>
+            </View>
+          </View>
+        )
+      } else {
+        return (
+          <View>
+            <Image source={require('../../../images/activate-ble-02.png')} style={styles.image}/>
+            <InputGroup borderType='rounded' style={styles.textInput}>
+              <Input
+                ref='licenseInput'
+                placeholder={loc.carInstallation.enterVin}/>
+            </InputGroup>
+            <Text style={{marginTop: 22, textAlign: "center"}}>{loc.carInstallation.enterByLicensePlate}</Text>
+            <View style={styles.bottomContainer}>
+              <Button rounded
+                      style={{alignSelf: 'auto'}}
+                      textStyle={{color: colors.textPrimary}}
+                      onPress={this.onNextPress}
+              >{loc.general.continue}</Button>
+            </View>
+          </View>
+        )
+      }
+    }
+
     return (
       <Container theme={carfitTheme}>
         <Header>
@@ -109,20 +153,7 @@ const CarInstallationStateView = React.createClass({
               <Text style={{marginTop: 17, textAlign: "center"}}>{loc.carInstallation.detail3b}</Text>
             </View>
             <View style={styles.instructionsContainer}>
-              <Image source={require('../../../images/activate-ble-02.png')} style={styles.image}/>
-              <InputGroup borderType='rounded' style={styles.textInput}>
-                <Input
-                  ref='licenseInput'
-                  placeholder={loc.carInstallation.enterByLicensePlate}/>
-              </InputGroup>
-              <Text style={{marginTop: 22, textAlign: "center"}}>{loc.carInstallation.enterByVin}</Text>
-              <View style={styles.bottomContainer}>
-                <Button rounded
-                        style={{alignSelf: 'auto'}}
-                        textStyle={{color: colors.textPrimary}}
-                        onPress={this.onNextPress}
-                >{loc.general.continue}</Button>
-              </View>
+              {getFinalView()}
             </View>
           </Swiper>
 
