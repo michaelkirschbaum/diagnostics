@@ -45,4 +45,9 @@ export async function discoverCarfitDevices() {
       ]
     })
 
+  // let ChrisSDK = {};
+  // ChrisSDK.ChrisFunction = new Promise(function(){ return [{ name: 'CARFIT', id: '1212121212' , signal: 80 }] });
+  //
+  // return ChrisSDK.ChrisFunction();
+
 }
