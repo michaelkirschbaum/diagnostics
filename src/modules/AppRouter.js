@@ -9,6 +9,8 @@ import VerificationViewContainer from './verification/VerificationViewContainer'
 // import ResetPasswordViewContainer from './password/ResetPasswordViewContainer';
 import WelcomeViewContainer from './welcome/WelcomeViewContainer';
 import InstallationViewContainer from './installation/InstallationViewContainer';
+import CarInstallationStartViewContainer from './carInstalltion/CarInstallationStartViewContainer';
+import CarInstallationViewContainer from './carInstalltion/CarInstallationViewContainer';
 //
 // import CounterViewContainer from './counter/CounterViewContainer';
 // import ColorViewContainer from './colors/ColorViewContainer';
@@ -42,6 +44,12 @@ export default function AppRouter(props) {
   }
   if (key === 'Installation') {
     return <InstallationViewContainer />;
+  }
+  if (key === 'CarStartInstallation') {
+    return <CarInstallationStartViewContainer />;
+  }
+  if (key === 'CarInstallation') {
+    return <CarInstallationViewContainer />;
   }
   //
   //

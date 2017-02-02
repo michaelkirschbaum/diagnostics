@@ -38,10 +38,7 @@ const InstallationView = React.createClass({
   },
 
   onNextPress() {
-    this.props.dispatch(NavigationState.pushRoute({
-      key: 'Verification',
-      title: 'Verification'
-    }));
+    this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
   },
 
   popRoute() {
@@ -123,7 +120,7 @@ const InstallationView = React.createClass({
                       style={{width: windowWidth - 40, marginTop: 25}}
                       renderRow={(item) =>
                             <ListItem>
-                                <Text>{item.name}  -  {item.id}</Text>
+                                <Text onPress={this.onNextPress}>{item.name}  -  {item.id}</Text>
                             </ListItem>
                         }>
                 </List>

@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted} from '../navigation/NavigationState';
 import {setPageIndex, discover, clearDevices} from './CarInstallationState';
-import InstallationView from './CarInstallationStateView';
+import InstallationView from './CarInstallationView';
 
 export default connect(
   state => ({

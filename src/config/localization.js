@@ -61,7 +61,7 @@ const en = {
     ensurePairing: 'Ensure the CARFIT PULS sensoris in pairing mode with the center LED flashing.',
   },
   carInstallation: {
-    installation: 'installation',
+    installation: 'Installation',
     // Page One
     inCarInstallation: 'In-car installation',
     header1: 'Go to your car',
@@ -82,7 +82,7 @@ const en = {
     // Page four
     registerCar: 'registerCar',
     enterLicensePlate: 'Enter license plate here',
-    enterByVin: 'Enter by Vin',
+    enterByVin: 'Enter by VIN',
     enterVin: 'Enter VIN here',
     enterByLicensePlate: 'Enter by license plate',
   }
