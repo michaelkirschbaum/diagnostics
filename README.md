@@ -7,9 +7,11 @@ This repository contains the build infrastructure for the iOS and Android REACT 
 In the scaffolding branch, there is a "docs" directory.  This directory is where you will find the information needed to setup your REACT Native project.
 
 Start by following the instructions here:
+
 * ReactNative_CARFIT / docs / SETUP.md 
 
 Pay special attention to include:
+
 * Android SDK Build-tools (**Important: Rev. 23.0.1**)
 
 You may need to load the Android version of the project into Android Studio in order to resolve dependencies if at first the project won't build.
