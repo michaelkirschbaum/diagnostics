@@ -48,10 +48,10 @@ const CarInstallationStateView = React.createClass({
 
   setPage(index) {
     this.props.setPageIndex(index);
-    if (index == 4) {
-      // Start discovery of BLE devices
-      this.props.discover();
-    }
+  },
+
+  setMode(mode) {
+    this.props.setEnterMode(mode);
   },
 
   render() {
@@ -73,19 +73,22 @@ const CarInstallationStateView = React.createClass({
         headerTitle = loc.carInstallation.inCarInstallation;
     }
 
-    let enterView = 'license';
+    let finalView = this.props.carInstallation.enterMode
 
-    function getFinalView() {
-      if (enterView == 'vin') {
+    getFinalView = function () {
+
+      if (finalView == 'vin') {
         return (
           <View>
-            <Image source={require('../../../images/activate-ble-02.png')} style={styles.image}/>
+            <Image source={require('../../../images/enter-vin.png')} style={styles.image}/>
             <InputGroup borderType='rounded' style={styles.textInput}>
               <Input
                 ref='licenseInput'
-                placeholder={loc.carInstallation.enterLicensePlate}/>
+                placeholder={loc.carInstallation.enterVin}/>
             </InputGroup>
-            <Text style={{marginTop: 22, textAlign: "center"}}>{loc.carInstallation.enterByVin}</Text>
+            <Text
+              style={{marginTop: 22, textAlign: "center", color: colors.primary}}
+              onPress={() => { this.setMode('license') }}>{loc.carInstallation.enterLicensePlate}</Text>
             <View style={styles.bottomContainer}>
               <Button rounded
                       style={{alignSelf: 'auto'}}
@@ -98,13 +101,15 @@ const CarInstallationStateView = React.createClass({
       } else {
         return (
           <View>
-            <Image source={require('../../../images/activate-ble-02.png')} style={styles.image}/>
+            <Image source={require('../../../images/enter-plate.png')} style={styles.image}/>
             <InputGroup borderType='rounded' style={styles.textInput}>
               <Input
                 ref='licenseInput'
-                placeholder={loc.carInstallation.enterVin}/>
+                placeholder={loc.carInstallation.enterLicensePlate}/>
             </InputGroup>
-            <Text style={{marginTop: 22, textAlign: "center"}}>{loc.carInstallation.enterByLicensePlate}</Text>
+            <Text
+              style={{marginTop: 22, textAlign: "center", color: colors.primary}}
+              onPress={() => { this.setMode('vin') }}>{loc.carInstallation.enterByVin}</Text>
             <View style={styles.bottomContainer}>
               <Button rounded
                       style={{alignSelf: 'auto'}}
@@ -115,7 +120,7 @@ const CarInstallationStateView = React.createClass({
           </View>
         )
       }
-    }
+    }.bind(this);
 
     return (
       <Container theme={carfitTheme}>
@@ -142,12 +147,12 @@ const CarInstallationStateView = React.createClass({
             onMomentumScrollEnd={(e, state, context) => this.setPage(state.index)}
           >
             <View style={styles.instructionsContainer}>
-              <Image source={require('../../../images/pull-tab-02.png')} style={styles.image}/>
+              <Image source={require('../../../images/peel-adhesive.png')} style={styles.image}/>
               <H3 style={{fontWeight: "bold", textAlign: "center", marginTop: 25}}>{loc.carInstallation.header2}</H3>
               <Text style={{marginTop: 17, textAlign: "center"}}>{loc.carInstallation.detail2a}</Text>
             </View>
             <View style={styles.instructionsContainer}>
-              <Image source={require('../../../images/ble-pairing-02.png')} style={styles.image}/>
+              <Image source={require('../../../images/place-02.png')} style={styles.image}/>
               <H3 style={{fontWeight: "bold", textAlign: "center", marginTop: 25}}>{loc.carInstallation.header3}</H3>
               <Text style={{marginTop: 17, textAlign: "center"}}>{loc.carInstallation.detail3a}</Text>
               <Text style={{marginTop: 17, textAlign: "center"}}>{loc.carInstallation.detail3b}</Text>

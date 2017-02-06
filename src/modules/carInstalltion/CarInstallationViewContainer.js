@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted} from '../navigation/NavigationState';
-import {setPageIndex, discover, clearDevices} from './CarInstallationState';
+import {setPageIndex, setEnterMode} from './CarInstallationState';
 import InstallationView from './CarInstallationView';
 
 export default connect(
@@ -26,6 +26,9 @@ export default connect(
     },
     setPageIndex(index) {
       dispatch(setPageIndex(index));
+    },
+    setEnterMode(value) {
+      dispatch(setEnterMode(value));
     }
   })
 )(InstallationView);

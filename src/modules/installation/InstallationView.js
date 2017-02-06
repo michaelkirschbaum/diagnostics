@@ -114,8 +114,7 @@ const InstallationView = React.createClass({
                 <Text style={{marginTop: 17, textAlign: "center"}}>{loc.instructions.ensurePairing}</Text>
               </View>
               <View style={styles.instructionsContainer}>
-                <H3 style={{fontWeight: "bold", textAlign: "center", marginTop: 25}}>Discuss with Chris</H3>
-                <Text style={{marginTop: 17, textAlign: "center"}}>This view is dynamic pulling from the BLE device.</Text>
+                <Text style={{marginTop: 17, textAlign: "left"}}>{loc.instructions.selectBLE}</Text>
                 <List dataArray={items}
                       style={{width: windowWidth - 40, marginTop: 25}}
                       renderRow={(item) =>

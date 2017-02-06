@@ -58,7 +58,8 @@ const en = {
     resetConnection: 'Reset connection',
     pressAndHold: 'Press & hold the center of the CARFIT PULS sensor for 10s to reset the sensor. \nTap to turn it on.',
     blePairing: 'Enable battery power',
-    ensurePairing: 'Ensure the CARFIT PULS sensoris in pairing mode with the center LED flashing.',
+    ensurePairing: 'Ensure the CARFIT PULS sensor in pairing mode with the center LED flashing.',
+    selectBLE: 'Select your CARFIT PULS sensor from the list to connect.',
   },
   carInstallation: {
     installation: 'Installation',
