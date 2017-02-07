@@ -38,7 +38,7 @@ const CarInstallationStateView = React.createClass({
   },
 
   onNextPress() {
-    // this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
+    this.props.pushRoute({key: 'CarPhoto', title: ''});
   },
 
   popRoute() {
@@ -92,7 +92,7 @@ const CarInstallationStateView = React.createClass({
             <View style={styles.bottomContainer}>
               <Button rounded
                       style={{alignSelf: 'auto'}}
-                      textStyle={{color: colors.textPrimary}}
+                      textStyle={{color: colors.textPrimary, textDecorationLine: 'underline'}}
                       onPress={this.onNextPress}
               >{loc.general.continue}</Button>
             </View>
@@ -113,7 +113,7 @@ const CarInstallationStateView = React.createClass({
             <View style={styles.bottomContainer}>
               <Button rounded
                       style={{alignSelf: 'auto'}}
-                      textStyle={{color: colors.textPrimary}}
+                      textStyle={{color: colors.textPrimary, textDecorationLine: 'underline'}}
                       onPress={this.onNextPress}
               >{loc.general.continue}</Button>
             </View>

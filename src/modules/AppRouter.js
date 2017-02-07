@@ -11,6 +11,13 @@ import WelcomeViewContainer from './welcome/WelcomeViewContainer';
 import InstallationViewContainer from './installation/InstallationViewContainer';
 import CarInstallationStartViewContainer from './carInstalltion/CarInstallationStartViewContainer';
 import CarInstallationViewContainer from './carInstalltion/CarInstallationViewContainer';
+import CarPhotoViewContainer from './carPhoto/CarPhotoViewContainer';
+import OverviewViewContainer from './overview/OverviewViewContainer';
+import HomeViewContainer from './home/HomeViewContainer';
+import SettingsViewContainer from './settings/SettingsViewContainer';
+import MyCarsViewContainer from './myCars/MyCarsViewContainer';
+import DetailsViewContainer from './details/DetailsViewContainer';
+import AccountViewContainer from './account/AccountViewContainer';
 //
 // import CounterViewContainer from './counter/CounterViewContainer';
 // import ColorViewContainer from './colors/ColorViewContainer';
@@ -51,20 +58,28 @@ export default function AppRouter(props) {
   if (key === 'CarInstallation') {
     return <CarInstallationViewContainer />;
   }
-  //
-  //
-  // if (key === 'Counter') {
-  //   return <CounterViewContainer />;
-  // }
-  //
-  // if (key.indexOf('Color') === 0) {
-  //   const index = props.scenes.indexOf(props.scene);
-  //   return (
-  //     <ColorViewContainer
-  //       index={index}
-  //     />
-  //   );
-  // }
+  if (key === 'CarPhoto') {
+    return <CarPhotoViewContainer />;
+  }
+  if (key === 'Overview') {
+    return <OverviewViewContainer />;
+  }
+  if (key === 'Home') {
+    return <HomeViewContainer />;
+  }
+  if (key === 'Settings') {
+    return <SettingsViewContainer />;
+  }
+  if (key === 'MyCars') {
+    return <MyCarsViewContainer />;
+  }
+  if (key === 'Details') {
+    return <DetailsViewContainer />;
+  }
+  if (key === 'Account') {
+    return <AccountViewContainer />;
+  }
+
 
   throw new Error('Unknown navigation key: ' + key);
 }

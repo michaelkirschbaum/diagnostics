@@ -1,5 +1,6 @@
 import {fromJS} from 'immutable';
-
+import loc from '../../config/localization';
+import _ from 'lodash';
 import {NavigationExperimental} from 'react-native';
 
 const {StateUtils: NavigationStateUtils} = NavigationExperimental;
@@ -24,9 +25,30 @@ export function popRoute() {
 }
 
 export function switchRoute(index) {
+  let payload = 0;
+  console.log('Switch Route: ', index);
+  console.log('_.isNumber: ', _.isNumber(index));
+  if (!_.isNumber(index) && _.isString(index)) {
+    switch (index) {
+      case 'LoginRoute':
+        payload = 0;
+        break;
+      case 'WelcomeRoute':
+        payload = 1;
+        break;
+      case 'Overview':
+        payload = 1;
+        break;
+      case 'MainRoute':
+        payload = 3;
+        break;
+    }
+  } else {
+    payload = index;
+  }
   return {
     type: SWITCH_ROUTE,
-    payload: index
+    payload: payload
   };
 }
 
@@ -47,26 +69,28 @@ const initialState = fromJS({
     index: 0,
     routes: [
       {key: 'LoginRoute', title: 'CARFIT'},
-      {key: 'WelcomeRoute', title: 'WELCOME'},
+      {key: 'WelcomeRoute', title: loc.welcome.welcome},
+      {key: 'Overview', title: loc.overview.overview},
       {key: 'MainRoute', title: 'CARFIT'},
     ]
   },
-  // Scenes for the `HomeTab` tab.
   LoginRoute: {
     index: 0,
     routes: [
       {key: 'Login'}
     ]
   },
-  // Scenes for the `Counter` pages.
   WelcomeRoute: {
     index: 0,
-    routes: [{key: 'Welcome', title: 'Counter for Test'}]
+    routes: [{key: 'Welcome', title: loc.welcome.welcome}]
   },
-  // Scenes for the `ProfileTab` tab.
+  Overview: {
+    index: 0,
+    routes: [{key: 'Overview', title: loc.overview.overview}]
+  },
   MainRoute: {
     index: 0,
-    routes: [{key: 'Info', title: 'Color Screen'}]
+    routes: [{key: 'Home', title: 'CARFIT'}]
   },
   drawerOpen: true
 });
@@ -113,6 +137,8 @@ export default function NavigationReducer(state = initialState, action) {
       // Gets the current list of possible roots.
       const roots = state.get('roots').toJS();
       const nextTabs = NavigationStateUtils.jumpToIndex(roots, action.payload);
+        console.log("roots  ", roots);
+        console.log("nextTabs  ", nextTabs);
       if (roots !== nextTabs) {
         return state.set('roots', fromJS(nextTabs));
       }
