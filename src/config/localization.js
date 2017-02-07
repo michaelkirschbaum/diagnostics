@@ -166,6 +166,10 @@ const en = {
     email: 'Email address',
     password: 'Password',
     changePassword: 'Change Password',
+  },
+  legal: {
+    privacy: 'Privacy Policy',
+    terms: 'Terms of Use'
   }
 };
 export default en;

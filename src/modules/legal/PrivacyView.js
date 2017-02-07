@@ -3,8 +3,7 @@ import {
   View,
   StyleSheet,
   Image,
-  Dimensions,
-  TouchableWithoutFeedback
+  Dimensions
 } from 'react-native';
 import {
   Container,
@@ -23,6 +22,7 @@ import {
   List,
   ListItem
 } from 'native-base';
+import _ from 'lodash';
 import colors from '../../config/colors';
 import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
@@ -30,24 +30,14 @@ import Swiper from 'react-native-swiper';
 
 import * as NavigationState from '../../modules/navigation/NavigationState';
 
-/**
- * Login view
- * Likely to be the main app view, but will only display login dialog when needed.
- * Otherwise pass by.
- */
-const MyCarsView = React.createClass({
-  propTypes: {
 
-  },
+const PrivacyView = React.createClass({
+  propTypes: {},
 
   onNextPress() {
     // this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
     // this.props.switchRoute('Overview');
-    this.props.switchRoute(2);
-  },
-
-  onMyCarsPress() {
-    this.props.pushRoute({key: 'Details', title: loc.settings.settings});
+    // this.props.switchRoute(2);
   },
 
   popRoute() {
@@ -58,11 +48,7 @@ const MyCarsView = React.createClass({
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
 
-    let headerTitle = loc.myCars.myCars;
-
-    let carName = "Sam's Car";
-    let carDescription = "Ford Fiesta 2015";
-    let carStatus = loc.myCars.active;
+    let headerTitle = loc.legal.privacy;
 
     return (
       <Container theme={carfitTheme}>
@@ -80,38 +66,10 @@ const MyCarsView = React.createClass({
           ref={c => this._content = c}>
 
           <View style={styles.layoutContainer}>
-            <TouchableWithoutFeedback onPress={this.onMyCarsPress}>
-              <View style={styles.carContainer}>
-                <View style={styles.carImageContainer}>
-                  <Text>IMAGE</Text>
-                </View>
-                <View style={styles.carDetailsContainer}>
-                  <H2 style={{fontWeight:'bold'}}>{carName} ({carStatus})</H2>
-                  <H3>{carDescription}</H3>
-                </View>
-              </View>
-            </TouchableWithoutFeedback>
 
+            <Text>Privacy - possible webview?</Text>
 
-            <View style={{
-              height: 1,
-              backgroundColor: colors.headerTextColor,
-              marginTop: 20,
-              marginBottom: 20,
-              }}/>
-
-            <View style={styles.carContainer}>
-
-              <View style={styles.carImageContainer}>
-                <Text>IMAGE</Text>
-              </View>
-              <View style={styles.carDetailsContainer}>
-                <H3>{loc.myCars.changeMyCar}</H3>
-              </View>
-
-            </View>
-
-        </View>
+          </View>
 
         </Content>
       </Container>
@@ -131,21 +89,26 @@ const styles = StyleSheet.create({
   layoutContainer: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'space-between',
-    marginTop: 20
+    marginTop: 4
   },
-  carContainer: {
+
+  sectionContainer: {
     flex: 1,
     flexDirection: 'row',
+    justifyContent: 'space-between',
     marginLeft: 20,
     marginRight: 20,
   },
-  carImageContainer: {
-    marginRight: 17,
-  },
-  carDetailsContainer: {
+  sectionDetails: {
     flex: 1,
     flexDirection: 'column',
+  },
+  sectionAction: {},
+  sectionHeader: {
+    fontWeight: 'bold'
+  },
+  sectionTitle: {
+    fontWeight: 'bold'
   },
 
 
@@ -183,4 +146,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MyCarsView;
+export default PrivacyView;

@@ -18,6 +18,8 @@ import SettingsViewContainer from './settings/SettingsViewContainer';
 import MyCarsViewContainer from './myCars/MyCarsViewContainer';
 import DetailsViewContainer from './details/DetailsViewContainer';
 import AccountViewContainer from './account/AccountViewContainer';
+import PrivacyViewContainer from './legal/PrivacyViewContainer';
+import TermsViewContainer from './legal/TermsViewContainer';
 //
 // import CounterViewContainer from './counter/CounterViewContainer';
 // import ColorViewContainer from './colors/ColorViewContainer';
@@ -78,6 +80,12 @@ export default function AppRouter(props) {
   }
   if (key === 'Account') {
     return <AccountViewContainer />;
+  }
+  if (key === 'Privacy') {
+    return <PrivacyViewContainer />;
+  }
+  if (key === 'Terms') {
+    return <TermsViewContainer />;
   }
 
 

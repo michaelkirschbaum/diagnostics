@@ -53,6 +53,14 @@ const SettingsView = React.createClass({
     this.props.pushRoute({key: 'Account', title: loc.settings.settings});
   },
 
+  onPrivacyPress() {
+    this.props.pushRoute({key: 'Privacy', title: loc.settings.settings});
+  },
+
+  onTermsPress() {
+    this.props.pushRoute({key: 'Terms', title: loc.settings.settings});
+  },
+
   popRoute() {
     this.props.onNavigateBack();
   },
@@ -89,8 +97,8 @@ const SettingsView = React.createClass({
             </View>
 
             <View style={styles.settingsSubContainer}>
-              <H2>{loc.settings.terms}</H2>
-              <H2>{loc.settings.privacy}</H2>
+              <H2 style={{marginBottom: 7}} onPress={this.onTermsPress}>{loc.settings.terms}</H2>
+              <H2 onPress={this.onPrivacyPress}>{loc.settings.privacy}</H2>
               <Text style={{paddingTop: 20}}>{loc.settings.copyright}</Text>
             </View>
 
