@@ -110,7 +110,7 @@ const AccountView = React.createClass({
                 <Text>{loc.account.changePassword}</Text>
               </View>
               <View style={styles.sectionAction}>
-                <Text> > </Text>
+                <Icon active name="ios-arrow-forward"></Icon>
               </View>
             </View>
 
