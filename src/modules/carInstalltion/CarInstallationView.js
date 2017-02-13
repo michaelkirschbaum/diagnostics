@@ -58,7 +58,7 @@ const CarInstallationStateView = React.createClass({
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
 
-    let headerTitle = "Test";
+    let headerTitle = loc.carInstallation.inCarInstallation;
     switch (this.props.carInstallation.pageIndex) {
       case 0:
         headerTitle = loc.carInstallation.inCarInstallation;
@@ -87,7 +87,7 @@ const CarInstallationStateView = React.createClass({
                 placeholder={loc.carInstallation.enterVin}/>
             </InputGroup>
             <Text
-              style={{marginTop: 22, textAlign: "center", color: colors.primary}}
+              style={{marginTop: 22, textAlign: "center", color: colors.primary, textDecorationLine: 'underline'}}
               onPress={() => { this.setMode('license') }}>{loc.carInstallation.enterLicensePlate}</Text>
             <View style={styles.bottomContainer}>
               <Button rounded
@@ -108,7 +108,7 @@ const CarInstallationStateView = React.createClass({
                 placeholder={loc.carInstallation.enterLicensePlate}/>
             </InputGroup>
             <Text
-              style={{marginTop: 22, textAlign: "center", color: colors.primary}}
+              style={{marginTop: 22, textAlign: "center", color: colors.primary, textDecorationLine: 'underline'}}
               onPress={() => { this.setMode('vin') }}>{loc.carInstallation.enterByVin}</Text>
             <View style={styles.bottomContainer}>
               <Button rounded

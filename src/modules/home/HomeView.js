@@ -78,9 +78,9 @@ const HomeView = React.createClass({
           <View style={styles.container}>
 
             <View style={styles.profileContainer}>
-              <Text onPress={this.onSettingsPress}>Gear</Text>
+              <Image onPress={this.onSettingsPress} source={require('../../../images/icons/settings.png')} style={styles.icon}/>
               <Text onPress={this.onMyCarsPress}>Image</Text>
-              <Text>Ask</Text>
+              <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
             </View>
 
             <View style={styles.profileHeaderContainer}>
@@ -104,7 +104,7 @@ const HomeView = React.createClass({
 
             <View style={styles.dataBlockContainer}>
               <View style={styles.dataIcon}>
-                <Text>X</Text>
+                <Image source={require('../../../images/icons/service.png')} style={styles.icon}/>
               </View>
               <View style={styles.dataBlock}>
                 <H3 style={{fontWeight: "bold", color: alertColor}}>{loc.home.alert}</H3>
@@ -119,7 +119,7 @@ const HomeView = React.createClass({
 
             <View style={styles.dataBlockContainer}>
               <View style={styles.dataIcon}>
-                <Text>X</Text>
+                <Image source={require('../../../images/icons/usage.png')} style={styles.icon}/>
               </View>
               <View style={styles.dataBlock}>
                 <H3 style={{fontWeight: "bold", color: actionColor}}>{loc.home.usage}</H3>
@@ -134,10 +134,10 @@ const HomeView = React.createClass({
 
             <View style={styles.dataBlockContainer}>
               <View style={styles.dataIcon}>
-                <Text>X</Text>
+                <Image source={require('../../../images/icons/usage.png')} style={styles.icon}/>
               </View>
               <View style={styles.dataBlock}>
-                <H3 style={{fontWeight: "bold", color: colors.headerTextColor}}>{loc.home.trending}</H3>
+                <H3 style={{fontWeight: "bold", color: colors.headerTextColor}}>{loc.home.value}</H3>
                 <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
                 <H3 style={{color: colors.headerTextColor}}>{valueAction}</H3>
                 <Text style={{color: colors.headerTextColor}}>{valueDescription}</Text>
@@ -154,10 +154,11 @@ const HomeView = React.createClass({
           <View style={styles.bottomContainer}>
             <Button rounded
                     bordered={false}
-                    style={{alignSelf: 'auto'}}
+                    style={{alignSelf: 'auto', width: 120, height: 45}}
                     textStyle={{color: colors.textPrimary}}
-                    onPress={this.onNextPress}
-            >CALL</Button>
+                    onPress={this.onNextPress}>
+              <Image source={require('../../../images/icons/phone.png')} style={styles.icon}/>
+            </Button>
           </View>
         </Footer>
       </Container>
@@ -228,12 +229,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 25,
   },
+  icon: {
+    width: 35,
+    height: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   titles: {
     marginTop: 17,
     marginBottom: 8
   },
   footer: {
-    height: 100,
+    height: 90,
     backgroundColor: colors.backgroundPrimary,
     borderColor: colors.backgroundPrimary
   },

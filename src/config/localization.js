@@ -38,6 +38,7 @@ const en = {
   },
   welcome: {
     welcome: 'Welcome',
+    connect: 'Connect',
     welcomeToCarfit: 'Welcome to CARFIT!',
     helloMiles: 'Hello, I am Miles.',
     welcomeParagraph1: 'From now on I will be the voice of your car. Feel free to chat with me later!',

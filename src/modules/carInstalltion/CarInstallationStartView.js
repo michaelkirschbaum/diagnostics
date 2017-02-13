@@ -38,16 +38,46 @@ const CarInstallationStartView = React.createClass({
             ref={c => this._content = c}>
 
             <View style={styles.container}>
-              <H3 style={styles.header}>{loc.carInstallation.header1}</H3>
-              <Text style={styles.message}>{loc.carInstallation.message1}</Text>
+              <View style={styles.subContainer}>
+                <Image source={require('../../../images/icons/car.png')} style={styles.icon}/>
+                <View>
+                  <H3 style={styles.header}>{loc.carInstallation.header1}</H3>
+                  <Text style={styles.message}>{loc.carInstallation.message1}</Text>
+                </View>
+              </View>
+
+              <View style={styles.subContainer}>
+                <Image source={require('../../../images/icons/adhesive.png')} style={styles.icon}/>
+                <View>
               <H3 style={styles.header}>{loc.carInstallation.header2}</H3>
               <Text style={styles.message}>{loc.carInstallation.message2}</Text>
+                </View>
+              </View>
+
+              <View style={styles.subContainer}>
+                <Image source={require('../../../images/icons/position.png')} style={styles.icon}/>
+                <View>
               <H3 style={styles.header}>{loc.carInstallation.header3}</H3>
               <Text style={styles.message}>{loc.carInstallation.message3}</Text>
+                </View>
+              </View>
+
+              <View style={styles.subContainer}>
+                <Image source={require('../../../images/icons/register.png')} style={styles.icon}/>
+                <View>
               <H3 style={styles.header}>{loc.carInstallation.header4}</H3>
               <Text style={styles.message}>{loc.carInstallation.message4}</Text>
+                </View>
+              </View>
+
+              <View style={styles.subContainer}>
+                <Image source={require('../../../images/icons/check.png')} style={styles.icon}/>
+                <View>
               <H3 style={styles.header}>{loc.carInstallation.header5}</H3>
               <Text style={styles.message}>{loc.carInstallation.message5}</Text>
+                </View>
+              </View>
+
             </View>
 
           </Content>
@@ -70,7 +100,7 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: colors.headerTextColor
   },
-  header: {fontWeight: "bold", marginTop: 25},
+  header: {fontWeight: "bold", marginTop: 0},
   message: {marginTop: 2},
   container: {
     flex: 1,
@@ -81,6 +111,12 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20
   },
+  subContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    marginTop: 25,
+    marginBottom: 8
+  },
   inputContainer: {
     marginLeft: 20,
     marginRight: 20,
@@ -90,6 +126,13 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
     borderWidth: 2.5
   },
+  icon: {
+    width: 35,
+    height: 35,
+    marginRight: 20,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   logo: {
     width: 200,
     height: 200,
@@ -97,8 +140,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   titles: {
-    marginTop: 17,
-    marginBottom: 8
+
   },
   footer: {
     height: 150,
