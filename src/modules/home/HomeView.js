@@ -3,7 +3,8 @@ import {
   View,
   StyleSheet,
   Image,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from 'react-native';
 import {
   Container,
@@ -43,6 +44,10 @@ const HomeView = React.createClass({
     this.props.pushRoute({key: 'Settings', title: loc.settings.settings});
   },
 
+  onMilesPress() {
+    // this.props.pushRoute({key: 'Miles', title: loc.settings.settings});
+  },
+
   onMyCarsPress() {
     this.props.pushRoute({key: 'Details', title: loc.settings.settings});
   },
@@ -78,9 +83,16 @@ const HomeView = React.createClass({
           <View style={styles.container}>
 
             <View style={styles.profileContainer}>
-              <Image onPress={this.onSettingsPress} source={require('../../../images/icons/settings.png')} style={styles.icon}/>
-              <Text onPress={this.onMyCarsPress}>Image</Text>
-              <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
+              <TouchableOpacity onPress={this.onSettingsPress}>
+                <Image source={require('../../../images/icons/settings.png')}
+                       style={styles.icon}/>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={this.onMyCarsPress}>
+                <Text>Image</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={this.onMilesPress}>
+                <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
+              </TouchableOpacity>
             </View>
 
             <View style={styles.profileHeaderContainer}>
@@ -113,7 +125,7 @@ const HomeView = React.createClass({
                 <Text>{alertDescription}</Text>
               </View>
               <View style={styles.dataAction}>
-                <Text> > </Text>
+                <Icon active name="ios-arrow-forward"></Icon>
               </View>
             </View>
 
@@ -128,7 +140,7 @@ const HomeView = React.createClass({
                 <Text>{usageDescription}</Text>
               </View>
               <View style={styles.dataAction}>
-                <Text> > </Text>
+                <Icon active name="ios-arrow-forward"></Icon>
               </View>
             </View>
 
@@ -143,7 +155,7 @@ const HomeView = React.createClass({
                 <Text style={{color: colors.headerTextColor}}>{valueDescription}</Text>
               </View>
               <View style={styles.dataAction}>
-                <Text> > </Text>
+                <Icon active name="ios-arrow-forward"></Icon>
               </View>
             </View>
 

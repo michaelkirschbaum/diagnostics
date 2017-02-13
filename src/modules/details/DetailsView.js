@@ -119,7 +119,7 @@ const DetailsView = React.createClass({
                 <Text>{name}</Text>
               </View>
               <View style={styles.sectionAction}>
-                <Text> > </Text>
+                <Icon active name="ios-arrow-forward"></Icon>
               </View>
             </View>
             <View style={{height: 1,backgroundColor: colors.headerTextColor,marginTop: 17,marginBottom: 17,}}/>
@@ -129,7 +129,7 @@ const DetailsView = React.createClass({
                 <Text>{mileage}</Text>
               </View>
               <View style={styles.sectionAction}>
-                <Text> > </Text>
+                <Icon active name="ios-arrow-forward"></Icon>
               </View>
             </View>
             <View style={{height: 1,backgroundColor: colors.headerTextColor,marginTop: 17,marginBottom: 17,}}/>
@@ -139,7 +139,7 @@ const DetailsView = React.createClass({
                 <Text>{image}</Text>
               </View>
               <View style={styles.sectionAction}>
-                <Text> > </Text>
+                <Icon active name="ios-arrow-forward"></Icon>
               </View>
             </View>
             <View style={{height: 1,backgroundColor: colors.headerTextColor,marginTop: 17,marginBottom: 17,}}/>
@@ -154,7 +154,7 @@ const DetailsView = React.createClass({
                 <Text>{connected}</Text>
               </View>
               <View style={styles.sectionAction}>
-                <Text> > </Text>
+                <Icon active name="ios-arrow-forward"></Icon>
               </View>
             </View>
             <View style={{height: 1,backgroundColor: colors.headerTextColor,marginTop: 17,marginBottom: 17,}}/>
@@ -164,7 +164,7 @@ const DetailsView = React.createClass({
                 <Text>{phone}</Text>
               </View>
               <View style={styles.sectionAction}>
-                <Text> > </Text>
+                <Icon active name="ios-arrow-forward"></Icon>
               </View>
             </View>
             <View style={{height: 1,backgroundColor: colors.headerTextColor,marginTop: 17,marginBottom: 17,}}/>
