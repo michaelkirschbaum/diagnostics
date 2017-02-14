@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted} from './NavigationStateBLAH';
+import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted} from './NavigationState';
 import NavigationView from './NavigationView';
 
 /*

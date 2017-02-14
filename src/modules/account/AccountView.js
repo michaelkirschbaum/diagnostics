@@ -28,7 +28,7 @@ import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 
-import * as NavigationState from '../navigation/NavigationStateBLAH';
+import * as NavigationState from '../navigation/NavigationState';
 
 /**
  * Login view

@@ -9,7 +9,7 @@ import colors from '../../config/colors';
 import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
 
-import * as NavigationState from '../navigation/NavigationStateBLAH';
+import * as NavigationState from '../navigation/NavigationState';
 
 /**
  * Welcome view

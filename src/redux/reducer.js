@@ -1,6 +1,6 @@
 import {Map, fromJS} from 'immutable';
 import {loop, combineReducers} from 'redux-loop';
-import NavigationStateReducer from '../modules/navigation/NavigationStateBLAH';
+import NavigationStateReducer from '../modules/navigation/NavigationState';
 import InstallationStateReducer from '../modules/installation/InstallationState';
 import CarInstallationState from '../modules/carInstalltion/CarInstallationState';
 import LoginStateReducer from '../modules/login/LoginState';
