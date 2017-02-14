@@ -4,7 +4,7 @@ import store from './src/redux/store';
 import AppViewContainer from './src/modules/AppViewContainer';
 import React from 'react';
 import {AppRegistry, BackAndroid} from 'react-native';
-import * as NavigationStateActions from './src/modules/navigation/NavigationState';
+import * as NavigationStateActions from './src/modules/navigation/NavigationStateBLAH';
 
 const CARFIT = React.createClass({
 
