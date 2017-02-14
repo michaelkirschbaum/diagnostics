@@ -69,13 +69,15 @@ const InstallationView = React.createClass({
 
     let items = this.props.installation.foundDevices;
 
+    let headerTitle = loc.welcome.connect;
+
     return (
         <Container theme={carfitTheme}>
           <Header>
             <Button transparent onPress={() => this.popRoute()}>
               <Icon name="ios-arrow-back" />
             </Button>
-            <Title>{loc.welcome.welcome}</Title>
+            <Title>{headerTitle}</Title>
           </Header>
           <View style={styles.headerLine} />
           <Content

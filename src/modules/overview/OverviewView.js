@@ -38,20 +38,63 @@ const OverviewView = React.createClass({
             ref={c => this._content = c}>
 
             <View style={styles.container}>
+
+              <View style={styles.subContainer}>
+                <Image source={require('../../../images/icons/device.png')} style={styles.icon}/>
+                <View>
               <H3 style={styles.header}>{loc.overview.header1}</H3>
               <Text style={styles.message}>{loc.overview.message1}</Text>
+                </View>
+              </View>
+
+              <View style={styles.subContainer}>
+                <Image source={require('../../../images/icons/phone.png')} style={styles.icon}/>
+                <View>
               <H3 style={styles.header}>{loc.overview.header2}</H3>
               <Text style={styles.message}>{loc.overview.message2}</Text>
+                </View>
+              </View>
+
+              <View style={styles.subContainer}>
+                <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
+                <View>
               <H3 style={styles.header}>{loc.overview.header3}</H3>
               <Text style={styles.message}>{loc.overview.message3}</Text>
+                </View>
+              </View>
+
+              <View style={styles.subContainer}>
+                <Image source={require('../../../images/icons/usage.png')} style={styles.icon}/>
+                <View>
               <H3 style={styles.header}>{loc.overview.header4}</H3>
               <Text style={styles.message}>{loc.overview.message4}</Text>
+                </View>
+              </View>
+
+              <View style={styles.subContainer}>
+                <Image source={require('../../../images/icons/service.png')} style={styles.icon}/>
+                <View>
               <H3 style={styles.header}>{loc.overview.header5}</H3>
               <Text style={styles.message}>{loc.overview.message5}</Text>
+                </View>
+              </View>
+
+              <View style={styles.subContainer}>
+                <Image source={require('../../../images/icons/car_details.png')} style={styles.icon}/>
+                <View>
               <H3 style={styles.header}>{loc.overview.header6}</H3>
               <Text style={styles.message}>{loc.overview.message6}</Text>
+                </View>
+              </View>
+
+              <View style={styles.subContainer}>
+                <Image source={require('../../../images/icons/settings.png')} style={styles.icon}/>
+                <View>
               <H3 style={styles.header}>{loc.overview.header7}</H3>
               <Text style={styles.message}>{loc.overview.message7}</Text>
+                </View>
+              </View>
+
             </View>
 
           </Content>
@@ -74,16 +117,22 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: colors.headerTextColor
   },
-  header: {fontWeight: "bold", marginTop: 25},
+  header: {fontWeight: "bold", marginTop: 0},
   message: {marginTop: 2},
   container: {
     flex: 1,
     // justifyContent: 'left',
     // alignItems: 'left',
-    marginTop: 20,
-    marginBottom: 20,
+    marginTop: 8,
+    marginBottom: 8,
     marginLeft: 20,
     marginRight: 20
+  },
+  subContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    marginTop: 0,
+    marginBottom: 25
   },
   inputContainer: {
     marginLeft: 20,
@@ -94,6 +143,13 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
     borderWidth: 2.5
   },
+  icon: {
+    width: 35,
+    height: 35,
+    marginRight: 20,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   logo: {
     width: 200,
     height: 200,
@@ -101,11 +157,10 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   titles: {
-    marginTop: 17,
-    marginBottom: 8
+
   },
   footer: {
-    height: 150,
+    height: 100,
     backgroundColor: colors.backgroundPrimary,
     borderColor: colors.backgroundPrimary
   },
