@@ -126,7 +126,7 @@ const InstallationView = React.createClass({
                         }>
                 </List>
                 <Text>Found: {this.numberOfItems}</Text>
-                <Icon name={reload}></Icon>
+                <Icon name=""></Icon>
                 <Text style={{marginTop: 25, textAlign: "center"}}>The connection will happen in:</Text>
                 <H3 style={{marginTop: 5, textAlign: "center"}}>src/carfit/sdkConnector.js</H3>
               </View>
