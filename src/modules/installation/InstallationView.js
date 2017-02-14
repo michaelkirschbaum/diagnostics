@@ -3,7 +3,8 @@ import {
   View,
   StyleSheet,
   Image,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from 'react-native';
 import {
   Container,
@@ -53,6 +54,10 @@ const InstallationView = React.createClass({
       // Start discovery of BLE devices
       this.props.discover();
     }
+  },
+
+  rediscover() {
+    this.props.discover();
   },
 
   componentWillUpdate(nextProps, nextState) {
@@ -126,7 +131,9 @@ const InstallationView = React.createClass({
                         }>
                 </List>
                 <Text>Found: {this.numberOfItems}</Text>
-                <Icon name="ios-refresh"></Icon>
+                <TouchableOpacity onPress={this.rediscover}>
+                  <Icon name="ios-refresh"></Icon>
+                </TouchableOpacity>
                 <Text style={{marginTop: 25, textAlign: "center"}}>The connection will happen in:</Text>
                 <H3 style={{marginTop: 5, textAlign: "center"}}>src/carfit/sdkConnector.js</H3>
               </View>
