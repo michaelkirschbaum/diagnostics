@@ -24,7 +24,7 @@ import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 
-import * as NavigationState from '../../modules/navigation/NavigationState';
+import * as NavigationState from '../navigation/NavigationState';
 
 /**
  * Login view
@@ -126,6 +126,7 @@ const InstallationView = React.createClass({
                         }>
                 </List>
                 <Text>Found: {this.numberOfItems}</Text>
+                <Icon name="ios-refresh"></Icon>
                 <Text style={{marginTop: 25, textAlign: "center"}}>The connection will happen in:</Text>
                 <H3 style={{marginTop: 5, textAlign: "center"}}>src/carfit/sdkConnector.js</H3>
               </View>
