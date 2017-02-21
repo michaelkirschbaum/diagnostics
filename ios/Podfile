@@ -8,7 +8,7 @@ target 'CARFIT' do
 use_frameworks!
 
   # Pods for CARFIT
-pod 'CarFitiOSSDK'
+  pod 'CarFitiOSSDK' #, :path => '~mcclen/Developer/sdk.ios.car.fit'
   target 'CARFITTests' do
     inherit! :search_paths
     # Pods for testing

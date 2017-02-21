@@ -1,3 +1,6 @@
+import { NativeModules } from 'react-native';
+var CarFitManager = NativeModules.CarFitManager;
+
 export async function callCognitoLogin(username, password) {
   /*
    Possible?
@@ -35,19 +38,10 @@ export async function discoverCarfitDevices() {
    */
   console.log('discoverCarfitDevices started...');
 
-  return new Promise((res) => setTimeout(res, 2000))
-    .then(() => {
-      console.log('discoverCarfitDevices is returning an array of data');
-      return [
-        { name: 'CARFIT', id: '1212121212' , signal: 80 },
-        { name: 'CARFIT', id: '2222222222' , signal: 15 },
-        { name: 'CARFIT', id: '4242424242' , signal: 46 },
-      ]
-    });
-
-  // let ChrisSDK = {};
-  // ChrisSDK.ChrisFunction = new Promise(function(){ return [{ name: 'CARFIT', id: '1212121212' , signal: 80 }] });
-  //
-  // return ChrisSDK.ChrisFunction();
+  try {
+    return CarFitManager.availableBLEDevices();
+  } catch (e) {
+    console.error(e);
+  }
 
 }
