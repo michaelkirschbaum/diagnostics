@@ -53,7 +53,7 @@
 }
 
 - (void) onBoardVehicle:(NSString *) vin emailAddress:(NSString *) email {
-  [[CFPCore sharedInstance] onBoardVehicle: vin emailAddress:email];
+//  [[CFPCore sharedInstance] onBoardVehicle: vin emailAddress:email];
 }
 
 - (NSString *) VIN {
@@ -84,7 +84,7 @@ RCT_REMAP_METHOD(availableBLEDevicesAsync,
                  availableBLEDevicesRejecter:(RCTPromiseRejectBlock)reject)
 {
 #if TARGET_OS_SIMULATOR
-  NSArray * devices = @[@{@"name": @"CARFIT", @"id": @"129AB20934" , @"signal": @80}];
+  NSArray * devices = @[@{@"name": @"CARFIT", @"identifier": @"129AB20934" , @"signal": @"-40"}];
 #else
   NSArray * devices = [[CFPCore sharedInstance] bleDiscoveredDevices];
 #endif
@@ -101,6 +101,27 @@ RCT_EXPORT_METHOD(connectBLEDeviceAsync:(NSInteger) index
                  connectBLEDeviceRejecter:(RCTPromiseRejectBlock)reject)
 {
   [[CFPCore sharedInstance] bleConnectToDeviceAt:index];
+  resolve(nil);
+}
+
+RCT_EXPORT_METHOD(onBoardVehicleWithPlate:(NSString *) licensePlate plateRegion:(NSString *) region vinLastSix:(NSString *) lastSix
+                  connectBLEDeviceResolver:(RCTPromiseResolveBlock)resolve
+                  connectBLEDeviceRejecter:(RCTPromiseRejectBlock)reject)
+{
+  [[CFPCore sharedInstance] onBoardVehicleWithPlate:licensePlate plateRegion:region vinLastSix:lastSix];
+  resolve(nil);
+}
+
+RCT_EXPORT_METHOD(onBoardVehicleWithVIN:(NSString *) vin
+                  currentMeters:(NSNumber *) meters
+                  image:(NSString *) imageURL
+                  name:(NSString *) fullname
+                  nickname:(NSString *) nickname
+                  emailAddress:(NSString *) email
+                  connectBLEDeviceResolver:(RCTPromiseResolveBlock)resolve
+                  connectBLEDeviceRejecter:(RCTPromiseRejectBlock)reject)
+{
+  [[CFPCore sharedInstance] onBoardVehicleWithVIN:vin currentMeters:meters image:imageURL name:fullname nickname:nickname emailAddress:email];
   resolve(nil);
 }
 
