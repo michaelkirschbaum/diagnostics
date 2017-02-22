@@ -66,7 +66,7 @@
 
 - (void) start {
   [[CFPCore sharedInstance] start];
-  [[BLECarfitManager sharedInstance] startScanningForUUIDString:kCarfitPeripheralService];
+  [[CFPCore sharedInstance] bleScanForDevices];
 }
 
 #pragma Upload Counters API Gateway/S3
@@ -77,14 +77,14 @@
 
 #pragma React Native Bridge
 
-RCT_EXPORT_MODULE()
+RCT_EXPORT_MODULE();
 
-RCT_REMAP_METHOD(availableBLEDevices,
-                 resolver:(RCTPromiseResolveBlock)resolve
-                 rejecter:(RCTPromiseRejectBlock)reject)
+RCT_REMAP_METHOD(availableBLEDevicesAsync,
+                 availableBLEDevicesResolver:(RCTPromiseResolveBlock)resolve
+                 availableBLEDevicesRejecter:(RCTPromiseRejectBlock)reject)
 {
 #if TARGET_OS_SIMULATOR
-  NSArray * devices = @[@{ @"name": @"CARFIT", @"id": @"129AB20934" , @"signal": @-11 }];
+  NSArray * devices = @[@{@"name": @"CARFIT", @"id": @"129AB20934" , @"signal": @80}];
 #else
   NSArray * devices = [[CFPCore sharedInstance] bleDiscoveredDevices];
 #endif
@@ -94,6 +94,14 @@ RCT_REMAP_METHOD(availableBLEDevices,
     NSError *error;
     reject(@"no_events", @"There were no events", error);
   }
+}
+
+RCT_EXPORT_METHOD(connectBLEDeviceAsync:(NSInteger) index
+                 connectBLEDeviceResolver:(RCTPromiseResolveBlock)resolve
+                 connectBLEDeviceRejecter:(RCTPromiseRejectBlock)reject)
+{
+  [[CFPCore sharedInstance] bleConnectToDeviceAt:index];
+  resolve(nil);
 }
 
 @end

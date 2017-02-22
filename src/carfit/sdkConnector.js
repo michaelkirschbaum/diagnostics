@@ -39,7 +39,7 @@ export async function discoverCarfitDevices() {
   console.log('discoverCarfitDevices started...');
 
   try {
-    return CarFitManager.availableBLEDevices();
+    return CarFitManager.availableBLEDevicesAsync();
   } catch (e) {
     console.error(e);
   }
