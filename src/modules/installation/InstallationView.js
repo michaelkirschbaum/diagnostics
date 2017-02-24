@@ -27,6 +27,8 @@ import Swiper from 'react-native-swiper';
 
 import * as NavigationState from '../navigation/NavigationState';
 
+import { connectDevice } from '../../carfit/reactnativeapi';
+
 /**
  * Login view
  * Likely to be the main app view, but will only display login dialog when needed.
@@ -39,6 +41,9 @@ const InstallationView = React.createClass({
   },
 
   onNextPress() {
+    // connect puls device
+    connectDevice();
+
     this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
   },
 
@@ -134,8 +139,6 @@ const InstallationView = React.createClass({
                 <TouchableOpacity onPress={this.rediscover}>
                   <Icon name="ios-refresh"></Icon>
                 </TouchableOpacity>
-                <Text style={{marginTop: 25, textAlign: "center"}}>The connection will happen in:</Text>
-                <H3 style={{marginTop: 5, textAlign: "center"}}>src/carfit/sdkConnector.js</H3>
               </View>
             </Swiper>
 
