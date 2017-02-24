@@ -7,13 +7,13 @@
 import { NativeModules } from 'react-native';
 var CarFitManager = NativeModules.CarFitManager;
 
-export function getPulsDevices() {
+export function getDevices() {
   try {
     return CarFitManager.availableBLEDevicesAsync();
   } catch (e) {}
 }
 
-export function connectPulsDevice() {
+export function connectDevice() {
   try {
     return CarFitManager.connectBLEDeviceAsync(0);
   } catch (e) {}

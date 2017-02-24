@@ -27,7 +27,7 @@ import Swiper from 'react-native-swiper';
 
 import * as NavigationState from '../navigation/NavigationState';
 
-import { connectDevice } from '../../carfit/reactnativeapi';
+import { connectDevice } from '../../carfit/puls';
 
 /**
  * Login view

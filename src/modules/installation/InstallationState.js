@@ -1,6 +1,6 @@
 import { Map, fromJS } from 'immutable';
 import { loop, Effects } from 'redux-loop';
-import { getPulsDevices } from '../../carfit/reactnativeapi';
+import { getDevices } from '../../carfit/puls.js';
 
 // Pairing States
 const PAIRING_IDLE = 'PAIRING_IDLE';
@@ -39,7 +39,7 @@ export function discover() {
 export async function requestDevices() {
   return {
     type: PAIRING_DISCOVERY_RESPONSE,
-    payload: await getPulsDevices()
+    payload: await getDevices()
   }
 }
 
