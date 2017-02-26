@@ -1,5 +1,5 @@
 /*
-  Carfit React Native Puls library
+  Puls library
 
   Created by Michael Kirschbaum on February 20, 2017
 */
@@ -25,6 +25,6 @@ function addVehicle() {}
 
 function buttonClick() {}
 
-function updateKilometrage() {}
+function updateDistance() {}
 
 function notify() {}
