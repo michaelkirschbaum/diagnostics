@@ -1,7 +1,10 @@
 /*
-  Puls library
+  puls.js
 
-  Created by Michael Kirschbaum on February 20, 2017
+  Allows interaction with the Carfit Puls device.
+
+  Created by Michael Kirschbaum on February 20, 2017.
+  Copyright © 2017 Carfit. All rights reserved.
 */
 
 import { NativeModules } from 'react-native';
@@ -19,18 +22,40 @@ export async function getDevices() {
 
 export function connectDevice() {
   try {
-    return CarFitManager.connectBLEDeviceAsync(0);
+    CarFitManager.connectBLEDeviceAsync(0);
   } catch (e) {
     console.error(e)
   }
 }
 
-function login() {}
+function connectionStatus() {
+  // CarFitManager.getConnection()
+}
 
-function addVehicle() {}
+function loginAuth0() {
+  // CarFitManager.authenticate()
+}
 
-function buttonClick() {}
+function loginNorauto() {
+  // CarFitManager.authenticate()
+}
 
-function updateDistance() {}
+function addVehicleVIN() {
+  // CarFitManager.onBoardVehicleWithVIN()
+}
 
-function notify() {}
+function addVehiclePlate() {
+  // CarFitManager.onBoardVehicleWithPlate()
+}
+
+function buttonClick() {
+  // support flow
+}
+
+function updateDistance() {
+  // update kilometrage
+}
+
+function notify() {
+  // vehicle status alerts
+}

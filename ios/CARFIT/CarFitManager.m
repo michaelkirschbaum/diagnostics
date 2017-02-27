@@ -125,4 +125,11 @@ RCT_EXPORT_METHOD(onBoardVehicleWithVIN:(NSString *) vin
   resolve(nil);
 }
 
+// RCT_EXPORT_METHOD(authenticate) {}
+
+// RCT_EXPORT_METHOD(buttonclick) {}
+
+// RCT_EXPORT_METHOD(updatedistance) {}
+
+// RCT_EXPOSE_METHOD(notify) {}
 @end
