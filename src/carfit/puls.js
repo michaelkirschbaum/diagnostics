@@ -7,16 +7,22 @@
 import { NativeModules } from 'react-native';
 var CarFitManager = NativeModules.CarFitManager;
 
-export function getDevices() {
+export async function getDevices() {
   try {
-    return CarFitManager.availableBLEDevicesAsync();
-  } catch (e) {}
+    var devices = await CarFitManager.availableBLEDevicesAsync();
+
+    return devices
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 export function connectDevice() {
   try {
     return CarFitManager.connectBLEDeviceAsync(0);
-  } catch (e) {}
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 function login() {}

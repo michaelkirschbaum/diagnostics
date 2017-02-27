@@ -96,7 +96,7 @@ RCT_REMAP_METHOD(availableBLEDevicesAsync,
   }
 }
 
-RCT_EXPORT_METHOD(connectBLEDeviceAsync:(NSInteger) index
+RCT_REMAP_METHOD(connectBLEDeviceAsync:(NSInteger) index
                  connectBLEDeviceResolver:(RCTPromiseResolveBlock)resolve
                  connectBLEDeviceRejecter:(RCTPromiseRejectBlock)reject)
 {

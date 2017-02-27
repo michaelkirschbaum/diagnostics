@@ -1,6 +1,5 @@
 import {Map, fromJS} from 'immutable';
 import {loop, Effects} from 'redux-loop';
-import {callCognitoLogin} from '../../carfit/sdkConnector';
 
 // LOGIN States
 const LOGIN_IDLE = 'LOGIN_IDLE';
