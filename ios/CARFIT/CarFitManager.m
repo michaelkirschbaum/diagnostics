@@ -96,11 +96,11 @@ RCT_REMAP_METHOD(availableBLEDevicesAsync,
   }
 }
 
-RCT_EXPORT_METHOD(connectBLEDeviceAsync:(NSInteger) index
+RCT_EXPORT_METHOD(connectBLEDeviceAsync:(NSString *) identifier
                  connectBLEDeviceResolver:(RCTPromiseResolveBlock)resolve
                  connectBLEDeviceRejecter:(RCTPromiseRejectBlock)reject)
 {
-  [[CFPCore sharedInstance] bleConnectToDeviceAt:index];
+  [[CFPCore sharedInstance] bleConnectToDeviceWithId:identifier];
   resolve(nil);
 }
 
