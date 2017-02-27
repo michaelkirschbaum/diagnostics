@@ -1,7 +1,7 @@
 source 'https://bitbucket.org/carfit_platform/pods.car.fit.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, '8.0'
+platform :ios, '8.3'
 
 target 'CARFIT' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
