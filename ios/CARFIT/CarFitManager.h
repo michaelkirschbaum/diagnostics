@@ -11,5 +11,4 @@
 #import <CarFitiOSSDK/CarFitiOSSDK.h>
 
 @interface CarFitManager : NSObject <RCTBridgeModule>
-
 @end

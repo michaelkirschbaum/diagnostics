@@ -41,7 +41,7 @@
 
 - (BOOL) bleDeviceConnected:(NSInteger)index {
   return [[CFPCore sharedInstance] bleDeviceConnected:index];
-  
+
 }
 
 - (void) bleDisconnectDevice {
