@@ -47,11 +47,15 @@ function loginNorauto() {
 }
 
 function addVehicleVIN() {
-  // CarFitManager.onBoardVehicleWithVIN()
+  try {
+    // CarFitManager.onBoardVehicleWithVIN()
+  } catch (e) {}
 }
 
 function addVehiclePlate() {
-  // CarFitManager.onBoardVehicleWithPlate()
+  try {
+    // CarFitManager.onBoardVehicleWithPlate()
+  } catch (e) {}
 }
 
 function buttonClick() {
@@ -62,6 +66,6 @@ function updateDistance() {
   // update kilometrage
 }
 
-function notify() {
+function getVehicleStatus() {
   // vehicle status alerts
 }
