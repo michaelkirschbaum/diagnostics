@@ -10,11 +10,9 @@
 import { NativeModules } from 'react-native';
 var CarFitManager = NativeModules.CarFitManager;
 
-export async function getDevices() {
+export function getDevices() {
   try {
-    var devices = await CarFitManager.availableBLEDevicesAsync();
-
-    return devices
+    return CarFitManager.availableBLEDevicesAsync();
   } catch (e) {
     console.error(e)
   }
@@ -22,7 +20,7 @@ export async function getDevices() {
 
 export function connectDevice() {
   try {
-    CarFitManager.connectBLEDeviceAsync(0);
+    // CarFitManager.connectBLEDeviceAsync(0);
   } catch (e) {
     console.error(e)
   }
@@ -33,7 +31,9 @@ function connectionStatus() {
 }
 
 function loginAuth0() {
-  // CarFitManager.authenticate()
+  try {
+    // CarFitManager.authenticate()
+  } catch (e) {}
 }
 
 function loginNorauto() {
