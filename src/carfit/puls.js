@@ -8,19 +8,25 @@
 */
 
 import { NativeModules } from 'react-native';
+
+// instantiate singleton
 var CarFitManager = NativeModules.CarFitManager;
 
-export function getDevices() {
+export async function getDevices() {
   try {
-    return CarFitManager.availableBLEDevicesAsync();
+    // scan for devices
+    var devices = await CarFitManager.availableBLEDevicesAsync();
+
+    return devices;
   } catch (e) {
     console.error(e)
   }
 }
 
-export function connectDevice() {
+export function connectDevice(id) {
   try {
-    // CarFitManager.connectBLEDeviceAsync(0);
+    // connect with uuid
+    CarFitManager.connectBLEDeviceAsync(id);
   } catch (e) {
     console.error(e)
   }

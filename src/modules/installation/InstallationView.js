@@ -40,9 +40,9 @@ const InstallationView = React.createClass({
     installation: PropTypes.object.isRequired
   },
 
-  onNextPress() {
+  onNextPress(id) {
     // connect puls device
-    connectDevice();
+    connectDevice(id);
 
     this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
   },
@@ -131,7 +131,7 @@ const InstallationView = React.createClass({
                       style={{width: windowWidth - 40, marginTop: 25}}
                       renderRow={(item) =>
                             <ListItem>
-                                <Text onPress={this.onNextPress}>Name: {item.name} Id: {item.identifier} RSSI: {item.signal}</Text>
+                                <Text onPress={() => this.onNextPress(item.identifier)}>Name: {item.name} Id: {item.identifier} RSSI: {item.signal}</Text>
                             </ListItem>
                         }>
                 </List>
