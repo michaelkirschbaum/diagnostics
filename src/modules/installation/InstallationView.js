@@ -131,7 +131,7 @@ const InstallationView = React.createClass({
                       style={{width: windowWidth - 40, marginTop: 25}}
                       renderRow={(item) =>
                             <ListItem>
-                                <Text onPress={() => this.onNextPress(item.identifier)}>Name: {item.name} Id: {item.identifier} RSSI: {item.signal}</Text>
+                                <Text onPress={() => this.onNextPress(item.identifier)}>{item.name} {item.signal}</Text>
                             </ListItem>
                         }>
                 </List>
