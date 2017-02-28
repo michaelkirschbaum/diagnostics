@@ -126,6 +126,13 @@ RCT_EXPORT_METHOD(onBoardVehicleWithVIN:(NSString *) vin
 }
 
 // RCT_EXPORT_METHOD(authenticate) {}
+RCT_EXPORT_METHOD(authenticate:(NSString *) domain withToken:(NSString *) token
+                  authenticateLockResolver:(RCTPromiseResolveBlock)resolve
+                  connectBLEDeviceRejecter:(RCTPromiseRejectBlock)reject)
+{
+  [[CFPCore sharedInstance] authenticate:domain withToken:token];
+  resolve(nil);
+}
 
 // RCT_EXPORT_METHOD(buttonclick) {}
 

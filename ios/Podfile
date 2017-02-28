@@ -9,6 +9,10 @@ use_frameworks!
 
   # Pods for CARFIT
   pod 'CarFitiOSSDK' #, :path => '~mcclen/Developer/sdk.ios.car.fit'
+  pod 'Lock', '~> 1.26'
+  pod 'Lock/TouchID'
+  pod 'Lock/SMS'
+  pod 'Lock/Email'
   target 'CARFITTests' do
     inherit! :search_paths
     # Pods for testing

@@ -30,9 +30,9 @@ function connectionStatus() {
   // CarFitManager.getConnection()
 }
 
-function loginAuth0() {
+export function loginAuth0(domain, token) {
   try {
-    // CarFitManager.authenticate()
+    CarFitManager.authenticate(domain, token['idToken'])
   } catch (e) {}
 }
 
