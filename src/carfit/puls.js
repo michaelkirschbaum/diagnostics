@@ -23,10 +23,10 @@ export async function getDevices() {
   }
 }
 
-export function connectDevice(id) {
+export async function connectDevice(id) {
   try {
     // connect with uuid
-    CarFitManager.connectBLEDeviceAsync(id);
+    var response = await CarFitManager.connectBLEDeviceAsync(id);
   } catch (e) {
     console.error(e)
   }
