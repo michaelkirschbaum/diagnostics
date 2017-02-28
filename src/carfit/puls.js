@@ -8,19 +8,25 @@
 */
 
 import { NativeModules } from 'react-native';
+
+// instantiate singleton
 var CarFitManager = NativeModules.CarFitManager;
 
-export function getDevices() {
+export async function getDevices() {
   try {
-    return CarFitManager.availableBLEDevicesAsync();
+    // scan for devices
+    var devices = await CarFitManager.availableBLEDevicesAsync();
+
+    return devices;
   } catch (e) {
     console.error(e)
   }
 }
 
-export function connectDevice() {
+export async function connectDevice(id) {
   try {
-    // CarFitManager.connectBLEDeviceAsync(0);
+    // connect with uuid
+    var response = await CarFitManager.connectBLEDeviceAsync(id);
   } catch (e) {
     console.error(e)
   }
@@ -41,11 +47,15 @@ function loginNorauto() {
 }
 
 function addVehicleVIN() {
-  // CarFitManager.onBoardVehicleWithVIN()
+  try {
+    // CarFitManager.onBoardVehicleWithVIN()
+  } catch (e) {}
 }
 
 function addVehiclePlate() {
-  // CarFitManager.onBoardVehicleWithPlate()
+  try {
+    // CarFitManager.onBoardVehicleWithPlate()
+  } catch (e) {}
 }
 
 function buttonClick() {
@@ -56,6 +66,6 @@ function updateDistance() {
   // update kilometrage
 }
 
-function notify() {
+function getVehicleStatus() {
   // vehicle status alerts
 }
