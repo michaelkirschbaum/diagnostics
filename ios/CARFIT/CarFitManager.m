@@ -8,6 +8,7 @@
 
 #import "CarFitManager.h"
 #import <React/RCTlog.h>
+#import <AWSCore/AWSCore.h>
 
 @implementation CarFitManager
 
@@ -18,42 +19,6 @@
     [self start];
   };
   return self;
-}
-
-#pragma BLE UI Callbacks
-
-- (void) bleScanForDevices;
-{
-  [[CFPCore sharedInstance] bleScanForDevices];
-}
-
-- (NSUInteger) bleDeviceCount {
-  return [[CFPCore sharedInstance] bleDiscoveredDevices].count;
-}
-
-- (NSDictionary *) getBLEDeviceDictionaryAt:(NSInteger) index {
-  return [[CFPCore sharedInstance] bleDiscoveredDevices][index];
-}
-
-- (void) bleConnectToDeviceAt:(NSInteger)index {
-  [[CFPCore sharedInstance] bleConnectToDeviceAt:index];
-}
-
-- (BOOL) bleDeviceConnected:(NSInteger)index {
-  return [[CFPCore sharedInstance] bleDeviceConnected:index];
-
-}
-
-- (void) bleDisconnectDevice {
-  [[CFPCore sharedInstance] bleDisconnectDevice];
-}
-
-- (BOOL) bleIsDeviceScanning {
-  return [[CFPCore sharedInstance] bleIsDeviceScanning];
-}
-
-- (void) onBoardVehicle:(NSString *) vin emailAddress:(NSString *) email {
-//  [[CFPCore sharedInstance] onBoardVehicle: vin emailAddress:email];
 }
 
 - (NSString *) VIN {
@@ -88,12 +53,8 @@ RCT_REMAP_METHOD(availableBLEDevicesAsync,
 #else
   NSArray * devices = [[CFPCore sharedInstance] bleDiscoveredDevices];
 #endif
-  if (devices) {
-    resolve(devices);
-  } else {
-    NSError *error;
-    reject(@"no_events", @"There were no events", error);
-  }
+  
+  resolve(devices);
 }
 
 RCT_EXPORT_METHOD(connectBLEDeviceAsync:(NSString *) identifier
@@ -108,8 +69,14 @@ RCT_EXPORT_METHOD(onBoardVehicleWithPlate:(NSString *) licensePlate plateRegion:
                   connectBLEDeviceResolver:(RCTPromiseResolveBlock)resolve
                   connectBLEDeviceRejecter:(RCTPromiseRejectBlock)reject)
 {
-  [[CFPCore sharedInstance] onBoardVehicleWithPlate:licensePlate plateRegion:region vinLastSix:lastSix];
-  resolve(nil);
+  [[[CFPCore sharedInstance] onBoardVehicleWithPlate:licensePlate plateRegion:region vinLastSix:lastSix] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
+    if (task.error) {
+      reject(@"onBoarding", task.error.localizedDescription, task.error);
+    } else {
+      resolve (task.result);
+    }
+    return nil;
+  }];
 }
 
 RCT_EXPORT_METHOD(onBoardVehicleWithVIN:(NSString *) vin
@@ -121,18 +88,27 @@ RCT_EXPORT_METHOD(onBoardVehicleWithVIN:(NSString *) vin
                   connectBLEDeviceResolver:(RCTPromiseResolveBlock)resolve
                   connectBLEDeviceRejecter:(RCTPromiseRejectBlock)reject)
 {
-  [[CFPCore sharedInstance] onBoardVehicleWithVIN:vin currentMeters:meters image:imageURL name:fullname nickname:nickname emailAddress:email];
+  [[[CFPCore sharedInstance] onBoardVehicleWithVIN:vin] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
+    if (task.error) {
+      reject(@"onBoarding", task.error.localizedDescription, task.error);
+    } else {
+      resolve (task.result);
+    }
+    return nil;
+  }];
   resolve(nil);
 }
 
 // RCT_EXPORT_METHOD(authenticate) {}
 RCT_EXPORT_METHOD(authenticate:(NSString *) domain withToken:(NSString *) token
                   authenticateLockResolver:(RCTPromiseResolveBlock)resolve
-                  connectBLEDeviceRejecter:(RCTPromiseRejectBlock)reject)
+                  authenticateLockRejecter:(RCTPromiseRejectBlock)reject)
 {
   [[CFPCore sharedInstance] authenticate:domain withToken:token];
   resolve(nil);
 }
+
+// RCT_REMAP_METHOD(isAuthenticated) {}
 
 // RCT_EXPORT_METHOD(buttonclick) {}
 
