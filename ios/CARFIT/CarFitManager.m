@@ -65,7 +65,9 @@ RCT_EXPORT_METHOD(connectBLEDeviceAsync:(NSString *) identifier
   resolve(nil);
 }
 
-RCT_EXPORT_METHOD(onBoardVehicleWithPlate:(NSString *) licensePlate plateRegion:(NSString *) region vinLastSix:(NSString *) lastSix
+RCT_EXPORT_METHOD(onBoardVehicleWithPlate:(NSString *) licensePlate
+                  plateRegion:(NSString *) region
+                  vinLastSix:(NSString *) lastSix
                   connectBLEDeviceResolver:(RCTPromiseResolveBlock)resolve
                   connectBLEDeviceRejecter:(RCTPromiseRejectBlock)reject)
 {
@@ -99,7 +101,6 @@ RCT_EXPORT_METHOD(onBoardVehicleWithVIN:(NSString *) vin
   resolve(nil);
 }
 
-// RCT_EXPORT_METHOD(authenticate) {}
 RCT_EXPORT_METHOD(authenticate:(NSString *) domain withToken:(NSString *) token
                   authenticateLockResolver:(RCTPromiseResolveBlock)resolve
                   authenticateLockRejecter:(RCTPromiseRejectBlock)reject)
@@ -112,7 +113,9 @@ RCT_EXPORT_METHOD(authenticate:(NSString *) domain withToken:(NSString *) token
 
 // RCT_EXPORT_METHOD(buttonclick) {}
 
+// RCT_EXPOSE_METHOD(vehiclestatus) {}
+
 // RCT_EXPORT_METHOD(updatedistance) {}
 
-// RCT_EXPOSE_METHOD(notify) {}
+// RCT_EXPORT_METHOD(buttonclick) {}
 @end

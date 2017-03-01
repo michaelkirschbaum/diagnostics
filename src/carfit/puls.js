@@ -9,7 +9,7 @@
 
 import { NativeModules } from 'react-native';
 
-// instantiate singleton
+// create singleton
 var CarFitManager = NativeModules.CarFitManager;
 
 export async function getDevices() {
@@ -25,47 +25,49 @@ export async function getDevices() {
 
 export async function connectDevice(id) {
   try {
-    // connect with uuid
+    // connect to uuid
     var response = await CarFitManager.connectBLEDeviceAsync(id);
   } catch (e) {
     console.error(e)
   }
 }
 
-function connectionStatus() {
-  // CarFitManager.getConnection()
-}
-
 export function loginAuth0(domain, token) {
   try {
-    CarFitManager.authenticate(domain, token['idToken'])
-  } catch (e) {}
+    var response = CarFitManager.authenticate(domain, token['idToken']);
+  } catch (e) {
+    console.error(e)
+  }
 }
 
-function loginNorauto() {
-  // CarFitManager.authenticate()
+export function loginNorauto() {
+  // login using norauto
 }
 
-function addVehicleVIN() {
+export function addVehicleVIN(vin) {
   try {
-    // CarFitManager.onBoardVehicleWithVIN()
-  } catch (e) {}
+    var response = CarFitManager.onBoardVehicleWithVIN(vin, 1, null, null, null, null);
+  } catch (e) {
+    console.error(e)
+  }
 }
 
-function addVehiclePlate() {
+export function addVehiclePlate(plate, region) {
   try {
-    // CarFitManager.onBoardVehicleWithPlate()
-  } catch (e) {}
+    CarFitManager.onBoardVehicleWithPlate(plate, region, null);
+  } catch (e) {
+    console.error(e)
+  }
 }
 
-function buttonClick() {
-  // support flow
+export function getVehicleStatus() {
+  // vehicle status alerts
 }
 
-function updateDistance() {
+export function updateDistance() {
   // update kilometrage
 }
 
-function getVehicleStatus() {
-  // vehicle status alerts
+export function buttonClick() {
+  // support flow
 }
