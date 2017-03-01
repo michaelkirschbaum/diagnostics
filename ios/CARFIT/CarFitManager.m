@@ -93,7 +93,6 @@ RCT_EXPORT_METHOD(onBoardVehicleWithVIN:(NSString *) vin
     }
     return nil;
   }];
-  resolve(nil);
 }
 
 RCT_EXPORT_METHOD(authenticate:(NSString *) domain withToken:(NSString *) token
