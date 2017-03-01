@@ -104,7 +104,9 @@ RCT_EXPORT_METHOD(connectBLEDeviceAsync:(NSString *) identifier
   resolve(nil);
 }
 
-RCT_EXPORT_METHOD(onBoardVehicleWithPlate:(NSString *) licensePlate plateRegion:(NSString *) region vinLastSix:(NSString *) lastSix
+RCT_EXPORT_METHOD(onBoardVehicleWithPlate:(NSString *) licensePlate
+                  plateRegion:(NSString *) region
+                  vinLastSix:(NSString *) lastSix
                   connectBLEDeviceResolver:(RCTPromiseResolveBlock)resolve
                   connectBLEDeviceRejecter:(RCTPromiseRejectBlock)reject)
 {

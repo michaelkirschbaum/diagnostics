@@ -54,20 +54,20 @@ export function addVehicleVIN(vin) {
   }
 }
 
-export function addVehiclePlate(plate, region, vin_last_six) {
+export function addVehiclePlate(plate) {
   try {
-    CarFitManager.onBoardVehicleWithPlate(plate, region, vin_last_six);
+    CarFitManager.onBoardVehicleWithPlate(plate, null, null);
   } catch (e) {}
 }
 
-export function buttonClick() {
-  // support flow
+export function getVehicleStatus() {
+  // vehicle status alerts
 }
 
 export function updateDistance() {
   // update kilometrage
 }
 
-export function getVehicleStatus() {
-  // vehicle status alerts
+export function buttonClick() {
+  // support flow
 }
