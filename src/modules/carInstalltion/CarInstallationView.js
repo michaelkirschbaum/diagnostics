@@ -11,10 +11,10 @@ import {
   Title,
   Content,
   InputGroup,
-  Input,
   Button,
-  Icon,
+  Input,
   Text,
+  Icon,
   H3,
   List,
   ListItem
@@ -23,8 +23,9 @@ import colors from '../../config/colors';
 import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
-
 import * as NavigationState from '../navigation/NavigationState';
+import { addVehicleVIN, addVehiclePlate } from '../../carfit/puls'
+
 
 /**
  * Login view
@@ -37,7 +38,16 @@ const CarInstallationStateView = React.createClass({
     carInstallation: PropTypes.object.isRequired
   },
 
-  onNextPress() {
+  onVINPress(vin) {
+    // add user vehicle
+    addVehicleVIN(vin);
+
+    this.props.pushRoute({key: 'CarPhoto', title: ''});
+  },
+
+  onPlatePress() {
+    // add user vehicle
+
     this.props.pushRoute({key: 'CarPhoto', title: ''});
   },
 
@@ -84,7 +94,9 @@ const CarInstallationStateView = React.createClass({
             <InputGroup borderType='rounded' style={styles.textInput}>
               <Input
                 ref='licenseInput'
-                placeholder={loc.carInstallation.enterVin}/>
+                placeholder={loc.carInstallation.enterVin}
+                onChangeText = {(text) => this.setState({text})}
+              />
             </InputGroup>
             <Text
               style={{marginTop: 22, textAlign: "center", color: colors.primary, textDecorationLine: 'underline'}}
@@ -93,7 +105,7 @@ const CarInstallationStateView = React.createClass({
               <Button rounded
                       style={{alignSelf: 'auto'}}
                       textStyle={{color: colors.textPrimary, textDecorationLine: 'underline'}}
-                      onPress={this.onNextPress}
+                      onPress={() => this.onVINPress(this.state.text)}
               >{loc.general.continue}</Button>
             </View>
           </View>
@@ -105,7 +117,9 @@ const CarInstallationStateView = React.createClass({
             <InputGroup borderType='rounded' style={styles.textInput}>
               <Input
                 ref='licenseInput'
-                placeholder={loc.carInstallation.enterLicensePlate}/>
+                placeholder={loc.carInstallation.enterLicensePlate}
+                onChangeText = {(text) => this.setState(text)}
+              />
             </InputGroup>
             <Text
               style={{marginTop: 22, textAlign: "center", color: colors.primary, textDecorationLine: 'underline'}}
@@ -114,7 +128,7 @@ const CarInstallationStateView = React.createClass({
               <Button rounded
                       style={{alignSelf: 'auto'}}
                       textStyle={{color: colors.textPrimary, textDecorationLine: 'underline'}}
-                      onPress={this.onNextPress}
+                      onPress={() => this.onPlatePress(this.state.text)}
               >{loc.general.continue}</Button>
             </View>
           </View>

@@ -32,40 +32,42 @@ export async function connectDevice(id) {
   }
 }
 
-function connectionStatus() {
-  // CarFitManager.getConnection()
-}
-
 export function loginAuth0(domain, token) {
   try {
-    CarFitManager.authenticate(domain, token['idToken'])
-  } catch (e) {}
+    var response = CarFitManager.authenticate(domain, token['idToken']);
+  } catch (e) {
+    console.error(e)
+  }
 }
 
-function loginNorauto() {
-  // CarFitManager.authenticate()
-}
-
-function addVehicleVIN() {
+export function loginNorauto() {
   try {
-    // CarFitManager.onBoardVehicleWithVIN()
+    // CarFitManager.authenticate()
   } catch (e) {}
 }
 
-function addVehiclePlate() {
+export function addVehicleVIN(vin) {
   try {
-    // CarFitManager.onBoardVehicleWithPlate()
+    var response = CarFitManager.onBoardVehicleWithVIN(vin, 1, null, null, null, null);
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+export function addVehiclePlate(plate, region, vin_last_six) {
+  try {
+    CarFitManager.onBoardVehicleWithPlate(plate, region, vin_last_six);
   } catch (e) {}
 }
 
-function buttonClick() {
+export function buttonClick() {
   // support flow
 }
 
-function updateDistance() {
+export function updateDistance() {
   // update kilometrage
 }
 
-function getVehicleStatus() {
+export function getVehicleStatus() {
   // vehicle status alerts
 }
