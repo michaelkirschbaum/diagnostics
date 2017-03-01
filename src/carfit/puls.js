@@ -9,7 +9,7 @@
 
 import { NativeModules } from 'react-native';
 
-// instantiate singleton
+// create singleton
 var CarFitManager = NativeModules.CarFitManager;
 
 export async function getDevices() {
@@ -25,7 +25,7 @@ export async function getDevices() {
 
 export async function connectDevice(id) {
   try {
-    // connect with uuid
+    // connect to uuid
     var response = await CarFitManager.connectBLEDeviceAsync(id);
   } catch (e) {
     console.error(e)
@@ -41,9 +41,7 @@ export function loginAuth0(domain, token) {
 }
 
 export function loginNorauto() {
-  try {
-    // CarFitManager.authenticate()
-  } catch (e) {}
+  // login using norauto
 }
 
 export function addVehicleVIN(vin) {
@@ -54,10 +52,12 @@ export function addVehicleVIN(vin) {
   }
 }
 
-export function addVehiclePlate(plate) {
+export function addVehiclePlate(plate, region) {
   try {
-    CarFitManager.onBoardVehicleWithPlate(plate, null, null);
-  } catch (e) {}
+    CarFitManager.onBoardVehicleWithPlate(plate, region, null);
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 export function getVehicleStatus() {

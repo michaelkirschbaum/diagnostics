@@ -96,6 +96,8 @@ const CarInstallationStateView = React.createClass({
               <Input
                 ref='licenseInput'
                 placeholder={loc.carInstallation.enterVin}
+
+                {/* change this using redux */}
                 onChangeText = {(text) => this.setState({text})}
               />
             </InputGroup>
@@ -119,6 +121,8 @@ const CarInstallationStateView = React.createClass({
               <Input
                 ref='licenseInput'
                 placeholder={loc.carInstallation.enterLicensePlate}
+
+                {/* change this using redux */}
                 onChangeText = {(text) => this.setState(text)}
               />
             </InputGroup>

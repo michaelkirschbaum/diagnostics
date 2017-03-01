@@ -135,9 +135,9 @@ RCT_EXPORT_METHOD(authenticate:(NSString *) domain withToken:(NSString *) token
   resolve(nil);
 }
 
-// RCT_EXPORT_METHOD(buttonclick) {}
-
 // RCT_EXPOSE_METHOD(vehiclestatus) {}
 
 // RCT_EXPORT_METHOD(updatedistance) {}
+
+// RCT_EXPORT_METHOD(buttonclick) {}
 @end

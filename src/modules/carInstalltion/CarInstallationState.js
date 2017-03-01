@@ -1,7 +1,6 @@
 import {Map, fromJS} from 'immutable';
 import {loop, Effects} from 'redux-loop';
 
-
 // Initial state
 const initialState = Map({
   pageIndex: 0,
@@ -20,7 +19,6 @@ export function setPageIndex(value) {
 export function setEnterMode(value) {
   return {type: ENTER_MODE, payload: value};
 }
-
 
 // Reducer
 export default function CarInstallationStateReducer(state = initialState, action = {}) {
