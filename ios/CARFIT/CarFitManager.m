@@ -82,11 +82,6 @@ RCT_EXPORT_METHOD(onBoardVehicleWithPlate:(NSString *) licensePlate
 }
 
 RCT_EXPORT_METHOD(onBoardVehicleWithVIN:(NSString *) vin
-                  currentMeters:(NSNumber *) meters
-                  image:(NSString *) imageURL
-                  name:(NSString *) fullname
-                  nickname:(NSString *) nickname
-                  emailAddress:(NSString *) email
                   connectBLEDeviceResolver:(RCTPromiseResolveBlock)resolve
                   connectBLEDeviceRejecter:(RCTPromiseRejectBlock)reject)
 {
