@@ -31,7 +31,6 @@
 
 - (void) start {
   [[CFPCore sharedInstance] start];
-  [[CFPCore sharedInstance] bleScanForDevices];
 }
 
 #pragma Upload Counters API Gateway/S3
@@ -103,7 +102,53 @@ RCT_EXPORT_METHOD(authenticate:(NSString *) domain withToken:(NSString *) token
   resolve(nil);
 }
 
-// RCT_EXPOSE_METHOD(vehiclestatus) {}
+RCT_EXPORT_METHOD(scheduledServiceItemsFor:(NSString *) vin
+                  scheduledServiceItemsForResolver:(RCTPromiseResolveBlock) resolve
+                  scheduledServiceItemsForRejecter:(RCTPromiseRejectBlock) reject)
+{
+  resolve(@"[\
+           {\
+             \"interval_items\": [\
+                                {\
+                                  \"status\": \"incomplete\",\
+                                  \"scheduled_meters\": 112651000,\
+                                  \"summary\": \"Change - Engine oil\",\
+                                  \"backlog_id\": 48827,\
+                                  \"created_on\": \"2017-01-27T00:01:37.052469+00:00\",\
+                                  \"action_type\": \"maintenance\"\
+                                },\
+                                {\
+                                  \"status\": \"incomplete\",\
+                                  \"scheduled_meters\": 112651000,\
+                                  \"summary\": \"Rotate/adjust air pressure - Wheels & tires\",\
+                                  \"backlog_id\": 48889,\
+                                  \"created_on\": \"2017-01-27T00:01:37.052469+00:00\",\
+                                  \"action_type\": \"maintenance\"\
+                                },\
+                                {\
+                                  \"status\": \"incomplete\",\
+                                  \"scheduled_meters\": 111933397,\
+                                  \"summary\": \"RECALL: AIR BAGS PROBLEM. Manufacturer Recall ID: 17V030000.\",\
+                                  \"backlog_id\": 59054,\
+                                  \"created_on\": \"2017-02-13T00:01:44.792429+00:00\",\
+                                  \"action_type\": \"maintenance\"\
+                                }\
+                                ],\
+             \"interval_meters\": 111933397\
+           },\
+           {\
+             \"interval_items\": [],\
+             \"interval_meters\": 113542397\
+           }\
+           ]");
+}
+
+RCT_EXPORT_METHOD(vehicleBacklog:(NSString *) vin backlogType:(NSString *) backlogType
+                  scheduledServiceItemsForResolver:(RCTPromiseResolveBlock) resolve
+                  scheduledServiceItemsForRejecter:(RCTPromiseRejectBlock) reject)
+{
+  resolve(nil);
+}
 
 // RCT_EXPORT_METHOD(updatedistance) {}
 
