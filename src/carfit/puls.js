@@ -17,7 +17,7 @@ export async function getDevices() {
 
     return devices;
   } catch (e) {
-    console.error(e)
+    console.error(e);
   }
 }
 
@@ -25,16 +25,20 @@ export async function connectDevice(id) {
   try {
     // connect given uuid
     var response = await CarFitManager.connectBLEDeviceAsync(id);
+
+    return response;
   } catch (e) {
-    console.error(e)
+    console.error(e);
   }
 }
 
 export function loginAuth0(domain, token) {
   try {
     var response = CarFitManager.authenticate(domain, token['idToken']);
+
+    return reponse;
   } catch (e) {
-    console.error(e)
+    console.error(e);
   }
 }
 
@@ -43,20 +47,26 @@ export function loginNorauto() {}
 export function addVehicleVIN(vin) {
   try {
     var response = CarFitManager.onBoardVehicleWithVIN(vin);
+
+    return reponse;
   } catch (e) {
-    console.error(e)
+    console.error(e);
   }
 }
 
 export function addVehiclePlate(plate, region) {
   try {
-    CarFitManager.onBoardVehicleWithPlate(plate, region, null);
+    var response = CarFitManager.onBoardVehicleWithPlate(plate, region, '123456');
+
+    return response;
   } catch (e) {
-    console.error(e)
+    console.error(e);
   }
 }
 
 export function getVehicleStatus() {}
+
+export function getVehicleData() {}
 
 export function updateDistance() {}
 
@@ -64,6 +74,6 @@ export function clickButton() {
   try {
     CarFitManager.clickButton();
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
 }

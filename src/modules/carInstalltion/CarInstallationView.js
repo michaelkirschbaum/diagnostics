@@ -46,7 +46,7 @@ const CarInstallationStateView = React.createClass({
 
   addPlate(plate) {
     // add user vehicle
-    addVehiclePlate(plate, null);
+    addVehiclePlate(plate, "US");
 
     this.props.pushRoute({key: 'CarPhoto', title: ''});
   },
@@ -118,7 +118,7 @@ const CarInstallationStateView = React.createClass({
               <Input
                 ref='licenseInput'
                 placeholder={loc.carInstallation.enterLicensePlate}
-                onChangeText = {(text) => this.setState(text)}
+                onChangeText = {(text) => this.setState({text})}
               />
             </InputGroup>
             <Text
