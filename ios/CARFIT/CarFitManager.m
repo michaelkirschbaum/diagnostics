@@ -103,11 +103,13 @@ RCT_EXPORT_METHOD(authenticate:(NSString *) domain withToken:(NSString *) token
   resolve(nil);
 }
 
-// RCT_REMAP_METHOD(isAuthenticated) {}
-
 // RCT_EXPOSE_METHOD(vehiclestatus) {}
 
 // RCT_EXPORT_METHOD(updatedistance) {}
 
-// RCT_EXPORT_METHOD(buttonclick) {}
+RCT_REMAP_METHOD(clickButton,
+                 clickButtonResolver:(RCTPromiseResolveBlock)resolve
+                 clickButtonRejecter:(RCTPromiseRejectBlock)reject) {}
+
+// RCT_REMAP_METHOD(isAuthenticated) {}
 @end
