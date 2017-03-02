@@ -46,7 +46,7 @@ export function loginNorauto() {
 
 export function addVehicleVIN(vin) {
   try {
-    var response = CarFitManager.onBoardVehicleWithVIN(vin, 1, null, null, null, null);
+    var response = CarFitManager.onBoardVehicleWithVIN(vin);
   } catch (e) {
     console.error(e)
   }

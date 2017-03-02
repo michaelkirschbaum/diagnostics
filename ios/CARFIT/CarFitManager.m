@@ -53,7 +53,7 @@ RCT_REMAP_METHOD(availableBLEDevicesAsync,
 #else
   NSArray * devices = [[CFPCore sharedInstance] bleDiscoveredDevices];
 #endif
-  
+
   resolve(devices);
 }
 
@@ -104,8 +104,6 @@ RCT_EXPORT_METHOD(authenticate:(NSString *) domain withToken:(NSString *) token
 }
 
 // RCT_REMAP_METHOD(isAuthenticated) {}
-
-// RCT_EXPORT_METHOD(buttonclick) {}
 
 // RCT_EXPOSE_METHOD(vehiclestatus) {}
 
