@@ -38,14 +38,14 @@ const CarInstallationStateView = React.createClass({
     carInstallation: PropTypes.object.isRequired
   },
 
-  onVINPress(vin) {
+  addVIN(vin) {
     // add user vehicle
     addVehicleVIN(vin);
 
     this.props.pushRoute({key: 'CarPhoto', title: ''});
   },
 
-  onPlatePress(plate) {
+  addPlate(plate) {
     // add user vehicle
     // addVehiclePlate(plate, region);
 
@@ -106,7 +106,7 @@ const CarInstallationStateView = React.createClass({
               <Button rounded
                       style={{alignSelf: 'auto'}}
                       textStyle={{color: colors.textPrimary, textDecorationLine: 'underline'}}
-                      onPress={() => this.onVINPress(this.state.text)}
+                      onPress={() => this.addVIN(this.state.text)}
               >{loc.general.continue}</Button>
             </View>
           </View>
@@ -129,7 +129,7 @@ const CarInstallationStateView = React.createClass({
               <Button rounded
                       style={{alignSelf: 'auto'}}
                       textStyle={{color: colors.textPrimary, textDecorationLine: 'underline'}}
-                      onPress={() => this.onPlatePress(this.state.text)}
+                      onPress={() => this.addPlate(this.state.text)}
               >{loc.general.continue}</Button>
             </View>
           </View>
