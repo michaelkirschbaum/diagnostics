@@ -147,7 +147,24 @@ RCT_EXPORT_METHOD(vehicleBacklog:(NSString *) vin backlogType:(NSString *) backl
                   scheduledServiceItemsForResolver:(RCTPromiseResolveBlock) resolve
                   scheduledServiceItemsForRejecter:(RCTPromiseRejectBlock) reject)
 {
-  resolve(nil);
+  resolve(@"[\
+           {\
+             \"status\": \"incomplete\",\
+             \"scheduled_meters\": 111933397,\
+             \"summary\": \"RECALL: AIR BAGS PROBLEM. Manufacturer Recall ID: 16V346000.\",\
+             \"backlog_id\": 48819,\
+             \"created_on\": \"2017-01-27T00:01:36.527379+00:00\",\
+             \"action_type\": \"recall\"\
+           },\
+           {\
+             \"status\": \"incomplete\",\
+             \"scheduled_meters\": 111933397,\
+             \"summary\": \"RECALL: AIR BAGS PROBLEM. Manufacturer RECALL ID: 16V061000.\",\
+             \"backlog_id\": 42031,\
+             \"created_on\": \"2016-10-18T22:59:34.506221+00:00\",\
+             \"action_type\": \"recall\"\
+           }\
+           ]");
 }
 
 // RCT_EXPORT_METHOD(updatedistance) {}
