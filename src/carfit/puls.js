@@ -1,8 +1,6 @@
 /*
   puls.js
 
-  Allows interaction with the Carfit Puls device.
-
   Created by Michael Kirschbaum on February 20, 2017.
   Copyright © 2017 Carfit. All rights reserved.
 */

@@ -45,9 +45,9 @@ const CarInstallationStateView = React.createClass({
     this.props.pushRoute({key: 'CarPhoto', title: ''});
   },
 
-  onPlatePress() {
+  onPlatePress(plate) {
     // add user vehicle
-    addVehiclePlate(plate);
+    // addVehiclePlate(plate, region);
 
     this.props.pushRoute({key: 'CarPhoto', title: ''});
   },
