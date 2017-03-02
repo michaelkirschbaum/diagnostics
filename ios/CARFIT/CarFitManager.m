@@ -109,7 +109,11 @@ RCT_EXPORT_METHOD(authenticate:(NSString *) domain withToken:(NSString *) token
 
 RCT_REMAP_METHOD(clickButton,
                  clickButtonResolver:(RCTPromiseResolveBlock)resolve
-                 clickButtonRejecter:(RCTPromiseRejectBlock)reject) {}
+                 clickButtonRejecter:(RCTPromiseRejectBlock)reject)
+{
+  [[CFPCore sharedInstance] simulatePushButton];
+  resolve(nil)
+}
 
 // RCT_REMAP_METHOD(isAuthenticated) {}
 @end

@@ -23,7 +23,7 @@ export async function getDevices() {
 
 export async function connectDevice(id) {
   try {
-    // connect to uuid
+    // connect given uuid
     var response = await CarFitManager.connectBLEDeviceAsync(id);
   } catch (e) {
     console.error(e)
@@ -38,9 +38,7 @@ export function loginAuth0(domain, token) {
   }
 }
 
-export function loginNorauto() {
-  // login using norauto
-}
+export function loginNorauto() {}
 
 export function addVehicleVIN(vin) {
   try {
@@ -58,16 +56,14 @@ export function addVehiclePlate(plate, region) {
   }
 }
 
-export function getVehicleStatus() {
-  // vehicle status alerts
-}
+export function getVehicleStatus() {}
 
-export function updateDistance() {
-  // update kilometrage
-}
+export function updateDistance() {}
 
 export function clickButton() {
   try {
     CarFitManager.clickButton();
-  } catch (e) {}
+  } catch (e) {
+    console.log(e)
+  }
 }
