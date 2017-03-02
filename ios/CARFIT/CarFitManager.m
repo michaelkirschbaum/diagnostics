@@ -112,7 +112,7 @@ RCT_REMAP_METHOD(clickButton,
                  clickButtonRejecter:(RCTPromiseRejectBlock)reject)
 {
   [[CFPCore sharedInstance] simulatePushButton];
-  resolve(nil)
+  resolve(nil);
 }
 
 // RCT_REMAP_METHOD(isAuthenticated) {}
