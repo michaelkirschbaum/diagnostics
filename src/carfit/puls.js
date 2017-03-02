@@ -66,6 +66,8 @@ export function updateDistance() {
   // update kilometrage
 }
 
-export function buttonClick() {
-  // support flow
+export function clickButton() {
+  try {
+    CarFitManager.clickButton();
+  } catch (e) {}
 }

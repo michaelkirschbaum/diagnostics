@@ -26,7 +26,6 @@ import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
 import { addVehicleVIN, addVehiclePlate } from '../../carfit/puls'
 
-
 /**
  * Login view
  * Likely to be the main app view, but will only display login dialog when needed.
@@ -47,7 +46,7 @@ const CarInstallationStateView = React.createClass({
 
   addPlate(plate) {
     // add user vehicle
-    // addVehiclePlate(plate, region);
+    addVehiclePlate(plate, null);
 
     this.props.pushRoute({key: 'CarPhoto', title: ''});
   },
