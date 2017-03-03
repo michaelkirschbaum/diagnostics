@@ -36,7 +36,7 @@ export function loginAuth0(domain, token) {
   try {
     var response = CarFitManager.authenticate(domain, token['idToken']);
 
-    return reponse;
+    return response;
   } catch (e) {
     console.error(e);
   }
@@ -48,7 +48,7 @@ export function addVehicleVIN(vin) {
   try {
     var response = CarFitManager.onBoardVehicleWithVIN(vin);
 
-    return reponse;
+    return response;
   } catch (e) {
     console.error(e);
   }
@@ -56,7 +56,7 @@ export function addVehicleVIN(vin) {
 
 export function addVehiclePlate(plate, region) {
   try {
-    var response = CarFitManager.onBoardVehicleWithPlate(plate, region, '123456');
+    var response = CarFitManager.onBoardVehicleWithPlate(plate, region, null);
 
     return response;
   } catch (e) {
@@ -64,9 +64,17 @@ export function addVehiclePlate(plate, region) {
   }
 }
 
-export function getVehicleStatus() {}
+export function getVehicleStatus(vin) {
+  try {
+    CarFitManager.scheduledServiceItemsFor();
+  } catch (e) {}
+}
 
-export function getVehicleData() {}
+export function getVehicleData(vin, type) {
+  try {
+    CarFitManager.vehicleBacklog();
+  } catch (e) {}
+}
 
 export function updateDistance() {}
 

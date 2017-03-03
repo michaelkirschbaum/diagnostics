@@ -44,9 +44,9 @@ const CarInstallationStateView = React.createClass({
     this.props.pushRoute({key: 'CarPhoto', title: ''});
   },
 
-  addPlate(plate) {
+  addPlate(plate, region) {
     // add user vehicle
-    addVehiclePlate(plate, "US");
+    addVehiclePlate(plate, region);
 
     this.props.pushRoute({key: 'CarPhoto', title: ''});
   },
@@ -128,7 +128,7 @@ const CarInstallationStateView = React.createClass({
               <Button rounded
                       style={{alignSelf: 'auto'}}
                       textStyle={{color: colors.textPrimary, textDecorationLine: 'underline'}}
-                      onPress={() => this.addPlate(this.state.text)}
+                      onPress={() => this.addPlate(this.state.text, "US")}
               >{loc.general.continue}</Button>
             </View>
           </View>

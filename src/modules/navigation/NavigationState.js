@@ -60,7 +60,7 @@ export function openDrawer(): Action {
 
 export function closeDrawer(): Action {
   return {
-    type: CLOSE_DRAWER,
+    type: DRAWER_CLOSE,
   };
 }
 
