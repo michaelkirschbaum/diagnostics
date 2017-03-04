@@ -10,12 +10,21 @@
 #import <React/RCTlog.h>
 #import <AWSCore/AWSCore.h>
 
+@interface CarFitManager () <CFPCoreBLEDelegate>
+@property RCTPromiseResolveBlock connectBLEDeviceAsyncResolveBlock;
+@property RCTPromiseRejectBlock connectBLEDeviceAsyncRejectBlock;
+@end
+
 @implementation CarFitManager
+{
+  BOOL hasRCTListeners;
+}
 
 - (instancetype) init {
   self = [super init];
   if (self) {
     NSLog(@"%s - init success\n", __FUNCTION__);
+    [[CFPCore sharedInstance] setBLEDelegate:self];
     [self start];
   };
   return self;
@@ -31,6 +40,33 @@
 
 - (void) start {
   [[CFPCore sharedInstance] start];
+}
+
+- (void) didFailToConnectDevice:(NSError *) error {
+  if (self.connectBLEDeviceAsyncRejectBlock) {
+    self.connectBLEDeviceAsyncRejectBlock(@"error", @"error", error);
+    self.connectBLEDeviceAsyncRejectBlock = nil;
+  }
+}
+
+- (void) didConnectDevice {
+  if (self.connectBLEDeviceAsyncResolveBlock) {
+    self.connectBLEDeviceAsyncResolveBlock(nil);
+    self.connectBLEDeviceAsyncResolveBlock = nil;
+  }
+}
+
+- (void) didDisconnectDevice {
+  // use event propagation to notify
+  NSLog(@"%s - and hasRCTListeners is: %@", __FUNCTION__, hasRCTListeners ? @"YES" : @"NO");
+  if (hasRCTListeners) {
+    [self sendEventWithName:@"BLEDeviceDisconnect" body:@{@"name": @"BLEDeviceDisconnect"}];
+  }
+}
+
+- (void) didDiscoverDevice {
+  // use event propagation to notify
+  NSLog(@"%s", __FUNCTION__);
 }
 
 #pragma Upload Counters API Gateway/S3
@@ -61,7 +97,8 @@ RCT_EXPORT_METHOD(connectBLEDeviceAsync:(NSString *) identifier
                  connectBLEDeviceRejecter:(RCTPromiseRejectBlock)reject)
 {
   [[CFPCore sharedInstance] bleConnectToDeviceWithId:identifier];
-  resolve(nil);
+  self.connectBLEDeviceAsyncResolveBlock = resolve;
+  self.connectBLEDeviceAsyncRejectBlock = reject;
 }
 
 RCT_EXPORT_METHOD(onBoardVehicleWithPlate:(NSString *) licensePlate
@@ -178,4 +215,23 @@ RCT_REMAP_METHOD(clickButton,
 }
 
 // RCT_REMAP_METHOD(isAuthenticated) {}
+
+#pragma RCTEventEmitter
+
+- (NSArray<NSString *> *)supportedEvents
+{
+  return @[@"BLEDeviceDisconnect"];
+}
+
+// Will be called when this module's first listener is added.
+-(void)startObserving {
+  hasRCTListeners = YES;
+}
+
+// Will be called when this module's last listener is removed, or on dealloc.
+-(void)stopObserving {
+  hasRCTListeners = NO;
+}
+
+
 @end
