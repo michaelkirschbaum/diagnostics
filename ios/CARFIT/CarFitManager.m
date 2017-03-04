@@ -167,8 +167,6 @@ RCT_EXPORT_METHOD(vehicleBacklog:(NSString *) vin backlogType:(NSString *) backl
            ]");
 }
 
-// RCT_EXPORT_METHOD(updatedistance) {}
-
 RCT_REMAP_METHOD(clickButton,
                  clickButtonResolver:(RCTPromiseResolveBlock)resolve
                  clickButtonRejecter:(RCTPromiseRejectBlock)reject)
@@ -176,6 +174,8 @@ RCT_REMAP_METHOD(clickButton,
   [[CFPCore sharedInstance] simulatePushButton];
   resolve(nil);
 }
+
+// RCT_EXPORT_METHOD(updatedistance) {}
 
 // RCT_REMAP_METHOD(isAuthenticated) {}
 @end

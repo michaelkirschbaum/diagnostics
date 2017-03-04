@@ -1,13 +1,9 @@
-/*
-  puls.js
-
-  Created by Michael Kirschbaum on February 20, 2017.
-  Copyright © 2017 Carfit. All rights reserved.
-*/
+// puls.js
 
 import { NativeModules } from 'react-native';
 
-// create singleton
+// todo: wrap methods in class
+// get singleton
 var CarFitManager = NativeModules.CarFitManager;
 
 export async function getDevices() {
@@ -64,19 +60,42 @@ export function addVehiclePlate(plate, region) {
   }
 }
 
-export function getVehicleStatus(vin) {
+function updateDistance() {
   try {
-    CarFitManager.scheduledServiceItemsFor();
-  } catch (e) {}
+    // manager.updateDistance();
+  } catch (e) {
+    console.error(e);
+  }
 }
 
-export function getVehicleData(vin, type) {
-  try {
-    CarFitManager.vehicleBacklog();
-  } catch (e) {}
-}
+export default class Alert {
+  constructor() {
+    // get singleton
+    this.manager = NativeModules.CarFitManager;
+  }
 
-export function updateDistance() {}
+  // get backlog
+  getAlerts(vin) {
+    try {
+      var results = this.manager.scheduledServiceItemsFor(vin);
+
+      return results;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  // get backlog by type
+  getAlertsByType(vin, type) {
+    try {
+      var results = this.manager.vehicleBacklog(vin, type);
+
+      return results;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+}
 
 export function clickButton() {
   try {
