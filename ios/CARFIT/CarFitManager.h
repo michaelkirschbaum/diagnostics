@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <React/RCTBridgeModule.h>
 #import <CarFitiOSSDK/CarFitiOSSDK.h>
+#import <React/RCTEventEmitter.h>
 
-@interface CarFitManager : NSObject <RCTBridgeModule>
+@interface CarFitManager : RCTEventEmitter <RCTBridgeModule>
+
+//@interface CarFitManager : NSObject <RCTBridgeModule>
 @end
