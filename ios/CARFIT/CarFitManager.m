@@ -106,6 +106,7 @@ RCT_EXPORT_METHOD(scheduledServiceItemsFor:(NSString *) vin
                   scheduledServiceItemsForResolver:(RCTPromiseResolveBlock) resolve
                   scheduledServiceItemsForRejecter:(RCTPromiseRejectBlock) reject)
 {
+
   resolve(@"[\
            {\
              \"interval_items\": [\

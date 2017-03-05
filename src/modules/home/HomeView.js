@@ -61,7 +61,7 @@ const HomeView = React.createClass({
 
     let alert = new Alert();
     let alertAction = loc.home.serviceNeeded;
-    let alertDescription = 'alert.getAlertsByType()';
+    let alertDescription = 'getAlerts';
     let alertColor = colors.secondary;
 
     let usageAction = loc.home.lastTrip;
