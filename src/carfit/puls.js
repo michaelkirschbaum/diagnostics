@@ -80,7 +80,7 @@ export default class Alert {
       // mock result
       var results = this.manager.scheduledServiceItemsFor(vin);
 
-      return 'results';
+      return results;
     } catch (e) {
       console.error(e);
     }
