@@ -27,9 +27,8 @@ import colors from '../../config/colors';
 import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
-
 import * as NavigationState from '../navigation/NavigationState';
-
+import Alert from '../../carfit/puls';
 
 const HomeView = React.createClass({
   propTypes: {},
@@ -60,8 +59,9 @@ const HomeView = React.createClass({
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
 
+    let alert = new Alert();
     let alertAction = loc.home.serviceNeeded;
-    let alertDescription = 'Front wheel imbalance';
+    let alertDescription = alert.getAlerts();
     let alertColor = colors.secondary;
 
     let usageAction = loc.home.lastTrip;
@@ -122,7 +122,7 @@ const HomeView = React.createClass({
                 <H3 style={{fontWeight: "bold", color: alertColor}}>{loc.home.alert}</H3>
                 <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
                 <H3>{alertAction}</H3>
-                <Text>{alertDescription}</Text>
+                <Text>{alertDescription[0]}</Text>
               </View>
               <View style={styles.dataAction}>
                 <Icon active name="ios-arrow-forward"></Icon>

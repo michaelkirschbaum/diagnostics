@@ -1,0 +1,7 @@
+import { AWSCognitoCredentials } from 'aws-sdk-react-native-core';
+
+export async function getID() {
+  var credentials = await AWSCognitoCredentials.getCredentialAsync();
+  this.setState({AccessKey:variable["AccessKey"], SecretKey:variable["SecretKey"],
+  SessionKey:variable["SessionKey"], Expiration:variable["Expiration"].toString()});
+}

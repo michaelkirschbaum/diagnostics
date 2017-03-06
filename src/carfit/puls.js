@@ -1,14 +1,37 @@
-/*
-  puls.js
-
-  Created by Michael Kirschbaum on February 20, 2017.
-  Copyright © 2017 Carfit. All rights reserved.
-*/
+// puls.js
 
 import { NativeModules } from 'react-native';
 
-// create singleton
+// todo: wrap methods in class
+// get singleton
 var CarFitManager = NativeModules.CarFitManager;
+
+export class Connection {
+  constructor() {
+    // get singleton
+    this.manager = NativeModules.CarFitManager;
+  }
+
+  // add device methods
+}
+
+export class Login {
+  constructor() {
+    // get singleton
+    this.manager = NativeModules.CarFitManager;
+  }
+
+  // add login methods
+}
+
+export class Vehicle {
+  constructor() {
+    // get singleton
+    this.manager = NativeModules.CarFitManager;
+  }
+
+  // add vehicle methods
+}
 
 export async function getDevices() {
   try {
@@ -64,24 +87,49 @@ export function addVehiclePlate(plate, region) {
   }
 }
 
-export function getVehicleStatus(vin) {
+function updateDistance() {
   try {
-    CarFitManager.scheduledServiceItemsFor();
-  } catch (e) {}
-}
-
-export function getVehicleData(vin, type) {
-  try {
-    CarFitManager.vehicleBacklog();
-  } catch (e) {}
-}
-
-export function updateDistance() {}
-
-export function clickButton() {
-  try {
-    CarFitManager.clickButton();
+    // manager.updateDistance();
   } catch (e) {
-    console.log(e);
+    console.error(e);
+  }
+}
+
+export default class Alert {
+  constructor() {
+    // get singleton
+    this.manager = NativeModules.CarFitManager;
+  }
+
+  // get backlog
+  getAlerts(vin) {
+    try {
+      // var results = this.manager.scheduledServiceItemsFor(vin);
+
+      var results = fetch("https://tnexnmzch3.execute-api.us-east-1.amazonaws.com/dev/backlog/AAAAAA");
+
+      return results;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  // get backlog by type
+  getAlertsByType(vin, type) {
+    try {
+      var results = this.manager.vehicleBacklog(vin, type);
+
+      return results;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  clickButton() {
+    try {
+      CarFitManager.clickButton();
+    } catch (e) {
+      console.log(e);
+    }
   }
 }
