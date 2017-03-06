@@ -27,7 +27,10 @@ import Swiper from 'react-native-swiper';
 
 import * as NavigationState from '../navigation/NavigationState';
 
-import { connectDevice } from '../../carfit/puls';
+import { Connection } from '../../carfit/puls';
+
+// put this somewhere else
+var conn = new Connection();
 
 /**
  * Login view
@@ -42,7 +45,7 @@ const InstallationView = React.createClass({
 
   onNextPress(id) {
     // connect puls device
-    connectDevice(id);
+    conn.connectDevice(id);
 
     this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
   },

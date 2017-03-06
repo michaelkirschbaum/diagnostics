@@ -12,7 +12,27 @@ export class Connection {
     this.manager = NativeModules.CarFitManager;
   }
 
-  // add device methods
+  async getDevices() {
+    try {
+      // scan for devices
+      var devices = await CarFitManager.availableBLEDevicesAsync();
+
+      return devices;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async connectDevice(id) {
+    try {
+      // connect given uuid
+      var response = await CarFitManager.connectBLEDeviceAsync(id);
+
+      return response;
+    } catch (e) {
+      console.error(e);
+    }
+  }
 }
 
 export class Login {
@@ -21,7 +41,17 @@ export class Login {
     this.manager = NativeModules.CarFitManager;
   }
 
-  // add login methods
+  auth0(domain, token) {
+    try {
+      var response = CarFitManager.authenticate(domain, token['idToken']);
+
+      return response;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  norauto() {}
 }
 
 export class Vehicle {
@@ -30,72 +60,36 @@ export class Vehicle {
     this.manager = NativeModules.CarFitManager;
   }
 
-  // add vehicle methods
-}
+  addByVIN(vin) {
+    try {
+      var response = CarFitManager.onBoardVehicleWithVIN(vin);
 
-export async function getDevices() {
-  try {
-    // scan for devices
-    var devices = await CarFitManager.availableBLEDevicesAsync();
+      return response;
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
-    return devices;
-  } catch (e) {
-    console.error(e);
+  addByPlate(plate, region) {
+    try {
+      var response = CarFitManager.onBoardVehicleWithPlate(plate, region, null);
+
+      return response;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  updateDistance(vin, kilometers) {
+    try {
+      // manager.updateDistance();
+    } catch (e) {
+      console.error(e);
+    }
   }
 }
 
-export async function connectDevice(id) {
-  try {
-    // connect given uuid
-    var response = await CarFitManager.connectBLEDeviceAsync(id);
-
-    return response;
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-export function loginAuth0(domain, token) {
-  try {
-    var response = CarFitManager.authenticate(domain, token['idToken']);
-
-    return response;
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-export function loginNorauto() {}
-
-export function addVehicleVIN(vin) {
-  try {
-    var response = CarFitManager.onBoardVehicleWithVIN(vin);
-
-    return response;
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-export function addVehiclePlate(plate, region) {
-  try {
-    var response = CarFitManager.onBoardVehicleWithPlate(plate, region, null);
-
-    return response;
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-function updateDistance() {
-  try {
-    // manager.updateDistance();
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-export default class Alert {
+export class Alert {
   constructor() {
     // get singleton
     this.manager = NativeModules.CarFitManager;

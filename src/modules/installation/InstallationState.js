@@ -1,6 +1,6 @@
 import { Map, fromJS } from 'immutable';
 import { loop, Effects } from 'redux-loop';
-import { getDevices } from '../../carfit/puls.js';
+import { Connection } from '../../carfit/puls';
 
 // Pairing States
 const PAIRING_IDLE = 'PAIRING_IDLE';
@@ -37,9 +37,11 @@ export function discover() {
 }
 
 export async function requestDevices() {
+  var conn = new Connection();
+
   return {
     type: PAIRING_DISCOVERY_RESPONSE,
-    payload: await getDevices()
+    payload: await conn.getDevices()
   }
 }
 

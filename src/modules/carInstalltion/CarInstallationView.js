@@ -24,7 +24,7 @@ import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
-import { addVehicleVIN, addVehiclePlate } from '../../carfit/puls'
+import { Vehicle } from '../../carfit/puls'
 
 /**
  * Login view
@@ -39,14 +39,18 @@ const CarInstallationStateView = React.createClass({
 
   addVIN(vin) {
     // add user vehicle
-    addVehicleVIN(vin);
+    vehicle = new Vehicle();
+
+    vehicle.addByVIN(vin);
 
     this.props.pushRoute({key: 'CarPhoto', title: ''});
   },
 
   addPlate(plate, region) {
     // add user vehicle
-    addVehiclePlate(plate, region);
+    vehicle = new Vehicle();
+
+    vehicle.addByPlate(plate, region);
 
     this.props.pushRoute({key: 'CarPhoto', title: ''});
   },

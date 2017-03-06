@@ -10,7 +10,7 @@ import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
 import * as NavigationState from '../navigation/NavigationState';
 var Auth0Lock = require('react-native-lock');
-import {loginAuth0} from '../../carfit/puls';
+import { Login } from '../../carfit/puls';
 
 /**
  * Welcome view
@@ -21,10 +21,11 @@ const WelcomeView = React.createClass({
   },
 
   onNextPress() {
+    var login = new Login()
     var lock = new Auth0Lock({clientId: "t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M", domain: "carfit.auth0.com"});
     lock.show({}, (err, profile, token) => {
       console.log('Logged in!' + ' ' + profile + ' ' + token);
-      loginAuth0('carfit.auth0.com', token);
+      login.auth0('carfit.auth0.com', token);
     });
     this.props.pushRoute({
       key: 'Installation',
