@@ -6,6 +6,33 @@ import { NativeModules } from 'react-native';
 // get singleton
 var CarFitManager = NativeModules.CarFitManager;
 
+export class Connection {
+  constructor() {
+    // get singleton
+    this.manager = NativeModules.CarFitManager;
+  }
+
+  // add device methods
+}
+
+export class Login {
+  constructor() {
+    // get singleton
+    this.manager = NativeModules.CarFitManager;
+  }
+
+  // add login methods
+}
+
+export class Vehicle {
+  constructor() {
+    // get singleton
+    this.manager = NativeModules.CarFitManager;
+  }
+
+  // add vehicle methods
+}
+
 export async function getDevices() {
   try {
     // scan for devices
@@ -77,8 +104,9 @@ export default class Alert {
   // get backlog
   getAlerts(vin) {
     try {
-      // mock result
-      var results = this.manager.scheduledServiceItemsFor(vin);
+      // var results = this.manager.scheduledServiceItemsFor(vin);
+
+      var results = fetch("https://tnexnmzch3.execute-api.us-east-1.amazonaws.com/dev/backlog/AAAAAA");
 
       return results;
     } catch (e) {
@@ -96,12 +124,12 @@ export default class Alert {
       console.error(e);
     }
   }
-}
 
-export function clickButton() {
-  try {
-    CarFitManager.clickButton();
-  } catch (e) {
-    console.log(e);
+  clickButton() {
+    try {
+      CarFitManager.clickButton();
+    } catch (e) {
+      console.log(e);
+    }
   }
 }
