@@ -11,6 +11,7 @@ import colors from '../../config/colors';
 import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
+import {Field, reduxForm} from 'redux-form';
 
 /**
  * Login view
@@ -23,7 +24,10 @@ const LoginView = React.createClass({
     pushRoute: PropTypes.func.isRequired,
   },
 
-  onNextPress() {
+  onNextPress(credentials) {
+    // retrieve auth0 token
+    console.log(credentials)
+
     this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
   },
 
@@ -111,7 +115,7 @@ const LoginView = React.createClass({
                     <Button rounded
                             style={{alignSelf: 'auto'}}
                             textStyle={{color: colors.textPrimary}}
-                            onPress={this.onNextPress}
+                            onPress={() => this.onNextPress(this.props)}
                     >{loc.general.continue}</Button>
                   </View>
                 </View>
@@ -124,6 +128,10 @@ const LoginView = React.createClass({
     );
   }
 });
+
+LoginView = reduxForm({
+  form: 'login'
+})(LoginView);
 
 const styles = StyleSheet.create({
   scrollContainer: {

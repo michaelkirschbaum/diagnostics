@@ -12,6 +12,7 @@
     ]
   },
   "dependencies": {
+    "aws-sdk-react-native-core": "./aws/aws-sdk-react-native-core-0.0.1.tgz",
     "bluebird": "^3.4.6",
     "color": "^1.0.3",
     "es6-symbol": "^3.1.0",
@@ -32,6 +33,7 @@
     "react-native-vector-icons": "^4.0.0",
     "react-redux": "^5.0.1",
     "redux": "^3.6.0",
+    "redux-form": "^6.5.0",
     "redux-logger": "^2.7.4",
     "redux-loop": "^2.2.2",
     "redux-observable": "^0.13.0",
@@ -41,8 +43,7 @@
     "remote-redux-devtools": "^0.5.7",
     "remote-redux-devtools-on-debugger": "^0.7.0",
     "rxjs": "^5.0.1",
-    "standard-http-error": "^2.0.0",
-    "aws-sdk-react-native-core": "./aws/aws-sdk-react-native-core-0.0.1.tgz"
+    "standard-http-error": "^2.0.0"
   },
   "devDependencies": {
     "babel-jest": "18.0.0",

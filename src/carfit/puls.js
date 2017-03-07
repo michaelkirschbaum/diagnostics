@@ -119,7 +119,7 @@ export class Alert {
     }
   }
 
-  clickButton() {
+  pulsClick() {
     try {
       CarFitManager.clickButton();
     } catch (e) {
