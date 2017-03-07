@@ -4,7 +4,7 @@ import {
   StyleSheet,
   Image,
   Dimensions,
-  Platform
+  Platform,
 } from 'react-native';
 import {Container, Content, InputGroup, Input, Button, Text, H3} from 'native-base';
 import colors from '../../config/colors';
@@ -24,9 +24,9 @@ const LoginView = React.createClass({
     pushRoute: PropTypes.func.isRequired,
   },
 
-  onNextPress(credentials) {
+  onNextPress(email, password) {
     // retrieve auth0 token
-    console.log(credentials)
+
 
     this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
   },
@@ -102,20 +102,22 @@ const LoginView = React.createClass({
                       placeholder='Email Address'
                       onSubmitEditing={(event) => {
                     this.refs.PasswordInput._textInput.focus();
-                  }}/>
+                  }}
+                      onChangeText = {(text) => this.setState({email: text})}/>
                   </InputGroup>
                   <H3 style={styles.titles}>{loc.login.password}</H3>
                   <InputGroup borderType='rounded' style={styles.textInput}>
                     <Input
                       ref='PasswordInput'
-                      placeholder='Password'/>
+                      placeholder='Password'
+                      onChangeText = {(text) => this.setState({password: text})}/>
                   </InputGroup>
                   <View style={styles.bottomContainer}>
                     <Text style={{marginBottom: 12}} onPress={this.onPasswordPress}>{loc.login.forgotPassword}</Text>
                     <Button rounded
                             style={{alignSelf: 'auto'}}
                             textStyle={{color: colors.textPrimary}}
-                            onPress={() => this.onNextPress(this.props)}
+                            onPress={() => this.onNextPress(this.state.email, this.state.password)}
                     >{loc.general.continue}</Button>
                   </View>
                 </View>
