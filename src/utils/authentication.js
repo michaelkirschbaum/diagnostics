@@ -13,3 +13,9 @@ export async function setAuthenticationToken(token) {
 export async function clearAuthenticationToken() {
   return AsyncStorage.removeItem(AUTHENTICATION_STORAGE_KEY);
 }
+
+export default class Authentication {
+  constructor() {
+
+  }
+}

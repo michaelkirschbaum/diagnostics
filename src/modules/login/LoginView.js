@@ -12,6 +12,7 @@ import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import {Field, reduxForm} from 'redux-form';
+import Authentication from '../../utils/authentication';
 
 /**
  * Login view
@@ -22,11 +23,11 @@ const LoginView = React.createClass({
   propTypes: {
     // dispatch: PropTypes.func.isRequired,
     pushRoute: PropTypes.func.isRequired,
+    auth: PropTypes.instanceOf(Authentication)
   },
 
   onNextPress(email, password) {
     // retrieve auth0 token
-
 
     this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
   },
