@@ -36,6 +36,7 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new LockReactPackage(),
             new VectorIconsPackage(),
+            new CarFitPackage(),
             new CodePush(null, getApplicationContext(), BuildConfig.DEBUG)
       );
     }
