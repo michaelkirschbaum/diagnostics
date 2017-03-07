@@ -131,12 +131,32 @@ RCT_EXPORT_METHOD(onBoardVehicleWithVIN:(NSString *) vin
   }];
 }
 
-RCT_EXPORT_METHOD(authenticate:(NSString *) domain withToken:(NSString *) token
+RCT_REMAP_METHOD(authenticateAuth0, authenticate:(NSString *) domain withToken:(NSString *) token
                   authenticateLockResolver:(RCTPromiseResolveBlock)resolve
                   authenticateLockRejecter:(RCTPromiseRejectBlock)reject)
 {
-  [[CFPCore sharedInstance] authenticate:domain withToken:token];
-  resolve(nil);
+  [[[CFPCore sharedInstance] authenticate:domain withToken:token] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
+    if (task.error) {
+      reject(@"authentication", task.error.localizedDescription, task.error);
+    } else {
+      resolve(task.result);
+    }
+    return nil;
+  }];
+}
+
+RCT_REMAP_METHOD(authenticateNorauto, authenticate:(NSString *) code demographics:(NSDictionary *) demographics
+                 authenticateLockResolver:(RCTPromiseResolveBlock)resolve
+                 authenticateLockRejecter:(RCTPromiseRejectBlock)reject)
+{
+  [[[CFPCore sharedInstance] authenticate:code demographics:demographics] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
+    if (task.error) {
+      reject(@"authentication", task.error.localizedDescription, task.error);
+    } else {
+      resolve(task.result);
+    }
+    return nil;
+  }];
 }
 
 RCT_EXPORT_METHOD(scheduledServiceItemsFor:(NSString *) vin
