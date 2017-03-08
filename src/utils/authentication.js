@@ -17,6 +17,9 @@ export async function clearAuthenticationToken() {
 
 export default class Authentication {
   constructor() {
-
+    this.auth = new auth0.WebAuth({
+      domain: "carfit.auth0.com",
+      clientID: "t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M"
+    });
   }
 }
