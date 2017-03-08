@@ -1,7 +1,7 @@
 /*
   CarFitManager.java
 
-  Created by Michael Kirschbaum on March6, 2017.
+  Created by Michael Kirschbaum on March 6, 2017.
 */
 package com.carfit;
 
