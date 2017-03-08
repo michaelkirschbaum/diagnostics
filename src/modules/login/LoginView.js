@@ -28,6 +28,7 @@ const LoginView = React.createClass({
 
   onNextPress(email, password) {
     // retrieve auth0 token
+    var auth = new Authentication();
 
     this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
   },
