@@ -1,4 +1,5 @@
 import {AsyncStorage} from 'react-native';
+import auth0 from 'auth0-react-native';
 
 const AUTHENTICATION_STORAGE_KEY = 'CarFitState:Authentication';
 
@@ -12,4 +13,10 @@ export async function setAuthenticationToken(token) {
 
 export async function clearAuthenticationToken() {
   return AsyncStorage.removeItem(AUTHENTICATION_STORAGE_KEY);
+}
+
+export default class Authentication {
+  constructor() {}
+
+  login() {}
 }

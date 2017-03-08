@@ -98,9 +98,9 @@ export class Alert {
   // get backlog
   getAlerts(vin) {
     try {
-      // var results = this.manager.scheduledServiceItemsFor(vin);
+      var results = this.manager.scheduledServiceItemsFor(vin);
 
-      var results = fetch("https://tnexnmzch3.execute-api.us-east-1.amazonaws.com/dev/backlog/AAAAAA");
+      // var results = fetch("https://tnexnmzch3.execute-api.us-east-1.amazonaws.com/dev/backlog/AAAAAA");
 
       return results;
     } catch (e) {

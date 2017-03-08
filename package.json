@@ -12,6 +12,8 @@
     ]
   },
   "dependencies": {
+    "auth0-js": "^8.0.0",
+    "auth0-react-native": "0.0.4",
     "aws-sdk-react-native-core": "./aws/aws-sdk-react-native-core-0.0.1.tgz",
     "bluebird": "^3.4.6",
     "color": "^1.0.3",
