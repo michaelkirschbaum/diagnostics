@@ -1,34 +1,63 @@
-/*
-  CarFitManager.java
+// CarFitManager.java
 
-  Created by Michael Kirschbaum on March 6, 2017.
-*/
 package com.carfit;
 
-import android.widget.Toast;
-
-import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 
-public class CarFitManager extends ReactContextBaseJavaModule
-    {
-
-    public CarFitManager(ReactApplicationContext reactContext)
-        {
-        super(reactContext);
-        }
-
+public class CarFitManager extends ReactContextBaseJavaModule {
     @Override
-    public String getName()
-        {
+    public String getName() {
         return "CarFitManager";
-        }
+    }
 
     @ReactMethod
-    public String authenticate(String domain, String token)
-        {
-        Toast.makeText(getReactApplicationContext(), "Hello Android", Toast.LENGTH_LONG).show();
-        return "{}";
-        }
+    public void availableBleDevicesAsync() {
+
     }
+
+    @ReactMethod
+    public void connectBLEDeviceAsync(String identifier) {
+
+    }
+
+    @ReactMethod
+    public void onBoardVehicleWithPlate(String licensePlate) {
+
+    }
+
+    @ReactMethod
+    public void onBoardVehicleWithVIN(String vin) {
+
+    }
+
+    @ReactMethod
+    public void authenticateAuth0(String domain, String token) {
+
+    }
+
+    @ReactMethod
+    public void authenticateNorauto(String code, String demographics) {
+
+    }
+
+    @ReactMethod
+    public void scheduledServiceItemsFor(String vin) {
+
+    }
+
+    @ReactMethod
+    public void vehicleBacklog(String vin, String backlogType) {
+
+    }
+
+    @ReactMethod
+    public void clickButton() {
+
+    }
+
+    @ReactMethod
+    public void updatedDistance(String vin, Number kilometers) {
+
+    }
+}
