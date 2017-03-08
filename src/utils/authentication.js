@@ -1,4 +1,5 @@
 import {AsyncStorage} from 'react-native';
+import auth0 from 'auth0-react-native';
 
 const AUTHENTICATION_STORAGE_KEY = 'CarFitState:Authentication';
 
