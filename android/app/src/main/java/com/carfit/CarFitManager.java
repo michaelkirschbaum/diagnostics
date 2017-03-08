@@ -37,7 +37,7 @@ public class CarFitManager extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void authenticateNorauto(String code, String demographics) {
+    public void authenticateNorauto(String code, ReadableMap demographics) {
 
     }
 
@@ -57,7 +57,7 @@ public class CarFitManager extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void updatedDistance(String vin, Number kilometers) {
+    public void updatedDistance(String vin, Integer kilometers) {
 
     }
 }

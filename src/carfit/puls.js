@@ -2,10 +2,6 @@
 
 import { NativeModules } from 'react-native';
 
-// todo: wrap methods in class
-// get singleton
-var CarFitManager = NativeModules.CarFitManager;
-
 export class Connection {
   constructor() {
     // get singleton
@@ -43,7 +39,7 @@ export class Login {
 
   auth0(domain, token) {
     try {
-      var response = CarFitManager.authenticate(domain, token['idToken']);
+      var response = CarFitManager.authenticateAuth0(domain, token['idToken']);
 
       return response;
     } catch (e) {
@@ -51,7 +47,15 @@ export class Login {
     }
   }
 
-  norauto() {}
+  norauto(code, demographics) {
+    try {
+      var response = CarFitManager.authenticateNorauto(code, demographics);
+
+      return response;
+    } catch (e) {
+      console.error(e);
+    }
+  }
 }
 
 export class Vehicle {
