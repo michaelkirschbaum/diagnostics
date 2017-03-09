@@ -1,4 +1,8 @@
-// CarFitManager.java
+/*
+  CarFitManager.java
+
+  Exposes Android methods to React Native.
+*/
 
 package com.carfit;
 
@@ -66,6 +70,8 @@ public class CarFitManager extends ReactContextBaseJavaModule {
         String token,
         Promise promise) {
       try {
+        // sdk.authenticate()
+
         promise.resolve("Success.");
       } catch(Exception e) {
         promise.reject(e);
