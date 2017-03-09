@@ -30,6 +30,8 @@ const LoginView = React.createClass({
     // retrieve auth0 token
     var auth = new Authentication();
 
+    auth.login(email, password);
+
     this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
   },
 
@@ -45,7 +47,6 @@ const LoginView = React.createClass({
   },
 
   render() {
-
     const index = this.props.index;
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
