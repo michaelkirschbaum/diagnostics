@@ -11,7 +11,7 @@ export class Connection {
   async getDevices() {
     try {
       // scan for devices
-      var devices = await this.CarFitManager.availableBLEDevicesAsync();
+      var devices = await this.manager.availableBLEDevicesAsync();
 
       return devices;
     } catch (e) {
@@ -22,7 +22,7 @@ export class Connection {
   async connectDevice(id) {
     try {
       // connect given uuid
-      var response = await this.CarFitManager.connectBLEDeviceAsync(id);
+      var response = await this.manager.connectBLEDeviceAsync(id);
 
       return response;
     } catch (e) {
@@ -39,7 +39,7 @@ export class Login {
 
   auth0(domain, token) {
     try {
-      var response = this.CarFitManager.authenticateAuth0(domain, token['idToken']);
+      var response = this.manager.authenticateAuth0(domain, token['idToken']);
 
       return response;
     } catch (e) {
@@ -49,7 +49,7 @@ export class Login {
 
   norauto(code, demographics) {
     try {
-      var response = this.CarFitManager.authenticateNorauto(code, demographics);
+      var response = this.manager.authenticateNorauto(code, demographics);
 
       return response;
     } catch (e) {
@@ -66,7 +66,7 @@ export class Vehicle {
 
   addByVIN(vin) {
     try {
-      var response = this.CarFitManager.onBoardVehicleWithVIN(vin);
+      var response = this.manager.onBoardVehicleWithVIN(vin);
 
       return response;
     } catch (e) {
@@ -76,7 +76,7 @@ export class Vehicle {
 
   addByPlate(plate, region) {
     try {
-      var response = this.CarFitManager.onBoardVehicleWithPlate(plate, region, null);
+      var response = this.manager.onBoardVehicleWithPlate(plate, region, null);
 
       return response;
     } catch (e) {
@@ -125,7 +125,7 @@ export class Alert {
 
   pulsClick() {
     try {
-      CarFitManager.clickButton();
+      var response = this.manager.clickButton();
     } catch (e) {
       console.log(e);
     }

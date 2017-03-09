@@ -61,7 +61,7 @@ const HomeView = React.createClass({
 
     let alert = new Alert();
     let alertAction = loc.home.serviceNeeded;
-    let alertDescription = alert.getAlerts();
+    let alertDescription = 'alerts'
     let alertColor = colors.secondary;
 
     let usageAction = loc.home.lastTrip;
@@ -122,7 +122,7 @@ const HomeView = React.createClass({
                 <H3 style={{fontWeight: "bold", color: alertColor}}>{loc.home.alert}</H3>
                 <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
                 <H3>{alertAction}</H3>
-                <Text>{alertDescription[0]}</Text>
+                <Text>{alertDescription}</Text>
               </View>
               <View style={styles.dataAction}>
                 <Icon active name="ios-arrow-forward"></Icon>
