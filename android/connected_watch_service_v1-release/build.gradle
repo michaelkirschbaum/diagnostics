@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('connected_watch_service_v1-release.aar'))
