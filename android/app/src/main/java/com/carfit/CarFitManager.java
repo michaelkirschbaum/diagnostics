@@ -6,15 +6,24 @@
 
 package com.carfit;
 
+import com.connected.watch.api.CarFitSDKManager;
+import com.connected.watch.api.utilities.ICarFitResult;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Promise;
 
 public class CarFitManager extends ReactContextBaseJavaModule {
+
     public CarFitManager(ReactApplicationContext reactContext) {
-      super(reactContext);
+
+    super(reactContext);
+    sdkManager =  CarFitSDKManager.getInstance();
+
     }
+
+    private CarFitSDKManager sdkManager;
+
 
     @Override
     public String getName() {
@@ -68,11 +77,23 @@ public class CarFitManager extends ReactContextBaseJavaModule {
     public void authenticateAuth0(
         String domain,
         String token,
-        Promise promise) {
+        final Promise promise) {
       try {
-        // sdk.authenticate()
+        sdkManager.onBoardUser(domain, token, new ICarFitResult()
+            {
+            @Override
+            public void onSuccess()
+                {
+                promise.resolve("Success.");
+                }
 
-        promise.resolve("Success.");
+            @Override
+            public void onFailure()
+                {
+                promise.reject(new Exception("Failure."));
+                }
+            });
+
       } catch(Exception e) {
         promise.reject(e);
       }
