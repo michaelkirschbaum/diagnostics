@@ -1,3 +1,9 @@
+/*
+  CarFitPackage.java
+
+  Register CarFitManager
+*/
+
 package com.carfit;
 
 import com.facebook.react.ReactPackage;
