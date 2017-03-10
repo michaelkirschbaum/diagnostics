@@ -75,10 +75,10 @@ const DeveloperMenu = React.createClass({
 const styles = StyleSheet.create({
   circle: {
     position: 'absolute',
-    bottom: 5,
-    right: 5,
-    width: 10,
-    height: 10,
+    bottom: 45,
+    right: 45,
+    width: 40,
+    height: 40,
     borderRadius: 5,
     backgroundColor: '#fff'
   },

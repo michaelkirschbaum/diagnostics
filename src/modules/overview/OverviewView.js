@@ -20,7 +20,7 @@ const OverviewView = React.createClass({
   },
 
   onNextPress() {
-    this.props.switchRoute(3);
+    this.props.pushRoute({key: 'Home', title: loc.settings.settings});
   },
 
   render() {
