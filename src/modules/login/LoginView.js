@@ -45,7 +45,7 @@ const LoginView = React.createClass({
       login.auth0('carfit.auth0.com', token);
     });
 
-    this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
+    this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome});
   },
 
   onPasswordPress() {
