@@ -21,12 +21,6 @@ const WelcomeView = React.createClass({
   },
 
   onNextPress() {
-    var login = new Login()
-    var lock = new Auth0Lock({clientId: "t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M", domain: "carfit.auth0.com"});
-    lock.show({}, (err, profile, token) => {
-      console.log('Logged in!' + ' ' + profile + ' ' + token);
-      login.auth0('carfit.auth0.com', token);
-    });
     this.props.pushRoute({
       key: 'Installation',
       title: loc.welcome.welcome

@@ -13,6 +13,8 @@ import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import {Field, reduxForm} from 'redux-form';
 import Authentication from '../../utils/authentication';
+var Auth0Lock = require('react-native-lock');
+import { Login } from '../../carfit/puls';
 
 /**
  * Login view
@@ -36,6 +38,13 @@ const LoginView = React.createClass({
   },
 
   continue() {
+    var login = new Login()
+    var lock = new Auth0Lock({clientId: "t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M", domain: "carfit.auth0.com"});
+    lock.show({}, (err, profile, token) => {
+      console.log('Logged in!' + ' ' + profile + ' ' + token);
+      login.auth0('carfit.auth0.com', token);
+    });
+
     this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
   },
 
