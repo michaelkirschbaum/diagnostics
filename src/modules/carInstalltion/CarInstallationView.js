@@ -43,7 +43,7 @@ const CarInstallationStateView = React.createClass({
 
     vehicle.addByVIN(vin);
 
-    this.props.pushRoute({key: 'CarPhoto', title: ''});
+    this.props.pushRoute({key: 'Overview', title: ''});
   },
 
   addPlate(plate, region) {
@@ -52,7 +52,7 @@ const CarInstallationStateView = React.createClass({
 
     vehicle.addByPlate(plate, region);
 
-    this.props.pushRoute({key: 'CarPhoto', title: ''});
+    this.props.pushRoute({key: 'Overview', title: ''});
   },
 
   popRoute() {
