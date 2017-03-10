@@ -1,3 +1,0 @@
-const DemoView = React.CreateClass(
-
-);
