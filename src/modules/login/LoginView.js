@@ -35,6 +35,10 @@ const LoginView = React.createClass({
     this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
   },
 
+  continue() {
+    this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
+  },
+
   onPasswordPress() {
     // this.props.dispatch(NavigationState.pushRoute({
     //   key: 'ResetPasswordCode',
@@ -87,8 +91,15 @@ const LoginView = React.createClass({
               <Text style={styles.textTitle}>{loc.login.marketingTitle3a}</Text>
               <Text style={styles.textBody}>{loc.login.marketingText3a}</Text>
               <Text style={styles.textBody}>{loc.login.marketingText3b}</Text>
+              <Button rounded
+                      style={{alignSelf: 'auto'}}
+                      textStyle={{color: colors.textPrimary}}
+                      // onPress={() => this.onNextPress(this.state.email, this.state.password)}
+                      onPress={this.continue}
+              >{loc.general.continue}</Button>
             </View>
-            {/*<View style={{height: windowHeight, flex: 1, marginTop: 52}}>*/}
+
+            {/* <View style={{height: windowHeight, flex: 1, marginTop: 52}}>
               <Content
                 padder
                 keyboardShouldPersistTaps="always"
@@ -125,7 +136,8 @@ const LoginView = React.createClass({
                   </View>
                 </View>
               </Content>
-            {/*</View>*/}
+            </View> */}
+
           </Swiper>
           {/*</Content>*/}
         </View>

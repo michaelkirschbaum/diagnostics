@@ -18,7 +18,6 @@ const en = {
     marketingTitle3a: 'Service made simple',
     marketingText3a: 'One button press away to schedule and visit your autoshop.',
     marketingText3b: 'The CARFIT PULS notifies you when it is time to check up your car.'
-
   },
   verification: {
     verification: 'Verification',
