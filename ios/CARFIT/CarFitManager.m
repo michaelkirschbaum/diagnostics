@@ -10,7 +10,7 @@
 #import <React/RCTlog.h>
 #import <AWSCore/AWSCore.h>
 
-@interface CarFitManager () <CFPCoreBLEDelegate>
+@interface CarFitManager () <CFPCoreBLEDelegate, CFPCoreGPSDelegate>
 @property RCTPromiseResolveBlock connectBLEDeviceAsyncResolveBlock;
 @property RCTPromiseRejectBlock connectBLEDeviceAsyncRejectBlock;
 @end
@@ -25,6 +25,7 @@
   if (self) {
     NSLog(@"%s - init success\n", __FUNCTION__);
     [[CFPCore sharedInstance] setBLEDelegate:self];
+    [[CFPCore sharedInstance] setGPSDelegate:self];
     [self start];
   };
   return self;
@@ -41,6 +42,8 @@
 - (void) start {
   [[CFPCore sharedInstance] start];
 }
+
+#pragma CFPCore BLE Delegate
 
 - (void) didFailToConnectDevice:(NSError *) error {
   if (self.connectBLEDeviceAsyncRejectBlock) {
@@ -67,6 +70,40 @@
 - (void) didDiscoverDevice {
   // use event propagation to notify
   NSLog(@"%s", __FUNCTION__);
+}
+
+- (void) buttonPress {
+  if (hasRCTListeners) {
+    [self sendEventWithName:@"BLEButtonPress" body:@{@"name": @"BLEButtonPress"}];
+  }
+}
+
+- (void) buttonResponse:(AWSTask *) response {
+  if (hasRCTListeners) {
+    [self sendEventWithName:@"BLEButtonResponse" body:@{@"name": @"BLEButtonResponse", @"response" : response}];
+  }
+}
+
+#pragma CFPCore GPS Delegate
+
+- (void) metersTraveled:(NSInteger) meters {
+  // use event propagation to notify
+  NSLog(@"%s - and hasRCTListeners is: %@", __FUNCTION__, hasRCTListeners ? @"YES" : @"NO");
+  if (hasRCTListeners) {
+    [self sendEventWithName:@"GPSMetersTraveled" body:@{@"name": @"GPSMetersTraveled", @"metersTraveled" : @(meters)}];
+  }
+}
+
+- (void) startOfTravel {
+  [self sendEventWithName:@"GPSStartOfTravel" body:@{@"name": @"GPSStartOfTravel"}];
+}
+
+- (void) endOfTravel:(NSInteger) totalMetersTraveled {
+  [self sendEventWithName:@"GPSEndOfTravel" body:@{@"name": @"GPSEndOfTravel", @"totalMetersTraveled" : @(totalMetersTraveled)}];
+}
+
+- (void) steeringWheelAngle:(float) angle {
+  [self sendEventWithName:@"GPSSteeringWheelAngle" body:@{@"name": @"GPSSteeringWheelAngle", @"angle" : @(angle)}];
 }
 
 #pragma Upload Counters API Gateway/S3
@@ -241,7 +278,14 @@ RCT_REMAP_METHOD(clickButton,
 
 - (NSArray<NSString *> *)supportedEvents
 {
-  return @[@"BLEDeviceDisconnect"];
+  return @[@"BLEDeviceDisconnect"
+           , @"BLEButtonPress"
+           , @"BLEButtonResponse"
+           , @"GPSMetersTraveled"
+           , @"GPSStartOfTravel"
+           , @"GPSEndOfTravel"
+           , @"GPSSteeringWheelAngle"
+           ];
 }
 
 // Will be called when this module's first listener is added.

@@ -8,7 +8,7 @@ target 'CARFIT' do
 use_frameworks!
 
   # Pods for CARFIT
-  pod 'CarFitiOSSDK' #, :path => '~mcclen/Developer/sdk.ios.car.fit'
+  pod 'CarFitiOSSDK'# , :path => '~mcclen/Developer/sdk.ios.car.fit'
   pod 'Lock', '~> 1.26'
   pod 'Lock/TouchID'
   pod 'Lock/SMS'
