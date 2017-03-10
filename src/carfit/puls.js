@@ -1,11 +1,12 @@
 // puls.js
 
-import { NativeModules } from 'react-native';
+import { NativeEventEmitter, NativeModules } from 'react-native';
 
 export class Connection {
   constructor() {
     // get singleton
     this.manager = NativeModules.CarFitManager;
+    this.connectionEmitter = new NativeEventEmitter(NativeModules);
   }
 
   async getDevices() {
@@ -24,12 +25,20 @@ export class Connection {
       // connect given uuid
       var response = await this.manager.connectBLEDeviceAsync(id);
 
+      // subscribe to disconnect
+      const subscription = this.connectionEmitter.addListener(
+        'BLEDeviceDisconnect',
+        (reminder) => console.log(reminder.name)
+      );
+
       return response;
     } catch (e) {
       console.error(e);
     }
   }
 }
+
+
 
 export class Login {
   constructor() {
