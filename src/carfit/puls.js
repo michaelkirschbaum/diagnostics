@@ -1,21 +1,19 @@
 // puls.js
 
-import { NativeModules } from 'react-native';
-
-// todo: wrap methods in class
-// get singleton
-var CarFitManager = NativeModules.CarFitManager;
+import { NativeEventEmitter, NativeModules } from 'react-native';
+const { CarFitManager } = NativeModules;
 
 export class Connection {
   constructor() {
     // get singleton
     this.manager = NativeModules.CarFitManager;
+    this.connectionEmitter = new NativeEventEmitter(CarFitManager);
   }
 
   async getDevices() {
     try {
       // scan for devices
-      var devices = await CarFitManager.availableBLEDevicesAsync();
+      var devices = await this.manager.availableBLEDevicesAsync();
 
       return devices;
     } catch (e) {
@@ -26,7 +24,13 @@ export class Connection {
   async connectDevice(id) {
     try {
       // connect given uuid
-      var response = await CarFitManager.connectBLEDeviceAsync(id);
+      var response = await this.manager.connectBLEDeviceAsync(id);
+
+      // subscribe to disconnect
+      const subscription = this.connectionEmitter.addListener(
+        'BLEDeviceDisconnect',
+        (reminder) => console.log(reminder.name)
+      );
 
       return response;
     } catch (e) {
@@ -43,7 +47,7 @@ export class Login {
 
   auth0(domain, token) {
     try {
-      var response = CarFitManager.authenticate(domain, token['idToken']);
+      var response = this.manager.authenticateAuth0(domain, token['idToken']);
 
       return response;
     } catch (e) {
@@ -51,7 +55,15 @@ export class Login {
     }
   }
 
-  norauto() {}
+  norauto(code, demographics) {
+    try {
+      var response = this.manager.authenticateNorauto(code, demographics);
+
+      return response;
+    } catch (e) {
+      console.error(e);
+    }
+  }
 }
 
 export class Vehicle {
@@ -62,7 +74,7 @@ export class Vehicle {
 
   addByVIN(vin) {
     try {
-      var response = CarFitManager.onBoardVehicleWithVIN(vin);
+      var response = this.manager.onBoardVehicleWithVIN(vin);
 
       return response;
     } catch (e) {
@@ -72,7 +84,7 @@ export class Vehicle {
 
   addByPlate(plate, region) {
     try {
-      var response = CarFitManager.onBoardVehicleWithPlate(plate, region, null);
+      var response = this.manager.onBoardVehicleWithPlate(plate, region, null);
 
       return response;
     } catch (e) {
@@ -98,9 +110,9 @@ export class Alert {
   // get backlog
   getAlerts(vin) {
     try {
-      // var results = this.manager.scheduledServiceItemsFor(vin);
+      var results = this.manager.scheduledServiceItemsFor(vin);
 
-      var results = fetch("https://tnexnmzch3.execute-api.us-east-1.amazonaws.com/dev/backlog/AAAAAA");
+      // var results = fetch("https://tnexnmzch3.execute-api.us-east-1.amazonaws.com/dev/backlog/AAAAAA");
 
       return results;
     } catch (e) {
@@ -119,9 +131,9 @@ export class Alert {
     }
   }
 
-  clickButton() {
+  pulsClick() {
     try {
-      CarFitManager.clickButton();
+      var response = this.manager.clickButton();
     } catch (e) {
       console.log(e);
     }

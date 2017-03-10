@@ -270,7 +270,7 @@ RCT_REMAP_METHOD(clickButton,
   resolve(nil);
 }
 
-// RCT_EXPORT_METHOD(updatedistance) {}
+// RCT_EXPORT_METHOD(updateDistance) {}
 
 // RCT_REMAP_METHOD(isAuthenticated) {}
 

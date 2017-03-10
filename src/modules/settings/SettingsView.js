@@ -61,6 +61,10 @@ const SettingsView = React.createClass({
     this.props.pushRoute({key: 'Terms', title: loc.settings.settings});
   },
 
+  onDemoPress() {
+    this.props.pushRoute({key: 'Demo', title: loc.settings.settings});
+  },
+
   popRoute() {
     this.props.onNavigateBack();
   },
@@ -92,7 +96,7 @@ const SettingsView = React.createClass({
               <H1 style={styles.menuText} onPress={this.onMyCarsPress}>{loc.settings.myCars}</H1>
               <H1 style={styles.menuText}>{loc.settings.sensors}</H1>
               <H1 style={styles.menuText} onPress={this.onMyAccountPress}>{loc.settings.myAccount}</H1>
-              <H1 style={styles.menuText}>{loc.settings.demo}</H1>
+              <H1 style={styles.menuText} onPress={this.onDemoPress}>{loc.settings.demo}</H1>
               <H1 style={styles.menuText}>{loc.settings.useWiFi}</H1>
             </View>
 

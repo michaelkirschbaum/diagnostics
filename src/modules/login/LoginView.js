@@ -4,13 +4,15 @@ import {
   StyleSheet,
   Image,
   Dimensions,
-  Platform
+  Platform,
 } from 'react-native';
 import {Container, Content, InputGroup, Input, Button, Text, H3} from 'native-base';
 import colors from '../../config/colors';
 import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
+import {Field, reduxForm} from 'redux-form';
+import Authentication from '../../utils/authentication';
 
 /**
  * Login view
@@ -21,9 +23,15 @@ const LoginView = React.createClass({
   propTypes: {
     // dispatch: PropTypes.func.isRequired,
     pushRoute: PropTypes.func.isRequired,
+    auth: PropTypes.instanceOf(Authentication)
   },
 
-  onNextPress() {
+  onNextPress(email, password) {
+    // retrieve auth0 token
+    var auth = new Authentication();
+
+    auth.login(email, password);
+
     this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
   },
 
@@ -39,7 +47,6 @@ const LoginView = React.createClass({
   },
 
   render() {
-
     const index = this.props.index;
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
@@ -98,20 +105,22 @@ const LoginView = React.createClass({
                       placeholder='Email Address'
                       onSubmitEditing={(event) => {
                     this.refs.PasswordInput._textInput.focus();
-                  }}/>
+                  }}
+                      onChangeText = {(text) => this.setState({email: text})}/>
                   </InputGroup>
                   <H3 style={styles.titles}>{loc.login.password}</H3>
                   <InputGroup borderType='rounded' style={styles.textInput}>
                     <Input
                       ref='PasswordInput'
-                      placeholder='Password'/>
+                      placeholder='Password'
+                      onChangeText = {(text) => this.setState({password: text})}/>
                   </InputGroup>
                   <View style={styles.bottomContainer}>
                     <Text style={{marginBottom: 12}} onPress={this.onPasswordPress}>{loc.login.forgotPassword}</Text>
                     <Button rounded
                             style={{alignSelf: 'auto'}}
                             textStyle={{color: colors.textPrimary}}
-                            onPress={this.onNextPress}
+                            onPress={() => this.onNextPress(this.state.email, this.state.password)}
                     >{loc.general.continue}</Button>
                   </View>
                 </View>
@@ -124,6 +133,10 @@ const LoginView = React.createClass({
     );
   }
 });
+
+LoginView = reduxForm({
+  form: 'login'
+})(LoginView);
 
 const styles = StyleSheet.create({
   scrollContainer: {

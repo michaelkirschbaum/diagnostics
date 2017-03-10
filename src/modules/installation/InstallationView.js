@@ -29,9 +29,6 @@ import * as NavigationState from '../navigation/NavigationState';
 
 import { Connection } from '../../carfit/puls';
 
-// put this somewhere else
-var conn = new Connection();
-
 /**
  * Login view
  * Likely to be the main app view, but will only display login dialog when needed.
@@ -45,6 +42,8 @@ const InstallationView = React.createClass({
 
   onNextPress(id) {
     // connect puls device
+    var conn = new Connection();
+
     conn.connectDevice(id);
 
     this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});

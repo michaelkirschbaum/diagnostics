@@ -2,6 +2,11 @@ import {AsyncStorage} from 'react-native';
 
 const AUTHENTICATION_STORAGE_KEY = 'CarFitState:Authentication';
 
+// Auth0 authentication helper
+export default class Authentication {
+  login(email, password) {}
+}
+
 export function getAuthenticationToken() {
   return AsyncStorage.getItem(AUTHENTICATION_STORAGE_KEY);
 }
