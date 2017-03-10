@@ -1,12 +1,13 @@
 // puls.js
 
 import { NativeEventEmitter, NativeModules } from 'react-native';
+const { CarFitManager } = NativeModules;
 
 export class Connection {
   constructor() {
     // get singleton
     this.manager = NativeModules.CarFitManager;
-    this.connectionEmitter = new NativeEventEmitter(NativeModules);
+    this.connectionEmitter = new NativeEventEmitter(CarFitManager);
   }
 
   async getDevices() {
