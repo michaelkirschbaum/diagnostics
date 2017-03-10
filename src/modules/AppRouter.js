@@ -20,6 +20,7 @@ import DetailsViewContainer from './details/DetailsViewContainer';
 import AccountViewContainer from './account/AccountViewContainer';
 import PrivacyViewContainer from './legal/PrivacyViewContainer';
 import TermsViewContainer from './legal/TermsViewContainer';
+import DemoViewContainer from './demo/DemoViewContainer';
 //
 // import CounterViewContainer from './counter/CounterViewContainer';
 // import ColorViewContainer from './colors/ColorViewContainer';
@@ -87,7 +88,9 @@ export default function AppRouter(props) {
   if (key === 'Terms') {
     return <TermsViewContainer />;
   }
-
+  if (key === 'Demo') {
+    return <DemoViewContainer />
+  }
 
   throw new Error('Unknown navigation key: ' + key);
 }

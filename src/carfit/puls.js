@@ -39,8 +39,6 @@ export class Connection {
   }
 }
 
-
-
 export class Login {
   constructor() {
     // get singleton
