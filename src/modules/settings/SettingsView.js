@@ -61,6 +61,10 @@ const SettingsView = React.createClass({
     this.props.pushRoute({key: 'Terms', title: loc.settings.settings});
   },
 
+  onDemoPress() {
+    this.props.pushRoute({key: 'Demo', title: loc.settings.settings});
+  },
+
   popRoute() {
     this.props.onNavigateBack();
   },
