@@ -9,8 +9,6 @@ import colors from '../../config/colors';
 import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
 import * as NavigationState from '../navigation/NavigationState';
-var Auth0Lock = require('react-native-lock');
-import { Login } from '../../carfit/puls';
 
 /**
  * Welcome view

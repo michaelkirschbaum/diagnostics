@@ -10,6 +10,7 @@ const initialState = Map({
 // Actions
 const CHANGE_PAGE = 'CarInstallationState/CHANGE_PAGE';
 const ENTER_MODE = 'CarInstallationState/ENTER_MODE';
+const LOADING = 'CarInstallationState/LOADING';
 
 // Action Creaters
 export function setPageIndex(value) {
@@ -29,6 +30,9 @@ export default function CarInstallationStateReducer(state = initialState, action
 
     case ENTER_MODE:
       return state.set('enterMode', action.payload);
+
+    case LOADING:
+      return state.set('loading', action.payload);
 
     default:
       return state;

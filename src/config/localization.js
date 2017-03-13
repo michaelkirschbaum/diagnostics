@@ -83,6 +83,7 @@ const en = {
     // Page four
     registerCar: 'registerCar',
     enterLicensePlate: 'Enter license plate here',
+    enterRegion: 'Enter region here',
     enterByVin: 'Enter by VIN',
     enterVin: 'Enter VIN here',
     enterByLicensePlate: 'Enter by license plate',
