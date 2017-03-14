@@ -33,6 +33,10 @@ import { Vehicle } from '../../carfit/puls';
  * Otherwise pass by.
  */
 const CarInstallationStateView = React.createClass({
+  getInitialState: function() {
+    return {plate: '', vin: ''};
+  },
+
   propTypes: {
     // dispatch: PropTypes.func.isRequired
     carInstallation: PropTypes.object.isRequired
@@ -137,13 +141,6 @@ const CarInstallationStateView = React.createClass({
               <Input
                 ref='licenseInput'
                 placeholder={loc.carInstallation.enterLicensePlate}
-                onChangeText = {(text) => this.setState({text})}
-              />
-            </InputGroup>
-            <InputGroup borderType='rounded' style={styles.textInput}>
-              <Input
-                ref='region'
-                placeholder={loc.carInstallation.enterRegion}
                 onChangeText = {(text) => this.setState({text})}
               />
             </InputGroup>
