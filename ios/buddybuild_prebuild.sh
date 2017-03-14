@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-./react-native link react-native-lock
+npm install
+react-native link react-native-lock

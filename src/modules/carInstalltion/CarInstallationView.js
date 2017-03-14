@@ -49,7 +49,12 @@ const CarInstallationStateView = React.createClass({
     if (!this.validVIN(vin))
       console.log("Invalid VIN.");
     else {
-      vehicle.addByVIN(vin);
+      var response = vehicle.addByVIN(vin);
+
+      // notify user whether vehicle has been added
+      if (true)
+        pass;
+
       this.props.pushRoute({key: 'Overview', title: ''});
     }
   },
