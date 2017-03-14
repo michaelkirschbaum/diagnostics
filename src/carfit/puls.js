@@ -2,6 +2,8 @@
 
 import { NativeEventEmitter, NativeModules } from 'react-native';
 const { CarFitManager } = NativeModules;
+var ReactNative = require('react-native');
+var { Alert } = ReactNative;
 
 export class Connection {
   constructor() {
@@ -29,7 +31,12 @@ export class Connection {
       // subscribe to disconnect
       const subscription = this.connectionEmitter.addListener(
         'BLEDeviceDisconnect',
-        (reminder) => console.log(reminder.name)
+        (reminder) => Alert.alert(
+          'Puls',
+          'Device has been disconnected.',
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+          {cancelable: false}
+        )
       );
 
       return response;
@@ -101,7 +108,7 @@ export class Vehicle {
   }
 }
 
-export class Alert {
+export class Notification {
   constructor() {
     // get singleton
     this.manager = NativeModules.CarFitManager;

@@ -18,7 +18,6 @@ const en = {
     marketingTitle3a: 'Service made simple',
     marketingText3a: 'One button press away to schedule and visit your autoshop.',
     marketingText3b: 'The CARFIT PULS notifies you when it is time to check up your car.'
-
   },
   verification: {
     verification: 'Verification',
@@ -84,6 +83,7 @@ const en = {
     // Page four
     registerCar: 'registerCar',
     enterLicensePlate: 'Enter license plate here',
+    enterRegion: 'Enter region here',
     enterByVin: 'Enter by VIN',
     enterVin: 'Enter VIN here',
     enterByLicensePlate: 'Enter by license plate',
@@ -127,7 +127,7 @@ const en = {
     myCars: 'MY CARS',
     sensors: 'SENSORS',
     myAccount: 'MY ACCOUNT',
-    demo: 'DEMO',
+    drive: 'drive',
     useWiFi: 'USE WIFI',
     terms: 'Terms of use',
     privacy: 'Privacy',

@@ -13,6 +13,8 @@ import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import {Field, reduxForm} from 'redux-form';
 import Authentication from '../../utils/authentication';
+var Auth0Lock = require('react-native-lock');
+import { Login } from '../../carfit/puls';
 
 /**
  * Login view
@@ -33,6 +35,17 @@ const LoginView = React.createClass({
     auth.login(email, password);
 
     this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
+  },
+
+  continue() {
+    var login = new Login()
+    var lock = new Auth0Lock({clientId: "t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M", domain: "carfit.auth0.com"});
+    lock.show({}, (err, profile, token) => {
+      console.log('Logged in!' + ' ' + profile + ' ' + token);
+      login.auth0('carfit.auth0.com', token);
+    });
+
+    this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome});
   },
 
   onPasswordPress() {
@@ -87,8 +100,15 @@ const LoginView = React.createClass({
               <Text style={styles.textTitle}>{loc.login.marketingTitle3a}</Text>
               <Text style={styles.textBody}>{loc.login.marketingText3a}</Text>
               <Text style={styles.textBody}>{loc.login.marketingText3b}</Text>
+              <Button rounded
+                      style={{alignSelf: 'auto'}}
+                      textStyle={{color: colors.textPrimary}}
+                      // onPress={() => this.onNextPress(this.state.email, this.state.password)}
+                      onPress={this.continue}
+              >{loc.general.continue}</Button>
             </View>
-            {/*<View style={{height: windowHeight, flex: 1, marginTop: 52}}>*/}
+
+            {/* <View style={{height: windowHeight, flex: 1, marginTop: 52}}>
               <Content
                 padder
                 keyboardShouldPersistTaps="always"
@@ -125,7 +145,8 @@ const LoginView = React.createClass({
                   </View>
                 </View>
               </Content>
-            {/*</View>*/}
+            </View> */}
+
           </Swiper>
           {/*</Content>*/}
         </View>

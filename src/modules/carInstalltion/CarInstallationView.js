@@ -17,14 +17,15 @@ import {
   Icon,
   H3,
   List,
-  ListItem
+  ListItem,
+  Alert
 } from 'native-base';
 import colors from '../../config/colors';
 import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
-import { Vehicle } from '../../carfit/puls'
+import { Vehicle } from '../../carfit/puls';
 
 /**
  * Login view
@@ -32,6 +33,10 @@ import { Vehicle } from '../../carfit/puls'
  * Otherwise pass by.
  */
 const CarInstallationStateView = React.createClass({
+  getInitialState: function() {
+    return {plate: '', vin: ''};
+  },
+
   propTypes: {
     // dispatch: PropTypes.func.isRequired
     carInstallation: PropTypes.object.isRequired
@@ -41,18 +46,32 @@ const CarInstallationStateView = React.createClass({
     // add user vehicle
     vehicle = new Vehicle();
 
-    vehicle.addByVIN(vin);
-
-    this.props.pushRoute({key: 'CarPhoto', title: ''});
+    if (!this.validVIN(vin))
+      console.log("Invalid VIN.");
+    else {
+      vehicle.addByVIN(vin);
+      this.props.pushRoute({key: 'Overview', title: ''});
+    }
   },
 
   addPlate(plate, region) {
     // add user vehicle
     vehicle = new Vehicle();
 
-    vehicle.addByPlate(plate, region);
+    if (!this.validPlate(plate))
+      console.log("invalid plate.");
+    else {
+      vehicle.addByPlate(plate, region);
+      this.props.pushRoute({key: 'Overview', title: ''});
+    }
+  },
 
-    this.props.pushRoute({key: 'CarPhoto', title: ''});
+  validVIN(vin) {
+    return false;
+  },
+
+  validPlate(plate) {
+    return false;
   },
 
   popRoute() {

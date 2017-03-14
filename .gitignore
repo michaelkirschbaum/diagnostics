@@ -98,5 +98,4 @@ build/Release
 /__tests__/
 !/external/
 /ios/Pods/
-/ios/Podfile.lock
 /yarn.lock
