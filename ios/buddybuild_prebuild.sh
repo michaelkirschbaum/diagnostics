@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
 
-pod install
-react-native link react-native-lock
+react-native install react-native-lock
