@@ -42,7 +42,7 @@ const CarInstallationStateView = React.createClass({
     carInstallation: PropTypes.object.isRequired
   },
 
-  async addVIN(vin) {
+  addVIN(vin) {
     // add user vehicle
     vehicle = new Vehicle();
 
@@ -52,9 +52,9 @@ const CarInstallationStateView = React.createClass({
       var response = vehicle.addByVIN(vin);
 
       // notify user whether vehicle has been added
-      await Alert.alert(
+      Alert.alert(
         'New Vehicle',
-        'Vehicle has been added.',
+        'Vehicle added successfully.',
         {text: 'OK', onPress: () => console.log('OK Pressed.')},
       );
 
