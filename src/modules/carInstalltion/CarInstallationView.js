@@ -3,7 +3,8 @@ import {
   View,
   StyleSheet,
   Image,
-  Dimensions
+  Dimensions,
+  Alert
 } from 'react-native';
 import {
   Container,
@@ -18,7 +19,6 @@ import {
   H3,
   List,
   ListItem,
-  Alert
 } from 'native-base';
 import colors from '../../config/colors';
 import loc from '../../config/localization';
@@ -42,7 +42,7 @@ const CarInstallationStateView = React.createClass({
     carInstallation: PropTypes.object.isRequired
   },
 
-  addVIN(vin) {
+  async addVIN(vin) {
     // add user vehicle
     vehicle = new Vehicle();
 
@@ -52,8 +52,11 @@ const CarInstallationStateView = React.createClass({
       var response = vehicle.addByVIN(vin);
 
       // notify user whether vehicle has been added
-      if (true)
-        pass;
+      await Alert.alert(
+        'New Vehicle',
+        'Vehicle has been added.',
+        {text: 'OK', onPress: () => console.log('OK Pressed.')},
+      );
 
       this.props.pushRoute({key: 'Overview', title: ''});
     }
@@ -72,11 +75,11 @@ const CarInstallationStateView = React.createClass({
   },
 
   validVIN(vin) {
-    return false;
+    return true;
   },
 
   validPlate(plate) {
-    return false;
+    return true;
   },
 
   popRoute() {
