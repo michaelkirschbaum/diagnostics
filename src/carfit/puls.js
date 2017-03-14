@@ -83,6 +83,8 @@ export class Vehicle {
     try {
       var response = this.manager.onBoardVehicleWithVIN(vin);
 
+      // if successful return appropriate user message
+
       return response;
     } catch (e) {
       console.error(e);
