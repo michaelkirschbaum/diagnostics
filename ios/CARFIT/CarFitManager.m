@@ -10,7 +10,7 @@
 #import <React/RCTlog.h>
 #import <AWSCore/AWSCore.h>
 
-@interface CarFitManager () <CFPCoreBLEDelegate, CFPCoreGPSDelegate>
+@interface CarFitManager () <CFPCoreBLEDelegate, CFPCoreTripDelegate>
 @property RCTPromiseResolveBlock connectBLEDeviceAsyncResolveBlock;
 @property RCTPromiseRejectBlock connectBLEDeviceAsyncRejectBlock;
 @end
@@ -25,7 +25,7 @@
   if (self) {
     NSLog(@"%s - init success\n", __FUNCTION__);
     [[CFPCore sharedInstance] setBLEDelegate:self];
-    [[CFPCore sharedInstance] setGPSDelegate:self];
+    [[CFPCore sharedInstance] setTripDelegate:self];
     [self start];
   };
   return self;
@@ -84,26 +84,30 @@
   }
 }
 
-#pragma CFPCore GPS Delegate
+#pragma CFPCore Trip Delegate
 
 - (void) metersTraveled:(NSInteger) meters {
   // use event propagation to notify
   NSLog(@"%s - and hasRCTListeners is: %@", __FUNCTION__, hasRCTListeners ? @"YES" : @"NO");
   if (hasRCTListeners) {
-    [self sendEventWithName:@"GPSMetersTraveled" body:@{@"name": @"GPSMetersTraveled", @"metersTraveled" : @(meters)}];
+    [self sendEventWithName:@"TripMetersTraveled" body:@{@"name": @"TripMetersTraveled", @"metersTraveled" : @(meters)}];
   }
 }
 
 - (void) startOfTravel {
-  [self sendEventWithName:@"GPSStartOfTravel" body:@{@"name": @"GPSStartOfTravel"}];
+  [self sendEventWithName:@"TripStartOfTravel" body:@{@"name": @"TripStartOfTravel"}];
 }
 
 - (void) endOfTravel:(NSInteger) totalMetersTraveled {
-  [self sendEventWithName:@"GPSEndOfTravel" body:@{@"name": @"GPSEndOfTravel", @"totalMetersTraveled" : @(totalMetersTraveled)}];
+  [self sendEventWithName:@"TripEndOfTravel" body:@{@"name": @"TripEndOfTravel", @"totalMetersTraveled" : @(totalMetersTraveled)}];
 }
 
 - (void) steeringWheelAngle:(float) angle {
-  [self sendEventWithName:@"GPSSteeringWheelAngle" body:@{@"name": @"GPSSteeringWheelAngle", @"angle" : @(angle)}];
+  [self sendEventWithName:@"TripSteeringWheelAngle" body:@{@"name": @"TripSteeringWheelAngle", @"angle" : @(angle)}];
+}
+
+- (void) vehicleSpeed:(double)metersPerSecond {
+  [self sendEventWithName:@"TripVehicleMetersPerSecond" body:@{@"name": @"TripVehicleMetersPerSecond", @"metersPerSecond" : @(metersPerSecond)}];
 }
 
 #pragma Upload Counters API Gateway/S3
@@ -281,10 +285,11 @@ RCT_REMAP_METHOD(clickButton,
   return @[@"BLEDeviceDisconnect"
            , @"BLEButtonPress"
            , @"BLEButtonResponse"
-           , @"GPSMetersTraveled"
-           , @"GPSStartOfTravel"
-           , @"GPSEndOfTravel"
-           , @"GPSSteeringWheelAngle"
+           , @"TripMetersTraveled"
+           , @"TripStartOfTravel"
+           , @"TripEndOfTravel"
+           , @"TripSteeringWheelAngle"
+           , @"TripVehicleMetersPerSecond"
            ];
 }
 

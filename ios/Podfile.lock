@@ -21,7 +21,7 @@ PODS:
   - AWSCore (2.5.2)
   - AWSS3 (2.5.2):
     - AWSCore (= 2.5.2)
-  - CarFitiOSSDK (0.0.21):
+  - CarFitiOSSDK (0.0.24):
     - AWSAPIGateway
     - AWSCognito
     - AWSCore
@@ -49,9 +49,9 @@ PODS:
   - Lock/WebView (1.28.2):
     - Lock/CoreUI
   - Masonry (0.6.4)
-  - Realm (2.4.3):
-    - Realm/Headers (= 2.4.3)
-  - Realm/Headers (2.4.3)
+  - Realm (2.4.4):
+    - Realm/Headers (= 2.4.4)
+  - Realm/Headers (2.4.4)
   - SimpleKeychain (0.7.0)
   - TouchIDAuth (0.2.0):
     - SimpleKeychain (~> 0.3)
@@ -69,13 +69,13 @@ SPEC CHECKSUMS:
   AWSCognito: a29c52e3a3d4988f01b449c8b229a51b73d1c1bf
   AWSCore: b2fe455c2c7d6653521238c5b0b0ddb67ec4f063
   AWSS3: 1f53d780bae0a5949f11da99520c14684bc90af0
-  CarFitiOSSDK: 9578fdcb996299e3385a583b0e2500df4b820d41
+  CarFitiOSSDK: 4dc0d9dfd86b19b587757c867e72b2dbd3ed2472
   Lock: 742c21d94c8a1805a3fb8d7e8a5d5e873b14ec47
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
-  Realm: e08d60b0048ccccd3949c8c28a92c4db5712d7e9
+  Realm: 5a280a1f5a9a3c267bebf4f41ee47911137703d7
   SimpleKeychain: b50cef3b87939d480ea1143425c00f5b4b70fe21
   TouchIDAuth: 0cf861f58a2cacfc1c12cb02de4850729d943c81
 
-PODFILE CHECKSUM: 31bbdff1efce272fcc523a30275091ba69be1376
+PODFILE CHECKSUM: 58e8df8cc312eced29701b04ea07d422dcd4a787
 
 COCOAPODS: 1.2.0
