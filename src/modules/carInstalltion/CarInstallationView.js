@@ -52,13 +52,18 @@ const CarInstallationStateView = React.createClass({
       var response = vehicle.addByVIN(vin);
 
       // notify user whether vehicle has been added
-      Alert.alert(
-        'New Vehicle',
-        'Vehicle added successfully.',
-        {text: 'OK', onPress: () => console.log('OK Pressed.')},
-      );
+      if (response) {
+        Alert.alert(
+          'New Vehicle',
+          'Vehicle added successfully.',
+          {text: 'OK', onPress: () => console.log('OK Pressed.')},
+        );
 
-      this.props.pushRoute({key: 'Overview', title: ''});
+        this.props.pushRoute({key: 'Overview', title: ''});
+      }
+      else {
+        pass
+      }
     }
   },
 
@@ -69,8 +74,21 @@ const CarInstallationStateView = React.createClass({
     if (!this.validPlate(plate))
       console.log("invalid plate.");
     else {
-      vehicle.addByPlate(plate, region);
-      this.props.pushRoute({key: 'Overview', title: ''});
+      var response = vehicle.addByPlate(plate, region);
+
+      // notify user whether vehicle has been added
+      if (response) {
+        Alert.alert(
+          'New Vehicle',
+          'Vehicle added successfully.',
+          {text: 'OK', onPress: () => console.log('OK Pressed.')},
+        );
+
+        this.props.pushRoute({key: 'Overview', title: ''});
+      }
+      else {
+        pass
+      }
     }
   },
 

@@ -83,9 +83,9 @@ export class Vehicle {
     try {
       var response = this.manager.onBoardVehicleWithVIN(vin);
 
-      // if successful return appropriate user message
+      // wrap response
 
-      return response;
+      return null;
     } catch (e) {
       console.error(e);
     }
@@ -95,7 +95,9 @@ export class Vehicle {
     try {
       var response = this.manager.onBoardVehicleWithPlate(plate, region, null);
 
-      return response;
+      // wrap response
+
+      return null;
     } catch (e) {
       console.error(e);
     }
