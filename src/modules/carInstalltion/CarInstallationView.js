@@ -53,6 +53,7 @@ const CarInstallationStateView = React.createClass({
 
       // notify user whether vehicle has been added
       if (response) {
+        // make notification synchronous
         Alert.alert(
           'Success',
           'Vehicle has been added.',
@@ -177,6 +178,7 @@ const CarInstallationStateView = React.createClass({
                 placeholder={loc.carInstallation.enterLicensePlate}
                 onChangeText = {(text) => this.setState({text})}
               />
+              <Input/>
             </InputGroup>
             <Text
               style={{marginTop: 22, textAlign: "center", color: colors.primary, textDecorationLine: 'underline'}}

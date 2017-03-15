@@ -111,8 +111,6 @@ export class Vehicle {
 
   updateDistance(vin, kilometers) {
     try {
-      // manager.updateDistance();
-
       return null;
     } catch (e) {
       console.error(e);
