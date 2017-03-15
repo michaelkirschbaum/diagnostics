@@ -4,7 +4,7 @@ import {
   StyleSheet,
   Image,
   Dimensions,
-  Alert
+  Alert,
 } from 'react-native';
 import {
   Container,
@@ -12,6 +12,7 @@ import {
   Title,
   Content,
   InputGroup,
+  Form,
   Button,
   Input,
   Text,
@@ -172,20 +173,13 @@ const CarInstallationStateView = React.createClass({
         return (
           <View>
             <Image source={require('../../../images/enter-plate.png')} style={styles.image}/>
-             {/* <InputGroup borderType='rounded' style={styles.textInput}>
+             <InputGroup borderType='rounded' style={styles.textInput}>
               <Input
                 ref='licenseInput'
                 placeholder={loc.carInstallation.enterLicensePlate}
                 onChangeText = {(text) => this.setState({text})}
               />
             </InputGroup>
-            <InputGroup borderType='rounded' style={styles.textInput}>
-              <Input
-                ref='licenseInput'
-                placeholder={loc.carInstallation.enterLicensePlate}
-                onChangeText = {(text) => this.setState({text})}
-              />
-            </InputGroup> */}
             <Text
               style={{marginTop: 22, textAlign: "center", color: colors.primary, textDecorationLine: 'underline'}}
               onPress={() => { this.setMode('vin') }}>{loc.carInstallation.enterByVin}</Text>
