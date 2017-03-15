@@ -83,10 +83,14 @@ export class Vehicle {
     try {
       var response = this.manager.onBoardVehicleWithVIN(vin);
 
-      // wrap response
-
-      return null;
+      // if response is an error return null
+      if (response.error)
+        return null;
+      else {
+        return response;
+      }
     } catch (e) {
+      // do promises throw an error?
       console.error(e);
     }
   }
@@ -95,9 +99,11 @@ export class Vehicle {
     try {
       var response = this.manager.onBoardVehicleWithPlate(plate, region, null);
 
-      // wrap response
-
-      return null;
+      if (response.error)
+        return null;
+      else {
+        return response;
+      }
     } catch (e) {
       console.error(e);
     }
@@ -106,6 +112,8 @@ export class Vehicle {
   updateDistance(vin, kilometers) {
     try {
       // manager.updateDistance();
+
+      return null;
     } catch (e) {
       console.error(e);
     }

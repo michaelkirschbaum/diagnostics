@@ -54,15 +54,19 @@ const CarInstallationStateView = React.createClass({
       // notify user whether vehicle has been added
       if (response) {
         Alert.alert(
-          'New Vehicle',
-          'Vehicle added successfully.',
+          'Success',
+          'Vehicle has been added.',
           {text: 'OK', onPress: () => console.log('OK Pressed.')},
         );
 
         this.props.pushRoute({key: 'Overview', title: ''});
       }
       else {
-        pass
+        Alert.alert(
+          'Fail',
+          'Unable to add vehicle.',
+          {text: 'OK', onPress: () => console.log('OK Pressed.')},
+        );
       }
     }
   },
@@ -72,22 +76,26 @@ const CarInstallationStateView = React.createClass({
     vehicle = new Vehicle();
 
     if (!this.validPlate(plate))
-      console.log("invalid plate.");
+      console.log("Invalid plate.");
     else {
       var response = vehicle.addByPlate(plate, region);
 
       // notify user whether vehicle has been added
       if (response) {
         Alert.alert(
-          'New Vehicle',
-          'Vehicle added successfully.',
+          'Success',
+          'Vehicle has been added.',
           {text: 'OK', onPress: () => console.log('OK Pressed.')},
         );
 
         this.props.pushRoute({key: 'Overview', title: ''});
       }
       else {
-        pass
+        Alert.alert(
+          'Fail',
+          'Unable to add vehicle.',
+          {text: 'OK', onPress: () => console.log('OK Pressed.')},
+        );
       }
     }
   },
