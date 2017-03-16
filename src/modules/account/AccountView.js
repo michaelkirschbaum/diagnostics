@@ -27,8 +27,8 @@ import colors from '../../config/colors';
 import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
-
 import * as NavigationState from '../navigation/NavigationState';
+import { getUser } from '../../carfit/puls'
 
 /**
  * Login view
@@ -60,6 +60,8 @@ const AccountView = React.createClass({
 
     let connected = "Connected";
     let phone = "Sam's iPhone 6";
+
+    // let userID = getUser();
 
     let accountDetailsData = {
       accountType: 'NORAUTO',

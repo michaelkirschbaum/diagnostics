@@ -165,6 +165,7 @@ const en = {
     firstName: 'First Name',
     lastName: 'Last Name',
     email: 'Email address',
+    identifier: 'User ID',
     password: 'Password',
     changePassword: 'Change Password',
   },
