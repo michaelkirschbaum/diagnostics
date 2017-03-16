@@ -82,7 +82,7 @@ const en = {
     detail3b: 'Ensure that the sensor is flat when the steering wheel is horizontal.',
     // Page four
     registerCar: 'registerCar',
-    enterLicensePlate: 'Enter license plate here',
+    enterLicensePlate: 'Enter by license plate',
     enterRegion: 'Enter region here',
     enterByVin: 'Enter by VIN',
     enterVin: 'Enter VIN here',

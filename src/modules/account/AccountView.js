@@ -65,7 +65,8 @@ const AccountView = React.createClass({
       accountType: 'NORAUTO',
       firstName: 'Sam',
       lastName: 'Fisher',
-      email: 'sam.fisher@gmail.com'
+      email: 'sam.fisher@gmail.com',
+      identifier: '1234'
     };
 
     let accountDetails = _.map(_.toPairs(accountDetailsData), infoPairs => {

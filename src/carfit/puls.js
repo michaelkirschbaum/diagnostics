@@ -4,6 +4,21 @@ import { NativeEventEmitter, NativeModules } from 'react-native';
 const { CarFitManager } = NativeModules;
 var ReactNative = require('react-native');
 var { Alert } = ReactNative;
+import { apigClientFactory } from '../../aws/apiGateway-js-sdk/apigClient.js';
+
+/*
+  how to import these?
+  <script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
+  <script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
+  <script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
+  <script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
+  <script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
+  <script type="text/javascript" src="lib/url-template/url-template.js"></script>
+  <script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
+  <script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
+  <script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
+  <script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
+*/
 
 export class Connection {
   constructor() {
@@ -155,4 +170,26 @@ export class Notification {
       console.log(e);
     }
   }
+}
+
+export function getUser () {
+  var client = apigClientFactory.newClient();
+
+  var params = {
+
+  };
+
+  var body = {
+
+  };
+
+  var additionalParams = {};
+
+  client.userGet(params, body, additionalParams)
+    .then(function(result) {
+      pass
+    }).catch(function(result) {
+      pass
+    });
+
 }

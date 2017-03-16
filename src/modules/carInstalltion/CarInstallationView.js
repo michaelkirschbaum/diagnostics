@@ -12,7 +12,6 @@ import {
   Title,
   Content,
   InputGroup,
-  Form,
   Button,
   Input,
   Text,
@@ -150,7 +149,6 @@ const CarInstallationStateView = React.createClass({
         return (
           <View>
             <Image source={require('../../../images/enter-vin.png')} style={styles.image}/>
-            <Container></Container>
             <InputGroup borderType='rounded' style={styles.textInput}>
               <Input
                 ref='licenseInput'
