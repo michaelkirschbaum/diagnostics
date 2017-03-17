@@ -127,7 +127,7 @@ const en = {
     myCars: 'MY CARS',
     sensors: 'SENSORS',
     myAccount: 'MY ACCOUNT',
-    drive: 'drive',
+    drive: 'DRIVE',
     useWiFi: 'USE WIFI',
     terms: 'Terms of use',
     privacy: 'Privacy',

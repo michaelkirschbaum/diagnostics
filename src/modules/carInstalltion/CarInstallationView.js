@@ -151,7 +151,7 @@ const CarInstallationStateView = React.createClass({
             <Image source={require('../../../images/enter-vin.png')} style={styles.image}/>
             <InputGroup borderType='rounded' style={styles.textInput}>
               <Input
-                ref='licenseInput'
+                ref='vinInput'
                 placeholder={loc.carInstallation.enterVin}
                 onChangeText = {(text) => this.setState({text})}
               />
