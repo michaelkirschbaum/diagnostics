@@ -24,10 +24,9 @@ import colors from '../../config/colors';
 import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
-
 import * as NavigationState from '../navigation/NavigationState';
-
 import { Connection } from '../../carfit/puls';
+import Signal from '../../components/Signal';
 
 /**
  * Login view
@@ -47,6 +46,10 @@ const InstallationView = React.createClass({
     conn.connectDevice(id);
 
     this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
+  },
+
+  displaySignal(device) {
+
   },
 
   popRoute() {
@@ -133,8 +136,8 @@ const InstallationView = React.createClass({
                       style={{width: windowWidth - 40, marginTop: 25}}
                       renderRow={(item) =>
                             <ListItem>
-                                <Text onPress={() => this.onNextPress(item.identifier)}>{item.name} {/* item.signal */}
-                                <Image source={require('../../../images/icons/wifi3.png')} resizeMode='center'/>
+                                <Text onPress={() => this.onNextPress(item.identifier)}>{item.name}
+                                <Signal strength={item.signal}/>
                                 </Text>
                             </ListItem>
                         }>
@@ -190,6 +193,9 @@ const styles = StyleSheet.create({
     marginTop: 17,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  signal: {
+
   }
 });
 
