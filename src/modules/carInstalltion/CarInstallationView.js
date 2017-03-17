@@ -176,7 +176,14 @@ const CarInstallationStateView = React.createClass({
               <Input
                 ref='licenseInput'
                 placeholder={loc.carInstallation.enterLicensePlate}
-                onChangeText = {(text) => this.setState({text})}
+                onChangeText = {(text) => this.setState({plate: text})}
+              />
+            </InputGroup>
+            <InputGroup borderType='rounded' style={styles.textInput}>
+              <Input
+                ref='regionInput'
+                placeholder={loc.carInstallation.enterRegion}
+                onChangeText = {(text) => this.setState({region: text})}
               />
             </InputGroup>
             <Text
@@ -186,7 +193,7 @@ const CarInstallationStateView = React.createClass({
               <Button rounded
                       style={{alignSelf: 'auto'}}
                       textStyle={{color: colors.textPrimary, textDecorationLine: 'underline'}}
-                      onPress={() => this.addPlate(this.state.text, "US")}
+                      onPress={() => this.addPlate(this.state.plate, this.state.region)}
               >{loc.general.continue}</Button>
             </View>
           </View>

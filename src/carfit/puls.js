@@ -4,20 +4,8 @@ import { NativeEventEmitter, NativeModules } from 'react-native';
 const { CarFitManager } = NativeModules;
 var ReactNative = require('react-native');
 var { Alert } = ReactNative;
-/*
-<div>
-  <script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
-  <script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
-  <script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
-  <script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
-  <script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
-  <script type="text/javascript" src="lib/url-template/url-template.js"></script>
-  <script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
-  <script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
-  <script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
-  <script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
-</div>
-*/
+import {AWSLambda} from 'aws-sdk-react-native-lambda';
+
 export class Connection {
   constructor() {
     // get singleton
@@ -171,19 +159,7 @@ export class Notification {
 }
 
 export function getUser() {
-  var client = apigClientFactory.newClient();
+  // AWSLambda.initWithOptions({"region": "us-east-1"});
 
-  var params = {};
-
-  var body = {};
-
-  var additionalParams = {};
-
-  client.userGet(params, body, additionalParams)
-    .then(function(result) {
-      return result;
-    }).catch(function(result) {
-      return null;
-    });
-
+  return null;
 }
