@@ -30,7 +30,7 @@ export class Connection {
       var response = await this.manager.connectBLEDeviceAsync(id);
 
       // subscribe to disconnect
-      const subscription = this.connectionEmitter.addListener(
+      const connect_subscription = this.connectionEmitter.addListener(
         'BLEDeviceDisconnect',
         (reminder) => Alert.alert(
           'Puls',
@@ -41,7 +41,7 @@ export class Connection {
       );
 
       // listen for support click
-      const subscription = this.connectionEmitter.addListener(
+      const support_subscription = this.connectionEmitter.addListener(
         'BLEButtonPress',
         (reminder) => Alert.alert(
           'Support',
