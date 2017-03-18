@@ -48,10 +48,6 @@ const InstallationView = React.createClass({
     this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
   },
 
-  displaySignal(device) {
-
-  },
-
   popRoute() {
     this.props.setPageIndex(0);
     this.props.clearDevices();
@@ -79,7 +75,9 @@ const InstallationView = React.createClass({
   },
 
   addPhone(number) {
-    
+    var conn = new Connection();
+
+    conn.addPhone(number);
   },
 
   render() {

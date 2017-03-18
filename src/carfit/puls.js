@@ -31,7 +31,7 @@ export class Connection {
 
       // subscribe to disconnect
       const connect_subscription = this.connectionEmitter.addListener(
-        'BLEDeviceConnectionStatus',
+        'BLEDeviceDisconnect',
         (reminder) => Alert.alert(
           'Puls',
           'Device has been disconnected.',
@@ -58,7 +58,13 @@ export class Connection {
   }
 
   addPhone(number) {
+    this.manager.setPhone(number);
 
+    Alert.alert(
+      'Support',
+      'Support has been initiated.',
+      {text: 'OK', onPress: () => console.log('OK Pressed')},
+      {cancelable: false}
   }
 }
 
