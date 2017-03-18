@@ -78,6 +78,10 @@ const InstallationView = React.createClass({
     return true;
   },
 
+  addPhone(number) {
+    
+  },
+
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
@@ -145,6 +149,19 @@ const InstallationView = React.createClass({
                 <TouchableOpacity onPress={this.rediscover}>
                   <Icon name="ios-refresh"></Icon>
                 </TouchableOpacity>
+                <InputGroup borderType='rounded' style={styles.textInput}>
+                  <Input
+                    ref='phoneInput'
+                    placeholder="Enter phone number to receive support."
+                    onChangeText = {(text) => this.setState({region: text})}
+                  />
+                </InputGroup>
+                <View style={styles.bottomContainer}>
+                  <Button rounded
+                          textStyle={{color: colors.textPrimary, textDecorationLine: 'underline'}}
+                          onPress={() => this.addPhone(this.state.text)}
+                  >{loc.general.continue}</Button>
+                </View>
               </View>
             </Swiper>
 
@@ -193,9 +210,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  signal: {
-
-  }
+  signal: {},
 });
 
 export default InstallationView;
