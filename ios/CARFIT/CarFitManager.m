@@ -35,9 +35,9 @@
   return [[CFPCore sharedInstance] VIN];
 }
 
-- (void) setPhone:(NSString *)phone {
-  [[CFPCore sharedInstance] setPhone:phone];
-}
+//- (void) setPhone:(NSString *)phone {
+//  [[CFPCore sharedInstance] setPhone:phone];
+//}
 
 - (void) start {
   [[CFPCore sharedInstance] start];
@@ -91,7 +91,6 @@
 
 - (void) metersTraveled:(NSInteger) meters {
   // use event propagation to notify
-  NSLog(@"%s - and hasRCTListeners is: %@", __FUNCTION__, hasRCTListeners ? @"YES" : @"NO");
   if (hasRCTListeners) {
     [self sendEventWithName:@"TripMetersTraveled" body:@{@"name": @"TripMetersTraveled", @"metersTraveled" : @(meters)}];
   }
@@ -122,6 +121,11 @@
 #pragma React Native Bridge
 
 RCT_EXPORT_MODULE();
+
+RCT_EXPORT_METHOD(setPhone:(NSString *) phone)
+{
+  [[CFPCore sharedInstance] setPhone:phone];
+}
 
 RCT_REMAP_METHOD(availableBLEDevicesAsync,
                  availableBLEDevicesResolver:(RCTPromiseResolveBlock)resolve
@@ -306,5 +310,62 @@ RCT_REMAP_METHOD(clickButton,
   hasRCTListeners = NO;
 }
 
+#pragma AWS iOS SDK React Bridge
+
+RCT_EXPORT_METHOD(backlogVinGet:(NSString *) vin
+  backlogVinGetResolver:(RCTPromiseResolveBlock)resolve
+  backlogVinGetRejecter:(RCTPromiseRejectBlock)reject)
+{
+  [[[CFPCore sharedInstance] backlogVinGet:vin] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
+    if (task.error) {
+      reject(@"backlogGeterror", task.error.localizedDescription, task.error);
+    } else {
+      resolve(task.result);
+    }
+    return nil;
+  }];
+}
+
+RCT_EXPORT_METHOD(vehicleVinGet:(NSString *) vin
+  vehicleVinGetResolver:(RCTPromiseResolveBlock)resolve
+  vehicleVinGetRejecter:(RCTPromiseRejectBlock)reject)
+{
+  [[[CFPCore sharedInstance] vehicleVinGet:vin] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
+    if (task.error) {
+      reject(@"vehicleGeterror", task.error.localizedDescription, task.error);
+    } else {
+      resolve(task.result);
+    }
+    return nil;
+  }];
+}
+
+RCT_EXPORT_METHOD(tripLogVinGet:(NSString *) vin
+  tripLogVinGetResolver:(RCTPromiseResolveBlock)resolve
+  tripLogVinGetRejecter:(RCTPromiseRejectBlock)reject)
+{
+  [[[CFPCore sharedInstance] tripLogVinGet:vin] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
+    if (task.error) {
+      reject(@"tripLogGeterror", task.error.localizedDescription, task.error);
+    } else {
+      resolve(task.result);
+    }
+    return nil;
+  }];
+}
+
+RCT_EXPORT_METHOD(vehicleVinPut:(NSString *) vin vehicleDetails:(CFPAWSVehicleInput *)vehicleDetails
+  vehicleVinPutResolver:(RCTPromiseResolveBlock)resolve
+  vehicleVinPutRejecter:(RCTPromiseRejectBlock)reject)
+{
+  [[[CFPCore sharedInstance] vehicleVinPut:vin vehicleDetails:vehicleDetails] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
+    if (task.error) {
+      reject(@"vehiclePuterror", task.error.localizedDescription, task.error);
+    } else {
+      resolve(task.result);
+    }
+    return nil;
+  }];
+}
 
 @end

@@ -21,7 +21,7 @@ PODS:
   - AWSCore (2.5.2)
   - AWSS3 (2.5.2):
     - AWSCore (= 2.5.2)
-  - CarFitiOSSDK (0.0.27):
+  - CarFitiOSSDK (0.0.28):
     - AWSAPIGateway
     - AWSCognito
     - AWSCore
@@ -69,7 +69,7 @@ SPEC CHECKSUMS:
   AWSCognito: a29c52e3a3d4988f01b449c8b229a51b73d1c1bf
   AWSCore: b2fe455c2c7d6653521238c5b0b0ddb67ec4f063
   AWSS3: 1f53d780bae0a5949f11da99520c14684bc90af0
-  CarFitiOSSDK: 974aee177c9a5284f052fbb8c1a8163253484c3d
+  CarFitiOSSDK: ad740509f036eca235fb60b4fbbf505a1528b4d5
   Lock: 742c21d94c8a1805a3fb8d7e8a5d5e873b14ec47
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   Realm: 5a280a1f5a9a3c267bebf4f41ee47911137703d7
