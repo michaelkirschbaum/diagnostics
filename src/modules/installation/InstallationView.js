@@ -136,7 +136,7 @@ const InstallationView = React.createClass({
                       style={{width: windowWidth - 40, marginTop: 25}}
                       renderRow={(item) =>
                             <ListItem>
-                                <Text onPress={() => this.onNextPress(item.identifier)}>{item.name}                                         <Signal strength={item.signal}/>
+                                <Text onPress={() => this.onNextPress(item.identifier)}>{item.name} <Signal strength={item.signal}/>
                                 </Text>
                             </ListItem>
                         }>
