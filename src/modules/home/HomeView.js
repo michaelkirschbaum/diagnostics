@@ -28,7 +28,7 @@ import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
-import { Notification } from '../../carfit/puls';
+import Vehicle from '../../carfit/vehicle';
 
 const HomeView = React.createClass({
   propTypes: {},
@@ -59,9 +59,9 @@ const HomeView = React.createClass({
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
 
-    let alert = new Notification();
+    let vehicle = new Vehicle();
     let alertAction = loc.home.serviceNeeded;
-    let alertDescription = 'alerts'
+    let alertDescription = null;
     let alertColor = colors.secondary;
 
     let usageAction = loc.home.lastTrip;

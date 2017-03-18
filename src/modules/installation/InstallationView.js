@@ -25,7 +25,7 @@ import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
-import { Connection } from '../../carfit/puls';
+import Connection from '../../carfit/connection';
 import Signal from '../../components/Signal';
 
 /**
