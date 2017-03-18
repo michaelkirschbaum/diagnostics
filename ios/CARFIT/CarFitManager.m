@@ -57,13 +57,16 @@
     self.connectBLEDeviceAsyncResolveBlock(nil);
     self.connectBLEDeviceAsyncResolveBlock = nil;
   }
+  if (hasRCTListeners) {
+    [self sendEventWithName:@"BLEDeviceConnectionStatus" body:@{@"name": @"BLEDeviceConnectionStatus", @"status" : @1}];
+  }
 }
 
 - (void) didDisconnectDevice {
   // use event propagation to notify
   NSLog(@"%s - and hasRCTListeners is: %@", __FUNCTION__, hasRCTListeners ? @"YES" : @"NO");
   if (hasRCTListeners) {
-    [self sendEventWithName:@"BLEDeviceDisconnect" body:@{@"name": @"BLEDeviceDisconnect"}];
+    [self sendEventWithName:@"BLEDeviceConnectionStatus" body:@{@"name": @"BLEDeviceConnectionStatus", @"status" : @0}];
   }
 }
 
@@ -282,7 +285,7 @@ RCT_REMAP_METHOD(clickButton,
 
 - (NSArray<NSString *> *)supportedEvents
 {
-  return @[@"BLEDeviceDisconnect"
+  return @[@"BLEDeviceConnectionStatus"
            , @"BLEButtonPress"
            , @"BLEButtonResponse"
            , @"TripMetersTraveled"
