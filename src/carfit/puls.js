@@ -40,6 +40,17 @@ export class Connection {
         )
       );
 
+      // listen for support click
+      const subscription = this.connectionEmitter.addListener(
+        'BLEButtonPress',
+        (reminder) => Alert.alert(
+          'Support',
+          'Support has been initiated.',
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+          {cancelable: false}
+        )
+      );
+
       return response;
     } catch (e) {
       console.error(e);

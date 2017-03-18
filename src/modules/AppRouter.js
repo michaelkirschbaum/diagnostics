@@ -20,7 +20,7 @@ import DetailsViewContainer from './details/DetailsViewContainer';
 import AccountViewContainer from './account/AccountViewContainer';
 import PrivacyViewContainer from './legal/PrivacyViewContainer';
 import TermsViewContainer from './legal/TermsViewContainer';
-import DemoViewContainer from './drive/DriveViewContainer';
+import DriveViewContainer from './drive/DriveViewContainer';
 //
 // import CounterViewContainer from './counter/CounterViewContainer';
 // import ColorViewContainer from './colors/ColorViewContainer';
