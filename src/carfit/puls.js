@@ -62,9 +62,9 @@ export class Connection {
 
     Alert.alert(
       'Support',
-      'Support has been initiated.',
-      {text: 'OK', onPress: () => console.log('OK Pressed')},
-      {cancelable: false}
+      'A representative will call you shortly.',
+      {text: 'OK', onPress: () => console.log('OK Pressed.')},
+    );
   }
 }
 
