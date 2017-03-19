@@ -62,9 +62,7 @@ const HomeView = React.createClass({
     let vehicle = new Vehicle();
     let alertAction = loc.home.serviceNeeded;
 
-    var vin = 'AAAAAAAAAAAAAAAAA';
-
-    let alertDescription = 'vehicle.getAlerts(vin)';
+    let alertDescription = vehicle.getAlerts(store.getState().vin);
     let alertColor = colors.secondary;
 
     let usageAction = loc.home.lastTrip;

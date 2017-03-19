@@ -64,7 +64,7 @@ const CarInstallationStateView = React.createClass({
         // console.log(response['vin']);
 
         // store vin
-
+        this.props.addVehicle(vin);
 
         this.props.pushRoute({key: 'Overview', title: ''});
       }
