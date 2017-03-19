@@ -30,6 +30,7 @@ import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
 import Vehicle from '../../carfit/vehicle';
 import store from '../../redux/store';
+import createFragment from 'react-addons-create-fragment';
 
 const HomeView = React.createClass({
   getInitialState() {
@@ -70,7 +71,13 @@ const HomeView = React.createClass({
     const vin = store.getState().get("carInstallation").get("vin");
 
     var vehicle = new Vehicle();
-    const alerts = await vehicle.getAlerts(vin);
+    var alerts = await vehicle.getAlerts(vin);
+
+    alerts = Object.entries(alerts).map(([key, val], i) => {
+      return <Text key={'key-'+ i}>{key +': '+ val}</Text>;
+    });
+
+    console.log(alerts);
 
     this.setState({alerts});
   },
@@ -81,7 +88,7 @@ const HomeView = React.createClass({
 
     let alertAction = loc.home.serviceNeeded;
 
-    let alertDescription = 'this.state.alerts';
+    let alertDescription = this.state.alerts;
     let alertColor = colors.secondary;
 
     let usageAction = loc.home.lastTrip;
