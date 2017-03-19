@@ -29,8 +29,15 @@ import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
 import Vehicle from '../../carfit/vehicle';
+import store from '../../redux/store';
 
 const HomeView = React.createClass({
+  getInitialState() {
+    return {
+      alerts: ''
+    };
+  },
+
   propTypes: {},
 
   onNextPress() {
@@ -55,14 +62,26 @@ const HomeView = React.createClass({
     this.props.onNavigateBack();
   },
 
+  componentDidMount() {
+    this.getAlerts().done();
+  },
+
+  async getAlerts() {
+    const vin = store.getState().get("carInstallation").get("vin");
+
+    var vehicle = new Vehicle();
+    const alerts = await vehicle.getAlerts(vin);
+
+    this.setState({alerts});
+  },
+
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
 
-    let vehicle = new Vehicle();
     let alertAction = loc.home.serviceNeeded;
 
-    let alertDescription = vehicle.getAlerts(store.getState().vin);
+    let alertDescription = 'this.state.alerts';
     let alertColor = colors.secondary;
 
     let usageAction = loc.home.lastTrip;

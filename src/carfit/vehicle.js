@@ -64,9 +64,9 @@ export default class Vehicle {
   }
 
   // get backlog
-  getAlerts(vin) {
+  async getAlerts(vin) {
     try {
-      var results = this.manager.backlogVinGet(vin);
+      var results = await this.manager.backlogVinGet(vin);
 
       return results;
     } catch (e) {
