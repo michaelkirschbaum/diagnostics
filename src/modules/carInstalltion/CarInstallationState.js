@@ -34,6 +34,11 @@ export default function CarInstallationStateReducer(state = initialState, action
     case LOADING:
       return state.set('loading', action.payload);
 
+    case ADD_VEHICLE:
+      return Object.assign({}, state, {
+        vin: action.payload
+      });
+
     default:
       return state;
   }
