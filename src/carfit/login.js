@@ -29,5 +29,13 @@ export default class Login {
     }
   }
 
-  getUser() {}
+  async getUser() {
+    try{
+      var user = await this.manager.userGet();
+
+      return user;
+    } catch (e) {
+      console.error(e);
+    }
+  }
 }
