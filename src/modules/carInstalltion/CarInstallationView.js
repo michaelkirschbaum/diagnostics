@@ -42,14 +42,14 @@ const CarInstallationStateView = React.createClass({
     carInstallation: PropTypes.object.isRequired
   },
 
-  addVIN(vin) {
+  async addVIN(vin) {
     // add user vehicle
     vehicle = new Vehicle();
 
     if (!this.validVIN(vin))
       console.log("Invalid VIN.");
     else {
-      var response = vehicle.addByVIN(vin);
+      var response = await vehicle.addByVIN(vin);
 
       // notify user whether vehicle has been added
       if (response) {
@@ -59,6 +59,12 @@ const CarInstallationStateView = React.createClass({
           'Vehicle has been added.',
           {text: 'OK', onPress: () => console.log('OK Pressed.')},
         );
+
+        // how to access AWSModel?
+        // console.log(response['vin']);
+
+        // store vin
+        
 
         this.props.pushRoute({key: 'Overview', title: ''});
       }
@@ -90,6 +96,8 @@ const CarInstallationStateView = React.createClass({
         );
 
         this.props.pushRoute({key: 'Overview', title: ''});
+
+        // store vin
       }
       else {
         Alert.alert(
