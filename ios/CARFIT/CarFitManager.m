@@ -97,19 +97,27 @@
 }
 
 - (void) startOfTravel {
-  [self sendEventWithName:@"TripStartOfTravel" body:@{@"name": @"TripStartOfTravel"}];
+  if (hasRCTListeners) {
+    [self sendEventWithName:@"TripStartOfTravel" body:@{@"name": @"TripStartOfTravel"}];
+  }
 }
 
 - (void) endOfTravel:(NSInteger) totalMetersTraveled {
-  [self sendEventWithName:@"TripEndOfTravel" body:@{@"name": @"TripEndOfTravel", @"totalMetersTraveled" : @(totalMetersTraveled)}];
+  if (hasRCTListeners) {
+    [self sendEventWithName:@"TripEndOfTravel" body:@{@"name": @"TripEndOfTravel", @"totalMetersTraveled" : @(totalMetersTraveled)}];
+  }
 }
 
 - (void) steeringWheelAngle:(float) angle {
-  [self sendEventWithName:@"TripSteeringWheelAngle" body:@{@"name": @"TripSteeringWheelAngle", @"angle" : @(angle)}];
+  if (hasRCTListeners) {
+    [self sendEventWithName:@"TripSteeringWheelAngle" body:@{@"name": @"TripSteeringWheelAngle", @"angle" : @(angle)}];
+  }
 }
 
 - (void) vehicleSpeed:(double)metersPerSecond {
-  [self sendEventWithName:@"TripVehicleMetersPerSecond" body:@{@"name": @"TripVehicleMetersPerSecond", @"metersPerSecond" : @(metersPerSecond)}];
+  if (hasRCTListeners) {
+    [self sendEventWithName:@"TripVehicleMetersPerSecond" body:@{@"name": @"TripVehicleMetersPerSecond", @"metersPerSecond" : @(metersPerSecond)}];
+  }
 }
 
 #pragma Upload Counters API Gateway/S3
