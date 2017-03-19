@@ -28,11 +28,12 @@ export default class Connection {
 
       // subscribe to disconnect
       const connect_subscription = this.connectionEmitter.addListener(
-        'BLEDeviceConnectionStatus',
+        'BLEDeviceDisconnect',
         (reminder) => Alert.alert(
           'Puls',
           'Device has been disconnected.',
-          {text: 'OK', onPress: () => console.log('OK Pressed')}
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+          {cancelable: false}
         )
       );
 
@@ -42,7 +43,8 @@ export default class Connection {
         (reminder) => Alert.alert(
           'Support',
           'Support has been initiated.',
-          {text: 'OK', onPress: () => console.log('OK Pressed')}
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+          {cancelable: false}
         )
       );
 

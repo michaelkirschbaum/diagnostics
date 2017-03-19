@@ -74,7 +74,7 @@ const InstallationView = React.createClass({
     return true;
   },
 
-  setPhone(number) {
+  addPhone(number) {
     var conn = new Connection();
 
     conn.addPhone(number);
@@ -147,18 +147,17 @@ const InstallationView = React.createClass({
                 <TouchableOpacity onPress={this.rediscover}>
                   <Icon name="ios-refresh"></Icon>
                 </TouchableOpacity>
-
                 <InputGroup borderType='rounded' style={styles.textInput}>
                   <Input
                     ref='phoneInput'
                     placeholder="Enter phone number to receive support."
-                    onChangeText = {(text) => this.setState({text})}
+                    onChangeText = {(text) => this.setState({region: text})}
                   />
                 </InputGroup>
                 <View style={styles.bottomContainer}>
                   <Button rounded
                           textStyle={{color: colors.textPrimary, textDecorationLine: 'underline'}}
-                          onPress={() => this.setPhone(this.state.text)}
+                          onPress={() => this.addPhone(this.state.text)}
                   >{loc.general.continue}</Button>
                 </View>
               </View>
