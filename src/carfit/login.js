@@ -31,9 +31,9 @@ export default class Login {
 
   async getUser() {
     try{
-      // var user = await this.manager.userGet();
+      var user = await this.manager.userGet();
 
-      return 'user';
+      return user;
     } catch (e) {
       console.error(e);
     }

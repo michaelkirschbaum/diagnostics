@@ -1,14 +1,18 @@
 import React from 'react';
-var HTML = require('react-native-htmlview');
+import {
+  StyleSheet
+} from 'react-native';
+var HTMLView = require('react-native-htmlview');
 import {
   Container,
   Header,
   Button,
   Icon,
+  Content,
+  View,
+  Text
 } from 'native-base';
 import carfitTheme from '../../config/carfit-theme';
-// import "usage.html";
-// var content = require("usage.html");
 
 const UsageView = React.createClass({
   render() {
@@ -19,9 +23,6 @@ const UsageView = React.createClass({
             <Icon name="ios-arrow-back"/>
           </Button>
         </Header>
-      {/* <HTML
-        value={content}
-      /> */}
       </Container>
     );
   }

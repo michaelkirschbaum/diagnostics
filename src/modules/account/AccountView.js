@@ -36,6 +36,12 @@ import Login from '../../carfit/login'
  * Otherwise pass by.
  */
 const AccountView = React.createClass({
+  getInitialState() {
+    return {
+      userID: ''
+    };
+  },
+
   propTypes: {},
 
   onNextPress() {
@@ -46,6 +52,21 @@ const AccountView = React.createClass({
 
   popRoute() {
     this.props.onNavigateBack();
+  },
+
+  componentDidMount() {
+    this.getUserID().done();
+  },
+
+  async getUserID() {
+    var login = new Login();
+    var user = await login.getUser();
+
+    console.log(user);
+
+    userID = '';
+
+    this.setState({userID});
   },
 
   render() {
@@ -61,15 +82,12 @@ const AccountView = React.createClass({
     let connected = "Connected";
     let phone = "Sam's iPhone 6";
 
-    var login = new Login();
-    var user = login.getUser();
-
     let accountDetailsData = {
       accountType: 'NORAUTO',
       firstName: 'Sam',
       lastName: 'Fisher',
       email: 'sam.fisher@gmail.com',
-      identifier: '1234'
+      identifier: this.state.userID
     };
 
     let accountDetails = _.map(_.toPairs(accountDetailsData), infoPairs => {
