@@ -91,6 +91,12 @@ export default function AppRouter(props) {
   if (key === 'Drive') {
     return <DriveViewContainer />
   }
+  if (key === 'Alerts') {
+    // return <AlertsViewContainer />
+  }
+  if (key === 'Usage') {
+    // return <UsageViewContainer />
+  }
 
   throw new Error('Unknown navigation key: ' + key);
 }

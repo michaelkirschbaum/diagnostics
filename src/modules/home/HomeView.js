@@ -4,7 +4,9 @@ import {
   StyleSheet,
   Image,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  Modal,
+  TouchableHighlight
 } from 'react-native';
 import {
   Container,
@@ -35,7 +37,8 @@ import createFragment from 'react-addons-create-fragment';
 const HomeView = React.createClass({
   getInitialState() {
     return {
-      alerts: ''
+      alerts: '',
+      modalVisible: false
     };
   },
 
@@ -45,6 +48,8 @@ const HomeView = React.createClass({
     // this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
     // this.props.switchRoute('Overview');
     // this.props.switchRoute(2);
+
+
   },
 
   onSettingsPress() {
@@ -65,6 +70,10 @@ const HomeView = React.createClass({
 
   componentDidMount() {
     this.getAlerts().done();
+  },
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
   },
 
   async getAlerts() {
@@ -139,6 +148,16 @@ const HomeView = React.createClass({
               marginBottom: 5,
               }}/>
 
+            <View>
+              <Modal
+                animationType={"none"}
+                transparent={false}
+                visible={this.state.modalVisible}
+                onRequestClose={() => {alert("Modal has been closed.")}}
+              >
+              </Modal>
+            </View>
+
             <View style={styles.dataBlockContainer}>
               <View style={styles.dataIcon}>
                 <Image source={require('../../../images/icons/service.png')} style={styles.icon}/>
@@ -150,7 +169,9 @@ const HomeView = React.createClass({
                 <Text>{alertDescription}</Text>
               </View>
               <View style={styles.dataAction}>
-                <Icon active name="ios-arrow-forward"></Icon>
+                <Button transparent onPress={() => this.props.pushRoute({key: 'Settings', title: loc.settings.settings})}>
+                  <Icon active name="ios-arrow-forward"></Icon>
+                </Button>
               </View>
             </View>
 
@@ -165,7 +186,9 @@ const HomeView = React.createClass({
                 <Text>{usageDescription}</Text>
               </View>
               <View style={styles.dataAction}>
-                <Icon active name="ios-arrow-forward"></Icon>
+                <Button transparent onPress={() => this.props.pushRoute({key: 'Settings', title: loc.settings.settings})}>
+                  <Icon active name="ios-arrow-forward"></Icon>
+                </Button>
               </View>
             </View>
 
