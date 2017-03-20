@@ -14,7 +14,7 @@ import Swiper from 'react-native-swiper';
 import {Field, reduxForm} from 'redux-form';
 import Authentication from '../../utils/authentication';
 var Auth0Lock = require('react-native-lock');
-import { Login } from '../../carfit/puls';
+import Login from '../../carfit/login';
 
 /**
  * Login view

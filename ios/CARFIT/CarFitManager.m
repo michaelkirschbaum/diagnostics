@@ -10,6 +10,8 @@
 #import <React/RCTlog.h>
 #import <AWSCore/AWSCore.h>
 
+#import "CFPAWSCarfitapivClient.h"
+
 @interface CarFitManager () <CFPCoreBLEDelegate, CFPCoreTripDelegate>
 @property RCTPromiseResolveBlock connectBLEDeviceAsyncResolveBlock;
 @property RCTPromiseRejectBlock connectBLEDeviceAsyncRejectBlock;

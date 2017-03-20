@@ -25,7 +25,7 @@ import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
-import { Connection } from '../../carfit/puls';
+import Connection from '../../carfit/connection';
 import Signal from '../../components/Signal';
 
 /**
@@ -74,7 +74,7 @@ const InstallationView = React.createClass({
     return true;
   },
 
-  addPhone(number) {
+  setPhone(number) {
     var conn = new Connection();
 
     conn.addPhone(number);
@@ -147,17 +147,18 @@ const InstallationView = React.createClass({
                 <TouchableOpacity onPress={this.rediscover}>
                   <Icon name="ios-refresh"></Icon>
                 </TouchableOpacity>
+
                 <InputGroup borderType='rounded' style={styles.textInput}>
                   <Input
                     ref='phoneInput'
                     placeholder="Enter phone number to receive support."
-                    onChangeText = {(text) => this.setState({region: text})}
+                    onChangeText = {(text) => this.setState({text})}
                   />
                 </InputGroup>
                 <View style={styles.bottomContainer}>
                   <Button rounded
                           textStyle={{color: colors.textPrimary, textDecorationLine: 'underline'}}
-                          onPress={() => this.addPhone(this.state.text)}
+                          onPress={() => this.setPhone(this.state.text)}
                   >{loc.general.continue}</Button>
                 </View>
               </View>

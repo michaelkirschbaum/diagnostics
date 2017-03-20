@@ -4,7 +4,9 @@ import {
   StyleSheet,
   Image,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  Modal,
+  TouchableHighlight
 } from 'react-native';
 import {
   Container,
@@ -28,15 +30,31 @@ import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
-import { Notification } from '../../carfit/puls';
+import Vehicle from '../../carfit/vehicle';
+import store from '../../redux/store';
+import createFragment from 'react-addons-create-fragment';
 
 const HomeView = React.createClass({
+  getInitialState() {
+    return {
+      alerts: '',
+      modalVisible: false
+    };
+  },
+
   propTypes: {},
 
   onNextPress() {
     // this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
     // this.props.switchRoute('Overview');
     // this.props.switchRoute(2);
+
+    this.setModalVisible(true);
+  },
+
+  // Forward setNativeProps to a child
+  setNativeProps(nativeProps) {
+    this._root.setNativeProps(nativeProps);
   },
 
   onSettingsPress() {
@@ -55,13 +73,34 @@ const HomeView = React.createClass({
     this.props.onNavigateBack();
   },
 
+  componentDidMount() {
+    this.getAlerts().done();
+  },
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  },
+
+  async getAlerts() {
+    const vin = store.getState().get("carInstallation").get("vin");
+
+    var vehicle = new Vehicle();
+    var alerts = await vehicle.getAlerts(vin);
+/*
+    alerts = Object.entries(alerts).map(([key, val], i) => {
+      return <Text key={'key-'+ i}>{key +': '+ val}</Text>;
+    });
+*/
+    this.setState({alerts});
+  },
+
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
 
-    let alert = new Notification();
     let alertAction = loc.home.serviceNeeded;
-    let alertDescription = 'alerts'
+
+    let alertDescription = 'this.state.alerts';
     let alertColor = colors.secondary;
 
     let usageAction = loc.home.lastTrip;
@@ -114,6 +153,16 @@ const HomeView = React.createClass({
               marginBottom: 5,
               }}/>
 
+            <View>
+              <Modal
+                animationType={"none"}
+                transparent={false}
+                visible={this.state.modalVisible}
+                onRequestClose={() => {alert("Modal has been closed.")}}
+              >
+              </Modal>
+            </View>
+
             <View style={styles.dataBlockContainer}>
               <View style={styles.dataIcon}>
                 <Image source={require('../../../images/icons/service.png')} style={styles.icon}/>
@@ -125,7 +174,9 @@ const HomeView = React.createClass({
                 <Text>{alertDescription}</Text>
               </View>
               <View style={styles.dataAction}>
-                <Icon active name="ios-arrow-forward"></Icon>
+                <Button transparent onPress={() => this.props.pushRoute({key: 'Settings', title: loc.settings.settings})}>
+                  <Icon active name="ios-arrow-forward"></Icon>
+                </Button>
               </View>
             </View>
 
@@ -140,7 +191,9 @@ const HomeView = React.createClass({
                 <Text>{usageDescription}</Text>
               </View>
               <View style={styles.dataAction}>
-                <Icon active name="ios-arrow-forward"></Icon>
+                <Button transparent onPress={() => this.props.pushRoute({key: 'Settings', title: loc.settings.settings})}>
+                  <Icon active name="ios-arrow-forward"></Icon>
+                </Button>
               </View>
             </View>
 

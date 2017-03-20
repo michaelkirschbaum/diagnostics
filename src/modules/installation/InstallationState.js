@@ -1,6 +1,6 @@
 import { Map, fromJS } from 'immutable';
 import { loop, Effects } from 'redux-loop';
-import { Connection } from '../../carfit/puls';
+import Connection from '../../carfit/connection';
 
 // Pairing States
 const PAIRING_IDLE = 'PAIRING_IDLE';
