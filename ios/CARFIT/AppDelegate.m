@@ -13,12 +13,15 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import <BuddyBuildSDK/BuddyBuildSDK.h>
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   [BuddyBuildSDK setup];
+  [Fabric with:@[[Crashlytics class]]];
   
   NSURL *jsCodeLocation;
 
