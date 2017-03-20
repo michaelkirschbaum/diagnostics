@@ -35,7 +35,7 @@ export default class Connection {
           {text: 'OK', onPress: () => console.log('OK Pressed')}
         )
       );
-
+/*
       // listen for support click
       const support_subscription = this.connectionEmitter.addListener(
         'BLEButtonPress',
@@ -45,7 +45,7 @@ export default class Connection {
           {text: 'OK', onPress: () => console.log('OK Pressed')}
         )
       );
-
+*/
       return response;
     } catch (e) {
       console.error(e);
