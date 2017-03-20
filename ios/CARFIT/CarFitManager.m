@@ -376,4 +376,18 @@ RCT_EXPORT_METHOD(vehicleVinPut:(NSString *) vin vehicleDetails:(CFPAWSVehicleIn
   }];
 }
 
+RCT_REMAP_METHOD(userGet,
+                  userGetResolver:(RCTPromiseResolveBlock)resolve
+                  userGetRejecter:(RCTPromiseRejectBlock)reject) {
+  [[[CFPCore sharedInstance] userGet] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
+
+    if (task.error) {
+      reject(@"userGeterror", task.error.localizedDescription, task.error);
+    } else {
+      resolve(task.result);
+    }
+    return nil;
+  }];
+}
+
 @end
