@@ -61,7 +61,8 @@ const AccountView = React.createClass({
     let connected = "Connected";
     let phone = "Sam's iPhone 6";
 
-    let userID = getUser();
+    var login = new Login();
+    var user = login.getUser();
 
     let accountDetailsData = {
       accountType: 'NORAUTO',

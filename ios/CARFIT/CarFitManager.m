@@ -377,7 +377,7 @@ RCT_EXPORT_METHOD(vehicleVinPut:(NSString *) vin vehicleDetails:(CFPAWSVehicleIn
     return nil;
   }];
 }
-/*
+
 RCT_EXPORT_METHOD(userGet
                   userGetResolver:(RCTPromiseResolveBlock)resolve
                   userGetRejecter:(RCTPromiseRejectBlock)reject) {
@@ -389,5 +389,5 @@ RCT_EXPORT_METHOD(userGet
     }
     return nil;
   }];
-} */
+}
 @end

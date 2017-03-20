@@ -38,7 +38,8 @@ const HomeView = React.createClass({
   getInitialState() {
     return {
       alerts: '',
-      modalVisible: false
+      modalVisible: false,
+      mileage: '00,000km'
     };
   },
 
@@ -141,7 +142,7 @@ const HomeView = React.createClass({
                       style={styles.milesButton}
                       textStyle={{color: colors.textPrimary}}
                       onPress={() => this.setModalVisible(true)}
-              >00,000km</Button>
+              >this.state.mileage</Button>
             </View>
 
             <View style={{
