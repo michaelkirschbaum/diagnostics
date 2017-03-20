@@ -100,7 +100,7 @@ const HomeView = React.createClass({
 
     let alertAction = loc.home.serviceNeeded;
 
-    let alertDescription = this.state.alerts;
+    let alertDescription = 'this.state.alerts';
     let alertColor = colors.secondary;
 
     let usageAction = loc.home.lastTrip;
