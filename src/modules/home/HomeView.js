@@ -140,7 +140,7 @@ const HomeView = React.createClass({
               <Button rounded
                       style={styles.milesButton}
                       textStyle={{color: colors.textPrimary}}
-                      onPress={this.onNextPress}
+                      onPress={() => this.setModalVisible(true)}
               >00,000km</Button>
             </View>
 
@@ -160,6 +160,14 @@ const HomeView = React.createClass({
                 visible={this.state.modalVisible}
                 onRequestClose={() => {alert("Modal has been closed.")}}
               >
+                <Input
+                  ref='mileageInput'
+                  placeholder={loc.home.mileage}
+                />
+
+                <Button
+                  onPress={() => this.setModalVisible(false)}
+                >Submit</Button>
               </Modal>
             </View>
 

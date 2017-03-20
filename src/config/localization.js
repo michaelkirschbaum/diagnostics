@@ -121,6 +121,7 @@ const en = {
     lastTrip: 'Last trip:',
     trending: 'Trending:',
     comingSoon: 'COMING SOON:',
+    mileage: 'Enter your vehicles current mileage here.'
   },
   settings: {
     settings: 'Settings',
