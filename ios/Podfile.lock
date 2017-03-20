@@ -21,12 +21,16 @@ PODS:
   - AWSCore (2.5.2)
   - AWSS3 (2.5.2):
     - AWSCore (= 2.5.2)
+  - BuddyBuildSDK (1.0.14)
   - CarFitiOSSDK (0.0.29):
     - AWSAPIGateway
     - AWSCognito
     - AWSCore
     - AWSS3
     - Realm
+  - Crashlytics (3.8.4):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.11)
   - Lock (1.28.2):
     - Lock/Core (= 1.28.2)
     - Lock/UI (= 1.28.2)
@@ -57,7 +61,10 @@ PODS:
     - SimpleKeychain (~> 0.3)
 
 DEPENDENCIES:
+  - BuddyBuildSDK
   - CarFitiOSSDK
+  - Crashlytics
+  - Fabric
   - Lock (~> 1.26)
   - Lock/Email
   - Lock/SMS
@@ -69,13 +76,16 @@ SPEC CHECKSUMS:
   AWSCognito: a29c52e3a3d4988f01b449c8b229a51b73d1c1bf
   AWSCore: b2fe455c2c7d6653521238c5b0b0ddb67ec4f063
   AWSS3: 1f53d780bae0a5949f11da99520c14684bc90af0
+  BuddyBuildSDK: 2b2d35a61ad7fd3645beb2d48bc5123efd869918
   CarFitiOSSDK: 57ee3e505c7148cd8d6a42d90c4092f67ab70fd5
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Lock: 742c21d94c8a1805a3fb8d7e8a5d5e873b14ec47
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   Realm: 5a280a1f5a9a3c267bebf4f41ee47911137703d7
   SimpleKeychain: b50cef3b87939d480ea1143425c00f5b4b70fe21
   TouchIDAuth: 0cf861f58a2cacfc1c12cb02de4850729d943c81
 
-PODFILE CHECKSUM: 95b8c5542df8d425fec2128b56d18223f3190bd5
+PODFILE CHECKSUM: f922c7dc6b04462b3270d790dd97da9f80713dee
 
 COCOAPODS: 1.2.0
