@@ -49,7 +49,12 @@ const HomeView = React.createClass({
     // this.props.switchRoute('Overview');
     // this.props.switchRoute(2);
 
+    this.setModalVisible(true);
+  },
 
+  // Forward setNativeProps to a child
+  setNativeProps(nativeProps) {
+    this._root.setNativeProps(nativeProps);
   },
 
   onSettingsPress() {
@@ -81,11 +86,11 @@ const HomeView = React.createClass({
 
     var vehicle = new Vehicle();
     var alerts = await vehicle.getAlerts(vin);
-
+/*
     alerts = Object.entries(alerts).map(([key, val], i) => {
       return <Text key={'key-'+ i}>{key +': '+ val}</Text>;
     });
-
+*/
     this.setState({alerts});
   },
 
