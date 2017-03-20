@@ -21,6 +21,8 @@ import AccountViewContainer from './account/AccountViewContainer';
 import PrivacyViewContainer from './legal/PrivacyViewContainer';
 import TermsViewContainer from './legal/TermsViewContainer';
 import DriveViewContainer from './drive/DriveViewContainer';
+import UsageViewContainer from './usage/UsageViewContainer';
+import AlertsViewContainer from './alerts/AlertsViewContainer';
 //
 // import CounterViewContainer from './counter/CounterViewContainer';
 // import ColorViewContainer from './colors/ColorViewContainer';
@@ -92,10 +94,10 @@ export default function AppRouter(props) {
     return <DriveViewContainer />
   }
   if (key === 'Alerts') {
-    // return <AlertsViewContainer />
+    return <AlertsViewContainer />
   }
   if (key === 'Usage') {
-    // return <UsageViewContainer />
+    return <UsageViewContainer />
   }
 
   throw new Error('Unknown navigation key: ' + key);

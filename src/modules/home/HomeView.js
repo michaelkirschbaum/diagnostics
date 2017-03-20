@@ -183,7 +183,7 @@ const HomeView = React.createClass({
                 <Text>{alertDescription}</Text>
               </View>
               <View style={styles.dataAction}>
-                <Button transparent onPress={() => this.props.pushRoute({key: 'Settings', title: loc.settings.settings})}>
+                <Button transparent onPress={() => this.props.pushRoute({key: 'Alerts', title: loc.home.alert})}>
                   <Icon active name="ios-arrow-forward"></Icon>
                 </Button>
               </View>
@@ -200,7 +200,7 @@ const HomeView = React.createClass({
                 <Text>{usageDescription}</Text>
               </View>
               <View style={styles.dataAction}>
-                <Button transparent onPress={() => this.props.pushRoute({key: 'Settings', title: loc.settings.settings})}>
+                <Button transparent onPress={() => this.props.pushRoute({key: 'Usage', title: loc.home.usage})}>
                   <Icon active name="ios-arrow-forward"></Icon>
                 </Button>
               </View>

@@ -1,0 +1,84 @@
+<div class="cf-main-blurred-purple-background font-color-white" ng-controller="UsageCtrl">
+  <div class="cf-detail-top-section">
+    <div class="cf-top-table">
+      <div class="cf-top-cell font-center cf-width-25">
+        <div class="cf-dash-top-icon" ui-sref="main({'vin':currentVin})">
+          <i class="ion ion-ios-arrow-back"></i>
+        </div>
+      </div>
+      <div class="cf-top-cell font-center cursor-pointer">
+        <h1>{{'USAGE_PAGE.TITLE' | translate}}</h1>
+      </div>
+      <div class="cf-top-cell font-center cf-width-25">
+        <div ng-controller="ChatbotCtrl">
+          <a href="http://m.me/carfitbot?openInSafari=true" target="_blank">
+            <div ng-if="chatExists" class="cf-dash-top-icon cf-miles-logo" style="width:100%;">
+            </div>
+          </a>
+          <div ng-if="!chatExists" class="cf-dash-top-icon cf-miles-logo" ui-sref="chatbot" style="width:100%;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cf-detail-bottom-section cf-overscroll-y">
+    <div class="cf-usage-container font-color-white">
+      <div class="cf-usage-details">
+        <div class="cf-last-trip-attributes">
+          <div class="cf-table">
+            <div class="cf-row">
+              <div class="cf-cell" style="width:50%;">
+                <h3>{{'USAGE_PAGE.TIME_TITLE' | translate}}</h3>
+                <p>
+                  {{tripData[0].end_timestamp | date:"h:mm a"}}
+                </p>
+              </div>
+              <div class="cf-cell" style="width:50%;">
+                <h3>{{'USAGE_PAGE.DATE_TITLE' | translate}}</h3>
+                <p>
+                  {{tripData[0].end_timestamp | date:"MMM d, y"}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cf-last-trip-title">
+          <h1 style="margin-top:10px;">{{'USAGE_PAGE.LAST_TRIP_TITLE' | translate}}</h1>
+          <h1 style="font-size:22px;margin-top:8px;">
+            {{(tripData[0].meters_travelled / 1000) / 1.609344 | number:1}} MILES
+          </h1>
+        </div>
+        <div class="cf-table">
+          <div class="cf-row">
+            <div class="cf-cell cf-text-right" style="border-right:solid 1px #fff; width:50%;">
+              <div class="cf-latest-trip-date" ng-click="showHighwayInfo = !showHighwayInfo">
+                <div style="display:inline-block;font-size:40px;background-image:urL(images/highway-icon.svg);height:44px;width:44px;background-size:contain;">
+                </div>
+                <div style="border-bottom:solid 4px #3999de;display:inline-block;position:relative;top:-10px;font-size:18px;">
+                  <h1 style="text-align:center">{{(tripData[0].secs_above_72kph/(tripData[0].secs_above_72kph+tripData[0].secs_below_72kph))*100 | number:0}}%</h1>
+                  <h3>{{'USAGE_PAGE.HIGHWAY_TITLE' | translate}}</h3>
+                </div>
+              </div>
+            </div>
+            <div class="cf-cell cf-text-left" style="width:50%;">
+              <div class="cf-latest-trip-date" ng-click="showCityInfo = !showCityInfo">
+                <div style="display:inline-block;font-size:40px;background-image:urL(images/city-icon.svg);height:44px;width:44px;background-size:contain;">
+                </div>
+                <div style="border-bottom:solid 4px #e39f35;display:inline-block;position:relative;top:-10px;font-size:18px">
+                  <h1 style="text-align:center">{{(tripData[0].secs_below_72kph/(tripData[0].secs_above_72kph+tripData[0].secs_below_72kph))*100 | number:0}}%</h1>
+                  <h3>{{'USAGE_PAGE.CITY_TITLE' | translate}}</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="cf-usage-explainer" ng-if="showHighwayInfo">{{'USAGE_PAGE.HIGHWAY_SPEED_DESCRIPTION' | translate}}</p>
+        <p class="cf-usage-explainer" ng-if="showCityInfo">{{'USAGE_PAGE.CITY_SPEED_DESCRIPTION' | translate}}</p>
+      </div>
+      <hr/>
+      <div class="cf-linechart-container">
+        <highchart id="chart1" config="chartOptions"></highchart>
+      </div>
+    </div>
+  </div>
+</div>
