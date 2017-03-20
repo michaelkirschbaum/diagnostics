@@ -73,7 +73,7 @@ const HomeView = React.createClass({
     var vehicle = new Vehicle();
     var alerts = await vehicle.getAlerts(vin);
 
-    alerts = Object.entries(alerts[0]).map(([key, val], i) => {
+    alerts = Object.entries(alerts).map(([key, val], i) => {
       return <Text key={'key-'+ i}>{key +': '+ val}</Text>;
     });
 

@@ -25,7 +25,7 @@ export default class Connection {
     try {
       // connect given uuid
       var response = await this.manager.connectBLEDeviceAsync(id);
-
+/*
       // subscribe to disconnect
       const connect_subscription = this.connectionEmitter.addListener(
         'BLEDeviceConnectionStatus',
@@ -35,17 +35,17 @@ export default class Connection {
           {text: 'OK', onPress: () => console.log('OK Pressed')}
         )
       );
-/*
+*/
       // listen for support click
       const support_subscription = this.connectionEmitter.addListener(
         'BLEButtonPress',
         (reminder) => Alert.alert(
           'Support',
-          'Support has been initiated.',
+          'A representative will call you shortly.',
           {text: 'OK', onPress: () => console.log('OK Pressed')}
         )
       );
-*/
+
       return response;
     } catch (e) {
       console.error(e);
@@ -57,7 +57,7 @@ export default class Connection {
 
     Alert.alert(
       'Support',
-      'A representative will call you shortly.',
+      'Your phone number has been added.',
       {text: 'OK', onPress: () => console.log('OK Pressed.')},
     );
   }
