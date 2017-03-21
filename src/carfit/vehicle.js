@@ -9,9 +9,9 @@ export default class Vehicle {
     this.manager = NativeModules.CarFitManager;
   }
 
-  addByVIN(vin) {
+  async addByVIN(vin) {
     try {
-      var response = this.manager.onBoardVehicleWithVIN(vin);
+      var response = await this.manager.onBoardVehicleWithVIN(vin);
 
       // if response is an error return null
       if (response.error)

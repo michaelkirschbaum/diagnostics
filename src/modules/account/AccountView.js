@@ -62,8 +62,6 @@ const AccountView = React.createClass({
     var login = new Login();
     var user = await login.getUser();
 
-    console.log(user);
-
     userID = '';
 
     this.setState({userID});

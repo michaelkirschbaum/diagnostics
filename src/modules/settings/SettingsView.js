@@ -61,7 +61,7 @@ const SettingsView = React.createClass({
   },
 
   onDrivePress() {
-    this.props.pushRoute({key: 'Drive', title: loc.settings.settings});
+    this.props.pushRoute({key: 'Drive', title: loc.settings.drive});
   },
 
   popRoute() {

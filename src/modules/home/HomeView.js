@@ -142,7 +142,7 @@ const HomeView = React.createClass({
                       style={styles.milesButton}
                       textStyle={{color: colors.textPrimary}}
                       onPress={() => this.setModalVisible(true)}
-              >this.state.mileage</Button>
+              >{this.state.mileage}</Button>
             </View>
 
             <View style={{
