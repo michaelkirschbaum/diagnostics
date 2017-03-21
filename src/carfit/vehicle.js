@@ -25,9 +25,9 @@ export default class Vehicle {
     }
   }
 
-  addByPlate(plate, region) {
+  async addByPlate(plate, region) {
     try {
-      var response = this.manager.onBoardVehicleWithPlate(plate, region, null);
+      var response = await this.manager.onBoardVehicleWithPlate(plate, region, null);
 
       if (response.error)
         return null;
@@ -47,9 +47,12 @@ export default class Vehicle {
     }
   }
 
-  getMileage(vin) {
+  async getMileage(vin) {
     try {
-      return this.manager.vehicleVinGet(vin);
+      var vehicle = await this.manager.vehicleVinGet(vin);
+      var mileage = vehicle["current_meters"];
+
+      return mileage;
     } catch (e) {
       console.error(e);
     }

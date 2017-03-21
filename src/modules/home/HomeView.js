@@ -39,11 +39,16 @@ const HomeView = React.createClass({
     return {
       alerts: '',
       modalVisible: false,
-      mileage: '00,000km'
+      mileage: '                  '
     };
   },
 
   propTypes: {},
+
+  componentDidMount() {
+    this.getAlerts().done();
+    this.getMileage().done();
+  },
 
   onNextPress() {
     // this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
@@ -74,10 +79,6 @@ const HomeView = React.createClass({
     this.props.onNavigateBack();
   },
 
-  componentDidMount() {
-    this.getAlerts().done();
-  },
-
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   },
@@ -94,6 +95,14 @@ const HomeView = React.createClass({
 */
     var alerts = '';
     this.setState({alerts});
+  },
+
+  async getMileage() {
+    var vehicle = new Vehicle();
+
+    const vin = store.getState().get("carInstallation").get("vin");
+    var mileage = await vehicle.getMileage(vin);
+    this.setState({mileage});
   },
 
   render() {
