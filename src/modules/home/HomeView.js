@@ -102,6 +102,8 @@ const HomeView = React.createClass({
 
     const vin = store.getState().get("carInstallation").get("vin");
     var mileage = await vehicle.getMileage(vin);
+    var mileage = mileage.toString() + 'km';
+
     this.setState({mileage});
   },
 

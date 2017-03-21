@@ -58,10 +58,8 @@ const AccountView = React.createClass({
 
   async getUserID() {
     var login = new Login();
-    var user = await login.getUser();
-
-    userID = user["user_code"];
-
+    var userID = await login.getUser();
+    
     this.setState({userID});
   },
 

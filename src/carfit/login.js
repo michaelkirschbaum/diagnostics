@@ -33,7 +33,9 @@ export default class Login {
     try{
       var user = await this.manager.userGet();
 
-      return user;
+      var userID = user["user_code"];
+
+      return userID;
     } catch (e) {
       console.error(e);
     }
