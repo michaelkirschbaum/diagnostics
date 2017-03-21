@@ -42,7 +42,9 @@ const AccountView = React.createClass({
     };
   },
 
-  propTypes: {},
+  componentDidMount() {
+    this.getUserID().done();
+  },
 
   onNextPress() {
     // this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
@@ -54,15 +56,11 @@ const AccountView = React.createClass({
     this.props.onNavigateBack();
   },
 
-  componentDidMount() {
-    this.getUserID().done();
-  },
-
   async getUserID() {
     var login = new Login();
     var user = await login.getUser();
 
-    userID = '';
+    userID = user["user_code"];
 
     this.setState({userID});
   },
