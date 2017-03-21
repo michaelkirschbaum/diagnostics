@@ -20,6 +20,7 @@
     "color": "^1.0.3",
     "es6-symbol": "^3.1.0",
     "graphql": "^0.9.1",
+    "highcharts": "^5.0.9",
     "immutable": "^3.8.1",
     "lodash": "^4.17.2",
     "moment": "^2.17.1",
