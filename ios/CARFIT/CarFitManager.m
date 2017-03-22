@@ -322,13 +322,13 @@ RCT_REMAP_METHOD(clickButton,
 
 #pragma AWS iOS SDK React Bridge
 
-RCT_EXPORT_METHOD(backlogVinGet:(NSString *) vin
+RCT_EXPORT_METHOD(backlogVinTypeGet:(NSString *) type vin:(NSString *) vin
   backlogVinGetResolver:(RCTPromiseResolveBlock)resolve
   backlogVinGetRejecter:(RCTPromiseRejectBlock)reject)
 {
-  [[[CFPCore sharedInstance] backlogVinGet:vin] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
+  [[[CFPCore sharedInstance] backlogVinTypeGet:type vin:vin] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
     if (task.error) {
-      reject(@"backlogGeterror", task.error.localizedDescription, task.error);
+      reject(@"backlogVinTypeGeterror", task.error.localizedDescription, task.error);
     } else {
       resolve(task.result);
     }
@@ -350,21 +350,21 @@ RCT_EXPORT_METHOD(vehicleVinGet:(NSString *) vin
   }];
 }
 
-RCT_EXPORT_METHOD(tripLogVinGet:(NSString *) vin
-  tripLogVinGetResolver:(RCTPromiseResolveBlock)resolve
-  tripLogVinGetRejecter:(RCTPromiseRejectBlock)reject)
-{
-  [[[CFPCore sharedInstance] tripLogVinGet:vin] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-    if (task.error) {
-      reject(@"tripLogGeterror", task.error.localizedDescription, task.error);
-    } else {
-      resolve(task.result);
-    }
-    return nil;
-  }];
-}
+//RCT_EXPORT_METHOD(tripLogVinGet:(NSString *) vin
+//  tripLogVinGetResolver:(RCTPromiseResolveBlock)resolve
+//  tripLogVinGetRejecter:(RCTPromiseRejectBlock)reject)
+//{
+//  [[[CFPCore sharedInstance] tripLogVinGet:vin] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
+//    if (task.error) {
+//      reject(@"tripLogGeterror", task.error.localizedDescription, task.error);
+//    } else {
+//      resolve(task.result);
+//    }
+//    return nil;
+//  }];
+//}
 
-RCT_EXPORT_METHOD(vehicleVinPut:(NSString *) vin vehicleDetails:(CFPAWSVehicleInput *)vehicleDetails
+RCT_EXPORT_METHOD(vehicleVinPut:(NSString *) vin vehicleDetails:(NSDictionary *)vehicleDetails
   vehicleVinPutResolver:(RCTPromiseResolveBlock)resolve
   vehicleVinPutRejecter:(RCTPromiseRejectBlock)reject)
 {
