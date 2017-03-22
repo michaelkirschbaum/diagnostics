@@ -11,7 +11,6 @@ import {
 import carfitTheme from '../../config/carfit-theme';
 import loc from '../../config/localization';
 import colors from '../../config/colors';
-import ChartView from 'react-native-highcharts';
 
 const UsageView = React.createClass({
   render() {

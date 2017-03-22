@@ -41,7 +41,7 @@ export default class Vehicle {
 
   setMileage(vin, distance) {
     try {
-      var response = this.manager.vehicleVinPut(vin, {'current_meters': distance});
+      var response = this.manager.vehicleVinPut(vin, {"current_meters": distance});
     } catch (e) {
       console.error(e);
     }

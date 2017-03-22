@@ -39,7 +39,7 @@ const HomeView = React.createClass({
     return {
       alerts: '',
       modalVisible: false,
-      mileage: '                  '
+      mileage: ''
     };
   },
 
@@ -110,13 +110,13 @@ const HomeView = React.createClass({
     this.setState({mileage});
   },
 
-  setOdometer(distance) {
+  setOdometer(mileage) {
     var vehicle = new Vehicle();
 
     const vin = store.getState().get("carInstallation").get("vin");
+    vehicle.setMileage(vin, mileage);
 
-    // this.setState(distance);
-    // vehicle.vehicleVinPut(vin, distance);
+    this.setModalVisible(false);
   },
 
   render() {
@@ -188,11 +188,11 @@ const HomeView = React.createClass({
                 <Input
                   ref='mileageInput'
                   placeholder={loc.home.mileage}
-                  onChangeText={(text) => this.setOdometer({text})}
+                  onChangeText={(text) => this.setState({mileage: text})}
                 />
 
                 <Button
-                  onPress={() => this.setModalVisible(false)}
+                  onPress={() => this.setOdometer(this.state.mileage)}
                 >Submit</Button>
               </Modal>
             </View>
