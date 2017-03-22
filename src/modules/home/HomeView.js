@@ -87,15 +87,15 @@ const HomeView = React.createClass({
     const vin = store.getState().get("carInstallation").get("vin");
 
     var vehicle = new Vehicle();
-/*
-    // var alerts = await vehicle.getAlerts(vin);
+
+    // backlog types: recall, maintenance, alert, bulletin
+    var alerts = await vehicle.getAlerts('alert', vin);
 
     alerts = Object.entries(alerts).map(([key, val], i) => {
       return <Text key={'key-'+ i}>{key +': '+ val}</Text>;
     });
 
-    // this.setState({alerts});
-*/
+    this.setState({alerts});
   },
 
   async getMileage() {
@@ -124,8 +124,6 @@ const HomeView = React.createClass({
     let windowWidth = Dimensions.get('window').width;
 
     let alertAction = loc.home.serviceNeeded;
-
-    let alertDescription = '';
     let alertColor = colors.secondary;
 
     let usageAction = loc.home.lastTrip;
@@ -205,7 +203,7 @@ const HomeView = React.createClass({
                 <H3 style={{fontWeight: "bold", color: alertColor}}>{loc.home.alert}</H3>
                 <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
                 <H3>{alertAction}</H3>
-                <Text>{alertDescription}</Text>
+                <Text>{this.state.alerts}</Text>
               </View>
               <View style={styles.dataAction}>
                 <Button transparent onPress={() => this.props.pushRoute({key: 'Alerts', title: loc.home.alert})}>
