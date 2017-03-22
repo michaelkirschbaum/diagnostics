@@ -110,6 +110,15 @@ const HomeView = React.createClass({
     this.setState({mileage});
   },
 
+  setOdometer(distance) {
+    var vehicle = new Vehicle();
+
+    const vin = store.getState().get("carInstallation").get("vin");
+
+    // this.setState({mileage: distance);
+    // vehicle.vehicleVinPut(vin, distance);
+  },
+
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
@@ -179,7 +188,7 @@ const HomeView = React.createClass({
                 <Input
                   ref='mileageInput'
                   placeholder={loc.home.mileage}
-                  onChangeText={(text) => this.setState({mileage: text})}
+                  onChangeText={(text) => this.setOdometer({text})}
                 />
 
                 <Button
