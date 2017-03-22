@@ -52,7 +52,7 @@ export default class Vehicle {
       var vehicle = await this.manager.vehicleVinGet(vin);
       var mileage = vehicle["current_meters"];
 
-      return mileage;
+      return mileage.toString();
     } catch (e) {
       console.error(e);
     }

@@ -87,14 +87,15 @@ const HomeView = React.createClass({
     const vin = store.getState().get("carInstallation").get("vin");
 
     var vehicle = new Vehicle();
-    // var alerts = await vehicle.getAlerts(vin);
 /*
+    // var alerts = await vehicle.getAlerts(vin);
+
     alerts = Object.entries(alerts).map(([key, val], i) => {
       return <Text key={'key-'+ i}>{key +': '+ val}</Text>;
     });
+
+    // this.setState({alerts});
 */
-    var alerts = '';
-    this.setState({alerts});
   },
 
   async getMileage() {
@@ -104,7 +105,7 @@ const HomeView = React.createClass({
     var mileage = await vehicle.getMileage(vin);
 
     var units = 'm';
-    var mileage = mileage.toString() + units;
+    mileage += units;
 
     this.setState({mileage});
   },
@@ -115,7 +116,7 @@ const HomeView = React.createClass({
 
     let alertAction = loc.home.serviceNeeded;
 
-    let alertDescription = 'this.state.alerts';
+    let alertDescription = '';
     let alertColor = colors.secondary;
 
     let usageAction = loc.home.lastTrip;
@@ -178,6 +179,7 @@ const HomeView = React.createClass({
                 <Input
                   ref='mileageInput'
                   placeholder={loc.home.mileage}
+                  onChangeText={(text) => this.setState({mileage: text})}
                 />
 
                 <Button
