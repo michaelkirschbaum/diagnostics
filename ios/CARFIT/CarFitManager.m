@@ -350,19 +350,19 @@ RCT_EXPORT_METHOD(vehicleVinGet:(NSString *) vin
   }];
 }
 
-//RCT_EXPORT_METHOD(tripLogVinGet:(NSString *) vin
-//  tripLogVinGetResolver:(RCTPromiseResolveBlock)resolve
-//  tripLogVinGetRejecter:(RCTPromiseRejectBlock)reject)
-//{
-//  [[[CFPCore sharedInstance] tripLogVinGet:vin] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-//    if (task.error) {
-//      reject(@"tripLogGeterror", task.error.localizedDescription, task.error);
-//    } else {
-//      resolve(task.result);
-//    }
-//    return nil;
-//  }];
-//}
+RCT_EXPORT_METHOD(tripLogVinGet:(NSString *) vin
+  tripLogVinGetResolver:(RCTPromiseResolveBlock)resolve
+  tripLogVinGetRejecter:(RCTPromiseRejectBlock)reject)
+{
+  [[[CFPCore sharedInstance] tripLogVinGet:vin] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
+    if (task.error) {
+      reject(@"tripLogGeterror", task.error.localizedDescription, task.error);
+    } else {
+      resolve(task.result);
+    }
+    return nil;
+  }];
+}
 
 RCT_EXPORT_METHOD(vehicleVinPut:(NSString *) vin vehicleDetails:(NSDictionary *)vehicleDetails
   vehicleVinPutResolver:(RCTPromiseResolveBlock)resolve
