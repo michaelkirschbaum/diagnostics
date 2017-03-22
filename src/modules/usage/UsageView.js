@@ -5,7 +5,8 @@ import {
   Button,
   Icon,
   Title,
-  Content
+  Content,
+  View
 } from 'native-base';
 import carfitTheme from '../../config/carfit-theme';
 import loc from '../../config/localization';
@@ -21,9 +22,12 @@ const UsageView = React.createClass({
           <Button transparent onPress={() => this.props.onNavigateBack()}>
             <Icon name="ios-arrow-back"/>
           </Button>
+
           <Title>{headerTitle}</Title>
         </Header>
-        <Content style={{backgroundColor: colors.backgroundPrimary}}></Content>
+
+        <Content style={{backgroundColor: colors.backgroundPrimary}}>
+        </Content>
       </Container>
     );
   }

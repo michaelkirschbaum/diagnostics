@@ -115,7 +115,7 @@ const HomeView = React.createClass({
 
     const vin = store.getState().get("carInstallation").get("vin");
 
-    // this.setState({mileage: distance);
+    // this.setState(distance);
     // vehicle.vehicleVinPut(vin, distance);
   },
 
