@@ -4,11 +4,12 @@ import {
   Header,
   Button,
   Icon,
-  Title
+  Title,
+  Content
 } from 'native-base';
 import carfitTheme from '../../config/carfit-theme';
-import Highcharts from 'highcharts';
 import loc from '../../config/localization';
+import colors from '../../config/colors';
 
 const UsageView = React.createClass({
   render() {
@@ -22,6 +23,7 @@ const UsageView = React.createClass({
           </Button>
           <Title>{headerTitle}</Title>
         </Header>
+        <Content style={{backgroundColor: colors.backgroundPrimary}}></Content>
       </Container>
     );
   }
