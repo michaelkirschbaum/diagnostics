@@ -95,6 +95,8 @@ const HomeView = React.createClass({
       return <Text key={'key-'+ i}>{key +': '+ val}</Text>;
     });
 */
+    console.log(alerts);
+
     this.setState({alerts});
   },
 
