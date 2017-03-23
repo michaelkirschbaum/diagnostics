@@ -37,7 +37,7 @@ import createFragment from 'react-addons-create-fragment';
 const HomeView = React.createClass({
   getInitialState() {
     return {
-      alerts: '',
+      alerts: [],
       modalVisible: false,
       mileage: ''
     };
@@ -46,8 +46,8 @@ const HomeView = React.createClass({
   propTypes: {},
 
   componentDidMount() {
-    this.getAlerts().done();
-    this.getMileage().done();
+    this.loadAlerts().done();
+    this.loadMileage().done();
   },
 
   onNextPress() {
@@ -83,7 +83,7 @@ const HomeView = React.createClass({
     this.setState({modalVisible: visible});
   },
 
-  async getAlerts() {
+  async loadAlerts() {
     var vehicle = new Vehicle();
 
     const vin = store.getState().get("carInstallation").get("vin");
@@ -91,9 +91,10 @@ const HomeView = React.createClass({
     var alerts = await vehicle.getAlerts('alert', vin);
 
     // set alerts
+    this.setState({alerts});
   },
 
-  async getMileage() {
+  async loadMileage() {
     var vehicle = new Vehicle();
 
     const vin = store.getState().get("carInstallation").get("vin");
@@ -198,7 +199,7 @@ const HomeView = React.createClass({
                 <H3 style={{fontWeight: "bold", color: alertColor}}>{loc.home.alert}</H3>
                 <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
                 <H3>{alertAction}</H3>
-                <Text>{this.state.alerts}</Text>
+                <Text></Text>
               </View>
               <View style={styles.dataAction}>
                 <Button transparent onPress={() => this.props.pushRoute({key: 'Alerts', title: loc.home.alert})}>

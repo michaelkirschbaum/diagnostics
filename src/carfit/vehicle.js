@@ -24,10 +24,9 @@ export default class Vehicle {
     try {
       var response = await this.manager.onBoardVehicleWithPlate(plate, region, null);
 
-      // check whether promise was resolved
       return response;
     } catch (e) {
-      console.error(e);
+      return null;
     }
   }
 
