@@ -26,7 +26,6 @@ import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
 import Vehicle from '../../carfit/vehicle';
-import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 
 /**
  * Login view
