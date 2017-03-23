@@ -199,7 +199,7 @@ const HomeView = React.createClass({
                 <H3 style={{fontWeight: "bold", color: alertColor}}>{loc.home.alert}</H3>
                 <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
                 <H3>{alertAction}</H3>
-                <Text></Text>
+                <Text>alerts</Text>
               </View>
               <View style={styles.dataAction}>
                 <Button transparent onPress={() => this.props.pushRoute({key: 'Alerts', title: loc.home.alert})}>
