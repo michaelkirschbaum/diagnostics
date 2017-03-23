@@ -24,14 +24,14 @@ const AlertsView = React.createClass({
           <Title>{headerTitle}</Title>
         </Header>
         <Content style={{backgroundColor: colors.backgroundPrimary}}>
-        {/*
-        "action_type": { "type" : "string" },
-        "backlog_id": { "type" : "integer" },
-        "created_on": { "type" : "string" },
-        "scheduled_meters": { "type" : "integer" },
-        "status": { "type" : "string" },
-        "summary": { "type" : "string" }
-        */}
+          {/*
+            "action_type": { "type" : "string" },
+            "backlog_id": { "type" : "integer" },
+            "created_on": { "type" : "string" },
+            "scheduled_meters": { "type" : "integer" },
+            "status": { "type" : "string" },
+            "summary": { "type" : "string" }
+            */}
         </Content>
       </Container>
     );

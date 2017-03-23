@@ -13,15 +13,9 @@ export default class Vehicle {
     try {
       var response = await this.manager.onBoardVehicleWithVIN(vin);
 
-      // check if promise was resolved
-      // if response is an error return null
-      // if (response.error)
-        // return null;
-      // else {
+      // check whether promise was resolved
       return response;
-      // }
     } catch (e) {
-      // do promises throw an error?
       console.error(e);
     }
   }
@@ -30,13 +24,8 @@ export default class Vehicle {
     try {
       var response = await this.manager.onBoardVehicleWithPlate(plate, region, null);
 
-
-      // check if promise was resolved
-      // if (response.error)
-        // return null;
-      // else {
+      // check whether promise was resolved
       return response;
-      // }
     } catch (e) {
       console.error(e);
     }
@@ -75,7 +64,7 @@ export default class Vehicle {
       var alerts = await this.manager.backlogVinTypeGet(type, vin);
 
       // return array of backlog items
-      // alerts = alerts["items"];
+      alerts = alerts["items"];
 
       return alerts;
     } catch (e) {

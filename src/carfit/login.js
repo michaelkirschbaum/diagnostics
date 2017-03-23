@@ -29,9 +29,13 @@ export default class Login {
     }
   }
 
+  // returns user code
   async getUser() {
     try{
       var user = await this.manager.userGet();
+
+      // check whether promise was resolved
+
       var userID = user["user_code"];
 
       return userID;

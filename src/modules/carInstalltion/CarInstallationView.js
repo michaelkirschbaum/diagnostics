@@ -54,17 +54,13 @@ const CarInstallationStateView = React.createClass({
       // notify user whether vehicle has been added
       if (response) {
         // make notification synchronous
-        Alert.alert(
+        await Alert.alert(
           'Success',
           'Vehicle has been added.',
-          {text: 'OK', onPress: () => console.log('OK Pressed.')},
+          // store vin
+          {text: 'OK', onPress: () => this.props.addVehicle(response["vin"])},
+          {cancellable: false}
         );
-
-        // how to access AWSModel?
-        // console.log(response['vin']);
-
-        // store vin
-        this.props.addVehicle(response["vin"]);
 
         this.props.pushRoute({key: 'Overview', title: ''});
       }
@@ -73,6 +69,7 @@ const CarInstallationStateView = React.createClass({
           'Fail',
           'Unable to add vehicle.',
           {text: 'OK', onPress: () => console.log('OK Pressed.')},
+          {cancellable: false}
         );
       }
     }
@@ -89,22 +86,22 @@ const CarInstallationStateView = React.createClass({
 
       // notify user whether vehicle has been added
       if (response) {
-        Alert.alert(
+        await Alert.alert(
           'Success',
           'Vehicle has been added.',
-          {text: 'OK', onPress: () => console.log('OK Pressed.')},
+          // store vin
+          {text: 'OK', onPress: () => this.props.addVehicle(response["vin"])},
+          {cancellabe: false}
         );
 
         this.props.pushRoute({key: 'Overview', title: ''});
-
-        // store vin
-        this.props.addVehicle(response["vin"]);
       }
       else {
         Alert.alert(
           'Fail',
           'Unable to add vehicle.',
           {text: 'OK', onPress: () => console.log('OK Pressed.')},
+          {cancellable: false}
         );
       }
     }

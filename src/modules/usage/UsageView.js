@@ -31,5 +31,4 @@ const UsageView = React.createClass({
   }
 });
 
-
 export default UsageView;
