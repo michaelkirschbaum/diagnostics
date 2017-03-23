@@ -16,7 +16,7 @@ export default class Vehicle {
       // check whether promise was resolved
       return response;
     } catch (e) {
-      console.error(e);
+      return null;
     }
   }
 
@@ -45,7 +45,7 @@ export default class Vehicle {
 
       return mileage.toString();
     } catch (e) {
-      console.error(e);
+      return null;
     }
   }
 
@@ -67,7 +67,7 @@ export default class Vehicle {
 
       return alerts;
     } catch (e) {
-      console.error(e);
+      return null;
     }
   }
 }
