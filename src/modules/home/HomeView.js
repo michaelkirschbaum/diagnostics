@@ -84,12 +84,13 @@ const HomeView = React.createClass({
   },
 
   async getAlerts() {
-    const vin = store.getState().get("carInstallation").get("vin");
-
     var vehicle = new Vehicle();
 
+    const vin = store.getState().get("carInstallation").get("vin");
     // backlog types: recall, maintenance, alert, bulletin
-    // var alerts = await vehicle.getAlerts('alert', vin);
+    var alerts = await vehicle.getAlerts('alert', vin);
+
+    // set alerts
   },
 
   async getMileage() {
