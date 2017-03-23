@@ -64,7 +64,7 @@ const CarInstallationStateView = React.createClass({
         // console.log(response['vin']);
 
         // store vin
-        this.props.addVehicle(vin);
+        this.props.addVehicle(response["vin"]);
 
         this.props.pushRoute({key: 'Overview', title: ''});
       }
@@ -98,6 +98,7 @@ const CarInstallationStateView = React.createClass({
         this.props.pushRoute({key: 'Overview', title: ''});
 
         // store vin
+        this.props.addVehicle(response["vin"]);
       }
       else {
         Alert.alert(

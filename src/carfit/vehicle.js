@@ -13,12 +13,13 @@ export default class Vehicle {
     try {
       var response = await this.manager.onBoardVehicleWithVIN(vin);
 
+      // check if promise was resolved
       // if response is an error return null
-      if (response.error)
-        return null;
-      else {
-        return response;
-      }
+      // if (response.error)
+        // return null;
+      // else {
+      return response;
+      // }
     } catch (e) {
       // do promises throw an error?
       console.error(e);
@@ -29,11 +30,13 @@ export default class Vehicle {
     try {
       var response = await this.manager.onBoardVehicleWithPlate(plate, region, null);
 
-      if (response.error)
-        return null;
-      else {
-        return response;
-      }
+
+      // check if promise was resolved
+      // if (response.error)
+        // return null;
+      // else {
+      return response;
+      // }
     } catch (e) {
       console.error(e);
     }
