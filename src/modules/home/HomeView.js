@@ -89,15 +89,15 @@ const HomeView = React.createClass({
     var vehicle = new Vehicle();
 
     // backlog types: recall, maintenance, alert, bulletin
-    var alerts = await vehicle.getAlerts('alert', vin);
+    // var alerts = await vehicle.getAlerts('alert', vin);
 /*
     alerts = Object.entries(alerts).map(([key, val], i) => {
       return <Text key={'key-'+ i}>{key +': '+ val}</Text>;
     });
 */
-    console.log(alerts);
+    // console.log(alerts);
 
-    this.setState({alerts});
+    this.setState({alerts: ''});
   },
 
   async getMileage() {
