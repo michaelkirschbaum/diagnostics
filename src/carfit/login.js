@@ -32,7 +32,6 @@ export default class Login {
   async getUser() {
     try{
       var user = await this.manager.userGet();
-
       var userID = user["user_code"];
 
       return userID;

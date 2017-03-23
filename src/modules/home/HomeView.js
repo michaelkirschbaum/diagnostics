@@ -90,11 +90,11 @@ const HomeView = React.createClass({
 
     // backlog types: recall, maintenance, alert, bulletin
     var alerts = await vehicle.getAlerts('alert', vin);
-
+/*
     alerts = Object.entries(alerts).map(([key, val], i) => {
       return <Text key={'key-'+ i}>{key +': '+ val}</Text>;
     });
-
+*/
     this.setState({alerts});
   },
 

@@ -26,6 +26,7 @@ import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
 import Vehicle from '../../carfit/vehicle';
+import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 
 /**
  * Login view
@@ -156,7 +157,7 @@ const CarInstallationStateView = React.createClass({
       if (finalView == 'vin') {
         return (
           <View>
-            <Image source={require('../../../images/enter-vin.png')} style={styles.image}/>
+            {/* <Image source={require('../../../images/enter-vin.png')} style={styles.image}/> */}
             <InputGroup borderType='rounded' style={styles.textInput}>
               <Input
                 ref='vinInput'
@@ -179,7 +180,7 @@ const CarInstallationStateView = React.createClass({
       } else {
         return (
           <View>
-            <Image source={require('../../../images/enter-plate.png')} style={styles.image}/>
+            {/* <Image source={require('../../../images/enter-plate.png')} style={styles.image}/> */}
              <InputGroup borderType='rounded' style={styles.textInput}>
               <Input
                 ref='licenseInput'
@@ -261,7 +262,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.headerTextColor
   },
   container: {
-    height: 300,
+    height: 300
   },
   askMilesContainer: {
     marginTop: 22
