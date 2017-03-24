@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   Modal,
   TouchableHighlight,
-  Linking
+  Linking,
+  AsyncStorage
 } from 'react-native';
 import {
   Container,
@@ -38,7 +39,7 @@ import createFragment from 'react-addons-create-fragment';
 const HomeView = React.createClass({
   getInitialState() {
     return {
-      alerts: [],
+      alert: '',
       modalVisible: false,
       mileage: '',
       trips: []
@@ -52,6 +53,7 @@ const HomeView = React.createClass({
 
     that.loadAlerts().done();
     that.loadUsage().done();
+    that.loadMileage().done();
 
     var interval = 300000;
 
@@ -101,13 +103,20 @@ const HomeView = React.createClass({
     var alerts = await vehicle.getAlerts('alert', vin);
 
     if (alerts) {
-      // temporarily set to first alert
+      // set to first alert
       var alert = alerts[0].summary;
 
-      // set alerts
-      this.setState({alerts: alert});
+      // set
+      this.setState({alert});
+
+      // serialize alerts
+      try {
+        await AsyncStorage.setItem('alerts', JSON.stringify(alerts));
+      } catch(e) {
+        console.error(e);
+      }
     } else {
-      this.setState({alerts: ['error']});
+      this.setState({alert: 'error'});
     }
   },
 
@@ -236,7 +245,7 @@ const HomeView = React.createClass({
                 <H3 style={{fontWeight: "bold", color: alertColor}}>{loc.home.alert}</H3>
                 <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
                 <H3>{alertAction}</H3>
-                <Text>{this.state.alerts}</Text>
+                <Text>{this.state.alert}</Text>
               </View>
               <View style={styles.dataAction}>
                 <Button transparent onPress={() => this.props.pushRoute({key: 'Alerts', title: loc.home.alert})}>

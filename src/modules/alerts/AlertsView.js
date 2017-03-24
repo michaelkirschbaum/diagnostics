@@ -12,6 +12,10 @@ import loc from '../../config/localization';
 import colors from '../../config/colors';
 
 const AlertsView = React.createClass({
+  componentDidMount() {
+    
+  },
+
   render() {
     let headerTitle = loc.home.alert;
 
