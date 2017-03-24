@@ -88,9 +88,9 @@ const HomeView = React.createClass({
 
     const vin = store.getState().get("carInstallation").get("vin");
     // backlog types: recall, maintenance, alert, bulletin
-    var alerts = await vehicle.getAlerts('alert', vin);
+    // var alerts = await vehicle.getAlerts('alert', vin);
 
-    if (alerts) {
+    if (false) {
       // set alerts
       this.setState({alerts});
     } else {
@@ -102,11 +102,11 @@ const HomeView = React.createClass({
     var vehicle = new Vehicle();
 
     const vin = store.getState().get("carInstallation").get("vin");
-    var mileage = await vehicle.getMileage(vin);
+    // var mileage = await vehicle.getMileage(vin);
 
-    if (mileage) {
+    if (false) {
       var units = 'm';
-      mileage += units;
+      // mileage += units;
 
       this.setState({mileage});
     } else {
