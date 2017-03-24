@@ -8,7 +8,9 @@ import {
   Modal,
   TouchableHighlight,
   Linking,
-  AsyncStorage
+  AsyncStorage,
+  NativeEventEmitter,
+  NativeModules
 } from 'react-native';
 import {
   Container,
@@ -35,6 +37,7 @@ import * as NavigationState from '../navigation/NavigationState';
 import Vehicle from '../../carfit/vehicle';
 import store from '../../redux/store';
 import createFragment from 'react-addons-create-fragment';
+const {CarFitManager} = NativeModules;
 
 const HomeView = React.createClass({
   getInitialState() {
@@ -58,14 +61,19 @@ const HomeView = React.createClass({
     that.loadUsage().done();
     that.loadVehicle().done();
 
+    // update odometer while not 'in trip'
     var interval = 300000;
     const vin = store.getState().get("carInstallation").get("vin");
     var vehicle = new Vehicle(vin);
 
-    // set timer when not 'in trip'
-    var odometer_timer = setInterval(function() {
-      that.loadMileage(vehicle).done();
-    }, interval);
+    var connectionEmitter = new NativeEventEmitter(CarFitManager);
+
+    var odometer_subscription = connectionEmitter.addListener(
+      'TripEndOfTravel',
+      (notification) => setInterval(function() {
+        that.loadMileage(vehicle).done();
+      }, interval)
+    );
   },
 
   onNextPress() {
