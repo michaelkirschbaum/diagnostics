@@ -4,9 +4,10 @@ var ReactNative = require('react-native');
 var { Alert } = ReactNative;
 
 export default class Vehicle {
-  constructor() {
+  constructor(vin = '') {
     // get singleton
     this.manager = NativeModules.CarFitManager;
+    this.vin = vin;
   }
 
   async addByVIN(vin) {
@@ -38,9 +39,9 @@ export default class Vehicle {
     }
   }
 
-  async getMileage(vin) {
+  async getMileage() {
     try {
-      var vehicle = await this.manager.vehicleVinGet(vin);
+      var vehicle = await this.manager.vehicleVinGet(this.vin);
       var mileage = vehicle["current_meters"] / 1000;
 
       return mileage.toString();
@@ -68,6 +69,41 @@ export default class Vehicle {
       alerts = alerts["items"];
 
       return alerts;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async getTitle() {
+    try {
+      var vehicle = await this.manager.vehicleVinGet(this.vin);
+      var title = vehicle["name"];
+
+      return title;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async getDescription() {
+    try {
+      var vehicle = await this.manager.vehicleVinGet(this.vin);
+      var year = vehicle["year"];
+      var model = vehicle["model"];
+      var description = year + ' ' + model;
+
+      return description;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async getPhoto() {
+    try {
+      var vehicle = await this.manager.vehicleVinGet(this.vin);
+      var image_url = vehicle["user_image_url"];
+
+      return image_url;
     } catch (e) {
       return null;
     }

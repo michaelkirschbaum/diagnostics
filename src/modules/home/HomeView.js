@@ -42,7 +42,10 @@ const HomeView = React.createClass({
       alert: '',
       modalVisible: false,
       mileage: '',
-      trips: []
+      trips: [],
+      title: '',
+      description: '',
+      photo: ''
     };
   },
 
@@ -53,7 +56,7 @@ const HomeView = React.createClass({
 
     that.loadAlerts().done();
     that.loadUsage().done();
-    that.loadMileage().done();
+    that.loadVehicle().done();
 
     var interval = 300000;
 
@@ -121,10 +124,12 @@ const HomeView = React.createClass({
   },
 
   async loadMileage() {
-    var vehicle = new Vehicle();
-
     const vin = store.getState().get("carInstallation").get("vin");
-    var mileage = await vehicle.getMileage(vin);
+
+    var vehicle = new Vehicle(vin);
+
+    // load mileage
+    var mileage = await vehicle.getMileage();
 
     if (mileage) {
       var units = 'km';
@@ -161,6 +166,51 @@ const HomeView = React.createClass({
     this.setModalVisible(false);
   },
 
+  async loadVehicle() {
+    const vin = store.getState().get("carInstallation").get("vin");
+
+    var vehicle = new Vehicle(vin);
+
+    // load meters
+    var mileage = await vehicle.getMileage();
+
+    if (mileage) {
+      var units = 'km';
+      mileage += units;
+
+      this.setState({mileage});
+    } else {
+      console.log("mileage not loaded");
+    }
+
+    // load title
+    var title = await vehicle.getTitle();
+
+    if (title) {
+      this.setState({title});
+    } else {
+      console.log("title not loaded");
+    }
+
+    // load description
+    var description = await vehicle.getDescription();
+
+    if (description) {
+      this.setState({description});
+    } else {
+      console.log("description not loaded");
+    }
+
+    // load photo
+    var photo = await vehicle.getPhoto();
+
+    if (photo) {
+      this.setState({photo});
+    } else {
+      console.log("photo not loaded");
+    }
+  },
+
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
@@ -192,7 +242,7 @@ const HomeView = React.createClass({
                        style={styles.icon}/>
               </TouchableOpacity>
               <TouchableOpacity onPress={this.onMyCarsPress}>
-                <Text>Image</Text>
+                <Image source={{uri: this.state.photo}}/>
               </TouchableOpacity>
               <TouchableOpacity onPress={this.onMilesPress}>
                 <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
@@ -200,8 +250,8 @@ const HomeView = React.createClass({
             </View>
 
             <View style={styles.profileHeaderContainer}>
-              <H1>Car Title</H1>
-              <H2 style={{marginTop: 5}}>Car Description</H2>
+              <H1>{this.state.title}</H1>
+              <H2 style={{marginTop: 5}}>{this.state.description}</H2>
               <Button rounded
                       style={styles.milesButton}
                       textStyle={{color: colors.textPrimary}}
