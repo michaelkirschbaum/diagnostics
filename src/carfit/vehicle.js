@@ -41,7 +41,7 @@ export default class Vehicle {
   async getMileage(vin) {
     try {
       var vehicle = await this.manager.vehicleVinGet(vin);
-      var mileage = vehicle["current_meters"];
+      var mileage = vehicle["current_meters"] / 1000;
 
       return mileage.toString();
     } catch (e) {
@@ -49,11 +49,13 @@ export default class Vehicle {
     }
   }
 
-  getTrips(vin) {
+  async getTrips(vin) {
     try {
-      return this.manager.tripLogVinGet(vin);
+      var trips = await this.manager.tripLogVinGet(vin);
+
+      return trips["items"];
     } catch (e) {
-      console.error(e)
+      return null;
     }
   }
 
