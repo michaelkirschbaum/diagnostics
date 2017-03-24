@@ -114,7 +114,7 @@ const en = {
     message7: 'my cars (car details), sensors, my account, demo & more',
   },
   home: {
-    alert: 'ALERT',
+    alert: 'ALERTS',
     usage: 'USAGE',
     value: 'VALUE',
     serviceNeeded: 'Service needed:',
