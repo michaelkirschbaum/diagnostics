@@ -59,9 +59,10 @@ const HomeView = React.createClass({
     that.loadVehicle().done();
 
     var interval = 300000;
-
+    const vin = store.getState().get("carInstallation").get("vin");
+    var vehicle = new Vehicle(vin);
     var odometer_timer = setInterval(function() {
-      that.loadMileage().done();
+      that.loadMileage(vehicle).done();
     }, interval);
   },
 
@@ -123,11 +124,7 @@ const HomeView = React.createClass({
     }
   },
 
-  async loadMileage() {
-    const vin = store.getState().get("carInstallation").get("vin");
-
-    var vehicle = new Vehicle(vin);
-
+  async loadMileage(vehicle) {
     // load mileage
     var mileage = await vehicle.getMileage();
 
