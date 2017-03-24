@@ -46,8 +46,15 @@ const HomeView = React.createClass({
   propTypes: {},
 
   componentDidMount() {
-    this.loadAlerts().done();
-    this.loadMileage().done();
+    var that = this;
+
+    that.loadAlerts().done();
+
+    var interval = 3000;
+
+    var odometer_timer = setInterval(function() {
+      that.loadMileage().done();
+    }, interval);
   },
 
   onNextPress() {
@@ -91,8 +98,11 @@ const HomeView = React.createClass({
     var alerts = await vehicle.getAlerts('alert', vin);
 
     if (alerts) {
+      // temporarily set to first alert
+      var alert = alerts[0].summary;
+
       // set alerts
-      this.setState({alerts});
+      this.setState({alerts: alert});
     } else {
       this.setState({alerts: ['error']});
     }
