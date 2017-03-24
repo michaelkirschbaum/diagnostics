@@ -53,12 +53,14 @@ const CarInstallationStateView = React.createClass({
 
       // notify user whether vehicle has been added
       if (response) {
+        this.props.addVehicle(response["vin"]);
+
         // make notification synchronous
         await Alert.alert(
           'Success',
           'Vehicle has been added.',
           // store vin
-          {text: 'OK', onPress: () => this.props.addVehicle(response["vin"])},
+          {text: 'OK', onPress: () => console.log("OK pressed.")},
           {cancellable: false}
         );
 
@@ -86,11 +88,13 @@ const CarInstallationStateView = React.createClass({
 
       // notify user whether vehicle has been added
       if (response) {
+        this.props.addVehicle(response["vin"]);
+
         await Alert.alert(
           'Success',
           'Vehicle has been added.',
           // store vin
-          {text: 'OK', onPress: () => this.props.addVehicle(response["vin"])},
+          {text: 'OK', onPress: () => console.log("OK pressed.")},
           {cancellabe: false}
         );
 
