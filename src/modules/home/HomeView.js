@@ -61,6 +61,8 @@ const HomeView = React.createClass({
     var interval = 300000;
     const vin = store.getState().get("carInstallation").get("vin");
     var vehicle = new Vehicle(vin);
+
+    // set timer when not 'in trip'
     var odometer_timer = setInterval(function() {
       that.loadMileage(vehicle).done();
     }, interval);
@@ -208,6 +210,11 @@ const HomeView = React.createClass({
     }
   },
 
+  renderPhoto() {
+    if (this.state.photo !== '')
+      return <Image source={{uri: this.state.photo}}/>;
+  },
+
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
@@ -239,7 +246,7 @@ const HomeView = React.createClass({
                        style={styles.icon}/>
               </TouchableOpacity>
               <TouchableOpacity onPress={this.onMyCarsPress}>
-                <Image source={{uri: this.state.photo}}/>
+                {this.renderPhoto()}
               </TouchableOpacity>
               <TouchableOpacity onPress={this.onMilesPress}>
                 <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
