@@ -6,7 +6,8 @@ import {
   Dimensions,
   TouchableOpacity,
   Modal,
-  TouchableHighlight
+  TouchableHighlight,
+  Linking
 } from 'react-native';
 import {
   Container,
@@ -52,7 +53,7 @@ const HomeView = React.createClass({
     that.loadAlerts().done();
     that.loadUsage().done();
 
-    var interval = 3000;
+    var interval = 300000;
 
     var odometer_timer = setInterval(function() {
       that.loadMileage().done();
@@ -77,7 +78,7 @@ const HomeView = React.createClass({
   },
 
   onMilesPress() {
-    // this.props.pushRoute({key: 'Miles', title: loc.settings.settings});
+    Linking.openURL("https://www.messenger.com/t/1468809913153847").catch(err => console.error('An error occurred', err));
   },
 
   onMyCarsPress() {
