@@ -12,8 +12,26 @@ import loc from '../../config/localization';
 import colors from '../../config/colors';
 
 const AlertsView = React.createClass({
+  getInitialState() {
+    return {
+      alerts: []
+    };
+  },
+
   componentDidMount() {
-    
+    try {
+      const alerts = await AsyncStorage.getItem('alerts');
+
+      if (value !== null) {
+        // deserialize
+        alerts = JSON.parse(alerts);
+
+        // load
+        this.setState(alerts);
+      }
+    } catch(e) {
+      console.error(e);
+    }
   },
 
   render() {
@@ -28,6 +46,7 @@ const AlertsView = React.createClass({
           <Title>{headerTitle}</Title>
         </Header>
         <Content style={{backgroundColor: colors.backgroundPrimary}}>
+
         </Content>
       </Container>
     );
