@@ -1,11 +1,18 @@
 import React from 'react';
 import {
+  AsyncStorage
+} from 'react-native';
+import {
   Container,
   Header,
   Button,
   Icon,
   Title,
-  Content
+  Content,
+  View,
+  List,
+  Text,
+  ListItem
 } from 'native-base';
 import carfitTheme from '../../config/carfit-theme';
 import loc from '../../config/localization';
@@ -18,16 +25,16 @@ const AlertsView = React.createClass({
     };
   },
 
-  componentDidMount() {
+  async componentDidMount() {
     try {
       const alerts = await AsyncStorage.getItem('alerts');
 
-      if (value !== null) {
+      if (alerts !== null) {
         // deserialize
         alerts = JSON.parse(alerts);
 
         // load
-        this.setState(alerts);
+        this.setState({alerts});
       }
     } catch(e) {
       console.error(e);
@@ -36,6 +43,8 @@ const AlertsView = React.createClass({
 
   render() {
     let headerTitle = loc.home.alert;
+
+    let alerts = this.state.alerts;
 
     return (
       <Container theme={carfitTheme}>
@@ -46,7 +55,15 @@ const AlertsView = React.createClass({
           <Title>{headerTitle}</Title>
         </Header>
         <Content style={{backgroundColor: colors.backgroundPrimary}}>
-
+          <View>
+            <List dataArray={alerts}
+              renderRow={(alert) =>
+                <ListItem>
+                  <Text>{alert.summary}</Text>
+                </ListItem>
+              }>
+            </List>
+          </View>
         </Content>
       </Container>
     );
