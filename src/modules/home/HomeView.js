@@ -39,7 +39,8 @@ const HomeView = React.createClass({
     return {
       alerts: [],
       modalVisible: false,
-      mileage: ''
+      mileage: '',
+      trips: []
     };
   },
 
@@ -49,6 +50,7 @@ const HomeView = React.createClass({
     var that = this;
 
     that.loadAlerts().done();
+    that.loadUsage().done();
 
     var interval = 3000;
 
@@ -115,12 +117,28 @@ const HomeView = React.createClass({
     var mileage = await vehicle.getMileage(vin);
 
     if (mileage) {
-      var units = 'm';
+      var units = 'km';
       mileage += units;
 
       this.setState({mileage});
     } else {
       this.setState({mileage: 'error'});
+    }
+  },
+
+  async loadUsage() {
+    var vehicle = new Vehicle();
+
+    const vin = store.getState().get("carInstallation").get("vin");
+    var trips = await vehicle.getTrips(vin);
+
+    if (trips) {
+      // temporarily set to first trip
+      var trip = trips[0].meters_travelled + ' km';
+
+      this.setState({trips: trip});
+    } else {
+      this.setState({trips: ['error']});
     }
   },
 
@@ -234,7 +252,7 @@ const HomeView = React.createClass({
                 <H3 style={{fontWeight: "bold", color: actionColor}}>{loc.home.usage}</H3>
                 <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
                 <H3>{usageAction}</H3>
-                <Text>{usageDescription}</Text>
+                <Text>{this.state.trips}</Text>
               </View>
               <View style={styles.dataAction}>
                 <Button transparent onPress={() => this.props.pushRoute({key: 'Usage', title: loc.home.usage})}>
