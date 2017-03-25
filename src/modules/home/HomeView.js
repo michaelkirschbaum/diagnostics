@@ -57,12 +57,12 @@ const HomeView = React.createClass({
   componentDidMount() {
     var that = this;
 
-    var interval = 300000;
+    var interval = 60000;
 
     that.loadAlerts().done();
     setInterval(function() {
       that.loadUsage().done();
-    });
+    }, interval);
     that.loadVehicle().done();
 
     // update odometer while not 'in trip'
@@ -147,7 +147,7 @@ const HomeView = React.createClass({
     var mileage = await vehicle.getMileage();
 
     if (mileage) {
-      var units = 'km';
+      var units = ' miles';
       mileage += units;
 
       this.setState({mileage});
@@ -164,7 +164,7 @@ const HomeView = React.createClass({
 
     if (trips) {
       // temporarily set to first trip
-      var trip = trips[trips.length - 1].meters_travelled + ' km';
+      var trip = trips[trips.length - 1].meters_travelled + ' miles';
 
       this.setState({trips: trip});
     } else {
