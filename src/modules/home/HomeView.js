@@ -57,7 +57,7 @@ const HomeView = React.createClass({
   componentDidMount() {
     var that = this;
 
-    var interval = 60000;
+    var interval = 300000;
 
     that.loadAlerts().done();
     that.loadUsage().done();
