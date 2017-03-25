@@ -60,6 +60,8 @@ const HomeView = React.createClass({
     var interval = 60000;
 
     that.loadAlerts().done();
+    that.loadUsage().done();
+
     setInterval(function() {
       that.loadUsage().done();
     }, interval);
@@ -88,8 +90,6 @@ const HomeView = React.createClass({
     // this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
     // this.props.switchRoute('Overview');
     // this.props.switchRoute(2);
-
-    this.setModalVisible(true);
   },
 
   // Forward setNativeProps to a child
@@ -164,7 +164,11 @@ const HomeView = React.createClass({
 
     if (trips) {
       // temporarily set to first trip
-      var trip = trips[trips.length - 1].meters_travelled + ' miles';
+      var trip = trips[trips.length - 1].meters_travelled;
+
+      // convert to miles
+      trip = (parseInt(trip) / 1609.34).toFixed(2);
+      trip = trip.toString() + ' miles';
 
       this.setState({trips: trip});
     } else {
@@ -176,6 +180,7 @@ const HomeView = React.createClass({
     var vehicle = new Vehicle();
 
     const vin = store.getState().get("carInstallation").get("vin");
+
     vehicle.setMileage(vin, mileage);
 
     this.setModalVisible(false);
@@ -190,7 +195,7 @@ const HomeView = React.createClass({
     var mileage = await vehicle.getMileage();
 
     if (mileage) {
-      var units = 'km';
+      var units = ' miles';
       mileage += units;
 
       this.setState({mileage});
