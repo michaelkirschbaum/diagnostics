@@ -164,7 +164,7 @@ const HomeView = React.createClass({
 
     if (trips) {
       // temporarily set to first trip
-      var trip = trips[0].meters_travelled + ' km';
+      var trip = trips[trips.length - 1].meters_travelled + ' km';
 
       this.setState({trips: trip});
     } else {
