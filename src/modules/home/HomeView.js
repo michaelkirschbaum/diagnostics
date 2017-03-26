@@ -57,7 +57,7 @@ const HomeView = React.createClass({
   componentDidMount() {
     var that = this;
 
-    var interval = 300000;
+    var interval = 60000;
 
     that.loadAlerts().done();
     that.loadUsage().done();
@@ -180,6 +180,9 @@ const HomeView = React.createClass({
     var vehicle = new Vehicle();
 
     const vin = store.getState().get("carInstallation").get("vin");
+
+    //convert to meters
+    var meters = mileage * 1609.34;
 
     vehicle.setMileage(vin, mileage);
 
