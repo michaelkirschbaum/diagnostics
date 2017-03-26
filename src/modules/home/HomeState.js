@@ -41,7 +41,9 @@ export function invalidateOdometer() {
 }
 
 export function fetchOdometer() {
-  return function(dispatch) {};
+  return function(dispatch) {
+    dispath(requestOdometer());
+  };
 }
 
 // reducer
