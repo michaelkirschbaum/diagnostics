@@ -2,6 +2,7 @@ import {connect} from 'react-redux';
 import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted} from '../navigation/NavigationState';
 import HomeView from './HomeView';
 import {Map} from 'immutable';
+import fetch from 'isomorphic-fetch';
 
 const initialState = Map({
   odometer: {
@@ -52,13 +53,19 @@ export default function odometer(state = initialState, action) {
       });
 
     case RECEIVE_ODOMETER:
-      return state;
+      return Object.assign({}, state, {
+        isFetching: false,
+        didInvalidate: false,
+        meters: action.meters
+      });
 
     case REJECT_ODOMETER:
-      return state;
+      return Object.assign({}, state, {});
 
     case INVALIDATE_ODOMETER:
-      return state;
+      return Object.assign({}, state, {
+        didInvalidate: true
+      });
 
     default:
       return state;
