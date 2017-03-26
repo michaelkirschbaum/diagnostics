@@ -15,6 +15,7 @@ const initialState = Map({
 const REQUEST_ODOMETER = 'GET_ODOMETER';
 const RECEIVE_ODOMETER = 'RECEIVE_ODOMETER';
 const REJECT_ODOMETER = 'REJECT_ODOMETER';
+const INVALIDATE_ODOMETER= 'INVALIDATE_ODOMETER';
 
 // action creators
 export function requestOdometer() {
@@ -35,16 +36,28 @@ export function rejectOdometer() {
   }
 }
 
+export function invalidateOdometer() {
+  return {
+    type: INVALIDATE_ODOMETER
+  }
+}
+
 // reducer
 export default function odometer(state = initialState, action) {
   switch(action.type) {
     case REQUEST_ODOMETER:
-      return state;
+      return Object.assign({}, state, {
+        isFetching: true,
+        didInvalidate: false
+      });
 
     case RECEIVE_ODOMETER:
       return state;
 
     case REJECT_ODOMETER:
+      return state;
+
+    case INVALIDATE_ODOMETER:
       return state;
 
     default:
