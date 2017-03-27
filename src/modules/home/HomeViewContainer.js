@@ -6,6 +6,7 @@ import {fetchOdometer} from './HomeState';
 export default connect(
   state => ({
     navigationState: state.get('navigationState').toJS(),
+    home: state.get('home').toJS()
   }),
   dispatch => ({
     switchRoute(index) {
