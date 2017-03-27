@@ -287,8 +287,14 @@ RCT_REMAP_METHOD(clickButton,
                  clickButtonResolver:(RCTPromiseResolveBlock)resolve
                  clickButtonRejecter:(RCTPromiseRejectBlock)reject)
 {
-  [[CFPCore sharedInstance] simulatePushButton];
-  resolve(nil);
+  [[[CFPCore sharedInstance] appPushButton] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
+    if (task.error) {
+      reject(@"appPushButton", task.error.localizedDescription, task.error);
+    } else {
+      resolve(task.result);
+    }
+    return nil;
+  }];
 }
 
 // RCT_EXPORT_METHOD(updateDistance) {}
