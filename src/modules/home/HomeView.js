@@ -147,12 +147,12 @@ const HomeView = React.createClass({
     var mileage = await vehicle.getMileage();
 
     if (mileage) {
-      var units = ' miles';
+      var units = ' m';
       mileage += units;
 
       this.setState({mileage});
     } else {
-      this.setState({mileage: 'error'});
+      this.loadMileage(vehicle);
     }
   },
 
@@ -195,7 +195,7 @@ const HomeView = React.createClass({
     var mileage = await vehicle.getMileage();
 
     if (mileage) {
-      var units = ' miles';
+      var units = 'm';
       mileage += units;
 
       this.setState({mileage});

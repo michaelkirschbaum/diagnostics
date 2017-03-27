@@ -42,7 +42,7 @@ export default class Vehicle {
   async getMileage() {
     try {
       var vehicle = await this.manager.vehicleVinGet(this.vin);
-      var mileage = (vehicle["current_meters"] / 1609.34).toFixed(2);
+      var mileage = vehicle["current_meters"];
 
       return mileage.toString();
     } catch (e) {
