@@ -20,6 +20,7 @@ export function requestOdometer() {
   return {
     type: REQUEST_ODOMETER
   }
+}
 
 export function receiveOdometer(meters) {
   return {
