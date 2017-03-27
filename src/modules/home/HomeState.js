@@ -1,5 +1,5 @@
 import {Map} from 'immutable';
-import fetch from 'isomorphic-fetch';
+import Vehicle from '../../carfit/vehicle';
 
 const initialState = Map({
   odometer: {
@@ -43,12 +43,27 @@ export function invalidateOdometer() {
 
 export function fetchOdometer() {
   return function(dispatch) {
-    dispath(requestOdometer());
-  };
+    var vin = store.getState().get("carInstallation").get("vin");
+    var vehicle = new Vehicle(vin);
+
+    dispatch(requestOdometer());
+
+    // call api for odometer value
+    var odometer_value = await vehicle.getMileage();
+
+    // dispatch received value
+    if (odometer_value) {
+      dispatch(receiveOdometer(odometer_value));
+    }
+    // dispatch error
+    else {
+      dispatch(rejectOdometer());
+    }
+  }
 }
 
-// reducer
-export default function odometer(state = initialState, action) {
+// reducers
+export default function odometerReducer(state = initialState, action) {
   switch(action.type) {
     case REQUEST_ODOMETER:
       return Object.assign({}, state, {

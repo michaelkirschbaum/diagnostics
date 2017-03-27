@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
 import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted} from '../navigation/NavigationState';
 import HomeView from './HomeView';
+import {fetchOdometer} from './HomeState';
 
 export default connect(
   state => ({
@@ -22,5 +23,8 @@ export default connect(
     closeDrawer() {
       dispatch(closeDrawer());
     },
+    fetchOdometer() {
+      dispatch(fetchOdometer());
+    }
   })
 )(HomeView);
