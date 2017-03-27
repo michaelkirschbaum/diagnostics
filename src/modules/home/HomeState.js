@@ -42,7 +42,7 @@ export function invalidateOdometer() {
 }
 
 export function fetchOdometer() {
-  return function(dispatch) {
+  return async function(dispatch) {
     var vin = store.getState().get("carInstallation").get("vin");
     var vehicle = new Vehicle(vin);
 
@@ -62,8 +62,8 @@ export function fetchOdometer() {
   }
 }
 
-// reducers
-export default function odometerReducer(state = initialState, action) {
+// reducer
+export default function HomeReducer(state = initialState, action) {
   switch(action.type) {
     case REQUEST_ODOMETER:
       return Object.assign({}, state, {

@@ -84,6 +84,8 @@ const HomeView = React.createClass({
         that.loadMileage(vehicle).done();
       }, interval)
     ); */
+
+    console.log(store.getState());
   },
 
   onNextPress() {
