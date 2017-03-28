@@ -11,7 +11,7 @@ export default class Login {
 
   auth0(domain, token) {
     try {
-      var response = this.manager.authenticateAuth0(domain, token['idToken']);
+      var response = this.manager.authenticateAuth0(domain, token);
 
       return response;
     } catch (e) {
