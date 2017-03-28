@@ -210,7 +210,6 @@ const HomeView = React.createClass({
         var units = ' km';
 
         distance = distance + units;
-        meters = meters.toString() + units;
       }
 
       // request is failing
