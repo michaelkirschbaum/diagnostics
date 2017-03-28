@@ -27,7 +27,8 @@ import {
   H2,
   H1,
   List,
-  ListItem
+  ListItem,
+  Card
 } from 'native-base';
 import colors from '../../config/colors';
 import loc from '../../config/localization';
@@ -362,9 +363,17 @@ const HomeView = React.createClass({
                 transparent={true}
                 visible={this.state.modalVisible}
                 onRequestClose={() => {alert("Modal has been closed.")}}
-              >{this.renderOdometerUpdate()}<Button
-                  onPress={() => this.setOdometer(this.state.meters)}
-                >Submit</Button>
+                >{this.renderOdometerUpdate()}
+
+                <Container>
+                  <Content>
+                    <Card>
+                      <Button
+                        onPress={() => this.setOdometer(this.state.meters)}
+                      >Submit</Button>
+                    </Card>
+                  </Content>
+                </Container>
               </Modal>
             </View>
 
