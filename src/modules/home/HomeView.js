@@ -84,8 +84,6 @@ const HomeView = React.createClass({
         that.loadMileage(vehicle).done();
       }, interval)
     ); */
-
-    console.log(store.getState());
   },
 
   onNextPress() {
@@ -189,17 +187,33 @@ const HomeView = React.createClass({
     }
   },
 
-  setOdometer(mileage) {
+  // accepts string
+  setOdometer(distance) {
     const vin = store.getState().get("carInstallation").get("vin");
-
     var vehicle = new Vehicle(vin);
 
-    //convert to meters
-    var meters = mileage * 1609.34;
+    // set odometer
+    var region = NativeModules.SettingsManager.settings.AppleLocale;
 
-    vehicle.setMileage(vin, mileage);
+    if (region == 'en_US') {
+      var meters = Math.round(parseInt(distance) * 1609.34);
+      vehicle.setMileage(vin, meters);
 
-    this.loadMileage(vehicle);
+      var units = ' mi';
+      distance = distance + units;
+    } else if (region == 'en_GB'){
+      // handle british miles
+    } else {
+      var meters = Math.round(parseInt(distance) * 1000);
+      vehicle.setMileage(vin, meters);
+
+      var units = ' km';
+      distance = distance + units;
+      meters = meters.toString() + units;
+    }
+
+    // accept promise?
+    this.setState({meters: distance});
 
     this.setModalVisible(false);
   },
@@ -270,13 +284,13 @@ const HomeView = React.createClass({
       return <Input
         ref='mileageInput'
         placeholder={loc.home.mileage}
-        onChangeText={(text) => this.setState({mileage: text})}
+        onChangeText={(text) => this.setState({meters: text})}
       />
     } else {
       return <Input
         ref='mileageInput'
         placeholder={loc.home.kilometrage}
-        onChangeText={(text) => this.setState({mileage: text})}
+        onChangeText={(text) => this.setState({meters: text})}
       />
     }
   },
@@ -344,11 +358,8 @@ const HomeView = React.createClass({
                 transparent={false}
                 visible={this.state.modalVisible}
                 onRequestClose={() => {alert("Modal has been closed.")}}
-              >
-                {this.renderOdometerUpdate()}
-
-                <Button
-                  onPress={() => this.setOdometer(this.state.mileage)}
+              >{this.renderOdometerUpdate()}<Button
+                  onPress={() => this.setOdometer(this.state.meters)}
                 >Submit</Button>
               </Modal>
             </View>
