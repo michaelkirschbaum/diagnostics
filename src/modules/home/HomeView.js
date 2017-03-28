@@ -138,7 +138,7 @@ const HomeView = React.createClass({
         console.error(e);
       }
     } else {
-      this.setState({alert: 'error'});
+      this.loadAlerts();
     }
   },
 
@@ -183,7 +183,7 @@ const HomeView = React.createClass({
 
       this.setState({trips: trip});
     } else {
-      this.setState({trips: ['error']});
+      this.loadUsage();
     }
   },
 
@@ -209,7 +209,7 @@ const HomeView = React.createClass({
       var region = NativeModules.SettingsManager.settings.AppleLocale;
 
       if (region == 'en_US') {
-        var units = ' miles';
+        var units = ' mi';
         var meters = Math.round(meters / 1609.34);
         meters = meters.toString() + units;
       } else if (region == 'en_GB'){
