@@ -188,34 +188,39 @@ const HomeView = React.createClass({
   },
 
   // accepts string
-  setOdometer(distance) {
+  async setOdometer(distance) {
     const vin = store.getState().get("carInstallation").get("vin");
     var vehicle = new Vehicle(vin);
 
-    // set odometer
-    var region = NativeModules.SettingsManager.settings.AppleLocale;
+    if (isNaN(distance))
+      this.setModalVisible(false);
+    else {
+      // set odometer
+      var region = NativeModules.SettingsManager.settings.AppleLocale;
 
-    if (region == 'en_US') {
-      var meters = Math.round(parseInt(distance) * 1609.34);
+      if (region == 'en_US') {
+        var meters = Math.round(parseInt(distance) * 1609.34);
+        var units = ' mi';
+
+        distance = distance + units;
+      } else if (region == 'en_GB'){
+        // handle british miles
+      } else {
+        var meters = Math.round(parseInt(distance) * 1000);
+        var units = ' km';
+
+        distance = distance + units;
+        meters = meters.toString() + units;
+      }
+
+      // request is failing
       vehicle.setMileage(vin, meters);
 
-      var units = ' mi';
-      distance = distance + units;
-    } else if (region == 'en_GB'){
-      // handle british miles
-    } else {
-      var meters = Math.round(parseInt(distance) * 1000);
-      vehicle.setMileage(vin, meters);
+      // accept promise?
+      this.setState({meters: distance});
 
-      var units = ' km';
-      distance = distance + units;
-      meters = meters.toString() + units;
-    }
-
-    // accept promise?
-    this.setState({meters: distance});
-
-    this.setModalVisible(false);
+      this.setModalVisible(false);
+      }
   },
 
   async loadVehicle() {

@@ -31,11 +31,11 @@ export default class Vehicle {
     }
   }
 
-  setMileage(vin, distance) {
+  async setMileage(vin, distance) {
     try {
-      var response = this.manager.vehicleVinPut(vin, {"current_meters": distance});
+      var response = await this.manager.vehicleVinPut(vin, {"current_meters": distance});
     } catch (e) {
-      console.error(e);
+      return null;
     }
   }
 
