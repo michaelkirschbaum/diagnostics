@@ -208,7 +208,6 @@ const HomeView = React.createClass({
     if (meters) {
       var region = NativeModules.SettingsManager.settings.AppleLocale;
 
-
       if (region == 'en_US') {
         var units = ' miles';
         var meters = Math.round(meters / 1609.34);
@@ -257,6 +256,22 @@ const HomeView = React.createClass({
   renderPhoto() {
     if (this.state.photo !== '')
       return <Image source={{uri: this.state.photo}}/>;
+  },
+
+  renderOdometerUpdate() {
+    if (NativeModules.SettingsManager.settings.AppleLocale == 'en_US') {
+      return <Input
+        ref='mileageInput'
+        placeholder={loc.home.mileage}
+        onChangeText={(text) => this.setState({mileage: text})}
+      />
+    } else {
+      return <Input
+        ref='mileageInput'
+        placeholder={loc.home.kilometrage}
+        onChangeText={(text) => this.setState({mileage: text})}
+      />
+    }
   },
 
   render() {
@@ -323,11 +338,7 @@ const HomeView = React.createClass({
                 visible={this.state.modalVisible}
                 onRequestClose={() => {alert("Modal has been closed.")}}
               >
-                <Input
-                  ref='mileageInput'
-                  placeholder={loc.home.mileage}
-                  onChangeText={(text) => this.setState({mileage: text})}
-                />
+                {this.renderOdometerUpdate()}
 
                 <Button
                   onPress={() => this.setOdometer(this.state.mileage)}
