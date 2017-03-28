@@ -359,7 +359,7 @@ const HomeView = React.createClass({
             <View>
               <Modal
                 animationType={"none"}
-                transparent={false}
+                transparent={true}
                 visible={this.state.modalVisible}
                 onRequestClose={() => {alert("Modal has been closed.")}}
               >{this.renderOdometerUpdate()}<Button
