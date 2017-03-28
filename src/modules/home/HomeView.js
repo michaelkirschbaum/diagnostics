@@ -151,12 +151,10 @@ const HomeView = React.createClass({
     if (meters) {
       var region = NativeModules.SettingsManager.settings.AppleLocale;
 
-      if (region == 'en_US') {
+      if (region == 'en_US' || region == 'en_GB') {
         var units = ' mi';
         var meters = Math.round(meters / 1609.34);
         meters = meters.toString() + units;
-      } else if (region == 'en_GB') {
-        // handle british miles
       } else {
         var units = ' km';
         var meters = Math.round(meters / 1000);
@@ -200,14 +198,11 @@ const HomeView = React.createClass({
       // set odometer
       var region = NativeModules.SettingsManager.settings.AppleLocale;
 
-      if (region == 'en_US') {
+      if (region == 'en_US' || region == 'en_GB') {
         var meters = Math.round(parseInt(distance) * 1609.34);
         var units = ' mi';
 
         distance = distance + units;
-      } else if (region == 'en_GB'){
-        // handle british miles
-      } else {
         var meters = Math.round(parseInt(distance) * 1000);
         var units = ' km';
 
@@ -235,12 +230,10 @@ const HomeView = React.createClass({
     if (meters) {
       var region = NativeModules.SettingsManager.settings.AppleLocale;
 
-      if (region == 'en_US') {
+      if (region == 'en_US' || region == 'en_GB') {
         var units = ' mi';
         var meters = Math.round(meters / 1609.34);
         meters = meters.toString() + units;
-      } else if (region == 'en_GB'){
-        // handle british miles
       } else {
         var units = ' km';
         var meters = Math.round(meters / 1000);
