@@ -64,7 +64,7 @@ const CarInstallationStateView = React.createClass({
           {cancellable: false}
         );
 
-        this.props.pushRoute({key: 'Overview', title: ''});
+        this.props.pushRoute({key: 'CarPhoto', title: ''});
       }
       else {
         Alert.alert(
@@ -98,7 +98,7 @@ const CarInstallationStateView = React.createClass({
           {cancellabe: false}
         );
 
-        this.props.pushRoute({key: 'Overview', title: ''});
+        this.props.pushRoute({key: 'CarPhoto', title: ''});
       }
       else {
         Alert.alert(
