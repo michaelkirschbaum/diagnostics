@@ -28,7 +28,8 @@ import {
   H1,
   List,
   ListItem,
-  Card
+  Card,
+  CardItem
 } from 'native-base';
 import colors from '../../config/colors';
 import loc from '../../config/localization';
@@ -362,15 +363,16 @@ const HomeView = React.createClass({
                 animationType={"none"}
                 transparent={true}
                 visible={this.state.modalVisible}
-                onRequestClose={() => {alert("Modal has been closed.")}}
-                >{this.renderOdometerUpdate()}
+                onRequestClose={() => {alert("Modal has been closed.")}}>
 
                 <Container>
                   <Content>
                     <Card>
-                      <Button
+                      {this.renderOdometerUpdate()}
+
+                      <Button block
                         onPress={() => this.setOdometer(this.state.meters)}
-                      >Submit</Button>
+                      >Save Changes</Button>
                     </Card>
                   </Content>
                 </Container>
@@ -527,6 +529,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  modal: {
+
   }
 });
 
