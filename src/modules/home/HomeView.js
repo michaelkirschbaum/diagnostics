@@ -44,7 +44,7 @@ const HomeView = React.createClass({
     return {
       alert: '',
       modalVisible: false,
-      mileage: '',
+      meters: '',
       trips: [],
       title: '',
       description: '',
@@ -144,13 +144,24 @@ const HomeView = React.createClass({
 
   async loadMileage(vehicle) {
     // load mileage
-    var mileage = await vehicle.getMileage();
+    var meters = await vehicle.getMileage();
 
-    if (mileage) {
-      var units = ' m';
-      mileage += units;
+    if (meters) {
+      var region = NativeModules.SettingsManager.settings.AppleLocale;
 
-      this.setState({mileage});
+      if (region == 'en_US') {
+        var units = ' mi';
+        var meters = Math.round(meters / 1609.34);
+        meters = meters.toString() + units;
+      } else if (region == 'en_GB') {
+        // handle british miles
+      } else {
+        var units = ' km';
+        var meters = Math.round(meters / 1000);
+        meters = meters.toString() + units;
+      }
+
+      this.setState({meters});
     } else {
       this.loadMileage(vehicle);
     }
@@ -192,15 +203,27 @@ const HomeView = React.createClass({
     var vehicle = new Vehicle(vin);
 
     // load meters
-    var mileage = await vehicle.getMileage();
+    var meters = await vehicle.getMileage();
 
-    if (mileage) {
-      var units = 'm';
-      mileage += units;
+    if (meters) {
+      var region = NativeModules.SettingsManager.settings.AppleLocale;
 
-      this.setState({mileage});
+
+      if (region == 'en_US') {
+        var units = ' miles';
+        var meters = Math.round(meters / 1609.34);
+        meters = meters.toString() + units;
+      } else if (region == 'en_GB'){
+        // handle british miles
+      } else {
+        var units = ' km';
+        var meters = Math.round(meters / 1000);
+        meters = meters.toString() + units;
+      }
+
+      this.setState({meters});
     } else {
-      console.log("mileage not loaded");
+      this.loadMileage(vehicle);
     }
 
     // load title
@@ -281,7 +304,7 @@ const HomeView = React.createClass({
                       style={styles.milesButton}
                       textStyle={{color: colors.textPrimary}}
                       onPress={() => this.setModalVisible(true)}
-              >{this.state.mileage}</Button>
+              >{this.state.meters}</Button>
             </View>
 
             <View style={{
