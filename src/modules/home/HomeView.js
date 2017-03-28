@@ -190,14 +190,16 @@ const HomeView = React.createClass({
   },
 
   setOdometer(mileage) {
-    var vehicle = new Vehicle();
-
     const vin = store.getState().get("carInstallation").get("vin");
+
+    var vehicle = new Vehicle(vin);
 
     //convert to meters
     var meters = mileage * 1609.34;
 
     vehicle.setMileage(vin, mileage);
+
+    this.loadMileage(vehicle);
 
     this.setModalVisible(false);
   },
