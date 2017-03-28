@@ -42,9 +42,8 @@ export default class Vehicle {
   async getMileage() {
     try {
       var vehicle = await this.manager.vehicleVinGet(this.vin);
-      var mileage = vehicle["current_meters"];
 
-      return mileage;
+      return vehicle["current_meters"];
     } catch (e) {
       return null;
     }
