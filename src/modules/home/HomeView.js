@@ -149,7 +149,10 @@ const HomeView = React.createClass({
     var meters = await vehicle.getMileage();
 
     if (meters) {
-      var region = NativeModules.SettingsManager.settings.AppleLocale;
+      if (React.Platform.OS === 'android')
+        console.error("Unable to get locale.");
+      else
+        var region = NativeModules.SettingsManager.settings.AppleLocale;
 
       if (region == 'en_US' || region == 'en_GB') {
         var units = ' mi';
@@ -196,7 +199,10 @@ const HomeView = React.createClass({
       this.setModalVisible(false);
     else {
       // set odometer
-      var region = NativeModules.SettingsManager.settings.AppleLocale;
+      if (React.Platform.OS === 'android')
+        console.error("Unable to get locale.");
+      else
+        var region = NativeModules.SettingsManager.settings.AppleLocale;
 
       if (region == 'en_US' || region == 'en_GB') {
         var meters = Math.round(parseInt(distance) * 1609.34);
@@ -228,7 +234,10 @@ const HomeView = React.createClass({
     var meters = await vehicle.getMileage();
 
     if (meters) {
-      var region = NativeModules.SettingsManager.settings.AppleLocale;
+      if (React.Platform.OS === 'android')
+        console.error("Unable to get locale.");
+      else
+        var region = NativeModules.SettingsManager.settings.AppleLocale;
 
       if (region == 'en_US' || region == 'en_GB') {
         var units = ' mi';
