@@ -49,7 +49,7 @@
 
 - (void) didFailToConnectDevice:(NSError *) error {
   if (self.connectBLEDeviceAsyncRejectBlock) {
-    self.connectBLEDeviceAsyncRejectBlock(@"error", @"error", error);
+    self.connectBLEDeviceAsyncRejectBlock(@"BLEDeviceConnectionFailed", error.localizedDescription, error);
     self.connectBLEDeviceAsyncRejectBlock = nil;
   }
 }
@@ -189,7 +189,7 @@ RCT_EXPORT_METHOD(onBoardVehicleWithVIN:(NSString *) vin
   }];
 }
 
-RCT_REMAP_METHOD(authenticateAuth0, authenticate:(NSString *) domain withToken:(NSString *) token
+RCT_REMAP_METHOD(authenticateAuth0, authenticate:(NSString *) domain withToken:(NSDictionary *) token
                   authenticateLockResolver:(RCTPromiseResolveBlock)resolve
                   authenticateLockRejecter:(RCTPromiseRejectBlock)reject)
 {
