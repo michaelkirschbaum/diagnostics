@@ -10,7 +10,8 @@ import {
   Linking,
   AsyncStorage,
   NativeEventEmitter,
-  NativeModules
+  NativeModules,
+  Platform
 } from 'react-native';
 import {
   Container,
@@ -153,7 +154,7 @@ const HomeView = React.createClass({
     var meters = await vehicle.getMileage();
 
     if (meters) {
-      if (React.Platform.OS === 'android')
+      if (Platform.OS === 'android')
         console.error("Unable to get locale.");
       else
         var region = NativeModules.SettingsManager.settings.AppleLocale;
@@ -203,7 +204,7 @@ const HomeView = React.createClass({
       this.setModalVisible(false);
     else {
       // set odometer
-      if (React.Platform.OS === 'android')
+      if (Platform.OS === 'android')
         console.error("Unable to get locale.");
       else
         var region = NativeModules.SettingsManager.settings.AppleLocale;
@@ -238,7 +239,7 @@ const HomeView = React.createClass({
     var meters = await vehicle.getMileage();
 
     if (meters) {
-      if (React.Platform.OS === 'android')
+      if (Platform.OS === 'android')
         console.error("Unable to get locale.");
       else
         var region = NativeModules.SettingsManager.settings.AppleLocale;
