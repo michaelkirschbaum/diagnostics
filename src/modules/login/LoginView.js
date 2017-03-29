@@ -105,7 +105,7 @@ const LoginView = React.createClass({
                   <Button rounded
                           style={{alignSelf: 'auto'}}
                           textStyle={{color: colors.textPrimary}}
-                          onPress={this.onNextPress}
+                          onPress={this.continue}
                   >{loc.general.continue}</Button>
                 </View>
               </Footer>

@@ -135,11 +135,13 @@ const InstallationView = React.createClass({
               <View style={styles.instructionsContainer}>
                 <Text style={{marginTop: 17, textAlign: "left"}}>{loc.instructions.selectBLE}</Text>
                 <List dataArray={items}
-                      style={{width: windowWidth - 40, marginTop: 25}}
+                      style={{width: windowWidth - 40, marginTop: 10}}
                       renderRow={(item) =>
                             <ListItem>
-                                <Text onPress={() => this.onNextPress(item.identifier)}>{item.name} <Signal strength={item.signal}/>
-                                </Text>
+                              <View style={styles.row}>
+                                <Text onPress={() => this.onNextPress(item.identifier)}>{item.name}</Text>
+                                <Signal strength={item.signal}/>
+                              </View>
                             </ListItem>
                         }>
                 </List>
@@ -209,7 +211,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  signal: {},
+  row: {
+    height: 30,
+    marginTop: 0,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  }
 });
 
 export default InstallationView;

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Image} from 'react-native';
+import {Image, StyleSheet} from 'react-native';
 
 class Signal extends Component {
   render() {
@@ -8,21 +8,27 @@ class Signal extends Component {
     // signal increases as strength approaches 0
     if (strength <= .25)
       return(
-        <Image source={require('../../images/icons/wifi0.png')} resizeMode='center'/>
+        <Image style={styles.icon} source={require('../../images/icons/wifi0.png')}/>
       );
     else if (strength <= .50)
       return(
-        <Image source={require('../../images/icons/wifi1.png')} resizeMode='center'/>
+        <Image style={styles.icon} source={require('../../images/icons/wifi1.png')}/>
       );
     else if (strength <= .75)
       return(
-        <Image source={require('../../images/icons/wifi2.png')} resizeMode='center'/>
+        <Image style={styles.icon} source={require('../../images/icons/wifi2.png')}/>
       );
     else
       return(
-        <Image source={require('../../images/icons/wifi3.png')} resizeMode='center'/>
+        <Image style={styles.icon} source={require('../../images/icons/wifi3.png')}/>
       );
   };
 }
+
+const styles = StyleSheet.create({
+  icon: {
+    resizeMode: 'center',
+  }
+});
 
 export default Signal;
