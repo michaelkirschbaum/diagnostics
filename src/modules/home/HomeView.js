@@ -41,7 +41,6 @@ import Vehicle from '../../carfit/vehicle';
 import store from '../../redux/store';
 import createFragment from 'react-addons-create-fragment';
 const {CarFitManager} = NativeModules;
-import Connection from '../../carfit/connection';
 
 const HomeView = React.createClass({
   getInitialState() {
@@ -94,9 +93,6 @@ const HomeView = React.createClass({
     // this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
     // this.props.switchRoute('Overview');
     // this.props.switchRoute(2);
-    var conn = new Connection();
-
-    conn.simulateButtonClick();
   },
 
   // Forward setNativeProps to a child
@@ -145,7 +141,7 @@ const HomeView = React.createClass({
         console.error(e);
       }
     } else {
-      this.loadAlerts();
+      this.setState({alert: ''});
     }
   },
 
@@ -191,7 +187,7 @@ const HomeView = React.createClass({
 
       this.setState({trips: trip});
     } else {
-      this.loadUsage();
+      this.setState({trips: ''});
     }
   },
 
@@ -212,20 +208,23 @@ const HomeView = React.createClass({
       if (region == 'en_US' || region == 'en_GB') {
         var meters = Math.round(parseInt(distance) * 1609.34);
         var units = ' mi';
+
         distance = distance + units;
-      } else
+      } else {
         var meters = Math.round(parseInt(distance) * 1000);
         var units = ' km';
+
         distance = distance + units;
       }
 
+      // request is failing
       vehicle.setMileage(vin, meters);
 
       // accept promise?
       this.setState({meters: distance});
 
       this.setModalVisible(false);
-      }
+    }
   },
 
   async loadVehicle() {
