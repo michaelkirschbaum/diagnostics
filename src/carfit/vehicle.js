@@ -31,20 +31,19 @@ export default class Vehicle {
     }
   }
 
-  setMileage(vin, distance) {
+  async setMileage(vin, distance) {
     try {
-      var response = this.manager.vehicleVinPut(vin, {"current_meters": distance});
+      var response = await this.manager.vehicleVinPut(vin, {"current_meters": distance});
     } catch (e) {
-      console.error(e);
+      return null;
     }
   }
 
   async getMileage() {
     try {
       var vehicle = await this.manager.vehicleVinGet(this.vin);
-      var mileage = (vehicle["current_meters"] / 1609.34).toFixed(2);
 
-      return mileage.toString();
+      return vehicle["current_meters"];
     } catch (e) {
       return null;
     }

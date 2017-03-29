@@ -27,7 +27,9 @@ import {
   H2,
   H1,
   List,
-  ListItem
+  ListItem,
+  Card,
+  CardItem
 } from 'native-base';
 import colors from '../../config/colors';
 import loc from '../../config/localization';
@@ -45,7 +47,7 @@ const HomeView = React.createClass({
     return {
       alert: '',
       modalVisible: false,
-      mileage: '',
+      meters: '',
       trips: [],
       title: '',
       description: '',
@@ -58,7 +60,7 @@ const HomeView = React.createClass({
   componentDidMount() {
     var that = this;
 
-    var interval = 300000;
+    var interval = 60000;
 
     that.loadAlerts().done();
     that.loadUsage().done();
@@ -142,21 +144,33 @@ const HomeView = React.createClass({
         console.error(e);
       }
     } else {
-      this.setState({alert: 'error'});
+      this.loadAlerts();
     }
   },
 
   async loadMileage(vehicle) {
     // load mileage
-    var mileage = await vehicle.getMileage();
+    var meters = await vehicle.getMileage();
 
-    if (mileage) {
-      var units = ' miles';
-      mileage += units;
+    if (meters) {
+      if (React.Platform.OS === 'android')
+        console.error("Unable to get locale.");
+      else
+        var region = NativeModules.SettingsManager.settings.AppleLocale;
 
-      this.setState({mileage});
+      if (region == 'en_US' || region == 'en_GB') {
+        var units = ' mi';
+        var meters = Math.round(meters / 1609.34);
+        meters = meters.toString() + units;
+      } else {
+        var units = ' km';
+        var meters = Math.round(meters / 1000);
+        meters = meters.toString() + units;
+      }
+
+      this.setState({meters});
     } else {
-      this.setState({mileage: 'error'});
+      this.loadMileage(vehicle);
     }
   },
 
@@ -176,18 +190,43 @@ const HomeView = React.createClass({
 
       this.setState({trips: trip});
     } else {
-      this.setState({trips: ['error']});
+      this.loadUsage();
     }
   },
 
-  setOdometer(mileage) {
-    var vehicle = new Vehicle();
-
+  // accepts string
+  async setOdometer(distance) {
     const vin = store.getState().get("carInstallation").get("vin");
+    var vehicle = new Vehicle(vin);
 
-    vehicle.setMileage(vin, mileage);
+    if (isNaN(distance))
+      this.setModalVisible(false);
+    else {
+      // set odometer
+      if (React.Platform.OS === 'android')
+        console.error("Unable to get locale.");
+      else
+        var region = NativeModules.SettingsManager.settings.AppleLocale;
 
-    this.setModalVisible(false);
+      if (region == 'en_US' || region == 'en_GB') {
+        var meters = Math.round(parseInt(distance) * 1609.34);
+        var units = ' mi';
+
+        distance = distance + units;
+        var meters = Math.round(parseInt(distance) * 1000);
+        var units = ' km';
+
+        distance = distance + units;
+      }
+
+      // request is failing
+      vehicle.setMileage(vin, meters);
+
+      // accept promise?
+      this.setState({meters: distance});
+
+      this.setModalVisible(false);
+      }
   },
 
   async loadVehicle() {
@@ -196,15 +235,27 @@ const HomeView = React.createClass({
     var vehicle = new Vehicle(vin);
 
     // load meters
-    var mileage = await vehicle.getMileage();
+    var meters = await vehicle.getMileage();
 
-    if (mileage) {
-      var units = ' miles';
-      mileage += units;
+    if (meters) {
+      if (React.Platform.OS === 'android')
+        console.error("Unable to get locale.");
+      else
+        var region = NativeModules.SettingsManager.settings.AppleLocale;
 
-      this.setState({mileage});
+      if (region == 'en_US' || region == 'en_GB') {
+        var units = ' mi';
+        var meters = Math.round(meters / 1609.34);
+        meters = meters.toString() + units;
+      } else {
+        var units = ' km';
+        var meters = Math.round(meters / 1000);
+        meters = meters.toString() + units;
+      }
+
+      this.setState({meters});
     } else {
-      console.log("mileage not loaded");
+      this.loadMileage(vehicle);
     }
 
     // load title
@@ -238,6 +289,22 @@ const HomeView = React.createClass({
   renderPhoto() {
     if (this.state.photo !== '')
       return <Image source={{uri: this.state.photo}}/>;
+  },
+
+  renderOdometerUpdate() {
+    if (NativeModules.SettingsManager.settings.AppleLocale == 'en_US') {
+      return <Input
+        ref='mileageInput'
+        placeholder={loc.home.mileage}
+        onChangeText={(text) => this.setState({meters: text})}
+      />
+    } else {
+      return <Input
+        ref='mileageInput'
+        placeholder={loc.home.kilometrage}
+        onChangeText={(text) => this.setState({meters: text})}
+      />
+    }
   },
 
   render() {
@@ -285,7 +352,7 @@ const HomeView = React.createClass({
                       style={styles.milesButton}
                       textStyle={{color: colors.textPrimary}}
                       onPress={() => this.setModalVisible(true)}
-              >{this.state.mileage}</Button>
+              >{this.state.meters}</Button>
             </View>
 
             <View style={{
@@ -300,19 +367,21 @@ const HomeView = React.createClass({
             <View>
               <Modal
                 animationType={"none"}
-                transparent={false}
+                transparent={true}
                 visible={this.state.modalVisible}
-                onRequestClose={() => {alert("Modal has been closed.")}}
-              >
-                <Input
-                  ref='mileageInput'
-                  placeholder={loc.home.mileage}
-                  onChangeText={(text) => this.setState({mileage: text})}
-                />
+                onRequestClose={() => {alert("Modal has been closed.")}}>
 
-                <Button
-                  onPress={() => this.setOdometer(this.state.mileage)}
-                >Submit</Button>
+                <Container>
+                  <Content>
+                    <Card>
+                      {this.renderOdometerUpdate()}
+
+                      <Button block
+                        onPress={() => this.setOdometer(this.state.meters)}
+                      >Save Changes</Button>
+                    </Card>
+                  </Content>
+                </Container>
               </Modal>
             </View>
 
@@ -466,6 +535,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  modal: {
+
   }
 });
 
