@@ -11,7 +11,8 @@ import {
   AsyncStorage,
   NativeEventEmitter,
   NativeModules,
-  Platform
+  Platform,
+  Alert
 } from 'react-native';
 import {
   Container,
@@ -221,8 +222,14 @@ const HomeView = React.createClass({
         distance = distance + units;
       }
 
-      // request is failing
-      vehicle.setMileage(vin, meters);
+      var resp = await vehicle.setMileage(vin, meters);
+      if (!resp)
+        Alert.alert(
+          'Odometer Update',
+          'Request failed. Try again.',
+          {text: 'OK', onPress: () => console.log("OK pressed.")},
+          {cancellable: fales}
+        );
 
       // accept promise?
       this.setState({meters: distance});

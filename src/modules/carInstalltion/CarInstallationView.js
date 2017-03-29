@@ -4,7 +4,7 @@ import {
   StyleSheet,
   Image,
   Dimensions,
-  Alert,
+  Alert
 } from 'react-native';
 import {
   Container,
@@ -19,6 +19,7 @@ import {
   H3,
   List,
   ListItem,
+  Picker
 } from 'native-base';
 import colors from '../../config/colors';
 import loc from '../../config/localization';
@@ -196,9 +197,9 @@ const CarInstallationStateView = React.createClass({
                 onChangeText = {(text) => this.setState({region: text})}
               />
             </InputGroup>
-            {/* <Text
+            <Text
               style={{marginTop: 22, textAlign: "center", color: colors.primary, textDecorationLine: 'underline'}}
-              onPress={() => { this.setMode('vin') }}>{loc.carInstallation.enterByVin}</Text> */}
+              onPress={() => { this.setMode('vin') }}>{loc.carInstallation.enterByVin}</Text>
             <View style={styles.bottomContainer}>
               <Button rounded
                       style={{alignSelf: 'auto'}}
