@@ -38,6 +38,7 @@ import Vehicle from '../../carfit/vehicle';
 import store from '../../redux/store';
 import createFragment from 'react-addons-create-fragment';
 const {CarFitManager} = NativeModules;
+import Connection from '../../carfit/connection';
 
 const HomeView = React.createClass({
   getInitialState() {
@@ -90,6 +91,9 @@ const HomeView = React.createClass({
     // this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
     // this.props.switchRoute('Overview');
     // this.props.switchRoute(2);
+    var conn = new Connection();
+
+    conn.simulateButtonClick();
   },
 
   // Forward setNativeProps to a child

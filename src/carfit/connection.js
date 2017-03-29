@@ -10,6 +10,14 @@ export default class Connection {
     this.connectionEmitter = new NativeEventEmitter(CarFitManager);
   }
 
+  simulateButtonClick() {
+    try {
+      this.manager.clickButton();
+    } catch(e) {
+      console.error(e);
+    }
+  }
+
   async getDevices() {
     try {
       // scan for devices
