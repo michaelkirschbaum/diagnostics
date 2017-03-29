@@ -6,7 +6,7 @@ import {
   Dimensions,
   Platform,
 } from 'react-native';
-import {Container, Content, InputGroup, Input, Button, Text, H3} from 'native-base';
+import {Container, Content, InputGroup, Input, Button, Text, H3, Footer} from 'native-base';
 import colors from '../../config/colors';
 import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
@@ -100,12 +100,15 @@ const LoginView = React.createClass({
               <Text style={styles.textTitle}>{loc.login.marketingTitle3a}</Text>
               <Text style={styles.textBody}>{loc.login.marketingText3a}</Text>
               <Text style={styles.textBody}>{loc.login.marketingText3b}</Text>
-              <Button rounded
-                      style={{alignSelf: 'auto'}}
-                      textStyle={{color: colors.textPrimary}}
-                      // onPress={() => this.onNextPress(this.state.email, this.state.password)}
-                      onPress={this.continue}
-              >{loc.general.continue}</Button>
+              <Footer theme={carfitTheme} style={styles.footer}>
+                <View style={styles.bottomContainer}>
+                  <Button rounded
+                          style={{alignSelf: 'auto'}}
+                          textStyle={{color: colors.textPrimary}}
+                          onPress={this.onNextPress}
+                  >{loc.general.continue}</Button>
+                </View>
+              </Footer>
             </View>
 
             {/* <View style={{height: windowHeight, flex: 1, marginTop: 52}}>
@@ -234,6 +237,11 @@ const styles = StyleSheet.create({
     marginTop: 17,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  footer: {
+    height: 42,
+    backgroundColor: colors.backgroundPrimary,
+    borderColor: colors.backgroundPrimary
   }
 });
 

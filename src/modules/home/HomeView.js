@@ -222,14 +222,7 @@ const HomeView = React.createClass({
         distance = distance + units;
       }
 
-      var resp = await vehicle.setMileage(vin, meters);
-      if (!resp)
-        Alert.alert(
-          'Odometer Update',
-          'Request failed. Try again.',
-          {text: 'OK', onPress: () => console.log("OK pressed.")},
-          {cancellable: fales}
-        );
+      vehicle.setMileage(vin, meters);
 
       // accept promise?
       this.setState({meters: distance});

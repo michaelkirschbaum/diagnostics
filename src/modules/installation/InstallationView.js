@@ -148,19 +148,19 @@ const InstallationView = React.createClass({
                   <Icon name="ios-refresh"></Icon>
                 </TouchableOpacity>
 
-                <InputGroup borderType='rounded' style={styles.textInput}>
+                {/* <InputGroup borderType='rounded' style={styles.textInput}>
                   <Input
                     ref='phoneInput'
                     placeholder="Enter phone number to receive support."
                     onChangeText = {(text) => this.setState({text})}
                   />
-                </InputGroup>
-                <View style={styles.bottomContainer}>
+                </InputGroup> */}
+                {/* <View style={styles.bottomContainer}>
                   <Button rounded
                           textStyle={{color: colors.textPrimary, textDecorationLine: 'underline'}}
                           onPress={() => this.setPhone(this.state.text)}
                   >{loc.general.continue}</Button>
-                </View>
+                </View> */}
               </View>
             </Swiper>
 

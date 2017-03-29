@@ -19,7 +19,6 @@ import {
   H3,
   List,
   ListItem,
-  Picker
 } from 'native-base';
 import colors from '../../config/colors';
 import loc from '../../config/localization';
@@ -27,6 +26,7 @@ import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
 import Vehicle from '../../carfit/vehicle';
+import PickerContainer from '../../components/PickerContainer';
 
 /**
  * Login view
