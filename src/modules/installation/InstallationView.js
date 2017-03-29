@@ -39,6 +39,14 @@ const InstallationView = React.createClass({
     installation: PropTypes.object.isRequired
   },
 
+  componentDidMount() {
+    var refresh_interval = 1000;
+
+    setInterval(function() {
+      this.props.discover();
+    }.bind(this), refresh_interval);
+  },
+
   onNextPress(id) {
     // connect puls device
     var conn = new Connection();
