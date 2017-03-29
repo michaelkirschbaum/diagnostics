@@ -212,15 +212,13 @@ const HomeView = React.createClass({
       if (region == 'en_US' || region == 'en_GB') {
         var meters = Math.round(parseInt(distance) * 1609.34);
         var units = ' mi';
-
         distance = distance + units;
+      } else
         var meters = Math.round(parseInt(distance) * 1000);
         var units = ' km';
-
         distance = distance + units;
       }
 
-      // request is failing
       vehicle.setMileage(vin, meters);
 
       // accept promise?
