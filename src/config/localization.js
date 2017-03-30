@@ -11,15 +11,15 @@ const en = {
     forgotPassword: 'Forgot Password?',
     marketingTitle1a: 'CARFIT PULS',
     marketingTitle1b: 'THE VIBRATION SENSOR',
-    marketingText1a: 'CARFIT monitors the vibrations of your car at the steering wheel, like a doctor monitors your pulse.',
-    marketingTitle2a: 'Works on any car',
-    marketingText2a: 'CARFIT PULS is easily installed on any steering wheel.',
-    marketingText2b: 'The CARFIT PULS automatically turns on whenever you get into your car and turns off after each drive to save battery. The battery lasts up to 2 years.',
+    marketingText1a: 'CARFIT monitors your car\'s vibrations at the steering wheel, like a doctor monitors your pulse.',
+    marketingTitle2a: 'Works with any car',
+    marketingText2a: 'The CARFIT PULS is easily installed on any steering wheel.',
+    marketingText2b: 'The CARFIT PULS wakes automatically whenever you get into your car and goes to sleep after each drive to save power. The battery lasts for up to 2 years.',
     marketingTitle3a: 'Service made simple',
-    marketingText3a: 'One button press away to schedule and visit your autoshop.',
-    marketingText3b: 'The CARFIT PULS notifies you when it is time to check up your car.'
+    marketingText3a: 'Scheduling service is just a button press away.',
+    marketingText3b: 'The CARFIT PULS notifies you when it is time to service car.'
   },
-  verification: {
+  verification: { // is this still required with Auth0?
     verification: 'Verification',
     welcome: 'Welcome to CARFIT!',
     instructions: 'A verification code to activate your account has been sent to:',
@@ -27,7 +27,7 @@ const en = {
     code: 'Code',
     resend: 'Resend Code',
   },
-  resetPassword: {
+  resetPassword: { // is this still required with Auth0?
     instructions: 'A password reset verification code has been sent to:',
     instructions2: 'Please enter the code below:',
     instructions3: 'Please enter your new password below:',
@@ -41,9 +41,9 @@ const en = {
     welcomeToCarfit: 'Welcome to CARFIT!',
     helloMiles: 'Hello, I am Miles.',
     welcomeParagraph1: 'From now on I will be the voice of your car. Feel free to chat with me later!',
-    welcomeParagraph2: 'CARFIT monitors the vibrations of your car at the steering wheel, like a doctor monitors your pulse.',
-    welcomeParagraph3: 'I will now introduce you to the CARFIT app.',
-    welcomeParagraph4: 'We will go through a quick guide for the following steps:',
+    welcomeParagraph2: 'CARFIT monitors your car\'s vibrations at the steering wheel, like a doctor monitors your pulse.',
+    welcomeParagraph3: 'I will now introduce you to the CARFIT app and walk you through the following steps:',
+//    welcomeParagraph4: 'We will go through a quick guide for the following steps:',
     step1: 'CONNECT ',
     step2: 'INSTALL ',
     step3: 'APP ',
@@ -70,7 +70,7 @@ const en = {
     header2: 'Activate adhesive',
     message2: 'remove protective tape',
     header3: 'Position CARFIT PULS sensor',
-    message3: 'stick onto steering wheel',
+    message3: 'stick it on the steering wheel',
     header4: 'Register car',
     message4: 'enter LICENSE PLATE or VIN',
     header5: 'Configure your car',
@@ -83,7 +83,7 @@ const en = {
     // Page four
     registerCar: 'registerCar',
     enterLicensePlate: 'Enter by license plate',
-    enterRegion: 'Enter region here',
+    enterRegion: 'Enter region here', // Need to turn this into a picker.
     enterByVin: 'Enter by VIN',
     enterVin: 'Enter VIN here',
     enterByLicensePlate: 'Enter by license plate',
@@ -92,8 +92,8 @@ const en = {
     vinLocations: 'VIN locations',
     message1: 'To properly register your car CARFIT PULS needs your car’s VIN or license plate.',
     possibleLocations: 'Possible locations for the VIN:',
-    driverDoor: 'Drivers side door jam or post',
-    driverWindow: 'Drivers side front windshield',
+    driverDoor: 'Driver\'s side door jam or post',
+    driverWindow: 'Driver\'s side front windshield',
     carTitle: 'Car title or documentation',
   },
   overview: {
@@ -101,17 +101,17 @@ const en = {
     header1: 'CARFIT PULS sensor',
     message1: 'tracks your cars health',
     header2: 'CARFIT concierge',
-    message2: 'request an autoservice call',
+    message2: 'request a service call',
     header3: 'askMiles',
-    message3: 'CARFIT Zendesk support',
+    message3: 'Miles the BOT and customer support',
     header4: 'Usage',
-    message4: 'displays your recent drives',
+    message4: 'your recent drives',
     header5: 'Service',
-    message5: 'displays alerts, schedule and history',
+    message5: 'alerts, schedule and history',
     header6: 'Car details',
-    message6: 'view or edit your car’s details',
+    message6: 'view and edit your car’s details',
     header7: 'Settings',
-    message7: 'my cars (car details), sensors, my account, demo & more',
+    message7: 'your cars (car details), sensors, account, demo mode & more',
   },
   home: {
     alert: 'ALERTS',
@@ -121,8 +121,7 @@ const en = {
     lastTrip: 'Last trip:',
     trending: 'Trending:',
     comingSoon: 'COMING SOON:',
-    mileage: 'Enter your vehicle\'s current mileage here.',
-    kilometrage: 'Enter your vehicle\'s current kilometrage here.'
+    mileage: 'Enter your vehicles current mileage here.'
   },
   settings: {
     settings: 'Settings',
