@@ -61,7 +61,7 @@ export default class Connection {
   }
 
   setConnectionStatus() {
-
+    // flag bluetooth status
   }
 
   addPhone(number) {

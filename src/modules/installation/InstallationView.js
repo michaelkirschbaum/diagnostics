@@ -64,19 +64,18 @@ const InstallationView = React.createClass({
     // connect puls device
     var conn = new Connection();
 
-    // var resp = await conn.connectDevice(id);
-    conn.connectDevice(id);
+    var resp = await conn.connectDevice(id);
 
     // handle failure, bluetooth failure, or success
-    //if (resp)
-    this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
-    /* else
+    if (true) // should be resp
+      this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
+    else
       Alert.alert(
         'Puls',
         'Device failed to connect.',
         {text: 'OK', onPress: () => console.log("OK pressed.")},
         {cancellable: false}
-      ); */
+      );
   },
 
   popRoute() {
