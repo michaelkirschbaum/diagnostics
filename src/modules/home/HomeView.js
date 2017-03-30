@@ -91,13 +91,23 @@ const HomeView = React.createClass({
     ); */
   },
 
-  onNextPress() {
+  async onNextPress() {
     // this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
     // this.props.switchRoute('Overview');
     // this.props.switchRoute(2);
     var conn = new Connection();
 
-    conn.simulateButtonClick();
+    var resp = await conn.simulateButtonClick();
+
+    if (resp)
+      console.log("support called.");
+    else {
+      Alert.alert(
+        'Support',
+        'Request failed. Try again.',
+        {text: 'OK', onPress: () => console.log('OK Pressed.')}
+      );
+    }
   },
 
   // Forward setNativeProps to a child

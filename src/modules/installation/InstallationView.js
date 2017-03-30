@@ -27,6 +27,7 @@ import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
 import Connection from '../../carfit/connection';
 import Signal from '../../components/Signal';
+import TimerMixin from 'react-native-timer-mixin';
 
 /**
  * Login view
@@ -34,17 +35,29 @@ import Signal from '../../components/Signal';
  * Otherwise pass by.
  */
 const InstallationView = React.createClass({
+  getInitialState() {
+    return {
+      rssi_refresh: ''
+    };
+  },
+
   propTypes: {
     // dispatch: PropTypes.func.isRequired
     installation: PropTypes.object.isRequired
   },
 
   componentDidMount() {
-    var refresh_interval = 1000;
-
-    setInterval(function() {
+    var interval = 2000;
+    var rssi_refresh = setInterval(function() {
       this.props.discover();
-    }.bind(this), refresh_interval);
+    }.bind(this), interval);
+
+    this.setState({rssi_refresh});
+  },
+
+  componentWillUnmount() {
+    // stop rssi refresh
+    clearInterval(this.state.rssi_refresh);
   },
 
   onNextPress(id) {
