@@ -25,7 +25,7 @@ export default class Connection {
 
       return devices;
     } catch (e) {
-      console.error(e);
+      return null;
     }
   }
 
@@ -56,7 +56,7 @@ export default class Connection {
 
       return response;
     } catch (e) {
-      console.error(e);
+      return null;
     }
   }
 
