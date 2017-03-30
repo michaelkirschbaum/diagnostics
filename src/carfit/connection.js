@@ -60,6 +60,10 @@ export default class Connection {
     }
   }
 
+  setConnectionStatus() {
+
+  }
+
   addPhone(number) {
     this.manager.setPhone(number);
 

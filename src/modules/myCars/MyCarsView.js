@@ -27,6 +27,8 @@ import colors from '../../config/colors';
 import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
+import Vehicle from '../../carfit/vehicle';
+import store from '../../redux/store';
 
 import * as NavigationState from '../navigation/NavigationState';
 
@@ -36,8 +38,20 @@ import * as NavigationState from '../navigation/NavigationState';
  * Otherwise pass by.
  */
 const MyCarsView = React.createClass({
+  getInitialState() {
+    return {
+      title: '',
+      description: '',
+      photo: ''
+    }
+  },
+
   propTypes: {
 
+  },
+
+  componentDidMount() {
+    this.loadVehicle().done();
   },
 
   onNextPress() {
@@ -52,6 +66,30 @@ const MyCarsView = React.createClass({
 
   popRoute() {
     this.props.onNavigateBack();
+  },
+
+  async loadVehicle () {
+    const vin = store.getState().get("carInstallation").get("vin");
+
+    var vehicle = new Vehicle(vin);
+
+    // load title
+    var title = await vehicle.getTitle();
+
+    if (title) {
+      this.setState({title});
+    } else {
+      console.log("title not loaded");
+    }
+
+    // load description
+    var description = await vehicle.getDescription();
+
+    if (description) {
+      this.setState({description});
+    } else {
+      console.log("description not loaded");
+    }
   },
 
   render() {
@@ -86,8 +124,8 @@ const MyCarsView = React.createClass({
                   <Text>IMAGE</Text>
                 </View>
                 <View style={styles.carDetailsContainer}>
-                  <H2 style={{fontWeight:'bold'}}>{carName} ({carStatus})</H2>
-                  <H3>{carDescription}</H3>
+                  <H2 style={{fontWeight:'bold'}}>{this.state.title} ({carStatus})</H2>
+                  <H3>{this.state.description}</H3>
                 </View>
               </View>
             </TouchableWithoutFeedback>
@@ -106,7 +144,11 @@ const MyCarsView = React.createClass({
                 <Text>IMAGE</Text>
               </View>
               <View style={styles.carDetailsContainer}>
-                <H3>{loc.myCars.changeMyCar}</H3>
+                <Button rounded
+                      style={styles.milesButton}
+                      textStyle={{color: colors.textPrimary}}
+                      onPress={() => this.props.pushRoute({key:'CarInstallation', title: loc.carInstallation.inCarInstallation})}
+                >{loc.myCars.changeMyCar}</Button>
               </View>
 
             </View>
