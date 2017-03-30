@@ -59,7 +59,7 @@ const AccountView = React.createClass({
   async getUserID() {
     var login = new Login();
     var userID = await login.getUser();
-    
+
     this.setState({userID});
   },
 
@@ -77,10 +77,6 @@ const AccountView = React.createClass({
     let phone = "Sam's iPhone 6";
 
     let accountDetailsData = {
-      accountType: 'NORAUTO',
-      firstName: 'Sam',
-      lastName: 'Fisher',
-      email: 'sam.fisher@gmail.com',
       identifier: this.state.userID
     };
 
