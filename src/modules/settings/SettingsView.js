@@ -93,10 +93,10 @@ const SettingsView = React.createClass({
 
             <View style={styles.settingsContainer}>
               <H1 style={styles.menuText} onPress={this.onMyCarsPress}>{loc.settings.myCars}</H1>
-              <H1 style={styles.menuText}>{loc.settings.sensors}</H1>
+              {/* <H1 style={styles.menuText}>{loc.settings.sensors}</H1> */}
               <H1 style={styles.menuText} onPress={this.onMyAccountPress}>{loc.settings.myAccount}</H1>
-              <H1 style={styles.menuText} onPress={this.onDrivePress}>{loc.settings.drive}</H1>
-              <H1 style={styles.menuText}>{loc.settings.useWiFi}</H1>
+              {/* <H1 style={styles.menuText} onPress={this.onDrivePress}>{loc.settings.drive}</H1> */}
+              {/* <H1 style={styles.menuText}>{loc.settings.useWiFi}</H1> */}
             </View>
 
             <View style={styles.settingsSubContainer}>
