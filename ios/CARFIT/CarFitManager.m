@@ -142,7 +142,7 @@ RCT_REMAP_METHOD(availableBLEDevicesAsync,
                  availableBLEDevicesRejecter:(RCTPromiseRejectBlock)reject)
 {
 #if TARGET_OS_SIMULATOR
-  NSArray * devices = @[@{@"name": @"CARFIT", @"identifier": @"129AB20934" , @"signal": @"-40"}];
+  NSArray * devices = @[@{@"name": @"CARFIT", @"identifier": @"129AB20934" , @"signal": @"0.5"}];
 #else
   NSArray * devices = [[CFPCore sharedInstance] bleDiscoveredDevices];
 #endif
@@ -154,9 +154,13 @@ RCT_EXPORT_METHOD(connectBLEDeviceAsync:(NSString *) identifier
                  connectBLEDeviceResolver:(RCTPromiseResolveBlock)resolve
                  connectBLEDeviceRejecter:(RCTPromiseRejectBlock)reject)
 {
+#if TARGET_OS_SIMULATOR
+  resolve(nil);
+#else
   [[CFPCore sharedInstance] bleConnectToDeviceWithId:identifier];
   self.connectBLEDeviceAsyncResolveBlock = resolve;
   self.connectBLEDeviceAsyncRejectBlock = reject;
+#endif
 }
 
 RCT_EXPORT_METHOD(onBoardVehicleWithPlate:(NSString *) licensePlate
