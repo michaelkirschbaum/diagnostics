@@ -197,7 +197,7 @@ RCT_REMAP_METHOD(authenticateAuth0, authenticate:(NSString *) domain withToken:(
                   authenticateLockResolver:(RCTPromiseResolveBlock)resolve
                   authenticateLockRejecter:(RCTPromiseRejectBlock)reject)
 {
-  [[[CFPCore sharedInstance] authenticate:domain withToken:token] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
+  [[[CFPCore sharedInstance] authenticate:domain withTokens:token] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
     if (task.error) {
       reject(@"authentication", task.error.localizedDescription, task.error);
     } else {
