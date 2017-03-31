@@ -61,7 +61,7 @@ const CarInstallationStateView = React.createClass({
           'Success',
           'Vehicle has been added.',
           // store vin
-          {text: 'OK', onPress: () => this.props.pushRoute({key: 'CarPhoto', title: ''})},
+          {text: 'OK', onPress: () => console.log("OK pressed.")},
           {cancellable: false}
         );
       }
@@ -89,22 +89,20 @@ const CarInstallationStateView = React.createClass({
       if (response) {
         this.props.addVehicle(response["vin"]);
 
-        await Alert.alert(
+        Alert.alert(
           'Success',
           'Vehicle has been added.',
           // store vin
-          {text: 'OK', onPress: () => console.log("OK pressed.")},
-          {cancellabe: false}
+          [{text: 'OK', onPress: () => this.props.pushRoute({key: 'CarPhoto', title: ''})}],
+          {cancelable: false}
         );
-
-        this.props.pushRoute({key: 'CarPhoto', title: ''});
       }
       else {
         Alert.alert(
           'Fail',
           'Unable to add vehicle.',
           {text: 'OK', onPress: () => console.log('OK Pressed.')},
-          {cancellable: false}
+          {cancelable: false}
         );
       }
     }
