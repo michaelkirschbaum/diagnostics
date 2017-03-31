@@ -32,6 +32,9 @@ export default connect(
     },
     clearDevices() {
       dispatch(clearDevices());
+    },
+    setDrive(value) {
+      dispatch(setDrive(value));
     }
   })
 )(InstallationView);

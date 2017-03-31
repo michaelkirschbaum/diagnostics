@@ -4,7 +4,8 @@ import {
   StyleSheet,
   Image,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  NativeEventEmitter
 } from 'react-native';
 import {
   Container,
@@ -61,6 +62,19 @@ const InstallationView = React.createClass({
   },
 
   async onNextPress(id) {
+    var connectionEmitter = new NativeEventEmitter(CarFitManager);
+
+    // set flag for start and end of trip
+    var trip_subscription = connectionEmitter.addListener(
+      'TripStartOfTravel',
+      (notification) => this.props.setDrive(true)
+    );
+
+    var trip_subscription = connectionEmitter.addListener(
+      'TripEndOfTravel',
+      (notification) => this.props.setDrive(false)
+    );
+
     // connect puls device
     var conn = new Connection();
 

@@ -92,6 +92,10 @@ const MyCarsView = React.createClass({
     }
   },
 
+  addVehicle() {
+
+  },
+
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
@@ -147,7 +151,7 @@ const MyCarsView = React.createClass({
                 <Button rounded
                       style={styles.milesButton}
                       textStyle={{color: colors.textPrimary}}
-                      onPress={() => this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation})}
+                      onPress={() => this.props.switchRoute('MainRoute')}
                 >{loc.myCars.changeMyCar}</Button>
               </View>
 

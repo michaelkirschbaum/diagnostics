@@ -61,34 +61,33 @@ const HomeView = React.createClass({
 
   componentDidMount() {
     var that = this;
+    var connectionEmitter = new NativeEventEmitter(CarFitManager);
 
+    // refresh interval
     var interval = 60000;
 
+    // display most current vehicle alert
     that.loadAlerts().done();
-    that.loadUsage().done();
 
+    // display and update last trip distance
+    that.loadUsage().done();
     setInterval(function() {
       that.loadUsage().done();
     }, interval);
+
+    // display vehicle information
     that.loadVehicle().done();
 
-    // update odometer while not 'in trip'
     const vin = store.getState().get("carInstallation").get("vin");
     var vehicle = new Vehicle(vin);
 
-    var connectionEmitter = new NativeEventEmitter(CarFitManager);
-
+    // update odometer while not 'in trip'
     setInterval(function() {
-      that.loadMileage(vehicle).done();
-    }, interval);
-/*
-    var trip_subscription = null;
-    trip_subscription = connectionEmitter.addListener(
-      'TripEndOfTravel',
-      (notification) => setInterval(function() {
+      if (store.getState().get("installation").get("in_drive"))
         that.loadMileage(vehicle).done();
-      }, interval)
-    ); */
+      else
+        that.loadMileage(vehicle).done();
+    }, interval);
   },
 
   async onNextPress() {

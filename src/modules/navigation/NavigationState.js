@@ -42,6 +42,9 @@ export function switchRoute(index) {
       case 'MainRoute':
         payload = 3;
         break;
+      case 'Settings':
+        payload = 4;
+        break;
     }
   } else {
     payload = index;
@@ -72,6 +75,7 @@ const initialState = fromJS({
       {key: 'WelcomeRoute', title: loc.welcome.welcome},
       {key: 'Overview', title: loc.overview.overview},
       {key: 'MainRoute', title: 'CARFIT'},
+      {key: 'Settings', title: loc.settings.settings}
     ]
   },
   LoginRoute: {
@@ -92,6 +96,12 @@ const initialState = fromJS({
     index: 0,
     routes: [
       {key: 'Home', title: 'CARFIT'}
+    ]
+  },
+  Settings: {
+    index: 0,
+    routes: [
+      {key: 'CarInstallation', title: loc.carInstallation.inCarInstallation}
     ]
   },
   drawerOpen: true
@@ -139,7 +149,7 @@ export default function NavigationReducer(state = initialState, action) {
       // Gets the current list of possible roots.
       const roots = state.get('roots').toJS();
       const nextTabs = NavigationStateUtils.jumpToIndex(roots, action.payload);
-        console.log("roots  ", roots);
+        // console.log("roots  ", roots);
         console.log("nextTabs  ", nextTabs);
       if (roots !== nextTabs) {
         return state.set('roots', fromJS(nextTabs));

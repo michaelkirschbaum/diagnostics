@@ -15,7 +15,8 @@ const PAIRING_SUCCESS = 'PAIRING_SUCCESS';
 const initialState = Map({
   pageIndex: 0,
   paring: PAIRING_IDLE,
-  foundDevices: []
+  foundDevices: [],
+  in_drive: false
 });
 
 // Actions
@@ -24,6 +25,7 @@ const CHANGE_PAGE = 'InstallationState/CHANGE_PAGE';
 const DISCOVER_BLE = 'InstallationState/DISCOVER_BLE';
 const START_PAIRING = 'InstallationState/START_PAIRING';
 const CLEAR_DEVICES = 'InstallationState/CLEAR_DEVICES';
+const SET_DRIVE = 'SET_DRIVE';
 
 // Action Creaters
 export function setPageIndex(value) {
@@ -48,6 +50,13 @@ export async function requestDevices() {
 export function clearDevices() {
   return {
     type: CLEAR_DEVICES,
+  }
+}
+
+export function setDrive(value) {
+  return {
+    type: SET_DRIVE,
+    payload: value
   }
 }
 
@@ -79,6 +88,9 @@ export default function InstallationStateReducer(state = initialState, action = 
     case CLEAR_DEVICES:
       console.log('Clearing out devices');
       return state.set('foundDevices', fromJS([]));
+
+    case SET_DRIVE:
+      return state.set('in_drive', action.payload);
 
     default:
       return state;
