@@ -1,3 +1,26 @@
+BUILD NUMBERING
+
+In order to ensure that we are numbering builds correctly, please find the attached build numbering schema for Android:
+
+<major>.<minor>.<subminor>
+
+Up until now now - we have simply increased from 0 to whatever (iterations), but moving forward, we want to show a proper schema.
+
+CURRENT DEMO APP BUILDS: 00.00.0xxx
+
+Where xxx = the current build ID.
+
+For the API version, we shall us:
+
+<major>.<minor>.<subminor> as well, however, only one digit shall be used for each:
+
+1.2.3 (current release iOS API version)
+
+As this is release of the v2.0 back-end, we shall use the following for our first public release.
+
+APP: 02.00.0xxx API: 2.0.x
+
+
 # About this Repository #
 
 This repository contains the build infrastructure for the iOS and Android REACT Native CARFIT applications.
