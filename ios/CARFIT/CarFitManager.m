@@ -137,7 +137,7 @@ RCT_EXPORT_METHOD(setPhone:(NSString *) phone)
   [[CFPCore sharedInstance] setPhone:phone];
 }
 
-RCT_REMAP_METHOD(availableBLEDevicesAsync,
+RCT_REMAP_METHOD(availableBLEDevicesAsync, 
                  availableBLEDevicesResolver:(RCTPromiseResolveBlock)resolve
                  availableBLEDevicesRejecter:(RCTPromiseRejectBlock)reject)
 {
