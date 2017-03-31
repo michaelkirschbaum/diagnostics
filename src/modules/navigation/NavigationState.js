@@ -43,7 +43,7 @@ export function switchRoute(index) {
         payload = 3;
         break;
       case 'Settings':
-        payload = 4;
+        payload = 2;
         break;
     }
   } else {
