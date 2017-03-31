@@ -5,7 +5,8 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
-  NativeEventEmitter
+  NativeEventEmitter,
+  NativeModules
 } from 'react-native';
 import {
   Container,
@@ -29,6 +30,7 @@ import * as NavigationState from '../navigation/NavigationState';
 import Connection from '../../carfit/connection';
 import Signal from '../../components/Signal';
 import TimerMixin from 'react-native-timer-mixin';
+const {CarFitManager} = NativeModules;
 
 /**
  * Login view

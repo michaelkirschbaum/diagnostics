@@ -61,11 +61,9 @@ const CarInstallationStateView = React.createClass({
           'Success',
           'Vehicle has been added.',
           // store vin
-          {text: 'OK', onPress: () => console.log("OK pressed.")},
+          {text: 'OK', onPress: () => this.props.pushRoute({key: 'CarPhoto', title: ''})},
           {cancellable: false}
         );
-
-        this.props.pushRoute({key: 'CarPhoto', title: ''});
       }
       else {
         Alert.alert(
