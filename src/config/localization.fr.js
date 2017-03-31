@@ -13,11 +13,11 @@ const en = {
     marketingTitle1b: 'Le capteur de vibrations',
     marketingText1a: 'CARFIT surveille les vibrations au niveau du volant de votre véhicule, comme un médecin surveille votre pouls.',
     marketingTitle2a: 'Fonctionne avec toutes les voitures.',
-    marketingText2a: 'Le capteur CARFIT PULS s'installe très facilement sur n'importe quel volant de voiture.',
-    marketingText2b: 'Le capteur se réveille automatiquement dès que vous entrez dans votre véhicule et se met en veille après chaque trajet pour économiser de l'énergie. La batterie interne a deux ans d'autonomie.',
-    marketingTitle3a: 'L'entretien de votre véhicule rendu plus simple',
-    marketingText3a: 'L'entretien de votre véhicule est à portée de main.',
-    marketingText3b: 'Le capteur CARFIT PULS vous prévient lorsqu'une opération est à réaliser.'
+    marketingText2a: 'Le capteur CARFIT PULS s\'installe très facilement sur n\'importe quel volant de voiture.',
+    marketingText2b: 'Le capteur se réveille automatiquement dès que vous entrez dans votre véhicule et se met en veille après chaque trajet pour économiser de l\'énergie. La batterie interne a deux ans d\'autonomie.',
+    marketingTitle3a: 'L\'entretien de votre véhicule rendu plus simple',
+    marketingText3a: 'L\'entretien de votre véhicule est à portée de main.',
+    marketingText3b: 'Le capteur CARFIT PULS vous prévient lorsqu\'une opération est à réaliser.'
   },
   verification: { // is this still required with Auth0?
     verification: 'Vérification',
@@ -42,7 +42,7 @@ const en = {
     helloMiles: 'Bonjour, je suis Miles.',
     welcomeParagraph1: 'Je suis la voix de votre voiture, vous pouvez discuter avec moi.',
     welcomeParagraph2: 'CARFIT surveille les vibrations au niveau du volant de votre véhicule, comme un médecin surveille votre pouls.',
-    welcomeParagraph3: 'Je vais vous présenter l'application CARFIT et vous guider vers les prochaines étapes.',
+    welcomeParagraph3: 'Je vais vous présenter l\'application CARFIT et vous guider vers les prochaines étapes.',
 //    welcomeParagraph4: 'Guide rapide:',
     step1: 'Se connecter ',
     step2: 'Installer ',
@@ -56,9 +56,9 @@ const en = {
     activateBluetooth: 'Activer le Bluetooth.',
     turnOnBLE: 'Activez le Bluetooth de votre téléphone.',
     resetConnection: 'Réinitialiser la connexion.',
-    pressAndHold: 'Maintenez pressé le bouton situé sur le dessus du capteur  pendant 10 secondes pour le réinitialiser. Appuyez sur le bouton pour l'allumer.',
+    pressAndHold: 'Maintenez pressé le bouton situé sur le dessus du capteur  pendant 10 secondes pour le réinitialiser. Appuyez sur le bouton pour l\'allumer.',
     blePairing: 'Activez la batterie.',
-    ensurePairing: 'S'assurer que le capteur est en mode appairage, avec la LED centrale clignotante.',
+    ensurePairing: 'S\'assurer que le capteur est en mode appairage, avec la LED centrale clignotante.',
     selectBLE: 'Sélectionnez le  capteur CARFIT PULS dans la liste.',
   },
   carInstallation: {
@@ -67,39 +67,39 @@ const en = {
     inCarInstallation: 'Installation dans la voiture.',
     header1: 'Allez dans votre voiture.',
     message1: 'Installation du capteur CARFIT PULS dans votre voiture',
-    header2: 'Préparez l'adhésif',
-    message2: 'Retirez la protection de l'adhésif',
+    header2: 'Préparez l\'adhésif',
+    message2: 'Retirez la protection de l\'adhésif',
     header3: 'Positionnez le capteur',
     message3: 'Collez le capteur sur le volant',
     header4: 'Enregistrez votre véhicule',
-    message4: 'Entrez votre plaque d'immatriculation ou votre VIN',
+    message4: 'Entrez votre plaque d\'immatriculation ou votre VIN',
     header5: 'Configurez votre véhicule',
     message5: 'Vérifiez et ajoutez des précisions',
     // Page two
-    detail2a: 'Retirez la protection de l'adhésif situé sous le capteur',
+    detail2a: 'Retirez la protection de l\'adhésif situé sous le capteur',
     // Page three
     detail3a: 'Collez le capteur sur le dessus du moyeu du volant, avec les LED face au conducteur.',
     detail3b: 'Assurez-vous que le capteur est bien horizontal lorsque le volant est droit.',
     // Page four
     registerCar: 'Enregistrez votre véhicule',
-    enterLicensePlate: 'Entrez votre numéro d'immatriculation',
+    enterLicensePlate: 'Entrez votre numéro d\'immatriculation',
     enterRegion: 'Entrez votre pays',
-    enterByVin: 'S'enregistrer par le VIN',
+    enterByVin: 'S\'enregistrer par le VIN',
     enterVin: 'Entrez votre VIN',
-    enterByLicensePlate: 'S'enregistrer par le numéro d'immatriculation',
+    enterByLicensePlate: 'S\'enregistrer par le numéro d\'immatriculation',
   },
   vinLocations: {
     vinLocations: 'Trouvez votre VIN',
     message1: 'Pour enregistrer correctement votre véhicule, CARFIT a besoin de son immatriculation ou de son VIN.',
     possibleLocations: 'Emplacements possibles du VIN:',
     driverDoor: 'Autour de la porte conducteur',
-    driverWindow: 'En bas du pare-brise, à l'extérieur',
+    driverWindow: 'En bas du pare-brise, à l\'extérieur',
     carTitle: 'Sur la carte grise, champ E, ou sur la vignette du contrôle technique',
   },
   overview: {
     overview: 'Overview',
     header1: 'Capteur CARFIT PULS',
-    message1: 'Surveille l'état de santé de votre véhicule',
+    message1: 'Surveille l\'état de santé de votre véhicule',
     header2: 'concierge CARFIT',
     message2: 'appelez-moi',
     header3: 'askMiles',
@@ -130,7 +130,7 @@ const en = {
     myAccount: 'Mon compte',
     drive: 'Conduite',
     useWiFi: 'Utiliser le wifi seulement',
-    terms: 'Conditions générales d'utilisation',
+    terms: 'Conditions générales d\'utilisation',
     privacy: 'Politique de confidentialité',
     copyright: '© CARFIT 2017',
   },
@@ -155,7 +155,7 @@ const en = {
     model: 'Modèle',
     mpgCity: 'Consommation urbaine (L/100km)',
     mpgHighway: 'Consommation autoroute (L/100km)',
-    license: 'Numéro d'immatriculation',
+    license: 'Numéro d\'immatriculation',
     vin: 'VIN',
     drivenWheels: 'Roues motrices',
     trimLevel: 'Niveau de finition',
@@ -172,7 +172,7 @@ const en = {
   },
   legal: {
     privacy: 'Politique de confidentialité',
-    terms: 'Conditions générales d'utilisation'
+    terms: 'Conditions générales d\'utilisation'
   }
 };
 export default en;

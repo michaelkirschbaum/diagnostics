@@ -70,7 +70,6 @@ const CarPhotoView = React.createClass({
 
           <View style={styles.instructionsContainer}>
             <H3 style={{fontWeight: "bold", textAlign: "center", marginTop: 25}}>Photo Sequence</H3>
-            <Text style={{marginTop: 17, textAlign: "center"}}>This requires additional module support and could break CleanPath. Will implement in final phase</Text>
           </View>
 
         </Content>

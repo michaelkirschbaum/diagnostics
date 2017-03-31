@@ -19,6 +19,7 @@ import {
   H3,
   List,
   ListItem,
+  TouchableOpacity
 } from 'native-base';
 import colors from '../../config/colors';
 import loc from '../../config/localization';
@@ -178,6 +179,9 @@ const CarInstallationStateView = React.createClass({
       } else {
         return (
           <View>
+            <View style={styles.profileContainer}>
+            </View>
+
             <Image source={require('../../../images/enter-plate.png')} style={styles.image}/>
              <InputGroup borderType='rounded' style={styles.textInput}>
               <Input
@@ -293,6 +297,12 @@ const styles = StyleSheet.create({
     marginTop: 22,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  icon: {
+    width: 35,
+    height: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 });
 
