@@ -90,7 +90,9 @@ const initialState = fromJS({
   },
   MainRoute: {
     index: 0,
-    routes: [{key: 'Home', title: 'CARFIT'}]
+    routes: [
+      {key: 'Home', title: 'CARFIT'}
+    ]
   },
   drawerOpen: true
 });

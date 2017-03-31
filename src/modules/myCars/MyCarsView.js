@@ -147,7 +147,7 @@ const MyCarsView = React.createClass({
                 <Button rounded
                       style={styles.milesButton}
                       textStyle={{color: colors.textPrimary}}
-                      onPress={() => this.props.switchRoute(3)}
+                      onPress={() => this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation})}
                 >{loc.myCars.changeMyCar}</Button>
               </View>
 
