@@ -39,7 +39,7 @@ const LoginView = React.createClass({
 
   continue() {
     var login = new Login()
-    var lock = new Auth0Lock({clientId: "6xef2YPOchKJOvIcNG1fPuWnL97nvT52", domain: "carfit.auth0.com"});
+    var lock = new Auth0Lock({clientId: "t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M", domain: "carfit.auth0.com"});
     lock.show({}, (err, profile, token) => {
       console.log('Logged in!' + ' ' + profile + ' ' + token);
       login.auth0('carfit.auth0.com', token);
