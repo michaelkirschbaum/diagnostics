@@ -4,7 +4,9 @@ import {
   StyleSheet,
   Image,
   Dimensions,
-  Alert
+  Alert,
+  NativeModules,
+  TouchableOpacity
 } from 'react-native';
 import {
   Container,
@@ -19,15 +21,14 @@ import {
   H3,
   List,
   ListItem,
-  TouchableOpacity
 } from 'native-base';
 import colors from '../../config/colors';
-import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
 import Vehicle from '../../carfit/vehicle';
 import PickerContainer from '../../components/PickerContainer';
+import loc from '../../config/localization';
 
 /**
  * Login view
@@ -156,6 +157,12 @@ const CarInstallationStateView = React.createClass({
       if (finalView == 'vin') {
         return (
           <View>
+            <View style={styles.profilesContainer}>
+              <TouchableOpacity onPress={this.setMode('license')}>
+                <Image source={require('../../../images/enter-plate.png')} style={styles.icon}/>
+              </TouchableOpacity>
+            </View>
+
             <Image source={require('../../../images/enter-vin.png')} style={styles.image}/>
             <InputGroup borderType='rounded' style={styles.textInput}>
               <Input
@@ -164,9 +171,9 @@ const CarInstallationStateView = React.createClass({
                 onChangeText = {(text) => this.setState({text})}
               />
             </InputGroup>
-            <Text
+            {/* <Text
               style={{marginTop: 22, textAlign: "center", color: colors.primary, textDecorationLine: 'underline'}}
-              onPress={() => { this.setMode('license') }}>{loc.carInstallation.enterLicensePlate}</Text>
+              onPress={() => { this.setMode('license') }}>{loc.carInstallation.enterLicensePlate}</Text> */}
             <View style={styles.bottomContainer}>
               <Button rounded
                       style={{alignSelf: 'auto'}}
@@ -179,7 +186,10 @@ const CarInstallationStateView = React.createClass({
       } else {
         return (
           <View>
-            <View style={styles.profileContainer}>
+            <View style={styles.profilesContainer}>
+              <TouchableOpacity onPress={this.setMode('vin')}>
+                <Image source={require('../../../images/enter-vin.png')} style={styles.icon}/>
+              </TouchableOpacity>
             </View>
 
             <Image source={require('../../../images/enter-plate.png')} style={styles.image}/>
@@ -303,7 +313,15 @@ const styles = StyleSheet.create({
     height: 35,
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
+  profileContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 55,
+    // backgroundColor: '#002200',
+    marginBottom: 16,
+  },
 });
 
 export default CarInstallationStateView;
