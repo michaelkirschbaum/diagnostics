@@ -13,6 +13,7 @@ export default class Connection {
   simulateButtonClick() {
     try {
       this.manager.clickButton();
+      return 1;
     } catch(e) {
       return null;
     }
