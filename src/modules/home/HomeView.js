@@ -83,7 +83,9 @@ const HomeView = React.createClass({
 
     // update odometer while not 'in trip'
     setInterval(function() {
-      if (store.getState().get("installation").get("in_drive")) {}
+      if (store.getState().get("installation").get("in_drive")) {
+        
+      }
       else
         that.loadMileage(vehicle).done();
     }, interval);

@@ -157,11 +157,11 @@ const CarInstallationStateView = React.createClass({
       if (finalView == 'vin') {
         return (
           <View>
-            <View style={styles.profilesContainer}>
+            {/* <View style={styles.profilesContainer}>
               <TouchableOpacity onPress={this.setMode('license')}>
                 <Image source={require('../../../images/enter-plate.png')} style={styles.icon}/>
               </TouchableOpacity>
-            </View>
+            </View> */}
 
             <Image source={require('../../../images/enter-vin.png')} style={styles.image}/>
             <InputGroup borderType='rounded' style={styles.textInput}>
@@ -186,11 +186,11 @@ const CarInstallationStateView = React.createClass({
       } else {
         return (
           <View>
-            <View style={styles.profilesContainer}>
+            {/* <View style={styles.profilesContainer}>
               <TouchableOpacity onPress={this.setMode('vin')}>
                 <Image source={require('../../../images/enter-vin.png')} style={styles.icon}/>
               </TouchableOpacity>
-            </View>
+            </View> */}
 
             <Image source={require('../../../images/enter-plate.png')} style={styles.image}/>
              <InputGroup borderType='rounded' style={styles.textInput}>
