@@ -84,7 +84,7 @@ const HomeView = React.createClass({
     // update odometer while not 'in trip'
     setInterval(function() {
       if (store.getState().get("installation").get("in_drive")) {
-        
+
       }
       else
         that.loadMileage(vehicle).done();
@@ -100,7 +100,11 @@ const HomeView = React.createClass({
     var resp = await conn.simulateButtonClick();
 
     if (resp)
-      console.log("support called.");
+      Alert.alert(
+        'Support',
+        'Support called.',
+        {text: 'OK', onPress: () => console.log('OK pressed.')}
+      );
     else {
       Alert.alert(
         'Support',
