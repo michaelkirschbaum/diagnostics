@@ -274,7 +274,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.headerTextColor
   },
   container: {
-    height: 300
+    // flex: 1,
+    // height: 200,
+    // width: 100
   },
   askMilesContainer: {
     marginTop: 22
@@ -283,7 +285,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.inputBackground,
     borderColor: colors.primary,
     borderWidth: 2.5,
-    marginTop: 22
+    marginTop: 22,
+    // alignSelf: 'stretch'
   },
   instructionsContainer: {
     marginLeft: 20,
@@ -292,8 +295,9 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   image: {
-    width: 300,
-    height: 300,
+    // flex: 1,
+    width: 150,
+    height: 150,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 25,
