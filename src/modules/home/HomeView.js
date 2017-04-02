@@ -210,7 +210,7 @@ const HomeView = React.createClass({
       var trip = trips[trips.length - 1].meters_travelled;
 
       // convert to miles
-      trip = (parseInt(trip) / 1609.34).toFixed(2);
+      trip = Math.round((parseInt(trip) / 1609.34));
       trip = trip.toString() + ' miles';
 
       this.setState({trips: trip});
