@@ -338,7 +338,7 @@ const HomeView = React.createClass({
 
     updated = distance + current[0];
 
-    this.setState({meters: updated.toString() + current[1]});
+    this.setState({meters: updated.toString() + ' ' + current[1]});
   },
 
   convertMeters(meters) {
