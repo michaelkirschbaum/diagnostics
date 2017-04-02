@@ -51,11 +51,11 @@ const InstallationView = React.createClass({
 
   componentDidMount() {
     var interval = 2000;
-    var rssi_refresh = setInterval(function() {
+    {/* var rssi_refresh = setInterval(function() {
       this.rediscover();
-    }.bind(this), interval);
+    }.bind(this), interval); */}
 
-    this.setState({rssi_refresh});
+    // this.setState({rssi_refresh});
   },
 
   componentWillUnmount() {
