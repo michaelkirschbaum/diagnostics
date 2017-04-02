@@ -63,12 +63,6 @@ const HomeView = React.createClass({
     var that = this;
     var connectionEmitter = new NativeEventEmitter(CarFitManager);
 
-    // listen for meters traveled
-    var distance_subscription = connectionEmitter.add_listener(
-      'TripMetersTraveled'
-      (notification) => console.log("distance event")
-    );
-
     // refresh interval
     var interval = 60000;
 
@@ -83,6 +77,12 @@ const HomeView = React.createClass({
 
     // display vehicle information
     that.loadVehicle().done();
+
+    // listen for meters traveled
+    var distance_subscription = connectionEmitter.add_listener(
+      'TripMetersTraveled'
+      (notification) => this.addDistance(notification["metersTraveled"]);
+    );
 
     const vin = store.getState().get("carInstallation").get("vin");
     var vehicle = new Vehicle(vin);
@@ -178,7 +178,7 @@ const HomeView = React.createClass({
 
     if (meters) {
       if (Platform.OS === 'android')
-        console.error("Unable to get locale.");
+        console.warning("Unable to get locale.");
       else
         var region = NativeModules.SettingsManager.settings.AppleLocale;
 
@@ -328,6 +328,27 @@ const HomeView = React.createClass({
         placeholder={loc.home.kilometrage}
         onChangeText={(text) => this.setState({meters: text})}
       />
+    }
+  },
+
+  addDistance(meters) {
+    var distance = convertMeters(Meters);
+    var current = this.state.meters.parse(" ");
+
+    updated = distance + current[0]
+
+    this.setState({meters: updated.toString() + current[1]});
+  },
+
+  convertMeters(meters) {
+    // get location
+    var region = NativeModules.SettingsManager.settings.AppleLocale;
+
+    // if in US or Britain use Miles, otherwise use Kilometers
+    if (region == 'en_US' || region == 'en_GB') {
+      return Math.round(meters / 1609.34);
+    } else {
+      return Math.round(meters / 1000);
     }
   },
 
