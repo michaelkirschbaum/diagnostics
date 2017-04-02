@@ -53,7 +53,8 @@ const HomeView = React.createClass({
       trips: [],
       title: '',
       description: '',
-      photo: ''
+      photo: '',
+      trip_distance: 0
     };
   },
 
@@ -335,16 +336,21 @@ const HomeView = React.createClass({
     // convert depending on location
     var distance = this.convertMeters(meters);
 
+    // meters is cumulative distance traveled - subtract previous total distance from odometer
+
     // get total distance
     var meters = this.state.meters;
-    var current = parseInt(meters.split(" ")[0]);
+    var current = parseInt(meters.split(" ")[0]) - this.state.total_distance;
     var units = meters.split(" ")[1];
 
     // add distance traveled to current total
-    updated = distance + current;
+    updated = current + distance;
 
     // update odometer
     this.setState({meters: updated.toString() + ' ' + units});
+
+    // set new cumulative distance
+    this.setState({total_distance: distance});
   },
 
   convertMeters(meters) {
