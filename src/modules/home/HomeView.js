@@ -79,9 +79,9 @@ const HomeView = React.createClass({
     that.loadVehicle().done();
 
     // listen for meters traveled
-    var distance_subscription = connectionEmitter.add_listener(
-      'TripMetersTraveled'
-      (notification) => this.addDistance(notification["metersTraveled"]);
+    var distance_subscription = connectionEmitter.addListener(
+      'TripMetersTraveled',
+      (notification) => this.addDistance(notification["metersTraveled"])
     );
 
     const vin = store.getState().get("carInstallation").get("vin");
@@ -142,7 +142,7 @@ const HomeView = React.createClass({
     this.setState({modalVisible: visible});
   },
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     // stop listening to meters traveled
     distance_subscription.remove();
   },
@@ -332,10 +332,11 @@ const HomeView = React.createClass({
   },
 
   addDistance(meters) {
-    var distance = convertMeters(Meters);
-    var current = this.state.meters.parse(" ");
+    var distance = this.convertMeters(meters);
+    var current = this.getState("meters");
+    current = current.parse(" ");
 
-    updated = distance + current[0]
+    updated = distance + current[0];
 
     this.setState({meters: updated.toString() + current[1]});
   },
