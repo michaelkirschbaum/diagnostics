@@ -63,6 +63,12 @@ const HomeView = React.createClass({
     var that = this;
     var connectionEmitter = new NativeEventEmitter(CarFitManager);
 
+    // listen for meters traveled
+    var distance_subscription = connectionEmitter.add_listener(
+      'TripMetersTraveled'
+      (notification) => console.log("distance event")
+    );
+
     // refresh interval
     var interval = 60000;
 
@@ -83,10 +89,7 @@ const HomeView = React.createClass({
 
     // update odometer while not 'in trip'
     setInterval(function() {
-      if (store.getState().get("installation").get("in_drive")) {
-
-      }
-      else
+      if (!store.getState().get("installation").get("in_drive"))
         that.loadMileage(vehicle).done();
     }, interval);
   },
@@ -137,6 +140,11 @@ const HomeView = React.createClass({
 
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
+  },
+
+  componentDidUnmount() {
+    // stop listening to meters traveled
+    distance_subscription.remove();
   },
 
   async loadAlerts() {
