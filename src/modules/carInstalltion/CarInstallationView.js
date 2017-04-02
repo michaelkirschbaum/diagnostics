@@ -282,11 +282,11 @@ const styles = StyleSheet.create({
     marginTop: 22
   },
   textInput: {
+    // alignSelf: 'stretch',
     backgroundColor: colors.inputBackground,
     borderColor: colors.primary,
     borderWidth: 2.5,
     marginTop: 22,
-    // alignSelf: 'stretch'
   },
   instructionsContainer: {
     marginLeft: 20,
@@ -296,8 +296,8 @@ const styles = StyleSheet.create({
   },
   image: {
     // flex: 1,
-    width: 150,
-    height: 150,
+    width: 200,
+    height: 200,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 25,
