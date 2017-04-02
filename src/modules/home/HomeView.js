@@ -332,13 +332,19 @@ const HomeView = React.createClass({
   },
 
   addDistance(meters) {
+    // convert depending on location
     var distance = this.convertMeters(meters);
-    var current = this.getState("meters");
-    current = current.parse(" ");
 
-    updated = distance + current[0];
+    // get total distance
+    var meters = this.state.meters;
+    var current = parseInt(meters.split(" ")[0]);
+    var units = meters.split(" ")[1];
 
-    this.setState({meters: updated.toString() + ' ' + current[1]});
+    // add distance traveled to current total
+    updated = distance + current;
+
+    // update odometer
+    this.setState({meters: updated.toString() + ' ' + units});
   },
 
   convertMeters(meters) {
