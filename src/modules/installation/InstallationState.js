@@ -16,7 +16,8 @@ const initialState = Map({
   pageIndex: 0,
   paring: PAIRING_IDLE,
   foundDevices: [],
-  in_drive: false
+  in_drive: false,
+  connected: 0
 });
 
 // Actions
@@ -26,6 +27,7 @@ const DISCOVER_BLE = 'InstallationState/DISCOVER_BLE';
 const START_PAIRING = 'InstallationState/START_PAIRING';
 const CLEAR_DEVICES = 'InstallationState/CLEAR_DEVICES';
 const SET_DRIVE = 'SET_DRIVE';
+const SET_CONNECTION = 'SET_CONNECTION';
 
 // Action Creaters
 export function setPageIndex(value) {
@@ -60,6 +62,13 @@ export function setDrive(value) {
   }
 }
 
+export function setConnection(status) {
+  return {
+    type: SET_CONNECTION,
+    payload: status
+  }
+}
+
 // Reducer
 export default function InstallationStateReducer(state = initialState, action = {}) {
   switch (action.type) {
@@ -91,6 +100,11 @@ export default function InstallationStateReducer(state = initialState, action = 
 
     case SET_DRIVE:
       return state.set('in_drive', action.payload);
+
+    case SET_CONNECTION:
+      return Object.assign({}, state, {
+        connected: action.payload
+      });
 
     default:
       return state;

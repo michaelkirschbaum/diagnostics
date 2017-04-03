@@ -51,7 +51,7 @@ const CarPhotoView = React.createClass({
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
 
-    headerTitle = 'Take photo sequence';
+    headerTitle = 'Photo';
 
     return (
       <Container theme={carfitTheme}>
@@ -67,10 +67,6 @@ const CarPhotoView = React.createClass({
           keyboardShouldPersistTaps="always"
           style={{backgroundColor: colors.backgroundPrimary}}
           ref={c => this._content = c}>
-
-          <View style={styles.instructionsContainer}>
-            <H3 style={{fontWeight: "bold", textAlign: "center", marginTop: 25}}>Photo Sequence</H3>
-          </View>
 
         </Content>
         <Footer theme={carfitTheme} style={styles.footer}>

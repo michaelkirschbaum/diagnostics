@@ -148,8 +148,7 @@ const MyCarsView = React.createClass({
                 <Text>IMAGE</Text>
               </View>
               <View style={styles.carDetailsContainer}>
-                <Button rounded
-                      style={styles.milesButton}
+                <Button transparent
                       textStyle={{color: colors.textPrimary}}
                       onPress={() => this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation})}
                 >{loc.myCars.changeMyCar}</Button>
