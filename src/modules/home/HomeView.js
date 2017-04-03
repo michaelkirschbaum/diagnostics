@@ -465,7 +465,6 @@ const HomeView = React.createClass({
               </View>
             </View>
           </View>
-
           <Modal
             open={this.state.modalVisible}
             offset={0}
@@ -478,11 +477,15 @@ const HomeView = React.createClass({
               borderRadius: 7
             }}>
             <View>
+              <Text style={{color: 'black'}}>UPDATE CAR MILEAGE</Text>
+              {this.renderOdometerUpdate()}
               <Button rounded
                     style={{alignSelf: 'center'}}
                     textStyle={{color: colors.textPrimary}}
                     onPress={() => this.setState({modalVisible: false})}
               >Save changes</Button>
+              <Button
+              >Cancel</Button>
             </View>
           </Modal>
         </Content>
