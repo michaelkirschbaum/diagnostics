@@ -221,7 +221,7 @@ const HomeView = React.createClass({
     var vehicle = new Vehicle(vin);
 
     if (isNaN(distance))
-      this.setModalVisible(false);
+      this.setState({modalVisible: false});
     else {
       // set odometer
       if (Platform.OS === 'android')
