@@ -468,11 +468,10 @@ const HomeView = React.createClass({
           </View>
           <Modal
             open={this.state.modalVisible}
-            offset={0}
             modalDidOpen={() => undefined}
             modalDidClose={() => undefined}
             style={{alignItems: 'center'}}
-            closeOnTouchOutside={true}
+            closeOnTouchOutside={false}
             containerStyle={{}}
             modalStyle={{
               borderRadius: 7
