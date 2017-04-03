@@ -416,15 +416,6 @@ const HomeView = React.createClass({
               marginBottom: 5,
               }}/>
 
-            <View>
-              <Modal
-                open={this.state.modalVisible}
-                modalDidOpen={() => console.log("Modal opened.")}
-                modalDidClose={() => this.setState({modalVisible: false})}
-                style={{alignItems: 'center'}}>
-              </Modal>
-            </View>
-
             <View style={styles.dataBlockContainer}>
               <View style={styles.dataIcon}>
                 <Image source={require('../../../images/icons/service.png')} style={styles.icon}/>
@@ -473,9 +464,26 @@ const HomeView = React.createClass({
                 <Icon active name="ios-arrow-forward"></Icon>
               </View>
             </View>
-
           </View>
 
+          <Modal
+            open={this.state.modalVisible}
+            offset={0}
+            modalDidOpen={() => undefined}
+            modalDidClose={() => undefined}
+            style={{alignItems: 'center'}}
+            closeOnTouchOutside={true}
+            containerStyle={{}}
+            modalStyle={{
+              borderRadius: 10,
+
+            }}>
+            <View>
+              <Button rounded
+                    onPress={() => this.setState({modalVisible: false})}
+              >Save changes</Button>
+            </View>
+          </Modal>
         </Content>
         <Footer theme={carfitTheme} style={styles.footer}>
           <View style={styles.bottomContainer}>
