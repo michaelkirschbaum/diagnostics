@@ -6,7 +6,8 @@ import {
   Dimensions,
   TouchableOpacity,
   NativeEventEmitter,
-  NativeModules
+  NativeModules,
+  ActivityIndicator
 } from 'react-native';
 import {
   Container,
@@ -31,7 +32,6 @@ import Connection from '../../carfit/connection';
 import Signal from '../../components/Signal';
 import TimerMixin from 'react-native-timer-mixin';
 const {CarFitManager} = NativeModules;
-import Spinner from 'react-native-loading-spinner-overlay';
 
 /**
  * Login view
@@ -41,7 +41,8 @@ import Spinner from 'react-native-loading-spinner-overlay';
 const InstallationView = React.createClass({
   getInitialState() {
     return {
-      rssi_refresh: ''
+      rssi_refresh: '',
+      connecting: true
     };
   },
 
@@ -218,7 +219,6 @@ const InstallationView = React.createClass({
                 </View> */}
               </View>
             </Swiper>
-
           </Content>
         </Container>
     );

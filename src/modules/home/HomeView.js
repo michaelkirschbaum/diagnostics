@@ -43,6 +43,7 @@ import createFragment from 'react-addons-create-fragment';
 const {CarFitManager} = NativeModules;
 import Connection from '../../carfit/connection';
 import Modal from 'react-native-simple-modal';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 const HomeView = React.createClass({
   getInitialState() {
