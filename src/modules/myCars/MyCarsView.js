@@ -193,20 +193,16 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
   },
-
-
   textInput: {
     backgroundColor: colors.inputBackground,
     borderColor: colors.primary,
     borderWidth: 2.5,
     marginTop: 22
   },
-
   menuText: {
     marginBottom: 24,
     fontWeight: "bold"
   },
-
   image: {
     width: 300,
     height: 300,

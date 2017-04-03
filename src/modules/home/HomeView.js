@@ -475,11 +475,12 @@ const HomeView = React.createClass({
             closeOnTouchOutside={true}
             containerStyle={{}}
             modalStyle={{
-              borderRadius: 10,
-
+              borderRadius: 7
             }}>
             <View>
               <Button rounded
+                    style={{alignSelf: 'center'}}
+                    textStyle={{color: colors.textPrimary}}
                     onPress={() => this.setState({modalVisible: false})}
               >Save changes</Button>
             </View>
