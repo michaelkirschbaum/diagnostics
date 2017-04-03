@@ -5,7 +5,6 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
-  Modal,
   TouchableHighlight,
   Linking,
   AsyncStorage,
@@ -43,6 +42,7 @@ import store from '../../redux/store';
 import createFragment from 'react-addons-create-fragment';
 const {CarFitManager} = NativeModules;
 import Connection from '../../carfit/connection';
+import Modal from 'react-native-simple-modal';
 
 const HomeView = React.createClass({
   getInitialState() {
@@ -137,10 +137,6 @@ const HomeView = React.createClass({
 
   popRoute() {
     this.props.onNavigateBack();
-  },
-
-  setModalVisible(visible) {
-    this.setState({modalVisible: visible});
   },
 
   componentWillUnmount() {
@@ -407,7 +403,7 @@ const HomeView = React.createClass({
               <Button rounded
                       style={styles.milesButton}
                       textStyle={{color: colors.textPrimary}}
-                      onPress={() => this.setModalVisible(true)}
+                      onPress={() => this.setState({modalVisible: true})}
               >{this.state.meters}</Button>
             </View>
 
@@ -422,22 +418,10 @@ const HomeView = React.createClass({
 
             <View>
               <Modal
-                animationType={"none"}
-                transparent={true}
-                visible={this.state.modalVisible}
-                onRequestClose={() => {alert("Modal has been closed.")}}>
-
-                <Container>
-                  <Content>
-                    <Card>
-                      {this.renderOdometerUpdate()}
-
-                      <Button block
-                        onPress={() => this.setOdometer(this.state.meters)}
-                      >Save Changes</Button>
-                    </Card>
-                  </Content>
-                </Container>
+                open={this.state.modalVisible}
+                modalDidOpen={() => console.log("Modal opened.")}
+                modalDidClose={() => this.setState({modalVisible: false})}
+                style={{alignItems: 'center'}}>
               </Modal>
             </View>
 
