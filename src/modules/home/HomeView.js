@@ -233,12 +233,14 @@ const HomeView = React.createClass({
         var meters = Math.round(parseInt(distance) * 1609.34);
         var units = ' mi';
 
-        distance = distance + units;
+        // format odometer
+        distance = parseInt(distance).toLocaleString() + units;
       } else {
         var meters = Math.round(parseInt(distance) * 1000);
         var units = ' km';
 
-        distance = distance + units;
+        // format odometer
+        distance = parseInt(distance).toLocaleString() + units;
       }
 
       vehicle.setMileage(vin, meters);
@@ -246,7 +248,8 @@ const HomeView = React.createClass({
       // accept promise?
       this.setState({meters: distance});
 
-      this.setModalVisible(false);
+      // hide modal
+      this.setState({modalVisible: false});
     }
   },
 
@@ -477,14 +480,19 @@ const HomeView = React.createClass({
               borderRadius: 7
             }}>
             <View>
-              <Text style={{color: 'black'}}>UPDATE CAR MILEAGE</Text>
-              {this.renderOdometerUpdate()}
+              <Text style={{color: 'black', alignSelf: 'center'}}>UPDATE CAR MILEAGE</Text>
+              <InputGroup>
+                {this.renderOdometerUpdate()}
+              </InputGroup>
               <Button rounded
                     style={{alignSelf: 'center'}}
                     textStyle={{color: colors.textPrimary}}
-                    onPress={() => this.setState({modalVisible: false})}
+                    onPress={() => this.setOdometer(this.state.meters)}
               >Save changes</Button>
-              <Button
+              <Button transparent
+                    textStyle={{color: 'black'}}
+                    style={{alignSelf: 'center'}}
+                    onPress={() => this.setState({modalVisible: false})}
               >Cancel</Button>
             </View>
           </Modal>
