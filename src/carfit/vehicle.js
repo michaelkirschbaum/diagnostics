@@ -88,8 +88,9 @@ export default class Vehicle {
     try {
       var vehicle = await this.manager.vehicleVinGet(this.vin);
       var year = vehicle["year"];
+      var make = vehicle["make"];
       var model = vehicle["model"];
-      var description = year + ' ' + model;
+      var description = year + ' ' + make + ' ' + model;
 
       return description;
     } catch (e) {

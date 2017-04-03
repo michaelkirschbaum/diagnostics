@@ -41,6 +41,9 @@ const CarInstallationStateView = React.createClass({
     return {
       plate: '',
       vin: '',
+      year: '',
+      make: '',
+      model: '',
       modalVisible: false
     };
   },
@@ -62,8 +65,11 @@ const CarInstallationStateView = React.createClass({
       // notify user whether vehicle has been added
       if (response) {
         this.props.addVehicle(response["vin"]);
+        this.setState({year: response["year"]});
+        this.setState({make: response["make"]});
+        this.setState({model: response["model"]});
 
-        // display modal for verfication
+        // verify vehicle
         this.setState({modalVisible: true});
       }
       else {
@@ -89,8 +95,11 @@ const CarInstallationStateView = React.createClass({
       // notify user whether vehicle has been added
       if (response) {
         this.props.addVehicle(response["vin"]);
+        this.setState({year: response["year"]});
+        this.setState({make: response["make"]});
+        this.setState({model: response["model"]});
 
-        // display modal for verfication
+        // verify vehicle
         this.setState({modalVisible: true});
       }
       else {
@@ -266,7 +275,11 @@ const CarInstallationStateView = React.createClass({
               borderRadius: 7
             }}>
             <View>
+              <Image source={require('../../../images/icons/check.png')} style={styles.icon}/>
               <Text style={{color: 'black', alignSelf: 'center'}}>Car identified!</Text>
+              <Text style={{color: 'black', textAlign: 'center'}}>{this.state.make}</Text>
+              <Text style={{color: 'black', textAlign: 'center'}}>{this.state.model}</Text>
+              <Text style={{color: 'black', textAlign: 'center'}}>{this.state.year}</Text>
               <Button rounded
                     style={{alignSelf: 'center'}}
                     textStyle={{color: colors.textPrimary}}
@@ -334,6 +347,7 @@ const styles = StyleSheet.create({
     height: 35,
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center'
   },
   profileContainer: {
     flex: 1,
