@@ -182,11 +182,11 @@ const HomeView = React.createClass({
       if (region == 'en_US' || region == 'en_GB') {
         var units = ' mi';
         var meters = Math.round(meters / 1609.34);
-        meters = meters.toString() + units;
+        meters = meters.toLocaleString() + units;
       } else {
         var units = ' km';
         var meters = Math.round(meters / 1000);
-        meters = meters.toString() + units;
+        meters = meters.toLocaleString() + units;
       }
 
       this.setState({meters});
@@ -267,11 +267,11 @@ const HomeView = React.createClass({
       if (region == 'en_US' || region == 'en_GB') {
         var units = ' mi';
         var meters = Math.round(meters / 1609.34);
-        meters = meters.toString() + units;
+        meters = meters.toLocaleString() + units;
       } else {
         var units = ' km';
         var meters = Math.round(meters / 1000);
-        meters = meters.toString() + units;
+        meters = meters.toLocaleString() + units;
       }
 
       this.setState({meters});
