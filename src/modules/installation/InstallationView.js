@@ -200,6 +200,7 @@ const InstallationView = React.createClass({
                         }>
                 </List>
                 <Text>Found: {this.numberOfItems}</Text>
+                {/* <TouchableOpacity onPress={this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation})}> */}
                 <TouchableOpacity onPress={this.rediscover}>
                   <Icon name="ios-refresh"></Icon>
                 </TouchableOpacity>

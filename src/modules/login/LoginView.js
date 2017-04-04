@@ -38,12 +38,14 @@ const LoginView = React.createClass({
   },
 
   continue() {
-    var login = new Login()
-    var lock = new Auth0Lock({clientId: "t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M", domain: "carfit.auth0.com"});
-    lock.show({}, (err, profile, token) => {
-      console.log('Logged in!' + ' ' + profile + ' ' + token);
-      login.auth0('carfit.auth0.com', token);
-    });
+    if locationUS() {
+      var login = new Login()
+      var lock = new Auth0Lock({clientId: "t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M", domain: "carfit.auth0.com"});
+      lock.show({}, (err, profile, token) => {
+        console.log('Logged in!' + ' ' + profile + ' ' + token);
+        login.auth0('carfit.auth0.com', token);
+      });
+    }
 
     this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome});
   },
@@ -57,6 +59,10 @@ const LoginView = React.createClass({
 
   setPage(index) {
     this.props.setPageIndex(index);
+  },
+
+  locationUS() {
+    return true;
   },
 
   render() {
