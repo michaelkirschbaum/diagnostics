@@ -28,7 +28,7 @@ const NorautoView = React.createClass({
 
 const styles = StyleSheet.create({
   webView: {
-
+    
   }
 });
 
