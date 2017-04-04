@@ -219,7 +219,7 @@ const InstallationView = React.createClass({
                   >{loc.general.continue}</Button>
                 </View> */}
               </View>
-              <ActivityIndicator/>
+              <ActivityIndicator />
             </Swiper>
           </Content>
         </Container>
