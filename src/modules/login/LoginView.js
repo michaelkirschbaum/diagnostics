@@ -5,6 +5,7 @@ import {
   Image,
   Dimensions,
   Platform,
+  WebView
 } from 'react-native';
 import {Container, Content, InputGroup, Input, Button, Text, H3, Footer} from 'native-base';
 import colors from '../../config/colors';
@@ -38,13 +39,17 @@ const LoginView = React.createClass({
   },
 
   continue() {
-    if locationUS() {
+    var region = NativeModules.SettingsManager.settings.AppleLocale;
+
+    if (region == 'en_US') {
       var login = new Login()
       var lock = new Auth0Lock({clientId: "t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M", domain: "carfit.auth0.com"});
       lock.show({}, (err, profile, token) => {
         console.log('Logged in!' + ' ' + profile + ' ' + token);
         login.auth0('carfit.auth0.com', token);
       });
+    } else {
+      return <WebView/>
     }
 
     this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome});
@@ -59,10 +64,6 @@ const LoginView = React.createClass({
 
   setPage(index) {
     this.props.setPageIndex(index);
-  },
-
-  locationUS() {
-    return true;
   },
 
   render() {
