@@ -41,7 +41,7 @@ const LoginView = React.createClass({
   continue() {
     var region = NativeModules.SettingsManager.settings.AppleLocale;
 
-    if (region == 'en_US') {
+    if (region != 'en_US') {
       var login = new Login()
       var lock = new Auth0Lock({clientId: "t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M", domain: "carfit.auth0.com"});
       lock.show({}, (err, profile, token) => {
@@ -49,7 +49,7 @@ const LoginView = React.createClass({
         login.auth0('carfit.auth0.com', token);
       });
     } else {
-      return <WebView/>
+      return <WebView source={{uri: 'http://{apiqual.norautointernational.com/uaa/oauth/authorize?response_type=code&client_id=<client_id>&redirect_uri=<localhost:port>'}}/>
     }
 
     this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome});
