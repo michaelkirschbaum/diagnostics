@@ -23,6 +23,7 @@ import TermsViewContainer from './legal/TermsViewContainer';
 import DriveViewContainer from './drive/DriveViewContainer';
 import UsageViewContainer from './usage/UsageViewContainer';
 import AlertsViewContainer from './alerts/AlertsViewContainer';
+import NorautoViewContainer from './norauto/NorautoViewContainer';
 //
 // import CounterViewContainer from './counter/CounterViewContainer';
 // import ColorViewContainer from './colors/ColorViewContainer';
@@ -98,6 +99,9 @@ export default function AppRouter(props) {
   }
   if (key === 'Usage') {
     return <UsageViewContainer />
+  }
+  if (key === 'Norauto') {
+    return <NorautoViewContainer />
   }
 
   throw new Error('Unknown navigation key: ' + key);

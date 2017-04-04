@@ -5,7 +5,8 @@ import {
   Image,
   Dimensions,
   Platform,
-  WebView
+  WebView,
+  NativeModules
 } from 'react-native';
 import {Container, Content, InputGroup, Input, Button, Text, H3, Footer} from 'native-base';
 import colors from '../../config/colors';
@@ -48,11 +49,11 @@ const LoginView = React.createClass({
         console.log('Logged in!' + ' ' + profile + ' ' + token);
         login.auth0('carfit.auth0.com', token);
       });
-    } else {
-      return <WebView source={{uri: 'http://{apiqual.norautointernational.com/uaa/oauth/authorize?response_type=code&client_id=<client_id>&redirect_uri=<localhost:port>'}}/>
-    }
 
-    this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome});
+      this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome});
+    } else {
+      this.props.pushRoute({key: 'Norauto', title: ''})
+    }
   },
 
   onPasswordPress() {

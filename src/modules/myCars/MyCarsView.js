@@ -29,7 +29,6 @@ import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import Vehicle from '../../carfit/vehicle';
 import store from '../../redux/store';
-
 import * as NavigationState from '../navigation/NavigationState';
 
 /**
