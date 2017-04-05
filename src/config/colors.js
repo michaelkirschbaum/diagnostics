@@ -9,5 +9,6 @@ const colors = {
   backgroundSecondary: '#333333',
   inputBackground: '#fff',
   headerTextColor: '#bbbbbb',
+  norautoColor: '#DDDDDD'
 };
 export default colors;
