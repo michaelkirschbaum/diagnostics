@@ -42,7 +42,7 @@ const LoginView = React.createClass({
   continue() {
     var region = NativeModules.SettingsManager.settings.AppleLocale;
 
-    if (region == 'fr_FR') {
+    if (region == 'fr_FR' || region == 'en_FR') {
       this.props.pushRoute({key: 'Norauto', title: ''})
     } else {
       var login = new Login()
