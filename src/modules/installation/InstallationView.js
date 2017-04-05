@@ -94,7 +94,7 @@ const InstallationView = React.createClass({
 
     // handle failure, bluetooth failure, or success
     if (true) { // should be resp
-      // this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
+      this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
     }
     else
       Alert.alert(
