@@ -42,7 +42,9 @@ const LoginView = React.createClass({
   continue() {
     var region = NativeModules.SettingsManager.settings.AppleLocale;
 
-    if (region == 'en_US') {
+    if (region == 'fr_FR') {
+      this.props.pushRoute({key: 'Norauto', title: ''})
+    } else {
       var login = new Login()
       var lock = new Auth0Lock({clientId: "t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M", domain: "carfit.auth0.com"});
       lock.show({}, (err, profile, token) => {
@@ -51,8 +53,6 @@ const LoginView = React.createClass({
       });
 
       this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome});
-    } else {
-      this.props.pushRoute({key: 'Norauto', title: ''})
     }
   },
 

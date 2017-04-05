@@ -28,7 +28,7 @@ const NorautoView = React.createClass({
 });
 
 onNavigationStateChange = (navState) => {
-
+  console.warning(navState);
 };
 
 const styles = StyleSheet.create({
