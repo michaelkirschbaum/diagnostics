@@ -91,8 +91,9 @@ const InstallationView = React.createClass({
     var resp = await conn.connectDevice(id);
 
     // handle failure, bluetooth failure, or success
-    if (true) // should be resp
-      this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
+    if (true) { // should be resp
+      // this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
+    }
     else
       Alert.alert(
         'Puls',
@@ -200,7 +201,6 @@ const InstallationView = React.createClass({
                         }>
                 </List>
                 <Text>Found: {this.numberOfItems}</Text>
-                {/* <TouchableOpacity onPress={this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation})}> */}
                 <TouchableOpacity onPress={this.rediscover}>
                   <Icon name="ios-refresh"></Icon>
                 </TouchableOpacity>
