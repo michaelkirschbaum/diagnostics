@@ -23,6 +23,8 @@ import TermsViewContainer from './legal/TermsViewContainer';
 import DriveViewContainer from './drive/DriveViewContainer';
 import UsageViewContainer from './usage/UsageViewContainer';
 import AlertsViewContainer from './alerts/AlertsViewContainer';
+import NorautoViewContainer from './norauto/NorautoViewContainer';
+import NewVehicleViewContainer from './vehicle/NewVehicleViewContainer';
 //
 // import CounterViewContainer from './counter/CounterViewContainer';
 // import ColorViewContainer from './colors/ColorViewContainer';
@@ -98,6 +100,12 @@ export default function AppRouter(props) {
   }
   if (key === 'Usage') {
     return <UsageViewContainer />
+  }
+  if (key === 'Norauto') {
+    return <NorautoViewContainer />
+  }
+  if (key === 'NewVehicle') {
+    return <NewVehicleViewContainer />
   }
 
   throw new Error('Unknown navigation key: ' + key);

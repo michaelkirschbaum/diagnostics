@@ -29,7 +29,6 @@ import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import Vehicle from '../../carfit/vehicle';
 import store from '../../redux/store';
-
 import * as NavigationState from '../navigation/NavigationState';
 
 /**
@@ -150,7 +149,7 @@ const MyCarsView = React.createClass({
               <View style={styles.carDetailsContainer}>
                 <Button transparent
                       textStyle={{color: colors.textPrimary}}
-                      onPress={() => this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation})}
+                      onPress={() => this.props.pushRoute({key: 'NewVehicle', title: loc.carInstallation.inCarInstallation})}
                 >{loc.myCars.changeMyCar}</Button>
               </View>
 

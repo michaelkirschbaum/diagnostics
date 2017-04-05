@@ -42,7 +42,7 @@ const InstallationView = React.createClass({
   getInitialState() {
     return {
       rssi_refresh: '',
-      connecting: true
+      connecting: false
     };
   },
 
@@ -66,6 +66,8 @@ const InstallationView = React.createClass({
   },
 
   async onNextPress(id) {
+    this.setState({connecting: true});
+
     var connectionEmitter = new NativeEventEmitter(CarFitManager);
 
     // set flag for start of trip
@@ -91,8 +93,9 @@ const InstallationView = React.createClass({
     var resp = await conn.connectDevice(id);
 
     // handle failure, bluetooth failure, or success
-    if (true) // should be resp
-      this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
+    if (true) { // should be resp
+      // this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
+    }
     else
       Alert.alert(
         'Puls',
@@ -217,6 +220,11 @@ const InstallationView = React.createClass({
                           onPress={() => this.setPhone(this.state.text)}
                   >{loc.general.continue}</Button>
                 </View> */}
+                <ActivityIndicator
+                  style={styles.spinner}
+                  animating={this.state.connecting}
+                  size='large'
+                />
               </View>
             </Swiper>
           </Content>
@@ -270,6 +278,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+  spinner: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20
   }
 });
 
