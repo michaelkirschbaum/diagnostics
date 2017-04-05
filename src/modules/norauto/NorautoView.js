@@ -21,10 +21,15 @@ const NorautoView = React.createClass({
       <WebView
         source={{uri: 'http://apiqual.norautointernational.com/uaa/oauth/authorize?response_type=code&client_id=carfit&redirect_uri=http://car.fit'}}
         style={styles.webView}
+        onNavigationStateChange={this.onNavigationStateChange}
       />
     );
   }
 });
+
+onNavigationStateChange = (navState) => {
+
+};
 
 const styles = StyleSheet.create({
   webView: {
