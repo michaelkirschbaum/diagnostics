@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
 import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted} from '../navigation/NavigationState';
 import NewVehicleView from './NewVehicleView';
+import {setEnterMode, addVehicle, setPageIndex} from '../carInstalltion/CarInstallationState';
 
 export default connect(
   state => ({
@@ -22,5 +23,14 @@ export default connect(
     closeDrawer() {
       dispatch(closeDrawer());
     },
+    setEnterMode(mode) {
+      dispatch(setEnterMode(mode));
+    },
+    addVehicle(vin) {
+      dispatch(addVehicle(vin));
+    },
+    setPageIndex(index) {
+      dispatch(setPageIndex(index));
+    }
   })
 )(NewVehicleView);

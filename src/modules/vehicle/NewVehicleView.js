@@ -1,37 +1,140 @@
 import React from 'react';
 import {
+  View,
+  StyleSheet,
+  Image,
+  Dimensions,
+  Alert,
+  NativeModules,
+  TouchableOpacity,
+  ActivityIndicator
+} from 'react-native';
+import {
   Container,
   Header,
-  Button,
-  Icon,
   Title,
   Content,
-  View
+  InputGroup,
+  Button,
+  Input,
+  Text,
+  Icon,
+  H3,
+  List,
+  ListItem,
 } from 'native-base';
-import {
-  ActivityIndicator,
-  StyleSheet
-} from 'react-native';
 import carfitTheme from '../../config/carfit-theme';
 import loc from '../../config/localization';
 import colors from '../../config/colors';
+import store from '../../redux/store';
+import Modal from 'react-native-simple-modal';
+import Vehicle from '../../carfit/vehicle';
 
 const NewVehicleView = React.createClass({
+  getInitialState: function() {
+    return {
+      plate: '',
+      vin: '',
+      year: '',
+      make: '',
+      model: '',
+      modalVisible: false,
+      loading: false
+    };
+  },
+
+  async addVIN(vin) {
+    this.setState({loading: true});
+
+    // add user vehicle
+    vehicle = new Vehicle();
+
+    if (!this.validVIN(vin))
+      console.log("Invalid VIN.");
+    else {
+      var response = await vehicle.addByVIN(vin);
+
+      // notify user whether vehicle has been added
+      if (response) {
+        this.props.addVehicle(response["vin"]);
+        this.setState({year: response["year"]});
+        this.setState({make: response["make"]});
+        this.setState({model: response["model"]});
+
+        // verify vehicle
+        this.setState({modalVisible: true});
+      }
+      else {
+        Alert.alert(
+          'Fail',
+          'Unable to add vehicle.',
+          [{text: 'OK', onPress: () => console.log('OK Pressed.')}],
+          {cancellable: false}
+        );
+      }
+    }
+  },
+
+  async addPlate(plate, region) {
+    this.setState({loading: true});
+
+    // add user vehicle
+    vehicle = new Vehicle();
+
+    if (!this.validPlate(plate))
+      console.log("Invalid plate.");
+    else {
+      var response = await vehicle.addByPlate(plate, region);
+
+      // notify user whether vehicle has been added
+      if (response) {
+        this.props.addVehicle(response["vin"]);
+        this.setState({year: response["year"]});
+        this.setState({make: response["make"]});
+        this.setState({model: response["model"]});
+
+        // verify vehicle
+        this.setState({modalVisible: true});
+      }
+      else {
+        Alert.alert(
+          'Fail',
+          'Unable to add vehicle.',
+          [{text: 'OK', onPress: () => console.log('OK Pressed.')}],
+          {cancelable: false}
+        );
+      }
+    }
+  },
+
+  validVIN(vin) {
+    return true;
+  },
+
+  validPlate(plate) {
+    return true;
+  },
+
+  popRoute() {
+    this.props.setPageIndex(0);
+    this.props.onNavigateBack();
+  },
+
+  setPage(index) {
+    this.props.setPageIndex(index);
+  },
+
+  setMode(mode) {
+    this.props.setEnterMode(mode);
+  },
+
   render() {
+    let windowHeight = Dimensions.get('window').height;
+    let windowWidth = Dimensions.get('window').width;
+
     let headerTitle = loc.carInstallation.inCarInstallation;
 
-    return (
-      <Container theme={carfitTheme}>
-        <Header>
-          <Button transparent onPress={() => this.props.onNavigateBack()}>
-            <Icon name="ios-arrow-back"/>
-          </Button>
-          <Title>{headerTitle}</Title>
-        </Header>
-        <Content style={{backgroundColor: colors.backgroundPrimary}}>
-        </Content>
-      </Container>
-    );
+    let finalView = store.getState().get("carInstallation").get("enterMode");
 
     getFinalView = function () {
       if (finalView == 'vin') {
@@ -63,7 +166,7 @@ const NewVehicleView = React.createClass({
             </View>
             <ActivityIndicator
               style={styles.spinner}
-              animating={this.state.connecting}
+              animating={this.state.loading}
               size='large'
             />
           </View>
@@ -104,13 +207,64 @@ const NewVehicleView = React.createClass({
             </View>
             <ActivityIndicator
               style={styles.spinner}
-              animating={this.state.connecting}
+              animating={this.state.loading}
               size='large'
             />
           </View>
         )
       }
     }.bind(this);
+
+    return (
+      <Container theme={carfitTheme}>
+        <Header>
+          <Button transparent onPress={() => this.popRoute()}>
+            <Icon name="ios-arrow-back"/>
+          </Button>
+          <Title>{headerTitle}</Title>
+        </Header>
+        <View style={styles.headerLine}/>
+        <Content
+          padder
+          keyboardShouldPersistTaps="always"
+          style={{backgroundColor: colors.backgroundPrimary}}
+          ref={c => this._content = c}>
+
+          <View style={styles.instructionsContainer}>
+            {getFinalView()}
+          </View>
+
+          <Modal
+            open={this.state.modalVisible}
+            modalDidOpen={() => undefined}
+            modalDidClose={() => undefined}
+            style={{alignItems: 'center'}}
+            closeOnTouchOutside={false}
+            containerStyle={{}}
+            modalStyle={{
+              borderRadius: 7
+            }}>
+            <View>
+              <Image source={require('../../../images/icons/check.png')} style={styles.icon}/>
+              <Text style={{color: 'black', alignSelf: 'center'}}>Car identified!</Text>
+              <Text style={{color: 'black', textAlign: 'center'}}>{this.state.make}</Text>
+              <Text style={{color: 'black', textAlign: 'center'}}>{this.state.model}</Text>
+              <Text style={{color: 'black', textAlign: 'center'}}>{this.state.year}</Text>
+              <Button rounded
+                    style={{alignSelf: 'center'}}
+                    textStyle={{color: colors.textPrimary}}
+                    onPress={() => this.props.onNavigateBack()}
+              >Continue</Button>
+              <Button transparent
+                    textStyle={{color: 'black'}}
+                    style={{alignSelf: 'center'}}
+                    onPress={() => this.setState({modalVisible: false})}
+              >Not my car</Button>
+            </View>
+          </Modal>
+        </Content>
+      </Container>
+    );
   }
 });
 
