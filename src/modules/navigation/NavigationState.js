@@ -42,9 +42,6 @@ export function switchRoute(index) {
       case 'MainRoute':
         payload = 3;
         break;
-      case 'Settings':
-        payload = 2;
-        break;
     }
   } else {
     payload = index;
@@ -74,8 +71,7 @@ const initialState = fromJS({
       {key: 'LoginRoute', title: 'CARFIT'},
       {key: 'WelcomeRoute', title: loc.welcome.welcome},
       {key: 'Overview', title: loc.overview.overview},
-      {key: 'MainRoute', title: 'CARFIT'},
-      {key: 'Settings', title: loc.settings.settings}
+      {key: 'MainRoute', title: 'CARFIT'}
     ]
   },
   LoginRoute: {
@@ -96,12 +92,6 @@ const initialState = fromJS({
     index: 0,
     routes: [
       {key: 'Home', title: 'CARFIT'}
-    ]
-  },
-  Settings: {
-    index: 0,
-    routes: [
-      {key: 'CarInstallation', title: loc.carInstallation.inCarInstallation}
     ]
   },
   drawerOpen: true

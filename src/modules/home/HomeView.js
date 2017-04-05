@@ -5,7 +5,6 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
-  Modal,
   TouchableHighlight,
   Linking,
   AsyncStorage,
@@ -43,6 +42,8 @@ import store from '../../redux/store';
 import createFragment from 'react-addons-create-fragment';
 const {CarFitManager} = NativeModules;
 import Connection from '../../carfit/connection';
+import Modal from 'react-native-simple-modal';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 const HomeView = React.createClass({
   getInitialState() {
@@ -139,10 +140,6 @@ const HomeView = React.createClass({
     this.props.onNavigateBack();
   },
 
-  setModalVisible(visible) {
-    this.setState({modalVisible: visible});
-  },
-
   componentWillUnmount() {
     // stop listening to meters traveled
     distance_subscription.remove();
@@ -225,7 +222,7 @@ const HomeView = React.createClass({
     var vehicle = new Vehicle(vin);
 
     if (isNaN(distance))
-      this.setModalVisible(false);
+      this.setState({modalVisible: false});
     else {
       // set odometer
       if (Platform.OS === 'android')
@@ -250,7 +247,8 @@ const HomeView = React.createClass({
       // accept promise?
       this.setState({meters: distance});
 
-      this.setModalVisible(false);
+      // hide modal
+      this.setState({modalVisible: false});
     }
   },
 
@@ -407,7 +405,7 @@ const HomeView = React.createClass({
               <Button rounded
                       style={styles.milesButton}
                       textStyle={{color: colors.textPrimary}}
-                      onPress={() => this.setModalVisible(true)}
+                      onPress={() => this.setState({modalVisible: true})}
               >{this.state.meters}</Button>
             </View>
 
@@ -419,27 +417,6 @@ const HomeView = React.createClass({
               marginTop: 5,
               marginBottom: 5,
               }}/>
-
-            <View>
-              <Modal
-                animationType={"none"}
-                transparent={true}
-                visible={this.state.modalVisible}
-                onRequestClose={() => {alert("Modal has been closed.")}}>
-
-                <Container>
-                  <Content>
-                    <Card>
-                      {this.renderOdometerUpdate()}
-
-                      <Button block
-                        onPress={() => this.setOdometer(this.state.meters)}
-                      >Save Changes</Button>
-                    </Card>
-                  </Content>
-                </Container>
-              </Modal>
-            </View>
 
             <View style={styles.dataBlockContainer}>
               <View style={styles.dataIcon}>
@@ -489,9 +466,34 @@ const HomeView = React.createClass({
                 <Icon active name="ios-arrow-forward"></Icon>
               </View>
             </View>
-
           </View>
-
+          <Modal
+            open={this.state.modalVisible}
+            modalDidOpen={() => undefined}
+            modalDidClose={() => undefined}
+            style={{alignItems: 'center'}}
+            closeOnTouchOutside={false}
+            containerStyle={{}}
+            modalStyle={{
+              borderRadius: 7
+            }}>
+            <View>
+              <Text style={{color: 'black', alignSelf: 'center'}}>UPDATE CAR MILEAGE</Text>
+              <InputGroup>
+                {this.renderOdometerUpdate()}
+              </InputGroup>
+              <Button rounded
+                    style={{alignSelf: 'center'}}
+                    textStyle={{color: colors.textPrimary}}
+                    onPress={() => this.setOdometer(this.state.meters)}
+              >Save changes</Button>
+              <Button transparent
+                    textStyle={{color: 'black'}}
+                    style={{alignSelf: 'center'}}
+                    onPress={() => this.setState({modalVisible: false})}
+              >Cancel</Button>
+            </View>
+          </Modal>
         </Content>
         <Footer theme={carfitTheme} style={styles.footer}>
           <View style={styles.bottomContainer}>

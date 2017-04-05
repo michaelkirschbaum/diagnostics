@@ -5,6 +5,8 @@ import {
   Image,
   Dimensions,
   Platform,
+  WebView,
+  NativeModules
 } from 'react-native';
 import {Container, Content, InputGroup, Input, Button, Text, H3, Footer} from 'native-base';
 import colors from '../../config/colors';
@@ -38,14 +40,20 @@ const LoginView = React.createClass({
   },
 
   continue() {
-    var login = new Login()
-    var lock = new Auth0Lock({clientId: "t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M", domain: "carfit.auth0.com"});
-    lock.show({}, (err, profile, token) => {
-      console.log('Logged in!' + ' ' + profile + ' ' + token);
-      login.auth0('carfit.auth0.com', token);
-    });
+    var region = NativeModules.SettingsManager.settings.AppleLocale;
 
-    this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome});
+    if (region == 'en_US') {
+      var login = new Login()
+      var lock = new Auth0Lock({clientId: "t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M", domain: "carfit.auth0.com"});
+      lock.show({}, (err, profile, token) => {
+        console.log('Logged in!' + ' ' + profile + ' ' + token);
+        login.auth0('carfit.auth0.com', token);
+      });
+
+      this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome});
+    } else {
+      this.props.pushRoute({key: 'Norauto', title: ''})
+    }
   },
 
   onPasswordPress() {

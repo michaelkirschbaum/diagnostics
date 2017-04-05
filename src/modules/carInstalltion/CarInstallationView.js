@@ -29,6 +29,7 @@ import * as NavigationState from '../navigation/NavigationState';
 import Vehicle from '../../carfit/vehicle';
 import PickerContainer from '../../components/PickerContainer';
 import loc from '../../config/localization';
+import Modal from 'react-native-simple-modal';
 
 /**
  * Login view
@@ -37,7 +38,14 @@ import loc from '../../config/localization';
  */
 const CarInstallationStateView = React.createClass({
   getInitialState: function() {
-    return {plate: '', vin: ''};
+    return {
+      plate: '',
+      vin: '',
+      year: '',
+      make: '',
+      model: '',
+      modalVisible: false
+    };
   },
 
   propTypes: {
@@ -57,21 +65,18 @@ const CarInstallationStateView = React.createClass({
       // notify user whether vehicle has been added
       if (response) {
         this.props.addVehicle(response["vin"]);
+        this.setState({year: response["year"]});
+        this.setState({make: response["make"]});
+        this.setState({model: response["model"]});
 
-        // make notification synchronous
-        await Alert.alert(
-          'Success',
-          'Vehicle has been added.',
-          // store vin
-          {text: 'OK', onPress: () => console.log("OK pressed.")},
-          {cancellable: false}
-        );
+        // verify vehicle
+        this.setState({modalVisible: true});
       }
       else {
         Alert.alert(
           'Fail',
           'Unable to add vehicle.',
-          {text: 'OK', onPress: () => console.log('OK Pressed.')},
+          [{text: 'OK', onPress: () => console.log('OK Pressed.')}],
           {cancellable: false}
         );
       }
@@ -90,20 +95,18 @@ const CarInstallationStateView = React.createClass({
       // notify user whether vehicle has been added
       if (response) {
         this.props.addVehicle(response["vin"]);
+        this.setState({year: response["year"]});
+        this.setState({make: response["make"]});
+        this.setState({model: response["model"]});
 
-        Alert.alert(
-          'Success',
-          'Vehicle has been added.',
-          // store vin
-          [{text: 'OK', onPress: () => this.props.pushRoute({key: 'CarPhoto', title: ''})}],
-          {cancelable: false}
-        );
+        // verify vehicle
+        this.setState({modalVisible: true});
       }
       else {
         Alert.alert(
           'Fail',
           'Unable to add vehicle.',
-          {text: 'OK', onPress: () => console.log('OK Pressed.')},
+          [{text: 'OK', onPress: () => console.log('OK Pressed.')}],
           {cancelable: false}
         );
       }
@@ -261,7 +264,34 @@ const CarInstallationStateView = React.createClass({
               {getFinalView()}
             </View>
           </Swiper>
-
+          <Modal
+            open={this.state.modalVisible}
+            modalDidOpen={() => undefined}
+            modalDidClose={() => undefined}
+            style={{alignItems: 'center'}}
+            closeOnTouchOutside={false}
+            containerStyle={{}}
+            modalStyle={{
+              borderRadius: 7
+            }}>
+            <View>
+              <Image source={require('../../../images/icons/check.png')} style={styles.icon}/>
+              <Text style={{color: 'black', alignSelf: 'center'}}>Car identified!</Text>
+              <Text style={{color: 'black', textAlign: 'center'}}>{this.state.make}</Text>
+              <Text style={{color: 'black', textAlign: 'center'}}>{this.state.model}</Text>
+              <Text style={{color: 'black', textAlign: 'center'}}>{this.state.year}</Text>
+              <Button rounded
+                    style={{alignSelf: 'center'}}
+                    textStyle={{color: colors.textPrimary}}
+                    onPress={() => this.props.pushRoute({key: 'CarPhoto', title: ''})}
+              >Continue</Button>
+              <Button transparent
+                    textStyle={{color: 'black'}}
+                    style={{alignSelf: 'center'}}
+                    onPress={() => this.setState({modalVisible: false})}
+              >Not my car</Button>
+            </View>
+          </Modal>
         </Content>
       </Container>
     );
@@ -317,6 +347,7 @@ const styles = StyleSheet.create({
     height: 35,
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center'
   },
   profileContainer: {
     flex: 1,

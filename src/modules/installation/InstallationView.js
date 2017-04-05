@@ -6,7 +6,8 @@ import {
   Dimensions,
   TouchableOpacity,
   NativeEventEmitter,
-  NativeModules
+  NativeModules,
+  ActivityIndicator
 } from 'react-native';
 import {
   Container,
@@ -40,7 +41,8 @@ const {CarFitManager} = NativeModules;
 const InstallationView = React.createClass({
   getInitialState() {
     return {
-      rssi_refresh: ''
+      rssi_refresh: '',
+      connecting: false
     };
   },
 
@@ -51,11 +53,11 @@ const InstallationView = React.createClass({
 
   componentDidMount() {
     var interval = 2000;
-    {/* var rssi_refresh = setInterval(function() {
+    var rssi_refresh = setInterval(function() {
       this.rediscover();
-    }.bind(this), interval); */}
+    }.bind(this), interval);
 
-    // this.setState({rssi_refresh});
+    this.setState({rssi_refresh});
   },
 
   componentWillUnmount() {
@@ -64,27 +66,36 @@ const InstallationView = React.createClass({
   },
 
   async onNextPress(id) {
+    this.setState({connecting: true});
+
     var connectionEmitter = new NativeEventEmitter(CarFitManager);
 
-    // set flag for start and end of trip
+    // set flag for start of trip
     var trip_subscription = connectionEmitter.addListener(
       'TripStartOfTravel',
       (notification) => this.props.setDrive(true)
     );
 
+    // set flag for end of trip
     var trip_subscription = connectionEmitter.addListener(
       'TripEndOfTravel',
       (notification) => this.props.setDrive(false)
     );
 
+    // flag bluetooth connection status
+    var connection_subscription = connectionEmitter.addListener(
+      'BLEDeviceConnectionStatus',
+      (message) => this.props.setConnection(message["status"])
+    );
+
     // connect puls device
     var conn = new Connection();
-
     var resp = await conn.connectDevice(id);
 
     // handle failure, bluetooth failure, or success
-    if (true) // should be resp
+    if (true) { // should be resp
       this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
+    }
     else
       Alert.alert(
         'Puls',
@@ -209,9 +220,13 @@ const InstallationView = React.createClass({
                           onPress={() => this.setPhone(this.state.text)}
                   >{loc.general.continue}</Button>
                 </View> */}
+                <ActivityIndicator
+                  style={styles.spinner}
+                  animating={this.state.connecting}
+                  size='large'
+                />
               </View>
             </Swiper>
-
           </Content>
         </Container>
     );
@@ -263,6 +278,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+  spinner: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20
   }
 });
 
