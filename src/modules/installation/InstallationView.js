@@ -42,7 +42,7 @@ const InstallationView = React.createClass({
   getInitialState() {
     return {
       rssi_refresh: '',
-      connecting: true
+      connecting: false
     };
   },
 
@@ -218,8 +218,12 @@ const InstallationView = React.createClass({
                           onPress={() => this.setPhone(this.state.text)}
                   >{loc.general.continue}</Button>
                 </View> */}
+                <ActivityIndicator
+                  style={styles.spinner}
+                  animating={this.state.connecting}
+                  size='large'
+                />
               </View>
-              <ActivityIndicator />
             </Swiper>
           </Content>
         </Container>
@@ -272,6 +276,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+  spinner: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20
   }
 });
 
