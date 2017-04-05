@@ -6,7 +6,8 @@ import {
   Dimensions,
   Alert,
   NativeModules,
-  TouchableOpacity
+  TouchableOpacity,
+  ActivityIndicator
 } from 'react-native';
 import {
   Container,
@@ -44,7 +45,8 @@ const CarInstallationStateView = React.createClass({
       year: '',
       make: '',
       model: '',
-      modalVisible: false
+      modalVisible: false,
+      connecting: false
     };
   },
 
@@ -54,6 +56,8 @@ const CarInstallationStateView = React.createClass({
   },
 
   async addVIN(vin) {
+    this.setState({connecting: true});
+
     // add user vehicle
     vehicle = new Vehicle();
 
@@ -84,6 +88,8 @@ const CarInstallationStateView = React.createClass({
   },
 
   async addPlate(plate, region) {
+    this.setState({connecting: true});
+
     // add user vehicle
     vehicle = new Vehicle();
 
@@ -184,6 +190,11 @@ const CarInstallationStateView = React.createClass({
                       onPress={() => this.addVIN(this.state.text)}
               >{loc.general.continue}</Button>
             </View>
+            <ActivityIndicator
+              style={styles.spinner}
+              animating={this.state.connecting}
+              size='large'
+            />
           </View>
         )
       } else {
@@ -220,6 +231,11 @@ const CarInstallationStateView = React.createClass({
                       onPress={() => this.addPlate(this.state.plate, this.state.region)}
               >{loc.general.continue}</Button>
             </View>
+            <ActivityIndicator
+              style={styles.spinner}
+              animating={this.state.connecting}
+              size='large'
+            />
           </View>
         )
       }
@@ -357,6 +373,11 @@ const styles = StyleSheet.create({
     // backgroundColor: '#002200',
     marginBottom: 16,
   },
+  spinner: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20
+  }
 });
 
 export default CarInstallationStateView;
