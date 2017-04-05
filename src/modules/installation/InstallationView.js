@@ -66,6 +66,8 @@ const InstallationView = React.createClass({
   },
 
   async onNextPress(id) {
+    this.setState({connecting: true});
+
     var connectionEmitter = new NativeEventEmitter(CarFitManager);
 
     // set flag for start of trip
