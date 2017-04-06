@@ -31,6 +31,7 @@ import Vehicle from '../../carfit/vehicle';
 import PickerContainer from '../../components/PickerContainer';
 import loc from '../../config/localization';
 import Modal from 'react-native-simple-modal';
+import MultiSelect from 'react-native-multiple-select';
 
 /**
  * Login view

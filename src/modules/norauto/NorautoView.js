@@ -28,7 +28,7 @@ const NorautoView = React.createClass({
       var code = query.substr(query.indexOf("=") + 1, query.length - 1);
 
       // store short code
-      
+
 
       // route to welcome
       this.props.pushRoute({key: 'Register', title: loc.verification.welcome});

@@ -7,3 +7,5 @@ const RegisterView = React.createClass({
 
     );
 });
+
+export default RegisterView;

@@ -23,7 +23,9 @@ const reducers = {
 
   form: reducer,
 
-  home: HomeReducer
+  home: HomeReducer,
+
+  register: RegisterReducer
 };
 
 // initial state, accessor and mutator for supporting root-level

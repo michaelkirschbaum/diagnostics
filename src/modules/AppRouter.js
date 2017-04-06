@@ -25,6 +25,7 @@ import UsageViewContainer from './usage/UsageViewContainer';
 import AlertsViewContainer from './alerts/AlertsViewContainer';
 import NorautoViewContainer from './norauto/NorautoViewContainer';
 import NewVehicleViewContainer from './vehicle/NewVehicleViewContainer';
+import RegisterViewContainer from './register/RegisterViewContainer';
 //
 // import CounterViewContainer from './counter/CounterViewContainer';
 // import ColorViewContainer from './colors/ColorViewContainer';
@@ -106,6 +107,9 @@ export default function AppRouter(props) {
   }
   if (key === 'NewVehicle') {
     return <NewVehicleViewContainer />
+  }
+  if (key === 'Register'){
+    return <RegisterViewContainer />
   }
 
   throw new Error('Unknown navigation key: ' + key);
