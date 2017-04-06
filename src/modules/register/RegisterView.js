@@ -1,11 +1,7 @@
-import React from 'react'
-
+import React from 'react';
 
 const RegisterView = React.createClass({
-  render() {
-    return (
-
-    );
+  render() {}
 });
 
 export default RegisterView;

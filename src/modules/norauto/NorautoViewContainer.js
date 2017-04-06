@@ -1,5 +1,6 @@
 import {connect} from 'react-redux';
 import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted} from '../navigation/NavigationState';
+import {changeUserCode} from './NorautoState';
 import NorautoView from './NorautoView';
 
 export default connect(
@@ -22,5 +23,8 @@ export default connect(
     closeDrawer() {
       dispatch(closeDrawer());
     },
+    changeUserCode() {
+      dispatch(changeUserCode());
+    }
   })
 )(NorautoView);

@@ -1,7 +1,7 @@
 import {Map} from 'immutable';
 
 const initialState = Map({
-  user_code = ''
+  user_code: ''
 });
 
 const CHANGE_USER_CODE = 'CHANGE_USER_CODE';
@@ -10,7 +10,7 @@ export function changeUserCode(code) {
   return {type: CHANGE_USER_CODE, payload: code};
 }
 
-export default function RegisterReducer(state = initialState, action {}) {
+export default function NorautoReducer(state = initialState, action = {}) {
   switch (action.type) {
     case CHANGE_USER_CODE:
       return Object.assign({}. state, {

@@ -1,6 +1,5 @@
 import {connect} from 'react-redux';
 import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted} from '../navigation/NavigationState';
-import {changeUserCode} from './RegisterState';
 import RegisterView from './RegisterView';
 
 export default connect(
