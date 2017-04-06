@@ -174,6 +174,9 @@ const en = {
   legal: {
     privacy: 'Privacy Policy',
     terms: 'Terms of Use'
+  },
+  register: {
+    signin: 'Sign in'
   }
 };
 export default en;
