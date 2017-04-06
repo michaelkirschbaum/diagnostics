@@ -182,7 +182,7 @@ const HomeView = React.createClass({
 
       if (region == 'en_US' || region == 'en_GB') {
         var units = ' mi';
-        var meters = Math.round(meters / 1609.34);
+        var meters = Math.round(meters / 1609.344);
         meters = meters.toString() + units;
       } else {
         var units = ' km';
@@ -203,11 +203,11 @@ const HomeView = React.createClass({
     var trips = await vehicle.getTrips(vin);
 
     if (trips) {
-      // temporarily set to first trip
+      // set to last trip
       var trip = trips[trips.length - 1].meters_travelled;
 
       // convert to miles
-      trip = Math.round((parseInt(trip) / 1609.34));
+      trip = Math.round((parseInt(trip) / 1609.344));
       trip = trip.toString() + ' miles';
 
       this.setState({trips: trip});
@@ -231,7 +231,7 @@ const HomeView = React.createClass({
         var region = NativeModules.SettingsManager.settings.AppleLocale;
 
       if (region == 'en_US' || region == 'en_GB') {
-        var meters = Math.round(parseInt(distance) * 1609.34);
+        var meters = Math.round(parseInt(distance) * 1609.344);
         var units = ' mi';
 
         distance = distance + units;
@@ -268,7 +268,7 @@ const HomeView = React.createClass({
 
       if (region == 'en_US' || region == 'en_GB') {
         var units = ' mi';
-        var meters = Math.round(meters / 1609.34);
+        var meters = Math.round(meters / 1609.344);
         meters = meters.toString() + units;
       } else {
         var units = ' km';
@@ -355,7 +355,7 @@ const HomeView = React.createClass({
 
     // if in US or Britain use Miles, otherwise use Kilometers
     if (region == 'en_US' || region == 'en_GB') {
-      return Math.round(meters / 1609.34);
+      return Math.round(meters / 1609.344);
     } else {
       return Math.round(meters / 1000);
     }

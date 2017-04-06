@@ -17,23 +17,25 @@ import colors from '../../config/colors';
 
 const NorautoView = React.createClass({
   render() {
+    onShouldStartLoadWithRequest = (event) => {
+      console.warning(event.url);
+
+      return false;
+    };
+
     return (
       <WebView
         source={{uri: 'http://apiqual.norautointernational.com/uaa/oauth/authorize?response_type=code&client_id=carfit&redirect_uri=http://car.fit'}}
         style={styles.webView}
-        onNavigationStateChange={this.onNavigationStateChange}
+        onShouldStartLoadWithRequest={this.onShouldStartLoadWithRequest}
       />
     );
   }
 });
 
-onNavigationStateChange = (navState) => {
-  console.warning(navState);
-};
-
 const styles = StyleSheet.create({
   webView: {
-    backgroundColor: 'gray'
+    backgroundColor: colors.norautoColor
   }
 });
 
