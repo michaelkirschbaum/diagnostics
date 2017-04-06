@@ -14,26 +14,36 @@ import {
 } from 'native-base';
 import carfitTheme from '../../config/carfit-theme';
 import colors from '../../config/colors';
+import URL from 'url-parse';
+import Login from '../../carfit/login';
 
 const NorautoView = React.createClass({
-  render() {
-    onShouldStartLoadWithRequest = (event) => {
-      console.warning(event.url);
+  onShouldStartLoadWithRequest(event) {
+    // scan for specified redirect
+    var url = new URL(event.url);
+
+    // get 'short code' from response
+    if (url.hostname == 'car.fit') {
+      var query = url.query;
+      var code = query.substr(query.indexOf("=") + 1, query.length - 1);
+
+      // push user demographics form
+      this.props.pushRoute(key: '', title: '');
 
       return false;
-    };
+    }
 
+    return true;
+  },
+
+  render() {
     return (
       <WebView
         source={{uri: 'http://apiqual.norautointernational.com/uaa/oauth/authorize?response_type=code&client_id=carfit&redirect_uri=http://car.fit'}}
         style={styles.webView}
-        onMessage={this.onMessage}
+        onShouldStartLoadWithRequest={this.onShouldStartLoadWithRequest}
       />
     );
-  }
-
-  onMessage = e => {
-    console.log(e.NativeEvent.data);
   }
 });
 

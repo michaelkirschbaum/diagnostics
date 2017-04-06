@@ -25,7 +25,7 @@ export default class Login {
 
       return response;
     } catch (e) {
-      console.error(e);
+      return null;
     }
   }
 
