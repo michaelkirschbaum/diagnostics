@@ -4,7 +4,6 @@ import {
   Header,
   Button,
   Icon,
-  Title,
   Content,
   View
 } from 'native-base';
@@ -19,7 +18,6 @@ const RegisterView = React.createClass({
           <Button transparent onPress={() => this.props.onNavigateBack()}>
             <Icon name="ios-arrow-back"/>
           </Button>
-          <Title>{headerTitle}</Title>
         </Header>
         <Content style={{backgroundColor: colors.backgroundPrimary}}>
         </Content>
