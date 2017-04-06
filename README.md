@@ -42,6 +42,37 @@ You may need to load the Android version of the project into Android Studio in o
 You can find more information here:
 https://facebook.github.io/react-native/docs/getting-started.html
 
+## Setting-up your REACT Native Project with a development pod of the iOS SDK##
+
+The aim here to set up the iOS SDK pod so that we can hot modify the SDK code and run the changes from the ReastNative_CARFIT project.
+
+1. Clone the [iOS SDK](https://bitbucket.org/carfit_platform/sdk.ios.car.fit) repo.
+1. Go to project root and run:
+```
+pod install
+```
+1. Go back to the ReactNative_CARFIT project root and run:
+```
+npm install
+rnpm link
+```
+Answer **NO** to any prompt from *rnpm link*
+1. Go the **ios** subdirectory and run:
+```
+pod install
+```
+1. Remove the links to **Lambda** and **CoreAWS** libraries from Xcode. Go to Targets->CARFIT->General->Linked Frameworks and Libraries.
+
+![Screen Shot 2017-04-05 at 6.28.57 PM.png](https://bitbucket.org/repo/a8gzEn/images/1388710182-Screen%20Shot%202017-04-05%20at%206.28.57%20PM.png)
+
+1. Install **Watchman**:
+```
+brew update
+brew install watchman
+```
+1. Add *-lc++* flag to the project build:
+
+![Screen Shot 2017-04-05 at 6.37.06 PM.png](https://bitbucket.org/repo/a8gzEn/images/3566227418-Screen%20Shot%202017-04-05%20at%206.37.06%20PM.png)
 STILL TO BE WRITTEN:
 
 ### How do I get set up? ###
