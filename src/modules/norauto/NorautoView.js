@@ -30,8 +30,7 @@ const NorautoView = React.createClass({
       // store short code
       this.props.changeUserCode(code);
 
-      // route to welcome
-      this.props.pushRoute({key: 'Register', title: loc.verification.welcome});
+      this.props.pushRoute({key: 'Register', title: ''})
 
       // prevent browser from navigating
       return false;

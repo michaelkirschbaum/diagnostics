@@ -1,3 +1,4 @@
+// norauto reducer
 import {Map} from 'immutable';
 
 const initialState = Map({
@@ -13,9 +14,7 @@ export function changeUserCode(code) {
 export default function NorautoReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_USER_CODE:
-      return Object.assign({}, state, {
-        user_code: action.payload
-      });
+      return state.set('user_code', action.payload);
 
     default:
       return state;

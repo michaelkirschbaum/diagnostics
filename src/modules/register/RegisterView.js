@@ -9,7 +9,6 @@ import {
   View
 } from 'native-base';
 import carfitTheme from '../../config/carfit-theme';
-import loc from '../../config/localization';
 import colors from '../../config/colors';
 
 const RegisterView = React.createClass({
