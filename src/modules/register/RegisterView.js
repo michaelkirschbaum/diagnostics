@@ -1,14 +1,9 @@
-import React, { Component } from 'react'
-import {Field, reduxForm} from 'redux-form';
+import React from 'react'
 
-class RegisterView extends Component {
+
+const RegisterView = React.createClass({
   render() {
     return (
-      <form></form>
-    );
-  }
-}
 
-RegisterView = reduxForm({
-  form: 'register'
-})(OnboardView);
+    );
+});

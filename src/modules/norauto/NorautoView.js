@@ -27,12 +27,17 @@ const NorautoView = React.createClass({
       var query = url.query;
       var code = query.substr(query.indexOf("=") + 1, query.length - 1);
 
-      // push user demographics form
-      this.props.pushRoute(key: '', title: '');
+      // store short code
+      
 
+      // route to welcome
+      this.props.pushRoute({key: 'Register', title: loc.verification.welcome});
+
+      // prevent browser from navigating
       return false;
     }
 
+    // navigate to url
     return true;
   },
 
