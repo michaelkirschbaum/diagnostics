@@ -7,13 +7,13 @@ const initialState = Map({
 const CHANGE_USER_CODE = 'CHANGE_USER_CODE';
 
 export function changeUserCode(code) {
-  return {type: CHANGE_USER_CODE, payload: code};
+  return {type: CHANGE_USER_CODE, payload: code}
 }
 
-export default function NorautoReducer(state = initialState, action = {}) {
+export default function NorautoReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_USER_CODE:
-      return Object.assign({}. state, {
+      return Object.assign({}, state, {
         user_code: action.payload
       });
 
