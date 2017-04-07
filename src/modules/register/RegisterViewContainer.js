@@ -4,7 +4,6 @@ import RegisterView from './RegisterView';
 
 export default connect(
   state => ({
-    register: state.get('register').toJS(),
     navigationState: state.get('navigationState').toJS(),
   }),
   dispatch => ({

@@ -5,6 +5,7 @@ import NorautoView from './NorautoView';
 
 export default connect(
   state => ({
+    norauto: state.get('norauto').toJS(),
     navigationState: state.get('navigationState').toJS(),
   }),
   dispatch => ({

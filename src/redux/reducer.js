@@ -26,7 +26,7 @@ const reducers = {
 
   home: HomeReducer,
 
-  register: NorautoReducer
+  norauto: NorautoReducer
 };
 
 // initial state, accessor and mutator for supporting root-level

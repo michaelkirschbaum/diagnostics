@@ -176,7 +176,11 @@ const en = {
     terms: 'Terms of Use'
   },
   register: {
-    signin: 'Sign in'
+    signin: 'Sign in',
+    first: 'First name',
+    last: 'Last name',
+    email: 'name@example.com',
+    phone: '+XX XX XX XX XX X'
   }
 };
 export default en;
