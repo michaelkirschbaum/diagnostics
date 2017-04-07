@@ -6,7 +6,12 @@ import {
 } from 'react-native';
 import { Container, Header, Title, Content, InputGroup, Input, Button, Icon, Text, H3 } from 'native-base';
 import colors from '../../config/colors';
-import loc from '../../config/localization';
+import en from '../../config/localization.en';
+import fr from '../../config/localization.fr';
+if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+  var loc = fr;
+else
+  var loc = en;
 import carfitTheme from '../../config/carfit-theme';
 
 // import * as NavigationState from '../../modules/navigation/NavigationState';

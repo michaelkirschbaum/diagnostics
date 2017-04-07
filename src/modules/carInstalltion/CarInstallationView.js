@@ -29,7 +29,12 @@ import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
 import Vehicle from '../../carfit/vehicle';
 import PickerContainer from '../../components/PickerContainer';
-import loc from '../../config/localization';
+import en from '../../config/localization.en';
+import fr from '../../config/localization.fr';
+if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+  var loc = fr;
+else
+  var loc = en;
 import Modal from 'react-native-simple-modal';
 
 /**

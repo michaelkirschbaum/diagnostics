@@ -10,13 +10,18 @@ import {
 } from 'react-native';
 import {Container, Content, InputGroup, Input, Button, Text, H3, Footer} from 'native-base';
 import colors from '../../config/colors';
-import loc from '../../config/localization';
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import {Field, reduxForm} from 'redux-form';
 import Authentication from '../../utils/authentication';
 var Auth0Lock = require('react-native-lock');
 import Login from '../../carfit/login';
+import en from '../../config/localization.en';
+import fr from '../../config/localization.fr';
+if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+  var loc = fr;
+else
+  var loc = en;
 
 /**
  * Login view

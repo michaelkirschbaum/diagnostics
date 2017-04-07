@@ -1,5 +1,10 @@
 import {fromJS} from 'immutable';
-import loc from '../../config/localization';
+import en from '../../config/localization.en';
+import fr from '../../config/localization.fr';
+if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+  var loc = fr;
+else
+  var loc = en;
 import _ from 'lodash';
 import {NavigationExperimental} from 'react-native';
 

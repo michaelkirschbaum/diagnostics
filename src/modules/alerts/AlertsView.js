@@ -15,7 +15,12 @@ import {
   ListItem
 } from 'native-base';
 import carfitTheme from '../../config/carfit-theme';
-import loc from '../../config/localization';
+import en from '../../config/localization.en';
+import fr from '../../config/localization.fr';
+if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+  var loc = fr;
+else
+  var loc = en;
 import colors from '../../config/colors';
 
 const AlertsView = React.createClass({
