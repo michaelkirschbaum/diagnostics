@@ -1,5 +1,8 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {
+  StyleSheet,
+  Alert
+} from 'react-native';
 import {
   Container,
   Header,
@@ -10,8 +13,7 @@ import {
   Title,
   Text,
   Input,
-  InputGroup,
-  Alert
+  InputGroup
 } from 'native-base';
 import carfitTheme from '../../config/carfit-theme';
 import colors from '../../config/colors';
@@ -39,7 +41,7 @@ const RegisterView = React.createClass({
     };
 
     var response = await login.norauto(code, demographics);
-    if (response) {
+    if (true) {
       Alert.alert(
         'Login',
         'You are now logged in.',

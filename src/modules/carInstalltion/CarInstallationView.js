@@ -46,7 +46,7 @@ const CarInstallationStateView = React.createClass({
       make: '',
       model: '',
       modalVisible: false,
-      loading: false
+      connecting: false
     };
   },
 
@@ -56,7 +56,7 @@ const CarInstallationStateView = React.createClass({
   },
 
   async addVIN(vin) {
-    this.setState({loading: true});
+    this.setState({connecting: true});
 
     // add user vehicle
     vehicle = new Vehicle();
@@ -88,7 +88,7 @@ const CarInstallationStateView = React.createClass({
   },
 
   async addPlate(plate, region) {
-    this.setState({loading: true});
+    this.setState({connecting: true});
 
     // add user vehicle
     vehicle = new Vehicle();
@@ -192,7 +192,7 @@ const CarInstallationStateView = React.createClass({
             </View>
             <ActivityIndicator
               style={styles.spinner}
-              animating={this.state.loading}
+              animating={this.state.connecting}
               size='large'
             />
           </View>
