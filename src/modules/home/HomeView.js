@@ -71,7 +71,7 @@ const HomeView = React.createClass({
     var connectionEmitter = new NativeEventEmitter(CarFitManager);
 
     // refresh interval
-    var interval = 60000;
+    var interval = 600000;
 
     // display most current vehicle alert
     that.loadAlerts().done();
