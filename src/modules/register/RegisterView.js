@@ -10,12 +10,14 @@ import {
   Title,
   Text,
   Input,
-  InputGroup
+  InputGroup,
+  Alert
 } from 'native-base';
 import carfitTheme from '../../config/carfit-theme';
 import colors from '../../config/colors';
 import loc from '../../config/localization';
 import store from '../../redux/store';
+import Login from '../../carfit/login';
 
 const RegisterView = React.createClass({
   render() {
@@ -46,14 +48,6 @@ const RegisterView = React.createClass({
               onChangeText = {(text) => this.setState({text: last})}
             />
           </InputGroup>
-          <Text style={{textAlign: 'center'}}>Email</Text>
-          <InputGroup borderType='rounded' style={styles.textInput}>
-            <Input
-              ref='emailInput'
-              placeholder={loc.register.email}
-              onChangeText = {(text) => this.setState({text: email})}
-            />
-          </InputGroup>
           <Text style={{textAlign: 'center'}}>Phone number</Text>
           <InputGroup borderType='rounded' style={styles.textInput}>
             <Input
@@ -64,7 +58,7 @@ const RegisterView = React.createClass({
           </InputGroup>
           <Button rounded
             style={{alignSelf: 'center'}}
-            onPress={() => this.authenticate(this.state.first, this.state.last, this.state.email, this.state.phone, store.getState().get('norauto').get('code'))}
+            onPress={() => this.authenticate(this.state.first, this.state.last, this.state.phone, store.getState().get('norauto').get('code'))}
           >{loc.general.continue}</Button>
         </Content>
       </Container>
@@ -75,14 +69,35 @@ const RegisterView = React.createClass({
     return {
       first: '',
       last: '',
-      phone: '',
-      email: ''
+      phone: ''
     };
   },
 
-  authenticate(first, last, email, phone, code) {
-    // route to welcome view
-    this.props.pushRoute({key: 'Welcome', title: 'loc.verification.welcome'})
+  async authenticate(first, last, phone, code) {
+    var login = new Login();
+
+    // user information
+    var demographics = {
+      firstName: first,
+      lastName: last,
+      phoneNumber: phone
+    };
+
+    var response = await login.norauto(code, demographics);
+    if (response) {
+      Alert.alert(
+        'Login',
+        'You are now logged in.',
+        [{text: 'OK', onPress: () => this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome})}],
+        {cancellable: false}
+      );
+    } else {
+      Alert.alert(
+        'Login',
+        'Log in failed. Try again.',
+        [{text: 'OK', onPress: () => console.log("Error: login failed")}]
+      );
+    }
   }
 });
 
