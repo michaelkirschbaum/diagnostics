@@ -1,7 +1,7 @@
 /**
  * Translated March 29, 2017.
  */
-const en = {
+const fr = {
   general: {
     continue: 'Continuez',
   },
@@ -175,4 +175,4 @@ const en = {
     terms: 'Conditions générales d\'utilisation'
   }
 };
-export default en;
+export default fr;
