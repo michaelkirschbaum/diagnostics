@@ -43,7 +43,7 @@ const NorautoView = React.createClass({
   render() {
     return (
       <WebView
-        source={{uri: 'http://apiqual.norautointernational.com/uaa/oauth/authorize?response_type=code&client_id=carfit&redirect_uri=http://car.fit'}}
+        source={{uri: 'http://apiprod.norautointernational.com/uaa/oauth/authorize?response_type=code&client_id=carfit&redirect_uri=http://car.fit'}}
         style={styles.webView}
         onShouldStartLoadWithRequest={this.onShouldStartLoadWithRequest}
       />

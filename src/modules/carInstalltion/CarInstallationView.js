@@ -80,7 +80,7 @@ const CarInstallationStateView = React.createClass({
         Alert.alert(
           'Fail',
           'Unable to add vehicle.',
-          [{text: 'OK', onPress: () => console.log('OK Pressed.')}],
+          [{text: 'OK', onPress: () => this.setState({connecting: false})}],
           {cancellable: false}
         );
       }
@@ -112,7 +112,7 @@ const CarInstallationStateView = React.createClass({
         Alert.alert(
           'Fail',
           'Unable to add vehicle.',
-          [{text: 'OK', onPress: () => console.log('OK Pressed.')}],
+          [{text: 'OK', onPress: () => this.setState({connecting: false})}],
           {cancelable: false}
         );
       }
