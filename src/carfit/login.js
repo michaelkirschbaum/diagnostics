@@ -19,9 +19,9 @@ export default class Login {
     }
   }
 
-  norauto(code, demographics) {
+  async norauto(code, demographics) {
     try {
-      var response = this.manager.authenticateNorauto(code, demographics);
+      var response = await this.manager.authenticateNorauto(code, demographics);
 
       return response;
     } catch (e) {
