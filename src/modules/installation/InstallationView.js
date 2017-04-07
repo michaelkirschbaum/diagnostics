@@ -65,11 +65,6 @@ const InstallationView = React.createClass({
     this.setState({rssi_refresh});
   },
 
-  componentWillUnmount() {
-    // stop rssi refresh
-    clearInterval(this.state.rssi_refresh);
-  },
-
   async onNextPress(id) {
     this.setState({connecting: true});
 
@@ -99,6 +94,9 @@ const InstallationView = React.createClass({
 
     // handle failure, bluetooth failure, or success
     if (true) { // should be resp
+      // stop refreshing rssi
+      clearInterval(this.state.rssi_refresh);
+
       this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
     }
     else

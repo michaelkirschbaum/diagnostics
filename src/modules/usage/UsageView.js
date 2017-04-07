@@ -34,6 +34,10 @@ const UsageView = React.createClass({
         </Content>
       </Container>
     );
+  },
+
+  onComponentDidMount() {
+
   }
 });
 
