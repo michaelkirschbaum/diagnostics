@@ -7,8 +7,7 @@ import {
   Alert,
   NativeModules,
   TouchableOpacity,
-  ActivityIndicator,
-  NativeModules
+  ActivityIndicator
 } from 'react-native';
 import {
   Container,

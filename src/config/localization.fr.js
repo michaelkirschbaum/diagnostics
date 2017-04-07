@@ -173,6 +173,13 @@ const fr = {
   legal: {
     privacy: 'Politique de confidentialité',
     terms: 'Conditions générales d\'utilisation'
+  },
+  register: {
+    signin: 'Se connecter',
+    first: 'Prénom',
+    last: 'Nom de famille',
+    email: 'name@example.com',
+    phone: '+XX XX XX XX XX X'
   }
 };
 export default fr;

@@ -1,12 +1,12 @@
 import React from 'react';
+import {NativeModules} from 'react-native';
 import {
   Container,
   Header,
   Button,
   Icon,
   Title,
-  Content,
-  NativeModules
+  Content
 } from 'native-base';
 import carfitTheme from '../../config/carfit-theme';
 import en from '../../config/localization.en';
