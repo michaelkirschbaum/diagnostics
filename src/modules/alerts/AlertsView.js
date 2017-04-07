@@ -1,6 +1,7 @@
 import React from 'react';
 import {
-  AsyncStorage
+  AsyncStorage,
+  NativeModules
 } from 'react-native';
 import {
   Container,

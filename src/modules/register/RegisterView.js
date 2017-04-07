@@ -1,7 +1,8 @@
 import React from 'react';
 import {
   StyleSheet,
-  Alert
+  Alert,
+  NativeModules
 } from 'react-native';
 import {
   Container,

@@ -2,7 +2,8 @@ import React, {PropTypes} from 'react';
 import {
   View,
   StyleSheet,
-  Image
+  Image,
+  NativeModules
 } from 'react-native';
 import { Container, Header, Title, Content, InputGroup, Input, Button, Icon, Text, H3 } from 'native-base';
 import colors from '../../config/colors';

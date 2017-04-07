@@ -6,7 +6,8 @@ import {
   Icon,
   Title,
   Content,
-  View
+  View,
+  NativeModules
 } from 'native-base';
 import carfitTheme from '../../config/carfit-theme';
 import en from '../../config/localization.en';

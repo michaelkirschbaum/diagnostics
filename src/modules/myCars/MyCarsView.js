@@ -4,7 +4,8 @@ import {
   StyleSheet,
   Image,
   Dimensions,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  NativeModules
 } from 'react-native';
 import {
   Container,

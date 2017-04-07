@@ -3,7 +3,8 @@ import {
   View,
   StyleSheet,
   Image,
-  Dimensions
+  Dimensions,
+  NativeModules
 } from 'react-native';
 import {
   Container,
