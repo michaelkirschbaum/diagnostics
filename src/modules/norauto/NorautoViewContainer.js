@@ -24,8 +24,8 @@ export default connect(
     closeDrawer() {
       dispatch(closeDrawer());
     },
-    changeUserCode() {
-      dispatch(changeUserCode());
+    changeUserCode(code) {
+      dispatch(changeUserCode(code));
     }
   })
 )(NorautoView);
