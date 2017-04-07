@@ -1,11 +1,9 @@
 import {connect} from 'react-redux';
 import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted} from '../navigation/NavigationState';
-import {changeUserCode} from './NorautoState';
-import NorautoView from './NorautoView';
+import RegisterView from './RegisterView';
 
 export default connect(
   state => ({
-    norauto: state.get('norauto').toJS(),
     navigationState: state.get('navigationState').toJS(),
   }),
   dispatch => ({
@@ -23,9 +21,6 @@ export default connect(
     },
     closeDrawer() {
       dispatch(closeDrawer());
-    },
-    changeUserCode(code) {
-      dispatch(changeUserCode(code));
     }
   })
-)(NorautoView);
+)(RegisterView);

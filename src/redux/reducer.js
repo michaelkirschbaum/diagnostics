@@ -7,6 +7,7 @@ import LoginStateReducer from '../modules/login/LoginState';
 import SessionStateReducer, {RESET_STATE} from '../modules/session/SessionState';
 import {reducer} from 'redux-form';
 import HomeReducer from '../modules/home/HomeState';
+import NorautoReducer from '../modules/norauto/NorautoState';
 
 const reducers = {
   // @NOTE: By convention, the navigation state must live in a subtree called
@@ -23,7 +24,9 @@ const reducers = {
 
   form: reducer,
 
-  home: HomeReducer
+  home: HomeReducer,
+
+  norauto: NorautoReducer
 };
 
 // initial state, accessor and mutator for supporting root-level

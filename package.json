@@ -41,7 +41,7 @@
     "react-native-spinner": "0.0.3",
     "react-native-swiper": "^1.5.4",
     "react-native-timer-mixin": "^0.11.0",
-    "react-native-vector-icons": "^4.0.0",
+    "react-native-vector-icons": "^4.0.1",
     "react-redux": "^5.0.1",
     "react-redux-spinner": "^0.5.0",
     "redux": "^3.6.0",
@@ -55,7 +55,8 @@
     "remote-redux-devtools": "^0.5.7",
     "remote-redux-devtools-on-debugger": "^0.7.0",
     "rxjs": "^5.0.1",
-    "standard-http-error": "^2.0.0"
+    "standard-http-error": "^2.0.0",
+    "url-parse": "^1.1.8"
   },
   "devDependencies": {
     "babel-jest": "18.0.0",
