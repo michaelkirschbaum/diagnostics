@@ -93,7 +93,7 @@ const RegisterView = React.createClass({
           </InputGroup>
           <Button rounded
             style={{alignSelf: 'center'}}
-            onPress={() => this.authenticate(this.state.first, this.state.last, this.state.phone, store.getState().get('norauto').get('code'))}
+            onPress={() => this.authenticate(this.state.first, this.state.last, this.state.phone, store.getState().get("norauto").get("user_code"))}
           >{loc.general.continue}</Button>
         </Content>
       </Container>
