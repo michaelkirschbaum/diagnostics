@@ -20,52 +20,7 @@ import store from '../../redux/store';
 import Login from '../../carfit/login';
 
 const RegisterView = React.createClass({
-  render() {
-    let headerTitle = loc.register.signin;
-
-    return (
-      <Container theme={carfitTheme}>
-        <Header>
-          <Button transparent onPress={() => this.props.onNavigateBack()}>
-            <Icon name="ios-arrow-back"/>
-          </Button>
-          <Title>{headerTitle}</Title>
-        </Header>
-        <Content style={{backgroundColor: colors.backgroundPrimary}}>
-          <Text style={{textAlign: 'center'}}>First Name</Text>
-          <InputGroup borderType='rounded' style={styles.textInput}>
-            <Input
-              ref='firstInput'
-              placeholder={loc.register.first}
-              onChangeText = {(text) => this.setState({text: first})}
-            />
-          </InputGroup>
-          <Text style={{textAlign: 'center'}}>Last Name</Text>
-          <InputGroup borderType='rounded' style={styles.textInput}>
-            <Input
-              ref='lastInput'
-              placeholder={loc.register.last}
-              onChangeText = {(text) => this.setState({text: last})}
-            />
-          </InputGroup>
-          <Text style={{textAlign: 'center'}}>Phone number</Text>
-          <InputGroup borderType='rounded' style={styles.textInput}>
-            <Input
-              ref='phoneInput'
-              placeholder={loc.register.phone}
-              onChangeText = {(text) => this.setState({text: phone})}
-            />
-          </InputGroup>
-          <Button rounded
-            style={{alignSelf: 'center'}}
-            onPress={() => this.authenticate(this.state.first, this.state.last, this.state.phone, store.getState().get('norauto').get('code'))}
-          >{loc.general.continue}</Button>
-        </Content>
-      </Container>
-    );
-  },
-
-  getInitialState: function() {
+  getInitialState() {
     return {
       first: '',
       last: '',
@@ -98,7 +53,52 @@ const RegisterView = React.createClass({
         [{text: 'OK', onPress: () => console.log("Error: login failed")}]
       );
     }
-  }
+  },
+
+  render() {
+    let headerTitle = loc.register.signin;
+
+    return (
+      <Container theme={carfitTheme}>
+        <Header>
+          <Button transparent onPress={() => this.props.onNavigateBack()}>
+            <Icon name="ios-arrow-back"/>
+          </Button>
+          <Title>{headerTitle}</Title>
+        </Header>
+        <Content style={{backgroundColor: colors.backgroundPrimary}}>
+          <Text style={{textAlign: 'center'}}>First Name</Text>
+          <InputGroup borderType='rounded' style={styles.textInput}>
+            <Input
+              ref='firstInput'
+              placeholder={loc.register.first}
+              onChangeText={(text) => this.setState({first: text})}
+            />
+          </InputGroup>
+          <Text style={{textAlign: 'center'}}>Last Name</Text>
+          <InputGroup borderType='rounded' style={styles.textInput}>
+            <Input
+              ref='lastInput'
+              placeholder={loc.register.last}
+              onChangeText={(text) => this.setState({last: text})}
+            />
+          </InputGroup>
+          <Text style={{textAlign: 'center'}}>Phone number</Text>
+          <InputGroup borderType='rounded' style={styles.textInput}>
+            <Input
+              ref='phoneInput'
+              placeholder={loc.register.phone}
+              onChangeText={(text) => this.setState({phone: text})}
+            />
+          </InputGroup>
+          <Button rounded
+            style={{alignSelf: 'center'}}
+            onPress={() => this.authenticate(this.state.first, this.state.last, this.state.phone, store.getState().get('norauto').get('code'))}
+          >{loc.general.continue}</Button>
+        </Content>
+      </Container>
+    );
+  },
 });
 
 const styles = StyleSheet.create({
