@@ -81,6 +81,9 @@ const HomeView = React.createClass({
     // display most current vehicle alert
     that.loadAlerts().done();
 
+    // refresh interval
+    var interval = 60000;
+
     // display and update last trip distance
     that.loadUsage().done();
     setInterval(function() {
@@ -95,9 +98,6 @@ const HomeView = React.createClass({
       'TripMetersTraveled',
       (notification) => this.addDistance(notification["metersTraveled"])
     );
-
-    // refresh interval
-    var interval = 60000;
 
     // update odometer while not 'in trip'
     setInterval(function() {
