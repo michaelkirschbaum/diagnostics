@@ -205,7 +205,6 @@ const InstallationView = React.createClass({
                             </ListItem>
                         }>
                 </List>
-                <Text>Found: {this.numberOfItems}</Text>
 
                 {/* <InputGroup borderType='rounded' style={styles.textInput}>
                   <Input
