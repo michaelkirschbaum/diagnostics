@@ -71,8 +71,12 @@ const HomeView = React.createClass({
     var that = this;
     var connectionEmitter = new NativeEventEmitter(CarFitManager);
 
-    // refresh interval
-    var interval = 600000;
+    // get vehicle
+    const vin = store.getState().get("carInstallation").get("vin");
+    var vehicle = new Vehicle(vin);
+
+    // display odometer
+    that.loadMileage(vehicle).done();
 
     // display most current vehicle alert
     that.loadAlerts().done();
@@ -92,8 +96,8 @@ const HomeView = React.createClass({
       (notification) => this.addDistance(notification["metersTraveled"])
     );
 
-    const vin = store.getState().get("carInstallation").get("vin");
-    var vehicle = new Vehicle(vin);
+    // refresh interval
+    var interval = 60000;
 
     // update odometer while not 'in trip'
     setInterval(function() {
@@ -263,30 +267,6 @@ const HomeView = React.createClass({
 
     var vehicle = new Vehicle(vin);
 
-    // load meters
-    var meters = await vehicle.getMileage();
-
-    if (meters) {
-      if (Platform.OS === 'android')
-        console.error("Unable to get locale.");
-      else
-        var region = NativeModules.SettingsManager.settings.AppleLocale;
-
-      if (region == 'en_US' || region == 'en_GB') {
-        var units = ' mi';
-        var meters = Math.round(meters / 1609.344);
-        meters = meters.toString() + units;
-      } else {
-        var units = ' km';
-        var meters = Math.round(meters / 1000);
-        meters = meters.toString() + units;
-      }
-
-      this.setState({meters});
-    } else {
-      this.loadMileage(vehicle);
-    }
-
     // load title
     var title = await vehicle.getTitle();
 
@@ -342,17 +322,6 @@ const HomeView = React.createClass({
 
     // meters is cumulative distance traveled - subtract previous total distance from odometer
     var meters = this.state.meters;
-    // bug fix: if called the first time meters will be empty string
-    if (meters == '') {
-      meters = '0';
-
-      var region = NativeModules.SettingsManager.settings.AppleLocale;
-
-      if (region == 'en_US' || region == 'en_GB')
-        meters = meters + ' mi';
-      else
-        meters = meters + ' km';
-    }
 
     var current = parseInt(meters.split(" ")[0]) - this.state.total_distance;
     var units = meters.split(" ")[1];
