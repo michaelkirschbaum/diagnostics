@@ -341,6 +341,18 @@ const HomeView = React.createClass({
 
     // meters is cumulative distance traveled - subtract previous total distance from odometer
     var meters = this.state.meters;
+    // bug fix: if called the first time meters will be empty string
+    if (meters == '') {
+      meters = '0';
+
+      var region = NativeModules.SettingsManager.settings.AppleLocale;
+
+      if (region == 'en_US' || region == 'en_GB')
+        meters = meters + ' mi';
+      else
+        meters = meters + ' km';
+    }
+
     var current = parseInt(meters.split(" ")[0]) - this.state.total_distance;
     var units = meters.split(" ")[1];
 
