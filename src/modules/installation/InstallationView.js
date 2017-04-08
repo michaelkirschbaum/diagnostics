@@ -206,9 +206,6 @@ const InstallationView = React.createClass({
                         }>
                 </List>
                 <Text>Found: {this.numberOfItems}</Text>
-                <TouchableOpacity onPress={this.rediscover}>
-                  <Icon name="ios-refresh"></Icon>
-                </TouchableOpacity>
 
                 {/* <InputGroup borderType='rounded' style={styles.textInput}>
                   <Input
