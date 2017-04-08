@@ -60,7 +60,8 @@ const HomeView = React.createClass({
       title: '',
       description: '',
       photo: '',
-      total_distance: 0
+      total_distance: 0,
+      new_meters: ''
     };
   },
 
@@ -324,13 +325,13 @@ const HomeView = React.createClass({
       return <Input
         ref='mileageInput'
         placeholder={loc.home.mileage}
-        onChangeText={(text) => this.setState({meters: text})}
+        onChangeText={(text) => this.setState({new_meters: text})}
       />
     } else {
       return <Input
         ref='mileageInput'
         placeholder={loc.home.kilometrage}
-        onChangeText={(text) => this.setState({meters: text})}
+        onChangeText={(text) => this.setState({new_meters: text})}
       />
     }
   },
@@ -502,7 +503,7 @@ const HomeView = React.createClass({
               <Button rounded
                     style={{alignSelf: 'center'}}
                     textStyle={{color: colors.textPrimary}}
-                    onPress={() => this.setOdometer(this.state.meters)}
+                    onPress={() => this.setOdometer(this.state.new_meters)}
               >Save changes</Button>
               <Button transparent
                     textStyle={{color: 'black'}}
