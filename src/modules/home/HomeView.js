@@ -60,7 +60,7 @@ const HomeView = React.createClass({
       title: '',
       description: '',
       photo: '',
-      trip_distance: 0
+      total_distance: 0
     };
   },
 
