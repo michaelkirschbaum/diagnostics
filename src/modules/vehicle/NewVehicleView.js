@@ -134,6 +134,11 @@ const NewVehicleView = React.createClass({
     this.props.setEnterMode(mode);
   },
 
+  turnOffModal() {
+    this.setState({connecting: false});
+    this.setState({modalVisible: false});
+  },
+
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
@@ -270,7 +275,7 @@ const NewVehicleView = React.createClass({
               <Button transparent
                     textStyle={{color: 'black'}}
                     style={{alignSelf: 'center'}}
-                    onPress={() => this.setState({modalVisible: false})}
+                    onPress={() => this.turnOffModal()}
               >Not my car</Button>
             </View>
           </Modal>

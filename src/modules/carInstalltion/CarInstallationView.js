@@ -146,6 +146,11 @@ const CarInstallationStateView = React.createClass({
     this.props.setEnterMode(mode);
   },
 
+  turnOffModal() {
+    this.setState({connecting: false});
+    this.setState({modalVisible: false});
+  },
+
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
@@ -311,12 +316,12 @@ const CarInstallationStateView = React.createClass({
               <Button rounded
                     style={{alignSelf: 'center'}}
                     textStyle={{color: colors.textPrimary}}
-                    onPress={() => this.props.pushRoute({key: 'CarPhoto', title: ''})}
+                    onPress={() => this.props.switchRoute(2)}
               >Continue</Button>
               <Button transparent
                     textStyle={{color: 'red', textDecorationLine: 'underline'}}
                     style={{alignSelf: 'center'}}
-                    onPress={() => this.setState({modalVisible: false})}
+                    onPress={() => this.turnOffModal()}
               >{loc.carInstallation.failure}</Button>
             </View>
           </Modal>
