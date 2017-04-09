@@ -87,6 +87,8 @@ const fr = {
     enterByVin: 'S\'enregistrer par le VIN',
     enterVin: 'Entrez votre VIN',
     enterByLicensePlate: 'S\'enregistrer par le numéro d\'immatriculation',
+    success: 'Voiture identifiée!',
+    failure: 'Pas ma voiture'
   },
   vinLocations: {
     vinLocations: 'Trouvez votre VIN',
