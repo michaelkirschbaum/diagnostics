@@ -157,9 +157,13 @@ RCT_EXPORT_METHOD(connectBLEDeviceAsync:(NSString *) identifier
 #if TARGET_OS_SIMULATOR
   resolve(nil);
 #else
-  [[CFPCore sharedInstance] bleConnectToDeviceWithId:identifier];
-  self.connectBLEDeviceAsyncResolveBlock = resolve;
-  self.connectBLEDeviceAsyncRejectBlock = reject;
+  if ([[CFPCore sharedInstance] bleConnectToDeviceWithId:identifier]) {
+    self.connectBLEDeviceAsyncResolveBlock = resolve;
+    self.connectBLEDeviceAsyncRejectBlock = reject;
+  } else {
+    NSError * error = [NSError errorWithDomain:@"fit.car.iOSSDK.BLE" code:1 userInfo:nil];
+    reject(@"BLEDeviceConnectionFailed", @"Invalid device reference", error);
+  }
 #endif
 }
 
