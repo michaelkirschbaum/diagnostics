@@ -297,20 +297,21 @@ const CarInstallationStateView = React.createClass({
             }}>
             <View>
               <Image source={require('../../../images/icons/check.png')} style={styles.icon}/>
-              <Text style={{color: 'black', alignSelf: 'center'}}>Car identified!</Text>
+              <Text style={{color: 'black', alignSelf: 'center'}}>{loc.carInstallation.success}</Text>
               <Text style={{color: 'black', textAlign: 'center'}}>{this.state.make}</Text>
               <Text style={{color: 'black', textAlign: 'center'}}>{this.state.model}</Text>
               <Text style={{color: 'black', textAlign: 'center'}}>{this.state.year}</Text>
+              {/* <Image source={require('../../../images/add-picture-car-identified@2x.png')}/> */}
               <Button rounded
                     style={{alignSelf: 'center'}}
                     textStyle={{color: colors.textPrimary}}
                     onPress={() => this.props.pushRoute({key: 'CarPhoto', title: ''})}
               >Continue</Button>
               <Button transparent
-                    textStyle={{color: 'black'}}
+                    textStyle={{color: 'red', textDecorationLine: 'underline'}}
                     style={{alignSelf: 'center'}}
                     onPress={() => this.setState({modalVisible: false})}
-              >Not my car</Button>
+              >{loc.carInstallation.failure}</Button>
             </View>
           </Modal>
         </Content>

@@ -87,6 +87,8 @@ const en = {
     enterByVin: 'Enter by VIN',
     enterVin: 'Enter VIN here',
     enterByLicensePlate: 'Enter by license plate',
+    success: 'Car identified!',
+    failure: 'Not my car'
   },
   vinLocations: {
     vinLocations: 'VIN locations',
