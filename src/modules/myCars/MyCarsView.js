@@ -150,7 +150,7 @@ const MyCarsView = React.createClass({
             <View style={styles.carContainer}>
 
               <View style={styles.carImageContainer}>
-                <Text>IMAGE</Text>
+                <Image source={require('../../../images/icons/change-car.png')} style={styles.icon}/>
               </View>
               <View style={styles.carDetailsContainer}>
                 <Button transparent
@@ -227,6 +227,12 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     justifyContent: 'flex-start',
   },
+  icon: {
+    width: 35,
+    height: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
 
 export default MyCarsView;
