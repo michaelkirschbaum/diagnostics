@@ -70,13 +70,6 @@ const TermsView = React.createClass({
           keyboardShouldPersistTaps="always"
           style={{flex: 1, backgroundColor: colors.backgroundPrimary, height: windowHeight}}
           ref={c => this._content = c}>
-
-          <View style={styles.layoutContainer}>
-
-            <Text>Terms - possible webview?</Text>
-
-          </View>
-
         </Content>
       </Container>
     );
