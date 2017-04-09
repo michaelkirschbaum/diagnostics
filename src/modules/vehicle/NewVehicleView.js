@@ -7,7 +7,8 @@ import {
   Alert,
   NativeModules,
   TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableHighlight
 } from 'react-native';
 import {
   Container,
@@ -255,6 +256,12 @@ const NewVehicleView = React.createClass({
               <Text style={{color: 'black', textAlign: 'center'}}>{this.state.make}</Text>
               <Text style={{color: 'black', textAlign: 'center'}}>{this.state.model}</Text>
               <Text style={{color: 'black', textAlign: 'center'}}>{this.state.year}</Text>
+              <TouchableHighlight>
+                <Image
+                  source={require('../../../images/add-picture-car-identified.png')}
+                  style={styles.image}
+                />
+              </TouchableHighlight>
               <Button rounded
                     style={{alignSelf: 'center'}}
                     textStyle={{color: colors.textPrimary}}
