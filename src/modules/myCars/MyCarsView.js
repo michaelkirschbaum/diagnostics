@@ -155,7 +155,7 @@ const MyCarsView = React.createClass({
               <View style={styles.carDetailsContainer}>
                 <Button transparent
                       textStyle={{color: colors.textPrimary}}
-                      onPress={() => this.props.switchRoute(0)}
+                      onPress={() => this.props.switchRoute(2)}
                 >{loc.myCars.changeMyCar}</Button>
               </View>
 
