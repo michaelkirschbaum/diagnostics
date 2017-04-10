@@ -8,7 +8,7 @@ target 'CARFIT' do
 use_frameworks!
 
   # Pods for CARFIT
-  pod 'CarFitiOSSDK' , :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'dev'
+  pod 'CarFitiOSSDK' , :git => 'https://bitbucket.org/carfit_platform/sdk.ios.car.fit', :branch => 'oad'
   pod 'Lock', '~> 1.26'
   pod 'Lock/TouchID'
   pod 'Lock/SMS'
