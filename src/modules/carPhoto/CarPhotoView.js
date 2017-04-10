@@ -30,8 +30,8 @@ else
   var loc = en;
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
-
 import * as NavigationState from '../navigation/NavigationState';
+import Camera from 'react-native-camera';
 
 /**
  * Login view

@@ -326,6 +326,9 @@ const HomeView = React.createClass({
     // meters is cumulative distance traveled - subtract previous total distance from odometer
     var meters = this.state.meters;
 
+    if (meters == '')
+      meters = '0 mi';
+
     var current = parseInt(meters.split(" ")[0]) - this.state.total_distance;
     var units = meters.split(" ")[1];
 
