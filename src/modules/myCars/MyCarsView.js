@@ -155,7 +155,7 @@ const MyCarsView = React.createClass({
               <View style={styles.carDetailsContainer}>
                 <Button transparent
                       textStyle={{color: colors.textPrimary}}
-                      onPress={() => this.props.pushRoute({key: 'NewVehicle', title: loc.carInstallation.inCarInstallation})}
+                      onPress={() => this.props.switchRoute(0)}
                 >{loc.myCars.changeMyCar}</Button>
               </View>
 

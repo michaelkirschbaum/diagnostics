@@ -121,7 +121,7 @@ const AccountView = React.createClass({
           <View style={styles.layoutContainer}>
 
             {accountDetails}
-
+{/*
             <View style={styles.sectionContainer}>
               <View style={styles.sectionDetails}>
                 <H3 style={styles.sectionTitle}>{loc.account.password}</H3>
@@ -131,7 +131,7 @@ const AccountView = React.createClass({
                 <Icon active name="ios-arrow-forward"></Icon>
               </View>
             </View>
-
+*/}
           </View>
 
         </Content>

@@ -307,7 +307,7 @@ const CarInstallationStateView = React.createClass({
               <Text style={{color: 'black', textAlign: 'center'}}>{this.state.make}</Text>
               <Text style={{color: 'black', textAlign: 'center'}}>{this.state.model}</Text>
               <Text style={{color: 'black', textAlign: 'center'}}>{this.state.year}</Text>
-              <TouchableHighlight>
+              <TouchableHighlight onPress={() => this.props.pushRoute({key: 'CarPhoto', title: ''})}>
                 <Image
                   source={require('../../../images/add-picture-car-identified.png')}
                   style={styles.image}

@@ -61,7 +61,8 @@ const HomeView = React.createClass({
       description: '',
       photo: '',
       total_distance: 0,
-      new_meters: ''
+      new_meters: '',
+      distance_subscription: ''
     };
   },
 
@@ -98,6 +99,8 @@ const HomeView = React.createClass({
       'TripMetersTraveled',
       (notification) => this.addDistance(notification["metersTraveled"])
     );
+
+    this.setState({distance_subscription});
 
     // update odometer while not 'in trip'
     setInterval(function() {
@@ -152,7 +155,7 @@ const HomeView = React.createClass({
 
   componentWillUnmount() {
     // stop listening to meters traveled
-    distance_subscription.remove();
+    this.state.distance_subscription.remove();
   },
 
   async loadAlerts() {
