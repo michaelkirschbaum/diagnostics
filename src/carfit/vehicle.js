@@ -108,4 +108,12 @@ export default class Vehicle {
       return null;
     }
   }
+
+  setPhoto(image) {
+    try {
+
+    } catch(e) {
+      
+    }
+  }
 }

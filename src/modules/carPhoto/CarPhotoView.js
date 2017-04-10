@@ -24,7 +24,7 @@ import {
 import colors from '../../config/colors';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
-if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
   var loc = en;
@@ -32,6 +32,7 @@ import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
 import Camera from 'react-native-camera';
+import Vehicle from '../../carfit/vehicle';
 
 /**
  * Login view
@@ -82,6 +83,8 @@ const CarPhotoView = React.createClass({
   },
 
   takePicture() {
+    var vehicle = new Vehicle();
+
     const options = {};
     //options.location = ...
     this.camera.capture({metadata: options})
