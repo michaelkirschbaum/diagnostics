@@ -5,10 +5,10 @@ platform :ios, '8.3'
 
 target 'CARFIT' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
-# use_frameworks!
+use_frameworks!
 
   # Pods for CARFIT
-  pod 'CarFitiOSSDK' #, :path => '~mcclen/Developer/sdk.ios.car.fit'
+  pod 'CarFitiOSSDK' , :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'dev'
   pod 'Lock', '~> 1.26'
   pod 'Lock/TouchID'
   pod 'Lock/SMS'
