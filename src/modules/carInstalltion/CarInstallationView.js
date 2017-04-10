@@ -52,7 +52,8 @@ const CarInstallationStateView = React.createClass({
       make: '',
       model: '',
       modalVisible: false,
-      connecting: false
+      connecting: false,
+      failureModalVisible: false
     };
   },
 
@@ -83,12 +84,7 @@ const CarInstallationStateView = React.createClass({
         this.setState({modalVisible: true});
       }
       else {
-        Alert.alert(
-          'Fail',
-          'Unable to add vehicle.',
-          [{text: 'OK', onPress: () => this.setState({connecting: false})}],
-          {cancellable: false}
-        );
+        this.setState({failureModalVisible: true});
       }
     }
   },
@@ -115,12 +111,7 @@ const CarInstallationStateView = React.createClass({
         this.setState({modalVisible: true});
       }
       else {
-        Alert.alert(
-          'Fail',
-          'Unable to add vehicle.',
-          [{text: 'OK', onPress: () => this.setState({connecting: false})}],
-          {cancelable: false}
-        );
+        this.setState({failureModalVisible: true});
       }
     }
   },
@@ -149,6 +140,7 @@ const CarInstallationStateView = React.createClass({
   turnOffModal() {
     this.setState({connecting: false});
     this.setState({modalVisible: false});
+    this.setState({failureModalVisible: false})
   },
 
   render() {
@@ -323,6 +315,33 @@ const CarInstallationStateView = React.createClass({
                     style={{alignSelf: 'center'}}
                     onPress={() => this.turnOffModal()}
               >{loc.carInstallation.failure}</Button>
+            </View>
+          </Modal>
+
+          <Modal
+            open={this.state.failureModalVisible}
+            style={{alignItems: 'center'}}
+            closeOnTouchOutside={false}
+            modalStyle={{
+              borderRadius: 7
+            }}>
+            <View>
+              <Image source={require('../../../images/icons/exclamation-mark-icon@2x.png')} style={styles.icon}/>
+              <Text style={{color: 'black', alignSelf: 'center'}}>{loc.carInstallation.notFound}</Text>
+              <Button rounded
+                    style={{alignSelf: 'center'}}
+                    textStyle={{color: colors.textPrimary}}
+                    onPress={() => this.turnOffModal()}
+              >{loc.carInstallation.retry}</Button>
+              <Button transparent
+                    textStyle={{color: 'black', textDecorationLine: 'underline'}}
+                    style={{alignSelf: 'center'}}
+                    onPress={() => Alert.alert(
+                      'Support',
+                      'Support called.',
+                      {text: 'OK', onPress: () => console.log('OK pressed.')})
+                    }    
+              >{loc.carInstallation.support}</Button>
             </View>
           </Modal>
         </Content>

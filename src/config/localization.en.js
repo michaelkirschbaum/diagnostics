@@ -88,7 +88,10 @@ const en = {
     enterVin: 'Enter VIN here',
     enterByLicensePlate: 'Enter by license plate',
     success: 'Car identified!',
-    failure: 'Not my car'
+    failure: 'Not my car',
+    notFound: 'Car could not be identified',
+    retry: 'Try again',
+    support: 'Contact CARFIT Support'
   },
   vinLocations: {
     vinLocations: 'VIN locations',

@@ -88,7 +88,10 @@ const fr = {
     enterVin: 'Entrez votre VIN',
     enterByLicensePlate: 'S\'enregistrer par le numéro d\'immatriculation',
     success: 'Voiture identifiée!',
-    failure: 'Pas ma voiture'
+    failure: 'Pas ma voiture',
+    notFound: 'La voiture n\'a pas pu être identifiée',
+    retry: 'Réessayer',
+    support: 'Contactez le support CARFIT'
   },
   vinLocations: {
     vinLocations: 'Trouvez votre VIN',
