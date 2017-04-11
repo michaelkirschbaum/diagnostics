@@ -131,7 +131,7 @@ const HomeView = React.createClass({
       );
     }
   },
-
+  
   // Forward setNativeProps to a child
   setNativeProps(nativeProps) {
     this._root.setNativeProps(nativeProps);

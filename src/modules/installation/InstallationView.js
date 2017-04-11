@@ -7,7 +7,9 @@ import {
   TouchableOpacity,
   NativeEventEmitter,
   NativeModules,
-  ActivityIndicator
+  ActivityIndicator,
+  Modal,
+  Animated
 } from 'react-native';
 import {
   Container,
@@ -37,6 +39,7 @@ import Connection from '../../carfit/connection';
 import Signal from '../../components/Signal';
 import TimerMixin from 'react-native-timer-mixin';
 const {CarFitManager} = NativeModules;
+import ConnectionSpinner from '../../components/ConnectionSpinner';
 
 /**
  * Login view
@@ -226,6 +229,13 @@ const InstallationView = React.createClass({
                 />
               </View>
             </Swiper>
+            <Modal
+              animationType={'none'}
+              transparent={true}
+              visible={this.state.connecting}
+            >
+              <ConnectionSpinner/>
+            </Modal>
           </Content>
         </Container>
     );
