@@ -29,15 +29,16 @@ const ConnectionSpinner = React.createClass({
   },
 
   componentDidMount() {
-    var that = this;
+    // animation speed
+    var speed = 175;
 
     // render sequence
     var spinner = setInterval(function() {
-      if (that.getStatus() == true)
-        that.setState({image: (that.getIndex() + 1) % 6});
+      if (this.getStatus() == true && this.getStatus() < 6)
+        this.setState({image: (this.getIndex() + 1) % 6});
       else
-        that.setState({image: 6});
-    }, 175);
+        this.setState({image: 6});
+    }.bind(this), speed);
 
     this.setState({spinner});
   },
@@ -65,9 +66,6 @@ const styles = StyleSheet.create({
   },
   spinner: {
     resizeMode: 'center'
-  },
-  done: {
-    
   }
 });
 
