@@ -23,7 +23,8 @@ import {
   Text,
   H3,
   List,
-  ListItem
+  ListItem,
+  Footer
 } from 'native-base';
 import colors from '../../config/colors';
 import en from '../../config/localization.en';
@@ -51,7 +52,7 @@ const InstallationView = React.createClass({
     return {
       rssi_refresh: '',
       connecting: true,
-      modalVisible: true
+      modalVisible: false
     };
   },
 
@@ -70,7 +71,7 @@ const InstallationView = React.createClass({
   },
 
   async onNextPress(id) {
-    this.setState({connecting: true});
+    this.setState({modalVisible: true});
 
     var connectionEmitter = new NativeEventEmitter(CarFitManager);
 
@@ -101,7 +102,10 @@ const InstallationView = React.createClass({
       // stop refreshing rssi
       clearInterval(this.state.rssi_refresh);
 
-      this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
+      // stop ConnectionSpinner
+      this.setState({connecting: false});
+
+      // this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
     }
     else
       Alert.alert(
@@ -231,6 +235,8 @@ const InstallationView = React.createClass({
               visible={this.state.modalVisible}
             >
               <ConnectionSpinner loading={this.state.connecting}/>
+
+
             </Modal>
           </Content>
         </Container>
