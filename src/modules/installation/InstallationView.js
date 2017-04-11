@@ -50,7 +50,7 @@ const InstallationView = React.createClass({
   getInitialState() {
     return {
       rssi_refresh: '',
-      connecting: false
+      connecting: true
     };
   },
 
@@ -231,7 +231,7 @@ const InstallationView = React.createClass({
             </Swiper>
             <Modal
               animationType={'none'}
-              transparent={true}
+              transparent={false}
               visible={this.state.connecting}
             >
               <ConnectionSpinner/>

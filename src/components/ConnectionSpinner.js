@@ -6,7 +6,7 @@ const ConnectionSpinner = React.createClass({
     let images = null;
 
     return (
-      <View>
+      <View style={styles.modal}>
         <Image source={require('../../images/Connecting1.png')}/>
       </View>
     );
@@ -16,7 +16,11 @@ const ConnectionSpinner = React.createClass({
 });
 
 const styles = StyleSheet.create({
-  spinner: {}
+  spinner: {},
+  modal: {
+    flex: 1,
+    backgroundColor: 'black'
+  }
 });
 
 export default ConnectionSpinner;
