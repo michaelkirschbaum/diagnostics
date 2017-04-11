@@ -50,7 +50,8 @@ const InstallationView = React.createClass({
   getInitialState() {
     return {
       rssi_refresh: '',
-      connecting: true
+      connecting: true,
+      modalVisible: true
     };
   },
 
@@ -222,19 +223,14 @@ const InstallationView = React.createClass({
                           onPress={() => this.setPhone(this.state.text)}
                   >{loc.general.continue}</Button>
                 </View> */}
-                <ActivityIndicator
-                  style={styles.spinner}
-                  animating={this.state.connecting}
-                  size='large'
-                />
               </View>
             </Swiper>
             <Modal
               animationType={'none'}
-              transparent={false}
-              visible={this.state.connecting}
+              transparent={true}
+              visible={this.state.modalVisible}
             >
-              <ConnectionSpinner/>
+              <ConnectionSpinner loading={this.state.connecting}/>
             </Modal>
           </Content>
         </Container>
