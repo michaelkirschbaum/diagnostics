@@ -109,11 +109,11 @@ export default class Vehicle {
     }
   }
 
-  setPhoto(image) {
+  setPhoto(image, location) {
     try {
-
+      var response = this.manager.putVehicleImage(image, location);
     } catch(e) {
-      
+
     }
   }
 }

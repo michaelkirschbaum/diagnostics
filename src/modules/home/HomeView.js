@@ -378,20 +378,20 @@ const HomeView = React.createClass({
           ref={c => this._content = c}>
 
           <View style={styles.container}>
-
             <View style={styles.profileContainer}>
               <TouchableOpacity onPress={this.onSettingsPress}>
                 <Image source={require('../../../images/icons/settings.png')}
                        style={styles.icon}/>
               </TouchableOpacity>
               <TouchableOpacity onPress={this.onMyCarsPress}>
-                {this.renderPhoto()}
+                <Image source={require('../../../images/car-circle-home@2x.png')}
+                  style={styles.image}
+                />
               </TouchableOpacity>
               <TouchableOpacity onPress={this.onMilesPress}>
                 <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
               </TouchableOpacity>
             </View>
-
             <View style={styles.profileHeaderContainer}>
               <H1>{this.state.title}</H1>
               <H2 style={{marginTop: 5}}>{this.state.description}</H2>
@@ -561,11 +561,11 @@ const styles = StyleSheet.create({
     marginTop: 22
   },
   image: {
-    width: 300,
-    height: 300,
+    width: 75,
+    height: 75,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 25,
+    // marginTop: 0,
   },
   icon: {
     width: 35,
