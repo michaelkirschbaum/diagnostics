@@ -41,7 +41,6 @@ import Signal from '../../components/Signal';
 import TimerMixin from 'react-native-timer-mixin';
 const {CarFitManager} = NativeModules;
 import ConnectionSpinner from '../../components/ConnectionSpinner';
-import Toggle from 'react-native-toggle';
 
 /**
  * Login view
@@ -234,9 +233,11 @@ const InstallationView = React.createClass({
               visible={this.state.modalVisible}>
               <ConnectionSpinner loading={this.state.connected}/>
 
-              <Toggle hidden={!this.state.connected}>
-                <Text>test</Text>
-              </Toggle>
+              <Button rounded
+                style={{alignSelf: 'auto'}}
+                textStyle={{color: colors.textPrimary}}
+                onPress={() => this.props.pushRoute({key: 'inCarInstallation', title: loc.carInstallation.inCarInstallation})}
+              >{loc.general.continue}</Button>
             </Modal>
           </Content>
         </Container>
