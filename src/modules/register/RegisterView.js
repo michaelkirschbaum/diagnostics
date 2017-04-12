@@ -69,9 +69,6 @@ const RegisterView = React.createClass({
     return (
       <Container theme={carfitTheme}>
         <Header>
-          <Button transparent onPress={() => this.props.onNavigateBack()}>
-            <Icon name="ios-arrow-back"/>
-          </Button>
           <Title>{headerTitle}</Title>
         </Header>
         <Content style={{backgroundColor: colors.backgroundPrimary}}>
