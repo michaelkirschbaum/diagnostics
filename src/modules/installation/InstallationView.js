@@ -52,7 +52,7 @@ const InstallationView = React.createClass({
   getInitialState() {
     return {
       rssi_refresh: '',
-      connecting: true,
+      connected: false,
       modalVisible: false
     };
   },
@@ -104,7 +104,7 @@ const InstallationView = React.createClass({
       clearInterval(this.state.rssi_refresh);
 
       // stop ConnectionSpinner
-      this.setState({connecting: false});
+      this.setState({connected: true});
     }
     else
       Alert.alert(
@@ -232,14 +232,10 @@ const InstallationView = React.createClass({
               animationType={'none'}
               transparent={true}
               visible={this.state.modalVisible}>
-              <ConnectionSpinner loading={this.state.connecting}/>
+              <ConnectionSpinner loading={this.state.connected}/>
 
-              <Toggle hidden={this.state.connecting}>
-                <Button rounded
-                  style={{alignSelf: 'auto'}}
-                  textStyle={{color: colors.textPrimary}}
-                  onPress={() => this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation})}
-                >{loc.general.continue}</Button>
+              <Toggle hidden={!this.state.connected}>
+                <Text>test</Text>
               </Toggle>
             </Modal>
           </Content>
