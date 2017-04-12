@@ -406,4 +406,32 @@ RCT_REMAP_METHOD(userGet,
   }];
 }
 
+RCT_EXPORT_METHOD(vehicleImageGet:(NSString *) fileName
+                  vehicleImageGetResolver:(RCTPromiseResolveBlock) resolve
+                  vehicelImageGetReject:(RCTPromiseRejectBlock) reject) {
+  
+  [[[CFPCore sharedInstance] vehicleImageGet:fileName] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
+    if (task.error) {
+      reject(@"vehicleImageGetError", task.error.localizedDescription, task.error);
+    } else {
+      resolve(task.result);
+    }
+    return nil;
+  }];
+}
+
+RCT_EXPORT_METHOD(vehicleImagePut:(NSString *) imagePath file:(NSString *) fileName
+                  vehicleImagePutResolver:(RCTPromiseResolveBlock) resolve
+                  vehicelImagePutReject:(RCTPromiseRejectBlock) reject) {
+  
+  [[[CFPCore sharedInstance] vehicleImagePut:imagePath file:fileName] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
+    if (task.error) {
+      reject(@"vehicleImageGetError", task.error.localizedDescription, task.error);
+    } else {
+      resolve(task.result);
+    }
+    return nil;
+  }];
+}
+
 @end
