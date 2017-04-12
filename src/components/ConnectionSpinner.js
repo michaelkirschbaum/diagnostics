@@ -15,9 +15,7 @@ const ConnectionSpinner = React.createClass({
     ];
 
     return (
-      <View style={styles.container}>
-        <Image source={images[this.state.image]} style={styles.spinner}/>
-      </View>
+      <Image source={images[this.state.image]} style={styles.spinner}/>
     );
   },
 
@@ -65,7 +63,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   spinner: {
-    resizeMode: 'center'
+    height: 55,
+    width: 200
   }
 });
 
