@@ -307,7 +307,7 @@ const styles = StyleSheet.create({
     padding: 20
   },
   bottomContainer: {
-    // marginBottom: 80,
+    marginBottom: 80,
     justifyContent: 'center',
     alignItems: 'center'
   }

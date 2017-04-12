@@ -24,7 +24,7 @@ const ConnectionSpinner = React.createClass({
   getInitialState() {
     return {
       image: 0,
-      spinner: ''
+      timer: ''
     };
   },
 
@@ -33,14 +33,14 @@ const ConnectionSpinner = React.createClass({
     var speed = 175;
 
     // render sequence
-    var spinner = setInterval(function() {
+    var timer = setInterval(function() {
       if (this.getStatus() == false && this.getIndex() < 6)
         this.setState({image: (this.getIndex() + 1) % 6});
       else
         this.setState({image: 6});
     }.bind(this), speed);
 
-    this.setState({spinner});
+    this.setState({timer});
   },
 
   getIndex() {
@@ -52,7 +52,7 @@ const ConnectionSpinner = React.createClass({
   },
 
   componentWillUnmount() {
-    this.state.spinner.remove();
+    clearInterval(this.state.timer);
   }
 });
 

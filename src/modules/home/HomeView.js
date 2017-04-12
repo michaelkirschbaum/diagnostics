@@ -49,6 +49,7 @@ const {CarFitManager} = NativeModules;
 import Connection from '../../carfit/connection';
 import Modal from 'react-native-simple-modal';
 import Spinner from 'react-native-loading-spinner-overlay';
+import ConnectionMonitor from '../../components/ConnectionMonitor';
 
 const HomeView = React.createClass({
   getInitialState() {
@@ -131,7 +132,7 @@ const HomeView = React.createClass({
       );
     }
   },
-  
+
   // Forward setNativeProps to a child
   setNativeProps(nativeProps) {
     this._root.setNativeProps(nativeProps);
@@ -383,11 +384,7 @@ const HomeView = React.createClass({
                 <Image source={require('../../../images/icons/settings.png')}
                        style={styles.icon}/>
               </TouchableOpacity>
-              <TouchableOpacity onPress={this.onMyCarsPress}>
-                <Image source={require('../../../images/car-circle-home@2x.png')}
-                  style={styles.image}
-                />
-              </TouchableOpacity>
+              <ConnectionMonitor />
               <TouchableOpacity onPress={this.onMilesPress}>
                 <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
               </TouchableOpacity>
