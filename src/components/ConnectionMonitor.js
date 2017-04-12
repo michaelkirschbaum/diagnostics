@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, View } from 'react-native';
+import { Image, View, StyleSheet } from 'react-native';
 
 const ConnectionMonitor = React.createClass({
   getInitialState() {
@@ -14,6 +14,15 @@ const ConnectionMonitor = React.createClass({
         style={styles.image}
       />
     );
+  }
+});
+
+const styles = StyleSheet.create({
+  image: {
+    width: 75,
+    height: 75,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 });
 
