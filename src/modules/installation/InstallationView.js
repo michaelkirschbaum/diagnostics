@@ -146,6 +146,11 @@ const InstallationView = React.createClass({
     conn.addPhone(number);
   },
 
+  continue() {
+    this.setState({modalVisible: false});
+    this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
+  },
+
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
@@ -231,14 +236,19 @@ const InstallationView = React.createClass({
               animationType={'none'}
               transparent={true}
               visible={this.state.modalVisible}>
-              <ConnectionSpinner loading={this.state.connected}/>
+              <View style={styles.spinnerContainer}>
+                <ConnectionSpinner loading={this.state.connected}/>
+              </View>
 
-              {/* todo: hide button until connected */}
-              <Button rounded
-                style={{alignSelf: 'auto'}}
-                textStyle={{color: colors.textPrimary}}
-                onPress={() => this.props.pushRoute({key: 'inCarInstallation', title: loc.carInstallation.inCarInstallation})}
-              >{loc.general.continue}</Button>
+              <View style={styles.bottomContainer}>
+                {this.state.connected &&
+                  <Button rounded
+                    style={{alignSelf: 'auto'}}
+                    textStyle={{color: colors.textPrimary}}
+                    onPress={() => this.continue()}
+                  >{loc.general.continue}</Button>
+                  }
+              </View>
             </Modal>
           </Content>
         </Container>
@@ -279,9 +289,8 @@ const styles = StyleSheet.create({
     marginTop: 17,
     marginBottom: 8
   },
-  bottomContainer: {
+  spinnerContainer: {
     flex: 1,
-    marginTop: 17,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -296,6 +305,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20
+  },
+  bottomContainer: {
+    // marginBottom: 80,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 

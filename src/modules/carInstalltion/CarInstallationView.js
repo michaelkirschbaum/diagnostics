@@ -340,7 +340,7 @@ const CarInstallationStateView = React.createClass({
                       'Support',
                       'Support called.',
                       {text: 'OK', onPress: () => console.log('OK pressed.')})
-                    }    
+                    }
               >{loc.carInstallation.support}</Button>
             </View>
           </Modal>
@@ -382,7 +382,8 @@ const styles = StyleSheet.create({
     height: 200,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 25,
+    marginTop: 0,
+    alignSelf: 'center'
   },
   titles: {
     marginTop: 17,
