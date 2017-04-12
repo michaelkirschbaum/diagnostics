@@ -233,6 +233,7 @@ const InstallationView = React.createClass({
               visible={this.state.modalVisible}>
               <ConnectionSpinner loading={this.state.connected}/>
 
+              {/* todo: hide button until connected */}
               <Button rounded
                 style={{alignSelf: 'auto'}}
                 textStyle={{color: colors.textPrimary}}
