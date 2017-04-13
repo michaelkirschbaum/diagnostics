@@ -1,3 +1,4 @@
 WHAT'S NEW IN VERSION X.XX
 --------------------------
+Preliminary release of new drive data collectin state machine.
 
