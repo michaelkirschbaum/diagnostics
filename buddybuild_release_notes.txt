@@ -1,4 +1,5 @@
 WHAT'S NEW IN VERSION X.XX
 --------------------------
-Preliminary release of new drive data collectin state machine.
+Preliminary release of new drive data collection state machine.
+Nothing new on React side from build 154.
 
