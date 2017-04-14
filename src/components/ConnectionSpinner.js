@@ -15,7 +15,7 @@ const ConnectionSpinner = React.createClass({
     ];
 
     return (
-      <Image source={images[this.state.image]} style={styles.spinner}/>
+      <Image source={images[this.state.image]} style={[styles.spinner, this.state.image == 6 && styles.done]}/>
     );
   },
 
@@ -33,7 +33,7 @@ const ConnectionSpinner = React.createClass({
     // render sequence
     var timer = setInterval(function() {
       if (this.getStatus() == false && this.getIndex() < 6)
-        this.setState({image: (this.getIndex() + 1) % 6});
+        this.setState({image: (this.getIndex() + 1) % 7});
       else
         this.setState({image: 6});
     }.bind(this), speed);
@@ -65,6 +65,10 @@ const styles = StyleSheet.create({
   spinner: {
     height: 55,
     width: 200
+  },
+  done: {
+    height: 89,
+    marginBottom: 34
   }
 });
 
