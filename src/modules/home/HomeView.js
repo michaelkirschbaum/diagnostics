@@ -221,14 +221,22 @@ const HomeView = React.createClass({
     var trips = await vehicle.getTrips(vin);
 
     if (trips) {
-      // set to last trip
+      // get last trip
       var trip = trips[trips.length - 1].meters_travelled;
 
       // convert to miles
       trip = Math.round((parseInt(trip) / 1609.344));
       trip = trip.toString() + ' miles';
 
+      // set last trip
       this.setState({trips: trip});
+
+      // serialize trips
+      try {
+        await AsyncStorage.setItem('trips', JSON.stringify(trips));
+      } catch(e) {
+        console.warn(e);
+      }
     } else {
       this.setState({trips: ''});
     }
@@ -456,9 +464,9 @@ const HomeView = React.createClass({
                 <H3 style={{color: colors.headerTextColor}}>{valueAction}</H3>
                 <Text style={{color: colors.headerTextColor}}>{valueDescription}</Text>
               </View>
-              <View style={styles.dataAction}>
+              {/* <View style={styles.dataAction}>
                 <Icon active name="ios-arrow-forward"></Icon>
-              </View>
+              </View> */}
             </View>
           </View>
           <Modal

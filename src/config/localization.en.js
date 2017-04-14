@@ -116,7 +116,7 @@ const en = {
     header6: 'Car details',
     message6: 'view and edit your car’s details',
     header7: 'Settings',
-    message7: 'your cars (car details), sensors, account, demo mode & more',
+    message7: 'your cars (car details), sensors, account, \ndemo mode & more',
   },
   home: {
     alert: 'ALERTS',
