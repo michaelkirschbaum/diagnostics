@@ -299,7 +299,7 @@ const CarInstallationStateView = React.createClass({
               <Text style={{color: 'black', textAlign: 'center'}}>{this.state.make}</Text>
               <Text style={{color: 'black', textAlign: 'center'}}>{this.state.model}</Text>
               <Text style={{color: 'black', textAlign: 'center'}}>{this.state.year}</Text>
-              <TouchableHighlight onPress={() => this.props.pushRoute({key: 'CarPhoto', title: ''})}>
+              <TouchableHighlight onPress={() => this.props.pushRoute({key: 'CarPhoto', title: ''})} underlayColor={'#F4F3F4'}>
                 <Image
                   source={require('../../../images/add-picture-car-identified.png')}
                   style={styles.image}
@@ -358,8 +358,7 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     // height: 200,
-    // width: 100,
-    marginTop: 5
+    // width: 100
   },
   askMilesContainer: {
     marginTop: 22
