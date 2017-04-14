@@ -1,7 +1,9 @@
 import React from 'react';
 import {
   NativeModules,
-  AsyncStorage
+  AsyncStorage,
+  Image,
+  StyleSheet
 } from 'react-native';
 import {
   Container,
@@ -31,6 +33,55 @@ const UsageView = React.createClass({
     };
   },
 
+  render() {
+    let headerTitle = loc.home.usage;
+
+    let lastTripReport = this.getReport(this.state.trips[this.state.trips.length - 1]);
+
+    return (
+      <Container theme={carfitTheme}>
+        <Header>
+          <Button transparent onPress={() => this.props.onNavigateBack()}>
+            <Icon name="ios-arrow-back"/>
+          </Button>
+          <Title>{headerTitle}</Title>
+        </Header>
+        <Content style={{backgroundColor: colors.backgroundPrimary}}>
+        <View style={styles.last_trip}>
+          <View>
+            <Text>
+              <Image source={require('../../../images/icons/highway.png')}/>
+              {lastTripReport.highway}
+            </Text>
+          </View>
+          <View>
+            <Text>
+              <Image source={require('../../../images/icons/city.png')}/>
+              {lastTripReport.city}
+            </Text>
+          </View>
+          <View>
+            <Text>
+              <Image source={require('../../../images/icons/stop-and-go.png')}/>
+              {lastTripReport.stop_and_go}
+            </Text>
+          </View>
+        </View>
+
+          <View>
+            <List dataArray={this.state.trips.reverse()}
+              renderRow={(trip) =>
+                <ListItem>
+                  <Text>{JSON.stringify(this.getReport(trip), null, 2)}</Text>
+                </ListItem>
+              }>
+            </List>
+          </View>
+        </Content>
+      </Container>
+    );
+  },
+
   async componentDidMount() {
     // load trips
     try {
@@ -45,32 +96,24 @@ const UsageView = React.createClass({
     }
   },
 
-  render() {
-    let headerTitle = loc.home.usage;
+  // calculate driving conditions
+  getReport(trip) {
+    // travel time
+    var total = trip.secs_below_72kph + trip.secs_above_72kph + trip.secs_below_10kph
 
-    let trips = this.state.trips;
+    // percentage of trip in conditions
+    var stop_and_go = Math.round(trip.secs_below_10kph / total * 100);
+    var city = Math.round(trip.secs_below_72kph / total * 100);
+    var highway = Math.round(trip.secs_above_72kph / total * 100);
 
-    return (
-      <Container theme={carfitTheme}>
-        <Header>
-          <Button transparent onPress={() => this.props.onNavigateBack()}>
-            <Icon name="ios-arrow-back"/>
-          </Button>
-          <Title>{headerTitle}</Title>
-        </Header>
-        <Content style={{backgroundColor: colors.backgroundPrimary}}>
-          <View>
-            <List dataArray={trips}
-              renderRow={(trip) =>
-                <ListItem>
-                  <Text>{JSON.stringify(trip)}</Text>
-                </ListItem>
-              }>
-            </List>
-          </View>
-        </Content>
-      </Container>
-    );
+    return {stop_and_go: stop_and_go.toString() + "%", city: city.toString() + "%", highway: highway.toString() + "%"};
+  }
+});
+
+const styles = StyleSheet.create({
+  last_trip: {
+    flex: 1,
+    flexDirection: 'row'
   }
 });
 

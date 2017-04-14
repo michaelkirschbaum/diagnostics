@@ -65,7 +65,7 @@ const AlertsView = React.createClass({
             <List dataArray={alerts}
               renderRow={(alert) =>
                 <ListItem>
-                  <Text>{JSON.stringify(alert)}</Text>
+                  <Text>{alert.summary}</Text>
                 </ListItem>
               }>
             </List>

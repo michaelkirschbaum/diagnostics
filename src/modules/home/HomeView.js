@@ -396,7 +396,7 @@ const HomeView = React.createClass({
                 <Image source={require('../../../images/icons/settings.png')}
                        style={styles.icon}/>
               </TouchableOpacity>
-              <ConnectionMonitor />
+              <ConnectionMonitor connected={false}/>
               <TouchableOpacity onPress={this.onMilesPress}>
                 <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
               </TouchableOpacity>
@@ -544,7 +544,6 @@ const styles = StyleSheet.create({
     alignSelf: 'auto',
     marginTop: 16,
   },
-
   dataBlockContainer: {
     flex: 1,
     flexDirection: 'row',
