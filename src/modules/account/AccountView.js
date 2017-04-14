@@ -113,7 +113,7 @@ const AccountView = React.createClass({
         </Header>
         <View style={styles.headerLine}/>
         <Content
-          padder
+          padder={false}
           keyboardShouldPersistTaps="always"
           style={{flex: 1, backgroundColor: colors.backgroundPrimary, height: windowHeight}}
           ref={c => this._content = c}>

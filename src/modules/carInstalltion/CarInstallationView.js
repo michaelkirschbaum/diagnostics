@@ -254,7 +254,7 @@ const CarInstallationStateView = React.createClass({
         </Header>
         <View style={styles.headerLine}/>
         <Content
-          padder
+          padder={false}
           keyboardShouldPersistTaps="always"
           style={{backgroundColor: colors.backgroundPrimary}}
           ref={c => this._content = c}>
@@ -358,7 +358,8 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     // height: 200,
-    // width: 100
+    // width: 100,
+    marginTop: 5
   },
   askMilesContainer: {
     marginTop: 22

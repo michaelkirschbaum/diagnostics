@@ -50,7 +50,7 @@ const VerificationView = React.createClass({
           </Header>
           <View style={styles.headerLine} />
           <Content
-            padder
+            padder={false}
             keyboardShouldPersistTaps="always"
             theme={carfitTheme}
             style={{backgroundColor: colors.backgroundPrimary}}

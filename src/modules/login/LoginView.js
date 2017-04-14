@@ -80,7 +80,7 @@ const LoginView = React.createClass({
     return (
       <Container>
         {/*<Content*/}
-        {/*padder*/}
+        {/*padder={false}*/}
         {/*keyboardShouldPersistTaps="always"*/}
         {/*theme={carfitTheme}*/}
         {/*style={{backgroundColor: colors.backgroundPrimary, paddingLeft: 0}}*/}
@@ -126,7 +126,7 @@ const LoginView = React.createClass({
 
             {/* <View style={{height: windowHeight, flex: 1, marginTop: 52}}>
               <Content
-                padder
+                padder={false}
                 keyboardShouldPersistTaps="always"
                 theme={carfitTheme}
                 style={{backgroundColor: colors.backgroundPrimary, paddingLeft: 0}}

@@ -38,7 +38,7 @@ const CarInstallationStartView = React.createClass({
           </Header>
           <View style={styles.headerLine} />
           <Content
-            padder
+            padder={false}
             keyboardShouldPersistTaps="always"
             style={{backgroundColor: colors.backgroundPrimary}}
             ref={c => this._content = c}>
