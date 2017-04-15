@@ -5,14 +5,16 @@ import {loop, Effects} from 'redux-loop';
 const initialState = Map({
   pageIndex: 0,
   enterMode: 'license',
-  vin: ''
+  vin: '',
+  vehicles: []
 });
 
 // Actions
 const CHANGE_PAGE = 'CarInstallationState/CHANGE_PAGE';
 const ENTER_MODE = 'CarInstallationState/ENTER_MODE';
 const LOADING = 'CarInstallationState/LOADING';
-const ADD_VEHICLE = 'CarInstallationState/ADD_VEHICLE'
+const SET_VEHICLE = 'CarInstallationState/SET_VEHICLE';
+const ADD_VEHICLE = 'ADD_VEHICLE';
 
 // Action Creaters
 export function setPageIndex(value) {
@@ -23,8 +25,12 @@ export function setEnterMode(value) {
   return {type: ENTER_MODE, payload: value};
 }
 
-export function addVehicle(value) {
-  return {type: ADD_VEHICLE, payload: value};
+export function setVehicle(value) {
+  return {type: SET_VEHICLE, payload: value};
+}
+
+export function addVehicle(vehicle) {
+  return {type: ADD_VEHICLE, payload: vehicle}
 }
 
 // Reducer
@@ -39,8 +45,16 @@ export default function CarInstallationStateReducer(state = initialState, action
     case LOADING:
       return state.set('loading', action.payload);
 
-    case ADD_VEHICLE:
+    case SET_VEHICLE:
       return state.set('vin', action.payload);
+
+    case ADD_VEHICLE:
+      return Object.assign({}, state, {
+        vehicles: [
+          ...state.vehicles,
+          action.payload
+        ]
+      });
 
     default:
       return state;

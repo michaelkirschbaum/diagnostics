@@ -33,7 +33,7 @@ else
   var loc = en;
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
-
+import store from '../../redux/store';
 import * as NavigationState from '../navigation/NavigationState';
 
 /**
@@ -68,6 +68,8 @@ const DetailsView = React.createClass({
 
     let connected = "Connected";
     let phone = "Sam's iPhone 6";
+
+    let values = store.getState().get("carInstallation").get("vehicles");
 
     let infoDetailsData = {
       year: '2015',

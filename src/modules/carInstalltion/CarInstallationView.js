@@ -48,9 +48,7 @@ const CarInstallationStateView = React.createClass({
     return {
       plate: '',
       vin: '',
-      year: '',
-      make: '',
-      model: '',
+      vehicle: '',
       modalVisible: false,
       connecting: false,
       failureModalVisible: false
@@ -75,10 +73,10 @@ const CarInstallationStateView = React.createClass({
 
       // notify user whether vehicle has been added
       if (response) {
-        this.props.addVehicle(response["vin"]);
-        this.setState({year: response["year"]});
-        this.setState({make: response["make"]});
-        this.setState({model: response["model"]});
+        // store vehicle to be accessed in verification
+        this.setState({vehicle: response});
+
+        this.props.setVehicle(response["vin"]);
 
         // verify vehicle
         this.setState({modalVisible: true});
@@ -102,10 +100,10 @@ const CarInstallationStateView = React.createClass({
 
       // notify user whether vehicle has been added
       if (response) {
-        this.props.addVehicle(response["vin"]);
-        this.setState({year: response["year"]});
-        this.setState({make: response["make"]});
-        this.setState({model: response["model"]});
+        // store vehicle to be accessed in verification
+        this.setState({vehicle: response});
+
+        this.props.setVehicle(response["vin"]);
 
         // verify vehicle
         this.setState({modalVisible: true});
@@ -137,10 +135,14 @@ const CarInstallationStateView = React.createClass({
     this.props.setEnterMode(mode);
   },
 
-  turnOffModal() {
+  verifyVehicle() {
+    // save vehicle
+    this.props.addVehicle(this.state.vehicle);
+
+    // disable modal
     this.setState({connecting: false});
     this.setState({modalVisible: false});
-    this.setState({failureModalVisible: false})
+    this.setState({failureModalVisible: false});
   },
 
   render() {
@@ -296,9 +298,9 @@ const CarInstallationStateView = React.createClass({
             <View>
               <Image source={require('../../../images/icons/check.png')} style={styles.icon}/>
               <Text style={{color: 'black', alignSelf: 'center'}}>{loc.carInstallation.success}</Text>
-              <Text style={{color: 'black', textAlign: 'center'}}>{this.state.make}</Text>
-              <Text style={{color: 'black', textAlign: 'center'}}>{this.state.model}</Text>
-              <Text style={{color: 'black', textAlign: 'center'}}>{this.state.year}</Text>
+              <Text style={{color: 'black', textAlign: 'center'}}>{this.state.vehicle["make"]}</Text>
+              <Text style={{color: 'black', textAlign: 'center'}}>{this.state.vehicle["model"]}</Text>
+              <Text style={{color: 'black', textAlign: 'center'}}>{this.state.vehicle["year"]}</Text>
               <TouchableHighlight onPress={() => this.props.pushRoute({key: 'CarPhoto', title: ''})} underlayColor={'#F4F3F4'}>
                 <Image
                   source={require('../../../images/add-picture-car-identified.png')}
@@ -313,7 +315,7 @@ const CarInstallationStateView = React.createClass({
               <Button transparent
                     textStyle={{color: 'red', textDecorationLine: 'underline'}}
                     style={{alignSelf: 'center'}}
-                    onPress={() => this.turnOffModal()}
+                    onPress={() => this.verifyVehicle()}
               >{loc.carInstallation.failure}</Button>
             </View>
           </Modal>
@@ -331,7 +333,7 @@ const CarInstallationStateView = React.createClass({
               <Button rounded
                     style={{alignSelf: 'center'}}
                     textStyle={{color: colors.textPrimary}}
-                    onPress={() => this.turnOffModal()}
+                    onPress={() => this.verifyVehicle()}
               >{loc.carInstallation.retry}</Button>
               <Button transparent
                     textStyle={{color: 'black', textDecorationLine: 'underline'}}
