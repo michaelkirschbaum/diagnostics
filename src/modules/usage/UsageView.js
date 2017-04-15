@@ -36,10 +36,6 @@ const UsageView = React.createClass({
   render() {
     let headerTitle = loc.home.usage;
 
-    let lastTripReport = this.getReport(this.state.trips[this.state.trips.length - 1]);
-
-    let trips = this.state.trips;
-
     return (
       <Container theme={carfitTheme}>
         <Header>
@@ -49,29 +45,29 @@ const UsageView = React.createClass({
           <Title>{headerTitle}</Title>
         </Header>
         <Content style={{backgroundColor: colors.backgroundPrimary}}>
-        <View style={styles.last_trip}>
-          <View>
-            <Text>
-              <Image source={require('../../../images/icons/highway.png')}/>
-              {lastTripReport.highway}
-            </Text>
-          </View>
-          <View>
-            <Text>
-              <Image source={require('../../../images/icons/city.png')}/>
-              {lastTripReport.city}
-            </Text>
-          </View>
-          <View>
-            <Text>
-              <Image source={require('../../../images/icons/stop-and-go.png')}/>
-              {lastTripReport.stop_and_go}
-            </Text>
-          </View>
-        </View>
+          {/* <View style={styles.last_trip}>
+            <View>
+              <Text>
+                <Image source={require('../../../images/icons/highway.png')}/>
+                {(this.getReport(this.state.trips[this.state.trips.length - 1])).highway}
+              </Text>
+            </View>
+            <View>
+              <Text>
+                <Image source={require('../../../images/icons/city.png')}/>
+                {(this.getReport(this.state.trips[this.state.trips.length - 1])).city}
+              </Text>
+            </View>
+            <View>
+              <Text>
+                <Image source={require('../../../images/icons/stop-and-go.png')}/>
+                {(this.getReport(this.state.trips[this.state.trips.length - 1])).stop_and_go}
+              </Text>
+            </View>
+          </View> */}
 
           <View>
-            <List dataArray={trips.reverse()}
+            <List dataArray={this.state.trips.reverse()}
               renderRow={(trip) =>
                 <ListItem>
                   <Text>{JSON.stringify(this.getReport(trip), null, 2)}</Text>
