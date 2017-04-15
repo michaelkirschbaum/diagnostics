@@ -38,6 +38,8 @@ const UsageView = React.createClass({
 
     let lastTripReport = this.getReport(this.state.trips[this.state.trips.length - 1]);
 
+    let trips = this.state.trips;
+
     return (
       <Container theme={carfitTheme}>
         <Header>
@@ -69,7 +71,7 @@ const UsageView = React.createClass({
         </View>
 
           <View>
-            <List dataArray={this.state.trips.reverse()}
+            <List dataArray={trips.reverse()}
               renderRow={(trip) =>
                 <ListItem>
                   <Text>{JSON.stringify(this.getReport(trip), null, 2)}</Text>
@@ -99,7 +101,7 @@ const UsageView = React.createClass({
   // calculate driving conditions
   getReport(trip) {
     // travel time
-    var total = trip.secs_below_72kph + trip.secs_above_72kph + trip.secs_below_10kph
+    var total = trip.secs_below_72kph + trip.secs_above_72kph + trip.secs_below_10kph;
 
     // percentage of trip in conditions
     var stop_and_go = Math.round(trip.secs_below_10kph / total * 100);
