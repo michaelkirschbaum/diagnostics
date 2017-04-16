@@ -6,7 +6,7 @@ const initialState = Map({
   pageIndex: 0,
   enterMode: 'license',
   vin: '',
-  vehicles: ''
+  vehicles: []
 });
 
 // Actions
@@ -14,7 +14,7 @@ const CHANGE_PAGE = 'CarInstallationState/CHANGE_PAGE';
 const ENTER_MODE = 'CarInstallationState/ENTER_MODE';
 const LOADING = 'CarInstallationState/LOADING';
 const SET_VEHICLE = 'CarInstallationState/SET_VEHICLE';
-const ADD_VEHICLE = 'ADD_VEHICLE';
+const ADD_VEHICLE = 'CarInstallationState/ADD_VEHICLE';
 
 // Action Creaters
 export function setPageIndex(value) {
@@ -33,7 +33,7 @@ export function addVehicle(vehicle) {
   return {type: ADD_VEHICLE, payload: vehicle}
 }
 
-// Reducer
+// Reducerm,
 export default function CarInstallationStateReducer(state = initialState, action = {}) {
   switch (action.type) {
     case CHANGE_PAGE:
@@ -49,7 +49,7 @@ export default function CarInstallationStateReducer(state = initialState, action
       return state.set('vin', action.payload);
 
     case ADD_VEHICLE:
-      return state;
+      return state.set('vehicles', state.get("vehicles").concat(action.payload));
 
     default:
       return state;

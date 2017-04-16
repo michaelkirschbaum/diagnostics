@@ -29,7 +29,13 @@ import colors from '../../config/colors';
 const UsageView = React.createClass({
   getInitialState() {
     return {
-      trips: []
+      trips: [],
+      lastTrip: function() {
+        if (this.trips.length > 0) {
+          return this.trips[this.trips.length - 1];
+        }
+        return {secs_below_72kph: 0, secs_above_72kph: 0, secs_below_10kph: 0}
+      }
     };
   },
 
@@ -45,26 +51,29 @@ const UsageView = React.createClass({
           <Title>{headerTitle}</Title>
         </Header>
         <Content style={{backgroundColor: colors.backgroundPrimary}}>
-          {/* <View style={styles.last_trip}>
+          <View style={styles.last_trip}>
             <View>
               <Text>
                 <Image source={require('../../../images/icons/highway.png')}/>
-                {(this.getReport(this.state.trips[this.state.trips.length - 1])).highway}
+                {this.getReport(this.state.lastTrip()).highway}
               </Text>
+              <div style="width:100%; height:20px">
+                <span style="width:{this.getReport(this.state.lastTrip()).highway}">
+              </div>
             </View>
             <View>
               <Text>
                 <Image source={require('../../../images/icons/city.png')}/>
-                {(this.getReport(this.state.trips[this.state.trips.length - 1])).city}
+                {this.getReport(this.state.lastTrip()).city}
               </Text>
             </View>
             <View>
               <Text>
                 <Image source={require('../../../images/icons/stop-and-go.png')}/>
-                {(this.getReport(this.state.trips[this.state.trips.length - 1])).stop_and_go}
+                {this.getReport(this.state.lastTrip()).stop_and_go}
               </Text>
             </View>
-          </View> */}
+          </View>
 
           <View>
             <List dataArray={this.state.trips.reverse()}

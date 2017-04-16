@@ -34,9 +34,7 @@ export default connect(
       dispatch(setVehicle(value));
     },
     addVehicle(vehicle) {
-      var vehicle_json = JSON.stringify(vehicle);
-
-      dispatch(addVehicle(vehicle_json));
+      dispatch(addVehicle(vehicle));
     }
   })
 )(InstallationView);

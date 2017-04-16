@@ -69,7 +69,8 @@ const DetailsView = React.createClass({
     let connected = "Connected";
     let phone = "Sam's iPhone 6";
 
-    let value = store.getState().get("carInstallation").get("vehicles");
+    let vehicles = store.getState().get("carInstallation").get("vehicles");
+    let vehicle = vehicles[vehicles.lastIndexOf()];
 
     let infoDetailsData = {
       year: '2015',
