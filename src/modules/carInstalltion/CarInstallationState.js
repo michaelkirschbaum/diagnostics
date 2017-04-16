@@ -6,7 +6,7 @@ const initialState = Map({
   pageIndex: 0,
   enterMode: 'license',
   vin: '',
-  vehicles: []
+  vehicles: ''
 });
 
 // Actions
@@ -49,12 +49,7 @@ export default function CarInstallationStateReducer(state = initialState, action
       return state.set('vin', action.payload);
 
     case ADD_VEHICLE:
-      return Object.assign({}, state, {
-        vehicles: [
-          ...state.vehicles,
-          action.payload
-        ]
-      });
+      return state;
 
     default:
       return state;

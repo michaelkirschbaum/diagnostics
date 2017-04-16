@@ -135,10 +135,13 @@ const CarInstallationStateView = React.createClass({
     this.props.setEnterMode(mode);
   },
 
-  verifyVehicle() {
+  verifyVehicle(vehicle) {
     // save vehicle
-    this.props.addVehicle(this.state.vehicle);
+    this.props.addVehicle(vehicle);
+    this.props.switchRoute(2);
+  },
 
+  turnOffModal() {
     // disable modal
     this.setState({connecting: false});
     this.setState({modalVisible: false});
@@ -310,12 +313,12 @@ const CarInstallationStateView = React.createClass({
               <Button rounded
                     style={{alignSelf: 'center'}}
                     textStyle={{color: colors.textPrimary}}
-                    onPress={() => this.props.switchRoute(2)}
+                    onPress={() => this.verifyVehicle(this.state.vehicle)}
               >Continue</Button>
               <Button transparent
                     textStyle={{color: 'red', textDecorationLine: 'underline'}}
                     style={{alignSelf: 'center'}}
-                    onPress={() => this.verifyVehicle()}
+                    onPress={() => this.turnOffModal()}
               >{loc.carInstallation.failure}</Button>
             </View>
           </Modal>
@@ -333,7 +336,7 @@ const CarInstallationStateView = React.createClass({
               <Button rounded
                     style={{alignSelf: 'center'}}
                     textStyle={{color: colors.textPrimary}}
-                    onPress={() => this.verifyVehicle()}
+                    onPress={() => this.turnOffModal()}
               >{loc.carInstallation.retry}</Button>
               <Button transparent
                     textStyle={{color: 'black', textDecorationLine: 'underline'}}

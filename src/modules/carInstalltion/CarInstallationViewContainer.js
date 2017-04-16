@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted} from '../navigation/NavigationState';
-import {setPageIndex, setEnterMode, addVehicle} from './CarInstallationState';
+import {setPageIndex, setEnterMode, setVehicle, addVehicle} from './CarInstallationState';
 import InstallationView from './CarInstallationView';
 
 export default connect(
@@ -30,8 +30,13 @@ export default connect(
     setEnterMode(value) {
       dispatch(setEnterMode(value));
     },
-    addVehicle(value) {
-      dispatch(addVehicle(value));
+    setVehicle(value) {
+      dispatch(setVehicle(value));
+    },
+    addVehicle(vehicle) {
+      var vehicle_json = JSON.stringify(vehicle);
+
+      dispatch(addVehicle(vehicle_json));
     }
   })
 )(InstallationView);

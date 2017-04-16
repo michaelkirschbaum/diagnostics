@@ -62,14 +62,14 @@ const DetailsView = React.createClass({
 
     let headerTitle = loc.myCars.myCars;
 
-    let name = "Sam's Car";
+    let name = "car";
     let mileage = "10,345 km";
     let image = "PICTURE";
 
     let connected = "Connected";
     let phone = "Sam's iPhone 6";
 
-    let values = store.getState().get("carInstallation").get("vehicles");
+    let value = store.getState().get("carInstallation").get("vehicles");
 
     let infoDetailsData = {
       year: '2015',
