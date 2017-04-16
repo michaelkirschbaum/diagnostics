@@ -149,7 +149,7 @@ const en = {
     displayInfo: 'DISPLAY INFO',
     name: 'Name',
     mileage: 'Mileage',
-    image: 'Image',
+    image: 'Image'
 
     connectedSensors: 'CONNECTED SENSORS',
     carfit: 'CARFIT',

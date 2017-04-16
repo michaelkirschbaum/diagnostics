@@ -65,11 +65,11 @@ const DetailsView = React.createClass({
     let vehicle = store.getState().get("carInstallation").get("vehicles").last();
 
     let name = vehicle.get("name");
-    let mileage = vehicle.get("current_meters");
-    let image = "PICTURE";
+    let mileage = this.convertMeters(vehicle.get("current_meters"));
+    let image = '';
 
     let connected = "Connected";
-    let phone = "Sam's iPhone 6";
+    let phone = '';
 
     let infoDetailsData = {
       year: vehicle.get("year"),
@@ -77,7 +77,7 @@ const DetailsView = React.createClass({
       model: vehicle.get("model"),
       mpgCity: vehicle.get("meters_per_liter_city"),
       mpgHighway: vehicle.get("meters_per_liter_highway"),
-      license: 'AY582RE',
+      license: '',
       vin: vehicle.get("vin"),
       drivenWheels: vehicle.get("driven_wheels"),
       trimLevel: vehicle.get("trim_level"),
@@ -187,6 +187,18 @@ const DetailsView = React.createClass({
         </Content>
       </Container>
     );
+  },
+
+  convertMeters(meters) {
+    // get location
+    var region = NativeModules.SettingsManager.settings.AppleLocale;
+
+    // if in US or Britain use Miles, otherwise use Kilometers
+    if (region == 'en_US' || region == 'en_GB') {
+      return Math.round(meters / 1609.344);
+    } else {
+      return Math.round(meters / 1000);
+    }
   }
 });
 
