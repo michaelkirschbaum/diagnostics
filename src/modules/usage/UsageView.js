@@ -57,9 +57,6 @@ const UsageView = React.createClass({
                 <Image source={require('../../../images/icons/highway.png')}/>
                 {this.getReport(this.state.lastTrip()).highway}
               </Text>
-              <div style="width:100%; height:20px">
-                <span style="width:{this.getReport(this.state.lastTrip()).highway}">
-              </div>
             </View>
             <View>
               <Text>
