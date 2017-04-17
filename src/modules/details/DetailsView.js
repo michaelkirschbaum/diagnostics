@@ -126,9 +126,9 @@ const DetailsView = React.createClass({
                 <H3 style={styles.sectionTitle}>{loc.details.name}</H3>
                 <Text>{name}</Text>
               </View>
-              <View style={styles.sectionAction}>
+              {/* <View style={styles.sectionAction}>
                 <Icon active name="ios-arrow-forward"></Icon>
-              </View>
+              </View> */}
             </View>
             <View style={{height: 1,backgroundColor: colors.headerTextColor,marginTop: 17,marginBottom: 17,}}/>
             <View style={styles.sectionContainer}>
@@ -136,9 +136,9 @@ const DetailsView = React.createClass({
                 <H3 style={styles.sectionTitle}>{loc.details.mileage}</H3>
                 <Text>{mileage}</Text>
               </View>
-              <View style={styles.sectionAction}>
+              {/* <View style={styles.sectionAction}>
                 <Icon active name="ios-arrow-forward"></Icon>
-              </View>
+              </View> */}
             </View>
             <View style={{height: 1,backgroundColor: colors.headerTextColor,marginTop: 17,marginBottom: 17,}}/>
             <View style={styles.sectionContainer}>
@@ -146,9 +146,9 @@ const DetailsView = React.createClass({
                 <H3 style={styles.sectionTitle}>{loc.details.image}</H3>
                 <Text>{image}</Text>
               </View>
-              <View style={styles.sectionAction}>
+              {/* <View style={styles.sectionAction}>
                 <Icon active name="ios-arrow-forward"></Icon>
-              </View>
+              </View> */}
             </View>
             <View style={{height: 1,backgroundColor: colors.headerTextColor,marginTop: 17,marginBottom: 17,}}/>
 
@@ -161,9 +161,9 @@ const DetailsView = React.createClass({
                 <H3 style={styles.sectionTitle}>{loc.details.carfit}</H3>
                 <Text>{connected}</Text>
               </View>
-              <View style={styles.sectionAction}>
+              {/* <View style={styles.sectionAction}>
                 <Icon active name="ios-arrow-forward"></Icon>
-              </View>
+              </View> */}
             </View>
             <View style={{height: 1,backgroundColor: colors.headerTextColor,marginTop: 17,marginBottom: 17,}}/>
             <View style={styles.sectionContainer}>
@@ -171,9 +171,9 @@ const DetailsView = React.createClass({
                 <H3 style={styles.sectionTitle}>{loc.details.phone}</H3>
                 <Text>{phone}</Text>
               </View>
-              <View style={styles.sectionAction}>
+              {/* <View style={styles.sectionAction}>
                 <Icon active name="ios-arrow-forward"></Icon>
-              </View>
+              </View> */}
             </View>
             <View style={{height: 1,backgroundColor: colors.headerTextColor,marginTop: 17,marginBottom: 17,}}/>
 
