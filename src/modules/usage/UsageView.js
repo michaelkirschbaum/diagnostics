@@ -72,11 +72,24 @@ const UsageView = React.createClass({
             </View>
           </View>
 
+          <View style={{
+            height: 1,
+            backgroundColor: colors.headerTextColor,
+            marginLeft: 5,
+            marginRight: 5,
+            marginTop: 5,
+            marginBottom: 5,
+            }}/>
+
           <View>
             <List dataArray={this.state.trips.reverse()}
               renderRow={(trip) =>
                 <ListItem>
-                  <Text>{JSON.stringify(this.getReport(trip), null, 2)}</Text>
+                  <View>
+                    <Text>City: {this.getReport(trip).city}</Text>
+                    <Text>Highway: {this.getReport(trip).highway}</Text>
+                    <Text>Stop and Go: {this.getReport(trip).stop_and_go}</Text>
+                  </View>
                 </ListItem>
               }>
             </List>
