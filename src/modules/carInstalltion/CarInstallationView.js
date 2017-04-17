@@ -38,6 +38,7 @@ if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
 else
   var loc = en;
 import Modal from 'react-native-simple-modal';
+import SimplePicker from 'react-native-simple-picker';
 
 /**
  * Login view
@@ -170,6 +171,8 @@ const CarInstallationStateView = React.createClass({
 
     let finalView = this.props.carInstallation.enterMode
 
+    let regions = ["Alaska"];
+
     getFinalView = function () {
 
       if (finalView == 'vin') {
@@ -227,7 +230,7 @@ const CarInstallationStateView = React.createClass({
               <Input
                 ref='regionInput'
                 placeholder={loc.carInstallation.enterRegion}
-                onChangeText = {(text) => this.setState({region: text})}
+                onFocus = {() => this.refs.regionPicker.show()}
               />
             </InputGroup>
             {/* <Text
@@ -240,13 +243,12 @@ const CarInstallationStateView = React.createClass({
                       onPress={() => this.addPlate(this.state.plate, this.state.region)}
               >{loc.general.continue}</Button>
             </View>
-            <ActivityIndicator
-              style={styles.spinner}
-              animating={this.state.connecting}
-              size='large'
-            />
 
-            <Picker></Picker>
+            <SimplePicker
+              ref={'regionPicker'}
+              options={regions}
+              onSubmit={(options) => undefined}
+            />
           </View>
         )
       }
