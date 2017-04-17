@@ -71,39 +71,58 @@ const RegisterView = React.createClass({
         <Header>
           <Title>{headerTitle}</Title>
         </Header>
+
         <Content style={{backgroundColor: colors.backgroundPrimary}}>
-          <Text style={{textAlign: 'center'}}>First Name</Text>
-          <InputGroup borderType='rounded' style={styles.textInput}>
-            <Input
-              ref='firstInput'
-              placeholder={loc.register.first}
-              onChangeText={(text) => this.setState({first: text})}
-            />
-          </InputGroup>
-          <Text style={{textAlign: 'center'}}>Last Name</Text>
-          <InputGroup borderType='rounded' style={styles.textInput}>
-            <Input
-              ref='lastInput'
-              placeholder={loc.register.last}
-              onChangeText={(text) => this.setState({last: text})}
-            />
-          </InputGroup>
-          <Text style={{textAlign: 'center'}}>Phone number</Text>
-          <InputGroup borderType='rounded' style={styles.textInput}>
-            <Input
-              ref='phoneInput'
-              placeholder={loc.register.phone}
-              onChangeText={(text) => this.setState({phone: text})}
-            />
-          </InputGroup>
+          <View style={{
+            height: 1,
+            backgroundColor: colors.headerTextColor,
+            marginLeft: 5,
+            marginRight: 5,
+            marginTop: 5,
+            marginBottom: 5,
+            }}/>
+
+          <View style={styles.inputGroup}>
+            <Text style={{textAlign: 'center'}}>First Name</Text>
+            <InputGroup borderType='rounded' style={styles.textInput}>
+              <Input
+                ref='firstInput'
+                placeholder={loc.register.first}
+                onChangeText={(text) => this.setState({first: text})}
+              />
+            </InputGroup>
+          </View>
+
+          <View style={styles.inputGroup}>
+            <Text style={{textAlign: 'center'}}>Last Name</Text>
+            <InputGroup borderType='rounded' style={styles.textInput}>
+              <Input
+                ref='lastInput'
+                placeholder={loc.register.last}
+                onChangeText={(text) => this.setState({last: text})}
+              />
+            </InputGroup>
+          </View>
+
+          <View style={styles.inputGroup}>
+            <Text style={{textAlign: 'center'}}>Phone number</Text>
+            <InputGroup borderType='rounded' style={styles.textInput}>
+              <Input
+                ref='phoneInput'
+                placeholder={loc.register.phone}
+                onChangeText={(text) => this.setState({phone: text})}
+              />
+            </InputGroup>
+          </View>
+
           <Button rounded
-            style={{alignSelf: 'center'}}
+            style={{alignSelf: 'center', marginTop: 10}}
             onPress={() => this.authenticate(this.state.first, this.state.last, this.state.phone, store.getState().get("norauto").get("user_code"))}
           >{loc.general.continue}</Button>
         </Content>
       </Container>
     );
-  },
+  }
 });
 
 const styles = StyleSheet.create({
@@ -111,7 +130,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.inputBackground,
     borderColor: colors.primary,
     borderWidth: 2.5,
-    marginTop: 22
+    marginTop: 0,
+    marginLeft: 20,
+    marginRight: 20,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  inputGroup: {
+    marginTop: 20
   }
 });
 

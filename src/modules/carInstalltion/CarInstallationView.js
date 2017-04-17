@@ -23,6 +23,7 @@ import {
   H3,
   List,
   ListItem,
+  Picker
 } from 'native-base';
 import colors from '../../config/colors';
 import carfitTheme from '../../config/carfit-theme';
@@ -244,6 +245,8 @@ const CarInstallationStateView = React.createClass({
               animating={this.state.connecting}
               size='large'
             />
+
+            <Picker></Picker>
           </View>
         )
       }
