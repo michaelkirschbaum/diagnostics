@@ -53,19 +53,19 @@ const UsageView = React.createClass({
         <Content style={{backgroundColor: colors.backgroundPrimary}}>
           <View style={styles.last_trip}>
             <View>
-              <Text>
+              <Text style={{textAlign: 'center'}}>
                 <Image source={require('../../../images/icons/highway.png')}/>
                 {this.getReport(this.state.lastTrip()).highway}
               </Text>
             </View>
             <View>
-              <Text>
+              <Text style={{textAlign: 'center'}}>
                 <Image source={require('../../../images/icons/city.png')}/>
-                {this.getReport(this.state.lastTrip()).city}
+                <Text>{this.getReport(this.state.lastTrip()).city}</Text>
               </Text>
             </View>
             <View>
-              <Text>
+              <Text style={{textAlign: 'center'}}>
                 <Image source={require('../../../images/icons/stop-and-go.png')}/>
                 {this.getReport(this.state.lastTrip()).stop_and_go}
               </Text>
