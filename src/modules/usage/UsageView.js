@@ -86,9 +86,7 @@ const UsageView = React.createClass({
               renderRow={(trip) =>
                 <ListItem>
                   <View>
-                    <Text>City: {this.getReport(trip).city}</Text>
-                    <Text>Highway: {this.getReport(trip).highway}</Text>
-                    <Text>Stop and Go: {this.getReport(trip).stop_and_go}</Text>
+                    <Text>City: {this.getReport(trip).city}, Highway: {this.getReport(trip).highway}, Stop and Go: {this.getReport(trip).stop_and_go}</Text>
                   </View>
                 </ListItem>
               }>

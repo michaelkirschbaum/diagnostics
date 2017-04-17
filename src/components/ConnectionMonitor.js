@@ -1,22 +1,31 @@
 import React from 'react';
-import { Image, View, StyleSheet } from 'react-native';
+import { Image, Text, View, StyleSheet } from 'react-native';
 
 const ConnectionMonitor = React.createClass({
   render() {
     return (
-      <Image source={require('../../images/car-circle-home@2x.png')}
-        style={styles.image}
-      />
+      <View>
+        {this.isConnected()}
+      </View>
     );
+  },
+
+  isConnected() {
+    if (this.props.connected)
+      return (
+        <Image source={require('../../images/car-circle-home.png')} style={styles.image}/>
+      );
+    else
+      return null;
   }
 });
 
 const styles = StyleSheet.create({
   image: {
-    width: 75,
-    height: 75,
+    width: 100,
+    height: 100,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   }
 });
 

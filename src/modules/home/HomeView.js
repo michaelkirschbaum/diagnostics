@@ -368,6 +368,8 @@ const HomeView = React.createClass({
   },
 
   render() {
+    let status = this.state.connected;
+
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
 
@@ -396,7 +398,7 @@ const HomeView = React.createClass({
                 <Image source={require('../../../images/icons/settings.png')}
                        style={styles.icon}/>
               </TouchableOpacity>
-              <ConnectionMonitor connected={false}/>
+              <ConnectionMonitor connected={this.props.connected}/>
               <TouchableOpacity onPress={this.onMilesPress}>
                 <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
               </TouchableOpacity>
