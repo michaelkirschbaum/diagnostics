@@ -62,7 +62,7 @@ const DetailsView = React.createClass({
 
     let headerTitle = loc.myCars.myCars;
 
-    let vehicle = store.getState().get("carInstallation").get("vehicles").last();
+    let vehicle = store.getState().get("carInstallation").get("vehicles").slice(-1)[0];
 
     let name = vehicle.get("name");
     let mileage = this.convertMeters(vehicle.get("current_meters"));
