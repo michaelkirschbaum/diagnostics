@@ -66,7 +66,7 @@ const DetailsView = React.createClass({
     let vehicle = this.props.vehicles.last();
 
     let name = vehicle.name;
-    let mileage = this.convertMeters(vehicle.get("current_meters"));
+    let mileage = this.convertMeters(vehicle.current_meters);
     let image = '';
 
     let connected = this.props.connected ? "Connected" : "Disconnected";
