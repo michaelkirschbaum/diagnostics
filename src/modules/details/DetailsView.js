@@ -79,8 +79,8 @@ const DetailsView = React.createClass({
       year: current_vehicle.get("year"),
       make: current_vehicle.get("make"),
       model: current_vehicle.get("model"),
-      mpgCity: Math.round(this.convertMeters(current_vehicle.get("meters_per_liter_city")) * 3.785),
-      mpgHighway: Math.round(this.convertMeters(current_vehicle.get("meters_per_liter_highway")) * 3.785),
+      mpgCity: this.fuelConsumption(current_vehicle.get("meters_per_liter_city")),
+      mpgHighway: this.fuelConsumption(current_vehicle.get("meters_per_liter_highway")),
       license: '',
       vin: current_vehicle.get("vin"),
       drivenWheels: current_vehicle.get("driven_wheels"),
@@ -203,6 +203,15 @@ const DetailsView = React.createClass({
     } else {
       return Math.round(meters / 1000);
     }
+  },
+
+  fuelConsumption(meters_per_liter) {
+    var region = NativeModules.SettingsManager.settings.AppleLocale;
+
+    if (region == 'en_US' || region == 'en_GB')
+      return Math.round(this.convertMeters(meters_per_liter) * 3.78541);
+    else
+      return Math.round(1 / this.convertMeters(meters_per_liter) * 100);
   }
 });
 
@@ -241,9 +250,6 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontWeight: 'bold'
   },
-
-
-
   textInput: {
     backgroundColor: colors.inputBackground,
     borderColor: colors.primary,
@@ -255,7 +261,6 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     fontWeight: "bold"
   },
-
   image: {
     width: 300,
     height: 300,
