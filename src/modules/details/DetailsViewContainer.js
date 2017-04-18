@@ -5,7 +5,8 @@ import DetailsView from './DetailsView';
 export default connect(
   state => ({
     navigationState: state.get('navigationState').toJS(),
-    connected: state.get('installation').get('connected')
+    connected: state.get('installation').get('connected'),
+    vehicles: state.get('carInstallation').get('vehicles')
   }),
   dispatch => ({
     switchRoute(index) {
