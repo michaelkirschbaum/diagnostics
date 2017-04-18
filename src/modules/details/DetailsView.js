@@ -211,7 +211,7 @@ const DetailsView = React.createClass({
     if (region == 'en_US' || region == 'en_GB')
       return Math.round(this.convertMeters(meters_per_liter) * 3.78541);
     else
-      return Math.round(1 / this.convertMeters(meters_per_liter) * 100);
+      return Math.round(100 / this.convertMeters(meters_per_liter));
   }
 });
 
