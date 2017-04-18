@@ -63,12 +63,11 @@ const DetailsView = React.createClass({
     let headerTitle = loc.myCars.myCars;
 
     // get current vehicle
-    let vehicles = store.getState().get("carInstallation").get("vehicles").toArray();
+    let vehicles = this.props.vehicles;
+    let vehicle = vehicles instanceof Object ? vehicles[vehicles.length - 1] : vehicles.last();
 
-    let current_vehicle = vehicles[vehicles.length - 1];
-
-    let name = current_vehicle.get("name");
-    let mileage = this.convertMeters(current_vehicle.get("current_meters"));
+    let name = vehicle.name;
+    let mileage = this.convertMeters(vehicle.current_meters);
     let image = '';
 
     let connected = this.props.connected ? "Connected" : "Disconnected";
@@ -76,16 +75,16 @@ const DetailsView = React.createClass({
     let phone = '';
 
     let infoDetailsData = {
-      year: current_vehicle.get("year"),
-      make: current_vehicle.get("make"),
-      model: current_vehicle.get("model"),
-      mpgCity: this.fuelConsumption(current_vehicle.get("meters_per_liter_city")),
-      mpgHighway: this.fuelConsumption(current_vehicle.get("meters_per_liter_highway")),
+      year: vehicle.year,
+      make: vehicle.make,
+      model: vehicle.model,
+      mpgCity: this.fuelConsumption(vehicle.meters_per_liter_city),
+      mpgHighway: this.fuelConsumption(vehicle.meters_per_liter_highway),
       license: '',
-      vin: current_vehicle.get("vin"),
-      drivenWheels: current_vehicle.get("driven_wheels"),
-      trimLevel: current_vehicle.get("trim_level"),
-      doors: current_vehicle.get("num_doors")
+      vin: vehicle.vin,
+      drivenWheels: vehicle.driven_wheels,
+      trimLevel: vehicle.gettrim_level,
+      doors: vehicle.num_doors
     };
 
     let infoDetails = _.map(_.toPairs(infoDetailsData), infoPairs => {
