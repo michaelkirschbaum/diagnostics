@@ -83,7 +83,7 @@ const fr = {
     // Page four
     registerCar: 'Enregistrez votre véhicule',
     enterLicensePlate: 'Entrez votre numéro d\'immatriculation',
-    enterRegion: 'Entrez votre pays',
+    enterRegion: 'Sélectionnez la région ici',
     enterByVin: 'S\'enregistrer par le VIN',
     enterVin: 'Entrez votre VIN',
     enterByLicensePlate: 'S\'enregistrer par le numéro d\'immatriculation',

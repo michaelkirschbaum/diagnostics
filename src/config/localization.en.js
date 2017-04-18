@@ -83,7 +83,7 @@ const en = {
     // Page four
     registerCar: 'registerCar',
     enterLicensePlate: 'Enter by license plate',
-    enterRegion: 'Enter region here', // Need to turn this into a picker.
+    enterRegion: 'Select region here', // Need to turn this into a picker.
     enterByVin: 'Enter by VIN',
     enterVin: 'Enter VIN here',
     enterByLicensePlate: 'Enter by license plate',

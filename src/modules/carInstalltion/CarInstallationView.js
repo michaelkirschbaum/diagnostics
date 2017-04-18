@@ -53,7 +53,8 @@ const CarInstallationStateView = React.createClass({
       vehicle: '',
       modalVisible: false,
       connecting: false,
-      failureModalVisible: false
+      failureModalVisible: false,
+      region: ''
     };
   },
 
@@ -171,7 +172,112 @@ const CarInstallationStateView = React.createClass({
 
     let finalView = this.props.carInstallation.enterMode
 
-    let regions = ["Alaska"];
+    let state_codes = {
+      "Alabama": "AL",
+      "Alaska": "AK",
+      "Arizona": "AZ",
+      "Arkansas": "AR",
+      "California": "CA",
+      "Colorado": "CO",
+      "Connecticut": "CT",
+      "Delaware": "DE",
+      "Florida": "FL",
+      "Georgia": "GA",
+      "Hawaii": "HI",
+      "Idaho": "ID",
+      "Illinois": "IL",
+      "Indiana": "IN",
+      "Iowa": "IA",
+      "Kansas": "KS",
+      "Kentucky": "KY",
+      "Louisiana": "LA",
+      "Maine": "ME",
+      "Maryland": "MD",
+      "Massachusetts": "MA",
+      "Michigan": "MI",
+      "Minnesota": "MN",
+      "Mississippi": "MS",
+      "Missouri": "MO",
+      "Montana": "MT",
+      "Nebraska": "NE",
+      "Nevada": "NV",
+      "New Hampshire": "NH",
+      "New Jersey": "NJ",
+      "New Mexico": "NM",
+      "New York": "NY",
+      "North Carolina": "NC",
+      "North Dakota": "ND",
+      "Ohio": "OH",
+      "Oklahoma": "OK",
+      "Oregon": "OR",
+      "Pennsylvania": "PA",
+      "Rhode Island": "RI",
+      "South Carolina": "SC",
+      "South Dakota": "SD",
+      "Tennessee": "TN",
+      "Texas": "TX",
+      "Utah": "UT",
+      "Vermont": "VT",
+      "Virginia": "VA",
+      "Washington": "WA",
+      "West Virginia": "WV",
+      "Wisconsin": "WI",
+      "Wyoming": "WY"
+    };
+
+    let country_codes = {
+      "Albania": "AL",
+      "Andorra": "AD",
+      "Austria": "AT",
+      "Belarus": "BY",
+      "Belgium": "BE",
+      "Bosnia": "BA",
+      "Bulgaria": "BG",
+      "Croatia": "HR",
+      "Cyprus": "CY",
+      "Czech Republic": "CZ",
+      "Denmark": "DK",
+      "Estonia": "EE",
+      "Faroe Islands": "FO",
+      "Finland": "FI",
+      "France": "FR",
+      "Germany": "DE",
+      "Gibraltar": "GI",
+      "Greece": "GR",
+      "Hungary": "HU",
+      "Iceland": "IS",
+      "Ireland": "IE",
+      "Isle of Man": "IM",
+      "Italy": "IT",
+      "Kosovo": "RS",
+      "Latvia": "LV",
+      "Liechtenstein": "LI",
+      "Lithuania": "LT",
+      "Luxembourg": "LU",
+      "Macedonia": "MK",
+      "Malta": "MT",
+      "Moldova": "MD",
+      "Monaco": "MC",
+      "Montenegro": "ME",
+      "Netherlands": "NL",
+      "Norway": "NO",
+      "Poland": "PL",
+      "Portugal": "PT",
+      "Romania": "RO",
+      "San Marino": "SM",
+      "Serbia": "RS",
+      "Slovakia": "SK",
+      "Slovenia": "SI",
+      "Spain": "ES",
+      "Sweden": "SE",
+      "Switzerland": "CH",
+      "Ukraine": "UA",
+      "United Kingdom": "GB",
+      "Vatican City": "VA",
+      "Yugoslavia": "RS"
+    };
+
+    let regions = this.locationIsUS() ? Object.keys(state_codes) : Object.keys(country_codes);
 
     getFinalView = function () {
 
@@ -231,6 +337,7 @@ const CarInstallationStateView = React.createClass({
                 ref='regionInput'
                 placeholder={loc.carInstallation.enterRegion}
                 onFocus = {() => this.refs.regionPicker.show()}
+                value={this.state.region}
               />
             </InputGroup>
             {/* <Text
@@ -247,7 +354,12 @@ const CarInstallationStateView = React.createClass({
             <SimplePicker
               ref={'regionPicker'}
               options={regions}
-              onSubmit={(options) => undefined}
+              onSubmit={(option) => {
+                {/* lookup code for region */}
+                this.setState({
+                  region: this.locationIsUS() ? state_codes[option] : country_codes[option]
+                });
+              }}
             />
           </View>
         )
@@ -357,6 +469,13 @@ const CarInstallationStateView = React.createClass({
         </Content>
       </Container>
     );
+  },
+
+  locationIsUS() {
+    if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("US"))
+      return true;
+    else
+      return false;
   }
 });
 
