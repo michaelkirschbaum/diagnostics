@@ -117,6 +117,7 @@ const RegisterView = React.createClass({
 
           <Button rounded
             style={{alignSelf: 'center', marginTop: 10}}
+            textStyle={{color: colors.textPrimary}}
             onPress={() => this.authenticate(this.state.first, this.state.last, this.state.phone, store.getState().get("norauto").get("user_code"))}
           >{loc.general.continue}</Button>
         </Content>
