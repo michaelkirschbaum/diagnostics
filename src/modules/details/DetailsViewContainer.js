@@ -6,7 +6,7 @@ export default connect(
   state => ({
     navigationState: state.get('navigationState').toJS(),
     connected: state.get('installation').get('connected'),
-    vehicles: state.get('carInstallation').get('vehicles')
+    carInstallation: state.get('carInstallation').toJS()
   }),
   dispatch => ({
     switchRoute(index) {

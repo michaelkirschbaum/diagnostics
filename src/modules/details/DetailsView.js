@@ -20,7 +20,6 @@ import {
   H3,
   H2,
   H1,
-  List,
   ListItem
 } from 'native-base';
 import _ from 'lodash';
@@ -63,8 +62,7 @@ const DetailsView = React.createClass({
     let headerTitle = loc.myCars.myCars;
 
     // get current vehicle
-    let vehicles = this.props.vehicles;
-    let vehicle = vehicles instanceof Object ? vehicles[vehicles.length - 1] : vehicles.last();
+    let vehicle = this.props.carInstallation.vehicles.slice(-1)[0];
 
     let name = vehicle.name;
     let mileage = this.convertMeters(vehicle.current_meters);
