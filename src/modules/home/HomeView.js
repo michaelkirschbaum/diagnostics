@@ -422,6 +422,17 @@ const HomeView = React.createClass({
               marginBottom: 5,
               }}/>
 
+              {/*
+              {this.locationFrance() &&
+                <Button rounded
+                        bordered={false}
+                        style={{alignSelf: 'center', width: 120, height: 45}}
+                        textStyle={{color: colors.textPrimary}}
+                        onPress={this.onNextPress}>
+                  <Image source={require('../../../images/icons/phone.png')} style={styles.icon}/>
+                </Button>
+              } */}
+
             <View style={styles.dataBlockContainer}>
               <View style={styles.dataIcon}>
                 <Image source={require('../../../images/icons/service.png')} style={styles.icon}/>
@@ -512,6 +523,13 @@ const HomeView = React.createClass({
         </Footer>
       </Container>
     );
+  },
+
+  locationFrance() {
+    if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+      return true;
+    else
+      return false;
   }
 });
 
