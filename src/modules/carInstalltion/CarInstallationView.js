@@ -54,7 +54,8 @@ const CarInstallationStateView = React.createClass({
       modalVisible: false,
       connecting: false,
       failureModalVisible: false,
-      region: ''
+      region: '',
+      returnDisabled: false
     };
   },
 
@@ -80,6 +81,9 @@ const CarInstallationStateView = React.createClass({
         this.setState({vehicle: response});
 
         this.props.setVehicle(response["vin"]);
+
+        // disable back button before presenting modal
+        this.setState({returnDisabled: true});
 
         // verify vehicle
         this.setState({modalVisible: true});
@@ -107,6 +111,9 @@ const CarInstallationStateView = React.createClass({
         this.setState({vehicle: response});
 
         this.props.setVehicle(response["vin"]);
+
+        // disable back button before presenting modal
+        this.setState({returnDisabled: true});
 
         // verify vehicle
         this.setState({modalVisible: true});
@@ -145,6 +152,9 @@ const CarInstallationStateView = React.createClass({
   },
 
   turnOffModal() {
+    // enable back button
+    this.setState({returnDisabled: false});
+
     // disable modal
     this.setState({connecting: false});
     this.setState({modalVisible: false});
@@ -369,7 +379,7 @@ const CarInstallationStateView = React.createClass({
     return (
       <Container theme={carfitTheme}>
         <Header>
-          <Button transparent onPress={() => this.popRoute()}>
+          <Button transparent disabled={this.state.returnDisabled} onPress={() => this.popRoute()}>
             <Icon name="ios-arrow-back"/>
           </Button>
           <Title>{headerTitle}</Title>
