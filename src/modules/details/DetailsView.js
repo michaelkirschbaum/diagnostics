@@ -63,9 +63,9 @@ const DetailsView = React.createClass({
     let headerTitle = loc.myCars.myCars;
 
     // get current vehicle
-    let vehicle = this.props.vehicles[this.props.vehicles.length - 1];
+    let vehicle = this.props.vehicles.last();
 
-    let name = vehicle.get("name");
+    let name = vehicle.name;
     let mileage = this.convertMeters(vehicle.get("current_meters"));
     let image = '';
 
@@ -74,16 +74,16 @@ const DetailsView = React.createClass({
     let phone = '';
 
     let infoDetailsData = {
-      year: vehicle.get("year"),
-      make: vehicle.get("make"),
-      model: vehicle.get("model"),
-      mpgCity: this.convertMeters(vehicle.get("meters_per_liter_city")),
-      mpgHighway: this.convertMeters(vehicle.get("meters_per_liter_highway")),
+      year: vehicle.year,
+      make: vehicle.make,
+      model: vehicle.model,
+      mpgCity: this.convertMeters(vehicle.meters_per_liter_city),
+      mpgHighway: this.convertMeters(vehicle.meters_per_liter_highway),
       license: '',
-      vin: vehicle.get("vin"),
-      drivenWheels: vehicle.get("driven_wheels"),
-      trimLevel: vehicle.get("trim_level"),
-      doors: vehicle.get("num_doors")
+      vin: vehicle.vin,
+      drivenWheels: vehicle.driven_wheels,
+      trimLevel: vehicle.trim_level,
+      doors: vehicle.num_doors
     };
 
     let infoDetails = _.map(_.toPairs(infoDetailsData), infoPairs => {
