@@ -93,14 +93,16 @@ const LoginView = React.createClass({
             activeDot={<View style={{backgroundColor:colors.primary, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
             onMomentumScrollEnd={(e, state, context) => this.setPage(state.index)}
           >
-            <View>
-              <Image source={require('../../../images/norauto.png')} style={styles.logo}/>
-              <Text style={styles.textTitle}>{loc.login.connect}</Text>
-              <Text style={styles.textBody}>{loc.login.welcome1}</Text>
-              <Text style={styles.textBody}>{loc.login.welcome2}</Text>
-              <Text style={styles.textBody}>{loc.login.welcome3}</Text>
-              <Text style={styles.textBody}>{loc.login.attention}</Text>
-            </View>
+            {this.locationFrance() &&
+              <View>
+                <Image source={require('../../../images/norauto.png')} style={styles.logo}/>
+                <Text style={styles.textTitle}>{loc.login.connect}</Text>
+                <Text style={styles.textBody}>{loc.login.welcome1}</Text>
+                <Text style={styles.textBody}>{loc.login.welcome2}</Text>
+                <Text style={styles.textBody}>{loc.login.welcome3}</Text>
+                <Text style={styles.textBody}>{loc.login.attention}</Text>
+              </View>
+            }
             <View style={styles.instructionsContainer}>
               <Image source={require('../../../images/intro-01.jpg')}
                      style={{width: windowWidth, height: windowWidth * 1.2, marginBottom: 15}}/>
@@ -176,6 +178,13 @@ const LoginView = React.createClass({
         </View>
       </Container>
     );
+  },
+
+  locationFrance() {
+    if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+      return true;
+    else
+      return false;
   }
 });
 

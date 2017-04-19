@@ -401,9 +401,11 @@ const HomeView = React.createClass({
                        style={styles.icon}/>
               </TouchableOpacity>
               <ConnectionMonitor connected={this.props.connected}/>
-              <TouchableOpacity onPress={this.onMilesPress}>
-                <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
-              </TouchableOpacity>
+              {!this.locationFrance() &&
+                <TouchableOpacity onPress={this.onMilesPress}>
+                  <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
+                </TouchableOpacity>
+              }
             </View>
             <View style={styles.profileHeaderContainer}>
               <H1>{this.state.title}</H1>
