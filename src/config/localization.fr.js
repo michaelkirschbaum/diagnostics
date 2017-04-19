@@ -126,7 +126,9 @@ const fr = {
     lastTrip: 'Dernier trajet',
     trending: 'Tendance',
     comingSoon: 'A venir',
-    mileage: 'Entrez le kilométrage de votre véhicule ici.'
+    mileage: 'Entrez le kilométrage de votre véhicule ici.',
+    button: 'PLUS JAMAIS SEUL!',
+    click: 'J\'appie sur le bouton ou ici:'
   },
   settings: {
     settings: 'Paramètres',

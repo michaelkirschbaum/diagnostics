@@ -422,16 +422,16 @@ const HomeView = React.createClass({
               marginBottom: 5,
               }}/>
 
-              {/*
+
               {this.locationFrance() &&
                 <Button rounded
                         bordered={false}
                         style={{alignSelf: 'center', width: 120, height: 45}}
                         textStyle={{color: colors.textPrimary}}
                         onPress={this.onNextPress}>
-                  <Image source={require('../../../images/icons/phone.png')} style={styles.icon}/>
+                  <Image source={require('../../../images/icons/push-button.png')} style={styles.icon}/>
                 </Button>
-              } */}
+              }
 
             <View style={styles.dataBlockContainer}>
               <View style={styles.dataIcon}>
@@ -510,17 +510,19 @@ const HomeView = React.createClass({
             </View>
           </Modal>
         </Content>
-        <Footer theme={carfitTheme} style={styles.footer}>
-          <View style={styles.bottomContainer}>
-            <Button rounded
-                    bordered={false}
-                    style={{alignSelf: 'auto', width: 120, height: 45}}
-                    textStyle={{color: colors.textPrimary}}
-                    onPress={this.onNextPress}>
-              <Image source={require('../../../images/icons/phone.png')} style={styles.icon}/>
-            </Button>
-          </View>
-        </Footer>
+        {!this.locationFrance() &&
+          <Footer theme={carfitTheme} style={styles.footer}>
+            <View style={styles.bottomContainer}>
+              <Button rounded
+                      bordered={false}
+                      style={{alignSelf: 'auto', width: 120, height: 45}}
+                      textStyle={{color: colors.textPrimary}}
+                      onPress={this.onNextPress}>
+                <Image source={require('../../../images/icons/phone.png')} style={styles.icon}/>
+              </Button>
+            </View>
+          </Footer>
+        }
       </Container>
     );
   },
