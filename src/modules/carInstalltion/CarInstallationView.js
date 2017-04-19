@@ -308,13 +308,13 @@ const CarInstallationStateView = React.createClass({
                 onChangeText = {(text) => this.setState({text})}
               />
             </InputGroup>
-            {/* <Text
+            <Text
               style={{marginTop: 22, textAlign: "center", color: colors.primary, textDecorationLine: 'underline'}}
-              onPress={() => { this.setMode('license') }}>{loc.carInstallation.enterLicensePlate}</Text> */}
+              onPress={() => { this.setMode('license') }}>{loc.carInstallation.enterLicensePlate}</Text>
             <View style={styles.bottomContainer}>
               <Button rounded
                       style={{alignSelf: 'auto'}}
-                      textStyle={{color: colors.textPrimary, textDecorationLine: 'underline'}}
+                      textStyle={{color: colors.textPrimary}}
                       onPress={() => this.addVIN(this.state.text)}
               >{loc.general.continue}</Button>
             </View>
@@ -350,13 +350,13 @@ const CarInstallationStateView = React.createClass({
                 value={this.state.region}
               />
             </InputGroup>
-            {/* <Text
+            <Text
               style={{marginTop: 22, textAlign: "center", color: colors.primary, textDecorationLine: 'underline'}}
-              onPress={() => { this.setMode('vin') }}>{loc.carInstallation.enterByVin}</Text> */}
+              onPress={() => { this.setMode('vin') }}>{loc.carInstallation.enterByVin}</Text>
             <View style={styles.bottomContainer}>
               <Button rounded
                       style={{alignSelf: 'auto'}}
-                      textStyle={{color: colors.textPrimary, textDecorationLine: 'underline'}}
+                      textStyle={{color: colors.textPrimary}}
                       onPress={() => this.addPlate(this.state.plate, this.state.region)}
               >{loc.general.continue}</Button>
             </View>
