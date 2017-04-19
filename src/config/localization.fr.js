@@ -17,7 +17,12 @@ const fr = {
     marketingText2b: 'Le capteur se réveille automatiquement dès que vous entrez dans votre véhicule et se met en veille après chaque trajet pour économiser de l\'énergie. La batterie interne a deux ans d\'autonomie.',
     marketingTitle3a: 'L\'entretien de votre véhicule rendu plus simple',
     marketingText3a: 'L\'entretien de votre véhicule est à portée de main.',
-    marketingText3b: 'Le capteur CARFIT PULS vous prévient lorsqu\'une opération est à réaliser.'
+    marketingText3b: 'Le capteur CARFIT PULS vous prévient lorsqu\'une opération est à réaliser.',
+    connect: 'CONNECT',
+    welcome1: 'Promis, vous ne serez plus jamais seul en auto',
+    welcome2: '24h/24 et 7j/7',
+    welcome3: 'L\'utilisation que vous en ferez sera notre offre de demain !',
+    attention: 'ATTENTION: Prototype d\'application pour test. Munissez-vous de votre numéro d\'immatriculation pour finaliser l\'inscription'
   },
   verification: { // is this still required with Auth0?
     verification: 'Vérification',

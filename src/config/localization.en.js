@@ -17,7 +17,12 @@ const en = {
     marketingText2b: 'The CARFIT PULS wakes automatically whenever you get into your car and goes to sleep after each drive to save power. The battery lasts for up to 2 years.',
     marketingTitle3a: 'Service made simple',
     marketingText3a: 'Scheduling service is just a button press away.',
-    marketingText3b: 'The CARFIT PULS notifies you when it is time to service car.'
+    marketingText3b: 'The CARFIT PULS notifies you when it is time to service car.',
+    connect: 'CONNECT',
+    welcome1: 'Guaranteed! You will never be alone in your car.',
+    welcome2: '24 hours a day, 7 days a week',
+    welcome3: 'The use you make of it will be our offer of tomorrow',
+    attention: 'CAUTION: Application prototype for test. Get your registration number to complete the registration'
   },
   verification: { // is this still required with Auth0?
     verification: 'Verification',
@@ -128,8 +133,8 @@ const en = {
     comingSoon: 'COMING SOON:',
     mileage: 'Enter your vehicle\'s current mileage here.',
     kilometrage: 'Enter your vehicle\'s current kilometrage here.',
-    button: 'PLUS JAMAIS SEUL!',
-    click: 'J\'appie sur le bouton ou ici:'
+    button: 'NEVER ALONE!',
+    click: 'Push on the button or here:'
   },
   settings: {
     settings: 'Settings',
