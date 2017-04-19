@@ -127,7 +127,9 @@ const en = {
     trending: 'Trending:',
     comingSoon: 'COMING SOON:',
     mileage: 'Enter your vehicle\'s current mileage here.',
-    kilometrage: 'Enter your vehicle\'s current kilometrage here.'
+    kilometrage: 'Enter your vehicle\'s current kilometrage here.',
+    button: 'PLUS JAMAIS SEUL!',
+    click: 'J\'appie sur le bouton ou ici:'
   },
   settings: {
     settings: 'Settings',

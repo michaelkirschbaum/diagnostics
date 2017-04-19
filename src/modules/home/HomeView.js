@@ -125,7 +125,7 @@ const HomeView = React.createClass({
     if (resp)
       Alert.alert(
         'Support',
-        'Support called.',
+        'A representative will call you shortly.',
         {text: 'OK', onPress: () => console.log('OK pressed.')}
       );
     else {
@@ -373,6 +373,8 @@ const HomeView = React.createClass({
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
 
+    let buttonAction = loc.home.click;
+
     let alertAction = loc.home.serviceNeeded;
     let alertColor = colors.secondary;
 
@@ -422,7 +424,16 @@ const HomeView = React.createClass({
               marginBottom: 5,
               }}/>
 
-
+              <View style={styles.dataBlockContainer}>
+                <View style={styles.dataIcon}>
+                  <Image source={require('../../../images/icons/push.png')} style={styles.icon}/>
+                </View>
+                <View style={styles.dataBlock}>
+                  <H3 style={{fontWeight: "bold", color: actionColor}}>{loc.home.button}</H3>
+                  <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
+                  <H3>{buttonAction}</H3>
+                </View>
+              </View>
               {this.locationFrance() &&
                 <Button rounded
                         bordered={false}
@@ -601,7 +612,7 @@ const styles = StyleSheet.create({
     width: 35,
     height: 35,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   titles: {
     marginTop: 17,
@@ -616,9 +627,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  modal: {
-
   }
 });
 
