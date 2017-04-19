@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, View, StyleSheet } from 'react-native';
+import { Image, View, StyleSheet, Animated } from 'react-native';
 
 const ConnectionSpinner = React.createClass({
   render() {
@@ -28,7 +28,7 @@ const ConnectionSpinner = React.createClass({
 
   componentDidMount() {
     // animation speed
-    var speed = 175;
+    var speed = 225;
 
     // render sequence
     var timer = setInterval(function() {
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   spinner: {
     height: 55,
     width: 200,
-    marginTop: 250
+    // marginTop: 250
   },
   done: {
     height: 89,

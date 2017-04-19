@@ -216,20 +216,13 @@ const InstallationView = React.createClass({
                             </ListItem>
                         }>
                 </List>
-
-                {/* <InputGroup borderType='rounded' style={styles.textInput}>
-                  <Input
-                    ref='phoneInput'
-                    placeholder="Enter phone number to receive support."
-                    onChangeText = {(text) => this.setState({text})}
-                  />
-                </InputGroup> */}
-                {/* <View style={styles.bottomContainer}>
+                {this.state.connected &&
                   <Button rounded
-                          textStyle={{color: colors.textPrimary, textDecorationLine: 'underline'}}
-                          onPress={() => this.setPhone(this.state.text)}
+                    style={styles.button}
+                    textStyle={{color: colors.textPrimary}}
+                    onPress={() => this.continue()}
                   >{loc.general.continue}</Button>
-                </View> */}
+                }
               </View>
             </Swiper>
             <Modal
@@ -238,16 +231,6 @@ const InstallationView = React.createClass({
               visible={this.state.modalVisible}>
               <View style={styles.spinnerContainer}>
                 <ConnectionSpinner loading={this.state.connected}/>
-              </View>
-
-              <View style={styles.bottomContainer}>
-                {this.state.connected &&
-                  <Button rounded
-                    style={{alignSelf: 'auto'}}
-                    textStyle={{color: colors.textPrimary}}
-                    onPress={() => this.continue()}
-                  >{loc.general.continue}</Button>
-                  }
               </View>
             </Modal>
           </Content>
@@ -310,6 +293,10 @@ const styles = StyleSheet.create({
     marginBottom: 80,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  button: {
+    alignSelf: 'center',
+    marginTop: 355
   }
 });
 
