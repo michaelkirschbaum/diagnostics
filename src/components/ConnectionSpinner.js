@@ -33,7 +33,7 @@ const ConnectionSpinner = React.createClass({
     // render sequence
     var timer = setInterval(function() {
       if (this.getStatus() == false)
-        this.setState({image: (this.getIndex() + 1) % 7});
+        this.setState({image: (this.getIndex() + 1) % 6});
       else
         this.setState({image: 6});
     }.bind(this), speed);
