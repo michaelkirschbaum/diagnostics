@@ -225,8 +225,7 @@ const InstallationView = React.createClass({
               visible={this.state.modalVisible}>
               <View style={styles.spinnerContainer}>
                 <ConnectionSpinner loading={this.state.connected}/>
-              </View>
-              <View>
+
                 {this.state.connected &&
                   <Button rounded
                     style={styles.button}
@@ -235,6 +234,7 @@ const InstallationView = React.createClass({
                   >{loc.general.continue}</Button>
                 }
               </View>
+
             </Modal>
           </Content>
         </Container>
@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
   },
   button: {
     alignSelf: 'center',
-    marginTop: 355
+    marginTop: 405
   }
 });
 

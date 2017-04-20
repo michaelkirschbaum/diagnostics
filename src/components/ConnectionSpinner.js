@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, View, StyleSheet, Animated } from 'react-native';
+import { Image, View, StyleSheet, Animated, Dimensions } from 'react-native';
 
 const ConnectionSpinner = React.createClass({
   render() {
@@ -32,7 +32,8 @@ const ConnectionSpinner = React.createClass({
 
     // render sequence
     var timer = setInterval(function() {
-      if (this.getStatus() == false && this.getIndex() < 6)
+      // if (this.getStatus() == false && this.getIndex() < 6)
+      if (true)
         this.setState({image: (this.getIndex() + 1) % 7});
       else
         this.setState({image: 6});
@@ -65,11 +66,13 @@ const styles = StyleSheet.create({
   spinner: {
     height: 55,
     width: 200,
-    // marginTop: 0
+    position: 'absolute',
+    top: Dimensions.get('window').height / 2 - 27.5,
+    left: Dimensions.get('window').width / 2 - 100
   },
   done: {
     height: 89,
-    // marginBottom: 34
+    marginBottom: 34
   }
 });
 
