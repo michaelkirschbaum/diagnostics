@@ -96,7 +96,7 @@ const LoginView = React.createClass({
             {this.locationFrance() &&
               <View>
                 <Image source={require('../../../images/norauto.png')} style={styles.logo}/>
-                <Text style={styles.textTitle}>{loc.login.connect}</Text>
+                <Text style={styles.welcomeTitle}>{loc.login.connect}</Text>
                 <Text style={styles.textBody}>{loc.login.welcome1}</Text>
                 <Text style={styles.textBody}>{loc.login.welcome2}</Text>
                 <Text style={styles.textBody}>{loc.login.welcome3}</Text>
@@ -272,6 +272,14 @@ const styles = StyleSheet.create({
     height: 42,
     backgroundColor: colors.backgroundPrimary,
     borderColor: colors.backgroundPrimary
+  },
+  welcomeTitle: {
+    color: colors.textPrimary,
+    fontFamily: (Platform.OS === 'ios' ) ? 'HelveticaNeue' : 'Roboto',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginTop: 5,
+    alignSelf: 'center'
   }
 });
 
