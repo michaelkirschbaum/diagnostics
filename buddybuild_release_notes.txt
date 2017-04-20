@@ -1,4 +1,4 @@
-WHAT'S NEW IN VERSION X.XX
+WHAT'S NEW IN VERSION 00.00.0193
 --------------------------
 
 iOS SDK:
@@ -6,3 +6,9 @@ iOS SDK:
  - loosened tolerances for straight line drive events to allow for algorithm testing:
    + SLS is +/- 4 mps speed and +/- 5 degrees for bearing
    + SLA/SLD +/- 0.5 mps speed and +/- 5 degrees for bearing
+
+React:
+ - Norauto home view design
+ - Improved bluetooth spinner animation
+ - Norauto welcome view
+ - Car details bug fix
