@@ -65,11 +65,11 @@ const styles = StyleSheet.create({
   spinner: {
     height: 55,
     width: 200,
-    marginTop: 250
+    // marginTop: 0
   },
   done: {
     height: 89,
-    marginBottom: 34
+    // marginBottom: 34
   }
 });
 

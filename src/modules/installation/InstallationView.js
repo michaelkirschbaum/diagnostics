@@ -216,6 +216,17 @@ const InstallationView = React.createClass({
                             </ListItem>
                         }>
                 </List>
+              </View>
+            </Swiper>
+            <Modal
+              animationType={'none'}
+              transparent={true}
+              closeOnTouchOutside={true}
+              visible={this.state.modalVisible}>
+              <View style={styles.spinnerContainer}>
+                <ConnectionSpinner loading={this.state.connected}/>
+              </View>
+              <View>
                 {this.state.connected &&
                   <Button rounded
                     style={styles.button}
@@ -223,14 +234,6 @@ const InstallationView = React.createClass({
                     onPress={() => this.continue()}
                   >{loc.general.continue}</Button>
                 }
-              </View>
-            </Swiper>
-            <Modal
-              animationType={'none'}
-              transparent={true}
-              visible={this.state.modalVisible}>
-              <View style={styles.spinnerContainer}>
-                <ConnectionSpinner loading={this.state.connected}/>
               </View>
             </Modal>
           </Content>
