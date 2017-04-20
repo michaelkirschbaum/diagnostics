@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
   },
   button: {
     alignSelf: 'center',
-    marginTop: 405
+    marginTop: 460
   }
 });
 
