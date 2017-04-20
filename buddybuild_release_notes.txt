@@ -2,7 +2,7 @@ WHAT'S NEW IN VERSION X.XX
 --------------------------
 
 iOS SDK:
- - use of backoff timer on straight line drive event data colection, initially 1 second, maximum 512 seconds, each drive tye has separate timer
- - loosened tolerances for straight line drive events:
+ - use of backoff timer on straight line drive event data colection, initially 1 second, maximum 512 seconds, each drive type has separate timer
+ - loosened tolerances for straight line drive events to allow for algorithm testing:
    + SLS is +/- 4 mps speed and +/- 5 degrees for bearing
    + SLA/SLD +/- 0.5 mps speed and +/- 5 degrees for bearing
