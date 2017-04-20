@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
   },
   done: {
     height: 89,
-    marginBottom: 34
+    position: 'absolute',
+    top: Dimensions.get('window').height / 2 - 61.5
   }
 });
 
