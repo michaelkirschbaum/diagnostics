@@ -362,7 +362,11 @@ const CarInstallationStateView = React.createClass({
                       onPress={() => this.addPlate(this.state.plate, this.state.region)}
               >{loc.general.continue}</Button>
             </View>
-
+              <ActivityIndicator
+                style={styles.spinner}
+                animating={this.state.connecting}
+                size='large'
+              />
             <SimplePicker
               ref={'regionPicker'}
               options={regions}
