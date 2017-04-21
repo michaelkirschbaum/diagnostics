@@ -9,7 +9,8 @@ import {
   NativeModules,
   ActivityIndicator,
   Modal,
-  Animated
+  Animated,
+  Alert
 } from 'react-native';
 import {
   Container,
@@ -91,6 +92,16 @@ const InstallationView = React.createClass({
     var connection_subscription = connectionEmitter.addListener(
       'BLEDeviceConnectionStatus',
       (message) => this.props.setConnection(message["status"])
+    );
+
+    // listen for support click
+    const support_subscription = connectionEmitter.addListener(
+      'BLEButtonPress',
+      (reminder) => Alert.alert(
+        'Support',
+        'A representative will call you shortly.',
+        {text: 'OK', onPress: () => console.log('OK Pressed')}
+      )
     );
 
     // connect puls device

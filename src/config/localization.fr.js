@@ -132,8 +132,8 @@ const fr = {
     trending: 'Tendance',
     comingSoon: 'A venir',
     mileage: 'Entrez le kilométrage de votre véhicule ici.',
-    button: 'PLUS JAMAIS SEUL!',
-    click: 'J\'appie sur le bouton ou ici:'
+    button: 'Plus Jamais Seul!',
+    click: 'J\'appuie sur le bouton ou ici:'
   },
   settings: {
     settings: 'Paramètres',
@@ -191,7 +191,8 @@ const fr = {
     first: 'Prénom',
     last: 'Nom de famille',
     email: 'name@example.com',
-    phone: '+XX XX XX XX XX X'
+    phoneInput: '+XX XX XX XX XX X',
+    phone: 'Téléphone'
   }
 };
 export default fr;

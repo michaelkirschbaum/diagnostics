@@ -83,7 +83,7 @@ const RegisterView = React.createClass({
             }}/>
 
           <View style={styles.inputGroup}>
-            <Text style={{textAlign: 'center'}}>First Name</Text>
+            <Text style={{textAlign: 'center'}}>{loc.register.first}</Text>
             <InputGroup borderType='rounded' style={styles.textInput}>
               <Input
                 ref='firstInput'
@@ -94,7 +94,7 @@ const RegisterView = React.createClass({
           </View>
 
           <View style={styles.inputGroup}>
-            <Text style={{textAlign: 'center'}}>Last Name</Text>
+            <Text style={{textAlign: 'center'}}>{loc.register.last}</Text>
             <InputGroup borderType='rounded' style={styles.textInput}>
               <Input
                 ref='lastInput'
@@ -105,11 +105,11 @@ const RegisterView = React.createClass({
           </View>
 
           <View style={styles.inputGroup}>
-            <Text style={{textAlign: 'center'}}>Phone number</Text>
+            <Text style={{textAlign: 'center'}}>{loc.register.phone}</Text>
             <InputGroup borderType='rounded' style={styles.textInput}>
               <Input
                 ref='phoneInput'
-                placeholder={loc.register.phone}
+                placeholder={loc.register.phoneInput}
                 onChangeText={(text) => this.setState({phone: text})}
               />
             </InputGroup>
@@ -123,6 +123,10 @@ const RegisterView = React.createClass({
         </Content>
       </Container>
     );
+  },
+
+  componentWillMount() {
+    
   }
 });
 

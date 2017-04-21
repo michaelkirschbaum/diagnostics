@@ -104,14 +104,14 @@ const HomeView = React.createClass({
     );
 
     this.setState({distance_subscription});
-
+/*
     // update odometer while not 'in trip'
     setInterval(function() {
       if (!store.getState().get("installation").get("in_drive")) {
         that.loadMileage(vehicle).done();
         that.setState({total_distance: 0});
       }
-    }, interval);
+    }, interval); */
   },
 
   async onNextPress() {
@@ -401,7 +401,10 @@ const HomeView = React.createClass({
                        style={styles.icon}/>
               </TouchableOpacity>
               <ConnectionMonitor connected={this.props.connected}/>
-              <TouchableOpacity onPress={this.onMilesPress}>
+              <TouchableOpacity disabled={this.locationFrance() ? "true" : "false"} onPress={this.onMilesPress}>
+                {this.locationFrance() &&
+                  <Image source={require('../../../images/icons/black-square.png')} style={styles.icon}/>
+                }
                 {!this.locationFrance() &&
                   <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
                 }
@@ -538,6 +541,10 @@ const HomeView = React.createClass({
         }
       </Container>
     );
+  },
+
+  componentWillMount() {
+
   },
 
   locationFrance() {
