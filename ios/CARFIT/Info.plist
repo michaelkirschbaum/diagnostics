@@ -50,7 +50,16 @@
     <dict>
       <key>NSAllowsArbitraryLoadsInWebContent</key>
       <true/>
-    </dict>
+      <key>NSExceptionDomains</key>
+      <dict>
+        <key>localhost</key>
+        <dict>
+          <key>NSIncludesSubdomains</key>
+          <true/>
+          <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+          <true/>
+        </dict>
+      </dict>    </dict>
     <key>NSLocationAlwaysUsageDescription</key>
     <string>CarFit always uses location service</string>
     <key>UIAppFonts</key>
