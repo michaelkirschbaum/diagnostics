@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted} from '../navigation/NavigationState';
 import HomeView from './HomeView';
 import {fetchOdometer} from './HomeState';
-import {setDrive, setConnection} from '../installation/InstallationState'
+import {setDrive, setConnection} from '../installation/InstallationState';
 
 export default connect(
   state => ({

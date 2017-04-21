@@ -87,6 +87,8 @@ const UsageView = React.createClass({
                 <ListItem>
                   <View>
                     <Text>City: {this.getReport(trip).city}, Highway: {this.getReport(trip).highway}, Stop and Go: {this.getReport(trip).stop_and_go}</Text>
+                    <Text>Start time: {trip.start_timestamp}</Text>
+                    <Text>Distance: {trip.meters_travelled}</Text>
                   </View>
                 </ListItem>
               }>
