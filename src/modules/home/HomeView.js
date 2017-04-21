@@ -449,22 +449,24 @@ const HomeView = React.createClass({
                 </Button>
               }
 
-            <View style={styles.dataBlockContainer}>
-              <View style={styles.dataIcon}>
-                <Image source={require('../../../images/icons/service.png')} style={styles.icon}/>
+            {!this.locationFrance() &&
+              <View style={styles.dataBlockContainer}>
+                <View style={styles.dataIcon}>
+                  <Image source={require('../../../images/icons/service.png')} style={styles.icon}/>
+                </View>
+                <View style={styles.dataBlock}>
+                  <H3 style={{fontWeight: "bold", color: alertColor}}>{loc.home.alert}</H3>
+                  <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
+                  <H3>{alertAction}</H3>
+                  <Text>{this.state.alert}</Text>
+                </View>
+                <View style={styles.dataAction}>
+                  <Button transparent onPress={() => this.props.pushRoute({key: 'Alerts', title: loc.home.alert})}>
+                    <Icon active name="ios-arrow-forward"></Icon>
+                  </Button>
+                </View>
               </View>
-              <View style={styles.dataBlock}>
-                <H3 style={{fontWeight: "bold", color: alertColor}}>{loc.home.alert}</H3>
-                <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
-                <H3>{alertAction}</H3>
-                <Text>{this.state.alert}</Text>
-              </View>
-              <View style={styles.dataAction}>
-                <Button transparent onPress={() => this.props.pushRoute({key: 'Alerts', title: loc.home.alert})}>
-                  <Icon active name="ios-arrow-forward"></Icon>
-                </Button>
-              </View>
-            </View>
+            }
 
             <View style={styles.dataBlockContainer}>
               <View style={styles.dataIcon}>
