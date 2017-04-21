@@ -2,7 +2,14 @@ WHAT'S NEW IN VERSION 00.00.0193
 --------------------------
 
 iOS SDK:
-
+ -
 
 React:
- 
+ - Bluetooth spinner complete
+ - Welcome view fixed
+ - Button click consistent
+ - French translations
+ - Norauto: odometer reversions fixed
+ - In presence indicator centered
+ - Reconnect to SDK upon after re-opening
+ - Distance and time added to Usage view
