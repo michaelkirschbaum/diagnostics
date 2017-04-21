@@ -74,36 +74,6 @@ const InstallationView = React.createClass({
   async onNextPress(id) {
     this.setState({modalVisible: true});
 
-    var connectionEmitter = new NativeEventEmitter(CarFitManager);
-
-    // set flag for start of trip
-    var trip_subscription = connectionEmitter.addListener(
-      'TripStartOfTravel',
-      (notification) => this.props.setDrive(true)
-    );
-
-    // set flag for end of trip
-    var trip_subscription = connectionEmitter.addListener(
-      'TripEndOfTravel',
-      (notification) => this.props.setDrive(false)
-    );
-
-    // flag bluetooth connection status
-    var connection_subscription = connectionEmitter.addListener(
-      'BLEDeviceConnectionStatus',
-      (message) => this.props.setConnection(message["status"])
-    );
-
-    // listen for support click
-    const support_subscription = connectionEmitter.addListener(
-      'BLEButtonPress',
-      (reminder) => Alert.alert(
-        'Support',
-        'A representative will call you shortly.',
-        {text: 'OK', onPress: () => console.log('OK Pressed')}
-      )
-    );
-
     // connect puls device
     var conn = new Connection();
     var resp = await conn.connectDevice(id);

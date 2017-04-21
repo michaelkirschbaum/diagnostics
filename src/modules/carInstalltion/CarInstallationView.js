@@ -8,7 +8,8 @@ import {
   NativeModules,
   TouchableOpacity,
   ActivityIndicator,
-  TouchableHighlight
+  TouchableHighlight,
+  NativeEventEmitter
 } from 'react-native';
 import {
   Container,
@@ -39,6 +40,7 @@ else
   var loc = en;
 import Modal from 'react-native-simple-modal';
 import SimplePicker from 'react-native-simple-picker';
+const {CarFitManager} = NativeModules;
 
 /**
  * Login view
@@ -486,7 +488,7 @@ const CarInstallationStateView = React.createClass({
       return true;
     else
       return false;
-  }
+  },
 });
 
 const styles = StyleSheet.create({

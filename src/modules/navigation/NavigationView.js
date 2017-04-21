@@ -4,7 +4,10 @@ import {
   NavigationExperimental,
   View,
   StatusBar,
-  StyleSheet
+  StyleSheet,
+  NativeEventEmitter,
+  NativeModules,
+  Alert
 } from 'react-native';
 const {
   CardStack: NavigationCardStack,
@@ -14,7 +17,7 @@ const {
 import AppRouter from '../AppRouter';
 import {Drawer, Content, Text, List, ListItem} from 'native-base';
 import NavigationDemoDrawer from './NavigationDemoDrawer';
-
+const {CarFitManager} = NativeModules;
 import stylesMain from '../../config/styles';
 
 // const styles = stylesMain;
@@ -110,6 +113,38 @@ const NavigationView = React.createClass({
     //     />
     //   </View>
     // );
+  },
+
+  componentWillMount() {
+    var connectionEmitter = new NativeEventEmitter(CarFitManager);
+
+    // set flag for start of trip
+    var trip_subscription = connectionEmitter.addListener(
+      'TripStartOfTravel',
+      (notification) => this.props.setDrive(true)
+    );
+
+    // set flag for end of trip
+    var trip_subscription = connectionEmitter.addListener(
+      'TripEndOfTravel',
+      (notification) => this.props.setDrive(false)
+    );
+
+    // flag bluetooth connection status
+    var connection_subscription = connectionEmitter.addListener(
+      'BLEDeviceConnectionStatus',
+      (message) => this.props.setConnection(message["status"])
+    );
+
+    // listen for support click
+    const support_subscription = connectionEmitter.addListener(
+      'BLEButtonPress',
+      (reminder) => Alert.alert(
+        'Support',
+        'A representative will call you shortly.',
+        {text: 'OK', onPress: () => console.log('OK Pressed')}
+      )
+    );
   }
 });
 
