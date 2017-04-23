@@ -1,12 +1,9 @@
-WHAT'S NEW IN VERSION 00.00.0203
+WHAT'S NEW IN VERSION 00.00.0209
 --------------------------
 
 iOS SDK:
- - Improved raw data collection to improve partial data collection handling
- - Correction for raw data collection to stop simulation code from altering loaction data
- - Code cleanup in raw data collection
- - AWS logging update
+ - Write data rate on current thread instead of background thread
+ - Recover end of trip logic improvement
+ - Correction to handle Realm DB crashing
+ - Placed guard on bridged AWS methods to return error when not connected to network
 
-React:
- - Build file
- - iOS Simulator support
