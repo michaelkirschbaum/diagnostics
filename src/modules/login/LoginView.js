@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, {PropTypes, PixelRatio} from 'react';
 import {
   View,
   StyleSheet,
@@ -18,6 +18,8 @@ var Auth0Lock = require('react-native-lock');
 import Login from '../../carfit/login';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
+import {responsiveWidth, responsiveHeight, responsiveFontSize} from 'react-native-responsive-dimensions';
+
 if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
@@ -109,7 +111,7 @@ const LoginView = React.createClass({
           activeDot={<View style={{backgroundColor:colors.primary, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
           onMomentumScrollEnd={(e, state, context) => this.setPage(state.index)}
         >
-          <View>
+          <View style={styles.instructionsContainer}>
             <Image source={require('../../../images/norauto.png')} style={styles.logo}/>
             <Text style={styles.welcomeTitle}>{loc.login.connect}</Text>
             <Text style={styles.textBody}>{loc.login.welcome1}</Text>
@@ -199,7 +201,7 @@ const LoginView = React.createClass({
         >
           <View style={styles.instructionsContainer}>
             <Image source={require('../../../images/intro-01.jpg')}
-                   style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width * 1.2, marginBottom: 15}}/>
+                   style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width * 1.1, marginBottom: 15}}/>
             <Text style={styles.textTitle}>{loc.login.marketingTitle1a}</Text>
             <Text style={styles.textTitle}>{loc.login.marketingTitle1b}</Text>
             <Text style={styles.textBody}>{loc.login.marketingText1a}</Text>
@@ -278,12 +280,13 @@ LoginView = reduxForm({
 
 const styles = StyleSheet.create({
   scrollContainer: {
-    backgroundColor: colors.backgroundPrimary
+    backgroundColor: colors.backgroundPrimary,
+    // flex: 1
   },
   textTitle: {
     color: colors.textPrimary,
     fontFamily: (Platform.OS === 'ios' ) ? 'HelveticaNeue' : 'Roboto',
-    fontSize: 18,
+    fontSize: responsiveFontSize(2.35),
     fontWeight: 'bold',
     marginTop: 5,
     justifyContent: 'center',
@@ -294,7 +297,7 @@ const styles = StyleSheet.create({
   textBody: {
     color: colors.textPrimary,
     fontFamily: (Platform.OS === 'ios' ) ? 'HelveticaNeue' : 'Roboto',
-    fontSize: 18,
+    fontSize: responsiveFontSize(2.35),
     marginTop: 15,
     justifyContent: 'center',
     alignItems: 'center',
