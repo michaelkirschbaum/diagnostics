@@ -234,7 +234,7 @@ const HomeView = React.createClass({
         // add units
         var region = NativeModules.SettingsManager.settings.AppleLocale;
 
-        if (region == 'en_US' || region == 'en_GB') {
+        if (region.endsWith('US') || region.endsWith('GB')) {
           trip = trip.toString() + ' mi';
         } else {
           trip = trip.toString() + ' km';
