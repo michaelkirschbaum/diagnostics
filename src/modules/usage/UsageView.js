@@ -82,13 +82,16 @@ const UsageView = React.createClass({
             }}/>
 
           <View>
+            {!this.state.trips.length &&
+              <Text style={{alignSelf: 'center'}}>No trips available</Text>
+            }
             <List dataArray={this.state.trips.reverse()}
               renderRow={(trip) =>
                 <ListItem>
                   <View>
                     <Text>City: {this.getReport(trip).city}, Highway: {this.getReport(trip).highway}, Stop and Go: {this.getReport(trip).stop_and_go}</Text>
                     <Text>Start time: {trip.start_timestamp}</Text>
-                    <Text>Distance: {trip.meters_travelled}</Text>
+                    <Text>Distance: {this.convertMeters(trip.meters_travelled)}</Text>
                   </View>
                 </ListItem>
               }>
@@ -117,6 +120,8 @@ const UsageView = React.createClass({
   getReport(trip) {
     // travel time
     var total = trip.secs_below_72kph + trip.secs_above_72kph + trip.secs_below_10kph;
+    if (total == 0)
+      return {stop_and_go: '-%', city: '-%', highway: '-%'};
 
     // percentage of trip in conditions
     var stop_and_go = Math.round(trip.secs_below_10kph / total * 100);
@@ -124,6 +129,18 @@ const UsageView = React.createClass({
     var highway = Math.round(trip.secs_above_72kph / total * 100);
 
     return {stop_and_go: stop_and_go.toString() + "%", city: city.toString() + "%", highway: highway.toString() + "%"};
+  },
+
+  convertMeters(meters) {
+    // get location
+    var region = NativeModules.SettingsManager.settings.AppleLocale;
+
+    // if in US or Britain use Miles, otherwise use Kilometers
+    if (region == 'en_US' || region == 'en_GB') {
+      return Math.round(meters / 1609.344);
+    } else {
+      return Math.round(meters / 1000);
+    }
   }
 });
 

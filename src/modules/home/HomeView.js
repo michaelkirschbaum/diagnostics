@@ -221,11 +221,27 @@ const HomeView = React.createClass({
     var trips = await vehicle.getTrips(vin);
 
     if (trips) {
-      // get last trip
-      var trip = trips[trips.length - 1].meters_travelled;
+      // remove trips that aren't at least a mile
+      trips = trips.filter(this.minimumDistance);
 
-      // convert to miles
-      var trip = this.convertMeters(trip);
+      // get last trip if exists
+      if (trips.length) {
+        var trip = trips[trips.length - 1].meters_travelled;
+
+        // convert to miles
+        var trip = this.convertMeters(trip);
+
+        // add units
+        var region = NativeModules.SettingsManager.settings.AppleLocale;
+
+        if (region == 'en_US' || region == 'en_GB') {
+          trip = trip.toString() + ' mi';
+        } else {
+          trip = trip.toString() + ' km';
+        }
+      }
+      else
+        trip = 'Not available';
 
       // set last trip
       this.setState({trips: trip});
@@ -551,21 +567,8 @@ const HomeView = React.createClass({
       return false;
   },
 
-  convertMeters(meters) {
-    if (Platform.OS === 'android')
-      console.warning("Unable to get locale.");
-    else
-      var region = NativeModules.SettingsManager.settings.AppleLocale;
-
-    if (region == 'en_US' || region == 'en_GB') {
-      var units = ' mi';
-      var distance = Math.round(meters / 1609.344);
-      return meters.toString() + units;
-    } else {
-      var units = ' km';
-      var distance = Math.round(meters / 1000);
-      return meters.toString() + units;
-    }
+  minimumDistance(trip) {
+    return this.convertMeters(trip.meters_travelled) > 0;
   }
 });
 
