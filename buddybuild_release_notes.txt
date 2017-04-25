@@ -2,8 +2,4 @@ WHAT'S NEW IN VERSION 00.00.0209
 --------------------------
 
 iOS SDK:
- - Write data rate on current thread instead of background thread
- - Recover end of trip logic improvement
- - Correction to handle Realm DB crashing
- - Placed guard on bridged AWS methods to return error when not connected to network
-
+ - Change to Norauto login to obtain valid token at login rather than at first request
