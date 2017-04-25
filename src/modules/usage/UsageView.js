@@ -29,13 +29,7 @@ import colors from '../../config/colors';
 const UsageView = React.createClass({
   getInitialState() {
     return {
-      trips: [],
-      lastTrip: function() {
-        if (this.trips.length > 0) {
-          return this.trips[this.trips.length - 1];
-        }
-        return {secs_below_72kph: 0, secs_above_72kph: 0, secs_below_10kph: 0}
-      }
+      trips: []
     };
   },
 
@@ -55,19 +49,19 @@ const UsageView = React.createClass({
             <View>
               <Text style={{textAlign: 'center'}}>
                 <Image source={require('../../../images/icons/highway.png')}/>
-                {this.getReport(this.state.lastTrip()).highway}
+                {this.getReport(this.lastTrip()).highway}
               </Text>
             </View>
             <View>
               <Text style={{textAlign: 'center'}}>
                 <Image source={require('../../../images/icons/city.png')}/>
-                <Text>{this.getReport(this.state.lastTrip()).city}</Text>
+                <Text>{this.getReport(this.lastTrip()).city}</Text>
               </Text>
             </View>
             <View>
               <Text style={{textAlign: 'center'}}>
                 <Image source={require('../../../images/icons/stop-and-go.png')}/>
-                {this.getReport(this.state.lastTrip()).stop_and_go}
+                {this.getReport(this.lastTrip()).stop_and_go}
               </Text>
             </View>
           </View>
@@ -107,7 +101,10 @@ const UsageView = React.createClass({
     try {
       const trips = await AsyncStorage.getItem('trips');
 
-      trips = JSON.parse(trips);
+      if (!trips)
+        trips = [];
+      else
+        trips = JSON.parse(trips);
 
       this.setState({trips});
     } catch(e) {
@@ -136,11 +133,19 @@ const UsageView = React.createClass({
     var region = NativeModules.SettingsManager.settings.AppleLocale;
 
     // if in US or Britain use Miles, otherwise use Kilometers
-    if (region == 'en_US' || region == 'en_GB') {
+    if (region.endsWith('US') || region.endsWith('GB')) {
       return Math.round(meters / 1609.344);
     } else {
       return Math.round(meters / 1000);
     }
+  },
+
+  lastTrip() {
+    if (this.state.trips.length) {
+      return this.state.trips[this.state.trips.length - 1];
+    }
+
+    return {secs_below_72kph: 0, secs_above_72kph: 0, secs_below_10kph: 0}
   }
 });
 

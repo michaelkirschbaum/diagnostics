@@ -184,7 +184,7 @@ const HomeView = React.createClass({
         console.error(e);
       }
     } else {
-      this.setState({alert: ''});
+      this.setState({alert: 'Not available'});
     }
   },
 
@@ -253,7 +253,13 @@ const HomeView = React.createClass({
         console.warn(e);
       }
     } else {
-      this.setState({trips: ''});
+      this.setState({trips: 'Not available'});
+
+      try {
+        await AsyncStorage.setItem('trip', JSON.stringify([]));
+      } catch(e) {
+
+      }
     }
   },
 
