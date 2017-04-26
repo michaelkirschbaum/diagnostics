@@ -136,7 +136,9 @@ const en = {
     mileage: 'Enter your vehicle\'s current mileage here.',
     kilometrage: 'Enter your vehicle\'s current kilometrage here.',
     button: 'NEVER ALONE!',
-    click: 'Push on the button or here:'
+    click: 'Push on the button or here:',
+    updateMi: 'UPDATE CAR MILEAGE',
+    updateKm: 'UPDATE CAR KILOMETRAGE'
   },
   settings: {
     settings: 'Settings',

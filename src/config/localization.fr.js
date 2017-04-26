@@ -135,7 +135,9 @@ const fr = {
     comingSoon: 'A venir',
     mileage: 'Entrez le kilométrage de votre véhicule ici.',
     button: 'Plus Jamais Seul!',
-    click: 'J\'appuie sur le bouton ou ici:'
+    click: 'J\'appuie sur le bouton ou ici:',
+    updateMi: 'Actualiser le kilométrage de la voiture',
+    updateKm: 'Actualiser le kilométrage de voiture'
   },
   settings: {
     settings: 'Paramètres',

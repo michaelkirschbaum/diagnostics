@@ -75,12 +75,12 @@ const InstallationView = React.createClass({
     this.setState({modalVisible: true});
 
     // timeout connection request and notify user of necessary action
-    var timeout = 7500;
+    var timeout = 10000;
 
     var connection_alert = setInterval(function() {
       Alert.alert(
-        loc.welcome.connection_error,
-        loc.welcome.reset,
+        'Connect Device',
+        'Puls device needs to be reset. Hold the device button for 10 seconds to continue.',
         {text: 'OK', onPress: () => undefined}
       );
     }, timeout);

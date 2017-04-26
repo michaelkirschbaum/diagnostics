@@ -48,7 +48,6 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import ConnectionMonitor from '../../components/ConnectionMonitor';
 import {responsiveWidth, responsiveHeight, responsiveFontSize} from 'react-native-responsive-dimensions';
 
-
 // set language
 if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
@@ -438,7 +437,7 @@ const HomeView = React.createClass({
               <H2 style={{marginTop: 5}}>{this.state.description}</H2>
               <Button rounded
                       style={styles.milesButton}
-                      textStyle={{color: colors.textPrimary}}
+                      textStyle={{color: colors.textPrimary, fontSize: responsiveFontSize(2.35)}}
                       onPress={() => this.setState({modalVisible: true})}
               >{this.state.meters}</Button>
             </View>
@@ -534,7 +533,7 @@ const HomeView = React.createClass({
               borderRadius: 7
             }}>
             <View>
-              <Text style={{color: 'black', alignSelf: 'center'}}>UPDATE CAR MILEAGE</Text>
+              <Text style={{color: 'black', alignSelf: 'center'}}>{this.useMetric() ? loc.home.updateKm : loc.home.updateMi}</Text>
               <InputGroup>
                 {this.renderOdometerUpdate()}
               </InputGroup>
@@ -577,6 +576,15 @@ const HomeView = React.createClass({
 
   minimumDistance(trip) {
     return this.convertMeters(trip.meters_travelled) > 0;
+  },
+
+  useMetric() {
+    var region = NativeModules.SettingsManager.settings.AppleLocale;
+
+    if (region.endsWith("US") || region.endsWith("GB"))
+      return false;
+    else
+      return true;
   }
 });
 
