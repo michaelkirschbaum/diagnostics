@@ -58,13 +58,13 @@ const UsageView = React.createClass({
             <View>
               <Text style={{textAlign: 'center'}}>
                 <Image source={require('../../../images/icons/data-usage.png')} style={styles.trip_icon} />
-                {new Date(this.lastTrip().start_timestamp).toString()}
+                {new Date(this.lastTrip().start_timestamp).toDateString()}
               </Text>
             </View>
             <View>
               <Text style={{textAlign: 'center'}}>
                 <Image source={require('../../../images/icons/time-usage.png')} style={styles.trip_icon} />
-                {}
+                {new Date(this.lastTrip().start_timestamp).toTimeString()}
               </Text>
             </View>
             <View>
@@ -76,7 +76,7 @@ const UsageView = React.createClass({
             <View>
               <Text style={{textAlign: 'center'}}>
                 <Image source={require('../../../images/icons/smoothness-usage.png')} style={styles.trip_icon} />
-                {}
+                N/A
               </Text>
             </View>
           </View>
