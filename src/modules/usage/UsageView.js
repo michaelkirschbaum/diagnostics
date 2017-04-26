@@ -58,21 +58,25 @@ const UsageView = React.createClass({
             <View>
               <Text style={{textAlign: 'center'}}>
                 <Image source={require('../../../images/icons/data-usage.png')} style={styles.trip_icon} />
+                {new Date(this.lastTrip().start_timestamp).toString()}
               </Text>
             </View>
             <View>
               <Text style={{textAlign: 'center'}}>
                 <Image source={require('../../../images/icons/time-usage.png')} style={styles.trip_icon} />
+                {}
               </Text>
             </View>
             <View>
               <Text style={{textAlign: 'center'}}>
                 <Image source={require('../../../images/icons/distance-usage.png')} style={styles.trip_icon} />
+                {this.convertMeters(this.lastTrip().meters_travelled) + (this.useMetric() ? ' km' : ' mi')}
               </Text>
             </View>
             <View>
               <Text style={{textAlign: 'center'}}>
                 <Image source={require('../../../images/icons/smoothness-usage.png')} style={styles.trip_icon} />
+                {}
               </Text>
             </View>
           </View>
