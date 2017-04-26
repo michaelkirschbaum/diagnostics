@@ -84,8 +84,8 @@ const UsageView = React.createClass({
                 <ListItem>
                   <View>
                     <Text>City: {this.getReport(trip).city}, Highway: {this.getReport(trip).highway}, Stop and Go: {this.getReport(trip).stop_and_go}</Text>
-                    <Text>Start time: {trip.start_timestamp}</Text>
-                    <Text>Distance: {this.convertMeters(trip.meters_travelled)}</Text>
+                    <Text>Start time: {new Date(trip.start_timestamp).toString()}</Text>
+                    <Text>Distance: {this.convertMeters(trip.meters_travelled).toString() + (this.useMetric() ? ' km' : ' mi')}</Text>
                   </View>
                 </ListItem>
               }>
@@ -146,6 +146,15 @@ const UsageView = React.createClass({
     }
 
     return {secs_below_72kph: 0, secs_above_72kph: 0, secs_below_10kph: 0}
+  },
+
+  useMetric() {
+    var region = NativeModules.SettingsManager.settings.AppleLocale;
+
+    if (region.endsWith("US") || region.endsWith("GB"))
+      return false;
+    else
+      return true;
   }
 });
 
