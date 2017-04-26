@@ -48,19 +48,19 @@ const UsageView = React.createClass({
           <View style={styles.last_trip}>
             <View>
               <Text style={{textAlign: 'center'}}>
-                <Image source={require('../../../images/icons/highway.png')}/>
+                <Image source={require('../../../images/icons/highway.png')} style={styles.icon}/>
                 {this.getReport(this.lastTrip()).highway}
               </Text>
             </View>
             <View>
               <Text style={{textAlign: 'center'}}>
-                <Image source={require('../../../images/icons/city.png')}/>
+                <Image source={require('../../../images/icons/city.png')} style={styles.icon}/>
                 <Text>{this.getReport(this.lastTrip()).city}</Text>
               </Text>
             </View>
             <View>
               <Text style={{textAlign: 'center'}}>
-                <Image source={require('../../../images/icons/stop-and-go.png')}/>
+                <Image source={require('../../../images/icons/stop-and-go.png')} style={styles.icon}/>
                 {this.getReport(this.lastTrip()).stop_and_go}
               </Text>
             </View>
@@ -153,6 +153,13 @@ const styles = StyleSheet.create({
   last_trip: {
     flex: 1,
     flexDirection: 'row'
+  },
+  icon: {
+    width: 45,
+    height: 45,
+    justifyContent: 'center',
+    alignItems: 'center',
+    resizeMode: 'center'
   }
 });
 

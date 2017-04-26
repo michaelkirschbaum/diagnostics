@@ -139,7 +139,7 @@ const fr = {
   },
   settings: {
     settings: 'Paramètres',
-    myCars: 'Mes véhicules',
+    myCars: 'Mes voitures',
     sensors: 'Capteurs',
     myAccount: 'Mon compte',
     drive: 'Conduite',

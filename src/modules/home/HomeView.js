@@ -46,6 +46,8 @@ import Connection from '../../carfit/connection';
 import Modal from 'react-native-simple-modal';
 import Spinner from 'react-native-loading-spinner-overlay';
 import ConnectionMonitor from '../../components/ConnectionMonitor';
+import {responsiveWidth, responsiveHeight, responsiveFontSize} from 'react-native-responsive-dimensions';
+
 
 // set language
 if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
@@ -455,9 +457,9 @@ const HomeView = React.createClass({
                   <Image source={require('../../../images/icons/push.png')} style={styles.icon}/>
                 </View>
                 <View style={styles.dataBlock}>
-                  <H3 style={{fontWeight: "bold", color: actionColor}}>{loc.home.button}</H3>
+                  <H3 style={{fontWeight: "bold", color: actionColor, fontSize: responsiveFontSize(2.35)}}>{loc.home.button}</H3>
                   <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
-                  <H3>{buttonAction}</H3>
+                  <H3 style={styles.text}>{buttonAction}</H3>
                 </View>
               </View>
               {this.locationFrance() &&
@@ -476,10 +478,10 @@ const HomeView = React.createClass({
                   <Image source={require('../../../images/icons/service.png')} style={styles.icon}/>
                 </View>
                 <View style={styles.dataBlock}>
-                  <H3 style={{fontWeight: "bold", color: alertColor}}>{loc.home.alert}</H3>
+                  <H3 style={{fontWeight: "bold", color: alertColor, fontSize: responsiveFontSize(2.35)}}>{loc.home.alert}</H3>
                   <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
-                  <H3>{alertAction}</H3>
-                  <Text>{this.state.alert}</Text>
+                  <H3 style={styles.text}>{alertAction}</H3>
+                  <Text style={styles.text}>{this.state.alert}</Text>
                 </View>
                 <View style={styles.dataAction}>
                   <Button transparent onPress={() => this.props.pushRoute({key: 'Alerts', title: loc.home.alert})}>
@@ -494,9 +496,9 @@ const HomeView = React.createClass({
                 <Image source={require('../../../images/icons/usage.png')} style={styles.icon}/>
               </View>
               <View style={styles.dataBlock}>
-                <H3 style={{fontWeight: "bold", color: actionColor}}>{loc.home.usage}</H3>
+                <H3 style={{fontWeight: "bold", color: actionColor, fontSize: responsiveFontSize(2.35)}}>{loc.home.usage}</H3>
                 <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
-                <H3>{usageAction}</H3>
+                <H3 style={styles.text}>{usageAction}</H3>
                 <Text>{this.state.trips}</Text>
               </View>
               <View style={styles.dataAction}>
@@ -511,10 +513,10 @@ const HomeView = React.createClass({
                 <Image source={require('../../../images/icons/usage.png')} style={styles.icon}/>
               </View>
               <View style={styles.dataBlock}>
-                <H3 style={{fontWeight: "bold", color: colors.headerTextColor}}>{loc.home.value}</H3>
+                <H3 style={{fontWeight: "bold", color: colors.headerTextColor, fontSize: responsiveFontSize(2.35)}}>{loc.home.value}</H3>
                 <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
-                <H3 style={{color: colors.headerTextColor}}>{valueAction}</H3>
-                <Text style={{color: colors.headerTextColor}}>{valueDescription}</Text>
+                <H3 style={{color: colors.headerTextColor, fontSize: responsiveFontSize(2.35)}}>{valueAction}</H3>
+                <Text style={{color: colors.headerTextColor, fontSize: responsiveFontSize(2.35)}}>{valueDescription}</Text>
               </View>
               {/* <View style={styles.dataAction}>
                 <Icon active name="ios-arrow-forward"></Icon>
@@ -659,6 +661,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  text: {
+    fontSize: responsiveFontSize(2.35)
   }
 });
 

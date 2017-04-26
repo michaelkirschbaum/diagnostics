@@ -164,7 +164,8 @@ const styles = StyleSheet.create({
   },
   sectionDetails: {
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   sectionAction: {},
   sectionHeader: {

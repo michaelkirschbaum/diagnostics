@@ -4,7 +4,9 @@ import * as reduxLoop from 'redux-loop';
 import middleware from './middleware';
 import reducer from './reducer';
 
-const enhancer = compose(
+import {composeWithDevTools} from 'remote-redux-devtools';
+
+const enhancer = composeWithDevTools(
   applyMiddleware(...middleware),
   reduxLoop.install()
 );

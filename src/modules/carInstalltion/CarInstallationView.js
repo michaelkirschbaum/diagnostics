@@ -41,6 +41,7 @@ else
 import Modal from 'react-native-simple-modal';
 import SimplePicker from 'react-native-simple-picker';
 const {CarFitManager} = NativeModules;
+import {responsiveWidth, responsiveHeight, responsiveFontSize} from 'react-native-responsive-dimensions';
 
 /**
  * Login view
@@ -166,6 +167,7 @@ const CarInstallationStateView = React.createClass({
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
+    let windowRatio = windowHeight / windowWidth;
 
     let headerTitle = loc.carInstallation.inCarInstallation;
     switch (this.props.carInstallation.pageIndex) {
@@ -311,7 +313,7 @@ const CarInstallationStateView = React.createClass({
               />
             </InputGroup>
             <Text
-              style={{marginTop: 22, textAlign: "center", color: colors.primary, textDecorationLine: 'underline'}}
+              style={{marginTop: 22, textAlign: "center", color: colors.primary, textDecorationLine: 'underline', fontSize: responsiveFontSize(2.35)}}
               onPress={() => { this.setMode('license') }}>{loc.carInstallation.enterLicensePlate}</Text>
             <View style={styles.bottomContainer}>
               <Button rounded
@@ -522,12 +524,11 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   image: {
-    // flex: 1,
-    width: 200,
-    height: 200,
+    width: responsiveHeight(42),
+    height: responsiveHeight(42),
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 0,
+    marginTop: 10,
     alignSelf: 'center'
   },
   titles: {
