@@ -74,9 +74,23 @@ const InstallationView = React.createClass({
   async onNextPress(id) {
     this.setState({modalVisible: true});
 
+    // timeout connection request and notify user of necessary action
+    var timeout = 7500;
+
+    var connection_alert = setInterval(function() {
+      Alert.alert(
+        loc.welcome.connection_error,
+        loc.welcome.reset,
+        {text: 'OK', onPress: () => undefined}
+      );
+    }, timeout);
+
     // connect puls device
     var conn = new Connection();
     var resp = await conn.connectDevice(id);
+
+    // stop timeout
+    clearInterval(connection_alert);
 
     // handle failure, bluetooth failure, or success
     if (true) { // should be resp

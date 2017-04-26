@@ -22,7 +22,9 @@ const en = {
     welcome1: 'Guaranteed! You will never be alone in your car.',
     welcome2: '24 hours a day, 7 days a week',
     welcome3: 'The use you make of it will be our offer of tomorrow',
-    attention: 'CAUTION: Application prototype for test. Get your registration number to complete the registration'
+    attention: 'CAUTION: Application prototype for test. Get your registration number to complete the registration',
+    connection_error: 'Connect Device',
+    reset: 'Puls device needs to be reset. Hold the device button for 10 seconds to continue.'
   },
   verification: { // is this still required with Auth0?
     verification: 'Verification',
