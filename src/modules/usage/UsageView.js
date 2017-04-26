@@ -55,9 +55,26 @@ const UsageView = React.createClass({
             }}/>
 
           <View style={styles.last_trip}>
-            <Image source={require('../../../images/icons/data-usage.png')} style={styles.icon} />
-            <Image source={require('../../../images/icons/time-usage.png')} style={styles.icon} />
-            <Image source={require('../../../images/icons/distance-usage.png')} style={styles.icon} />
+            <View>
+              <Text style={{textAlign: 'center'}}>
+                <Image source={require('../../../images/icons/data-usage.png')} style={styles.trip_icon} />
+              </Text>
+            </View>
+            <View>
+              <Text style={{textAlign: 'center'}}>
+                <Image source={require('../../../images/icons/time-usage.png')} style={styles.trip_icon} />
+              </Text>
+            </View>
+            <View>
+              <Text style={{textAlign: 'center'}}>
+                <Image source={require('../../../images/icons/distance-usage.png')} style={styles.trip_icon} />
+              </Text>
+            </View>
+            <View>
+              <Text style={{textAlign: 'center'}}>
+                <Image source={require('../../../images/icons/smoothness-usage.png')} style={styles.trip_icon} />
+              </Text>
+            </View>
           </View>
 
           <View style={{
@@ -72,19 +89,19 @@ const UsageView = React.createClass({
           <View style={styles.last_trip}>
             <View>
               <Text style={{textAlign: 'center'}}>
-                <Image source={require('../../../images/icons/highway.png')} style={styles.icon}/>
+                <Image source={require('../../../images/icons/highway.png')} style={styles.report_icon}/>
                 {this.getReport(this.lastTrip()).highway}
               </Text>
             </View>
             <View>
               <Text style={{textAlign: 'center'}}>
-                <Image source={require('../../../images/icons/city.png')} style={styles.icon}/>
+                <Image source={require('../../../images/icons/city.png')} style={styles.report_icon}/>
                 <Text>{this.getReport(this.lastTrip()).city}</Text>
               </Text>
             </View>
             <View>
               <Text style={{textAlign: 'center'}}>
-                <Image source={require('../../../images/icons/stop-and-go.png')} style={styles.icon}/>
+                <Image source={require('../../../images/icons/stop-and-go.png')} style={styles.report_icon}/>
                 {this.getReport(this.lastTrip()).stop_and_go}
               </Text>
             </View>
@@ -185,15 +202,21 @@ const UsageView = React.createClass({
 const styles = StyleSheet.create({
   last_trip: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
+    flexDirection: 'row'
   },
-  icon: {
+  report_icon: {
     width: 45,
     height: 45,
     justifyContent: 'center',
     alignItems: 'center',
     resizeMode: 'center'
+  },
+  trip_icon: {
+    width: 32,
+    height: 32,
+    justifyContent: 'center',
+    alignItems: 'center',
+    resizeMode: 'contain'
   }
 });
 
