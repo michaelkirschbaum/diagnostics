@@ -148,7 +148,8 @@ const HomeView = React.createClass({
   },
 
   onMilesPress() {
-    Linking.openURL("https://www.messenger.com/t/1468809913153847").catch(err => console.error('An error occurred', err));
+    // point to zendesk
+    Linking.openURL("https://carfit.zendesk.com/").catch(err => console.error('An error occurred', err));
   },
 
   onMyCarsPress() {
@@ -423,13 +424,8 @@ const HomeView = React.createClass({
                        style={styles.icon}/>
               </TouchableOpacity>
               <ConnectionMonitor connected={this.props.connected}/>
-              <TouchableOpacity disabled={this.locationFrance() ? true : false} onPress={this.onMilesPress}>
-                {this.locationFrance() &&
-                  <Image source={require('../../../images/icons/black-square.png')} style={styles.icon}/>
-                }
-                {!this.locationFrance() &&
-                  <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
-                }
+              <TouchableOpacity onPress={this.onMilesPress}>
+                <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
               </TouchableOpacity>
             </View>
             <View style={styles.profileHeaderContainer}>

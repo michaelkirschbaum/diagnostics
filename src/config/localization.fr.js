@@ -137,7 +137,8 @@ const fr = {
     button: 'Plus Jamais Seul!',
     click: 'J\'appuie sur le bouton ou ici:',
     updateMi: 'Actualiser le kilométrage de la voiture',
-    updateKm: 'Actualiser le kilométrage de voiture'
+    updateKm: 'Actualiser le kilométrage de voiture',
+    noTrips: 'Vous n\'avez pas encore effectué de voyages.'
   },
   settings: {
     settings: 'Paramètres',

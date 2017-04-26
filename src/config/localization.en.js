@@ -138,7 +138,8 @@ const en = {
     button: 'NEVER ALONE!',
     click: 'Push on the button or here:',
     updateMi: 'UPDATE CAR MILEAGE',
-    updateKm: 'UPDATE CAR KILOMETRAGE'
+    updateKm: 'UPDATE CAR KILOMETRAGE',
+    noTrips: 'You haven\'t taken any trips yet.'
   },
   settings: {
     settings: 'Settings',

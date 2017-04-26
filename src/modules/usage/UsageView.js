@@ -77,7 +77,7 @@ const UsageView = React.createClass({
 
           <View>
             {!this.state.trips.length &&
-              <Text style={{alignSelf: 'center'}}>No trips available</Text>
+              <Text style={{alignSelf: 'center'}}>{loc.home.noTrips}</Text>
             }
             <List dataArray={this.state.trips.reverse()}
               renderRow={(trip) =>
