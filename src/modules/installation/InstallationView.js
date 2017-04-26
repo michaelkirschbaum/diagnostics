@@ -102,8 +102,8 @@ const InstallationView = React.createClass({
     }
     else
       Alert.alert(
-        'Puls',
-        'Device failed to connect.',
+        loc.carInstallation.connect,
+        loc.carInstallation.connectError,
         {text: 'OK', onPress: () => console.log("OK pressed.")},
         {cancellable: false}
       );

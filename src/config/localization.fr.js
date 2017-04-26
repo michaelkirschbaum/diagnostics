@@ -98,7 +98,9 @@ const fr = {
     failure: 'Pas ma voiture',
     notFound: 'La voiture n\'a pas pu être identifiée',
     retry: 'Réessayer',
-    support: 'Contactez le support CARFIT'
+    support: 'Contactez le support CARFIT',
+    connect: 'RELIER',
+    connectError: 'Le périphérique n\'a pas pu se connecter.'
   },
   vinLocations: {
     vinLocations: 'Trouvez votre VIN',
@@ -138,7 +140,10 @@ const fr = {
     click: 'J\'appuie sur le bouton ou ici:',
     updateMi: 'Actualiser le kilométrage de la voiture',
     updateKm: 'Actualiser le kilométrage de voiture',
-    noTrips: 'Vous n\'avez pas encore effectué de voyages.'
+    noTrips: 'Vous n\'avez pas encore effectué de voyages.',
+    support: 'SOUTIEN',
+    call: 'Un représentant vous appellera sous peu.',
+    supportError: 'Demande échoué. Réessayer.'
   },
   settings: {
     settings: 'Paramètres',

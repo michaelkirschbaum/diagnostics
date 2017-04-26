@@ -98,7 +98,9 @@ const en = {
     failure: 'Not my car',
     notFound: 'Car could not be identified',
     retry: 'Try again',
-    support: 'Contact CARFIT Support'
+    support: 'Contact CARFIT Support',
+    connect: 'CONNECT',
+    connectError: 'Device failed to connect.'
   },
   vinLocations: {
     vinLocations: 'VIN locations',
@@ -139,7 +141,10 @@ const en = {
     click: 'Push on the button or here:',
     updateMi: 'UPDATE CAR MILEAGE',
     updateKm: 'UPDATE CAR KILOMETRAGE',
-    noTrips: 'You haven\'t taken any trips yet.'
+    noTrips: 'You haven\'t taken any trips yet.',
+    support: 'SUPPORT',
+    call: 'A representative will call you shortly.',
+    supportError: 'Request failed. Try again.'
   },
   settings: {
     settings: 'Settings',

@@ -477,8 +477,8 @@ const CarInstallationStateView = React.createClass({
                     textStyle={{color: 'black', textDecorationLine: 'underline'}}
                     style={{alignSelf: 'center'}}
                     onPress={() => Alert.alert(
-                      'Support',
-                      'Support called.',
+                      loc.home.support,
+                      loc.home.call,
                       {text: 'OK', onPress: () => console.log('OK pressed.')})
                     }
               >{loc.carInstallation.support}</Button>

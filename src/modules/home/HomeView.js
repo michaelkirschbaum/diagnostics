@@ -125,14 +125,14 @@ const HomeView = React.createClass({
 
     if (resp)
       Alert.alert(
-        'Support',
-        'A representative will call you shortly.',
+        loc.home.support,
+        loc.home.call,
         {text: 'OK', onPress: () => console.log('OK pressed.')}
       );
     else {
       Alert.alert(
-        'Support',
-        'Request failed. Try again.',
+        loc.home.support,
+        loc.home.supportError,
         {text: 'OK', onPress: () => console.log('OK Pressed.')}
       );
     }
