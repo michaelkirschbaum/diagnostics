@@ -45,6 +45,30 @@ const UsageView = React.createClass({
           <Title>{headerTitle}</Title>
         </Header>
         <Content style={{backgroundColor: colors.backgroundPrimary}}>
+          <View style={{
+            height: 1,
+            backgroundColor: colors.headerTextColor,
+            marginLeft: 5,
+            marginRight: 5,
+            marginTop: 5,
+            marginBottom: 5,
+            }}/>
+
+          <View style={styles.last_trip}>
+            <Image source={require('../../../images/icons/data-usage.png')} style={styles.icon} />
+            <Image source={require('../../../images/icons/time-usage.png')} style={styles.icon} />
+            <Image source={require('../../../images/icons/distance-usage.png')} style={styles.icon} />
+          </View>
+
+          <View style={{
+            height: 1,
+            backgroundColor: colors.headerTextColor,
+            marginLeft: 5,
+            marginRight: 5,
+            marginTop: 5,
+            marginBottom: 5,
+            }}/>
+
           <View style={styles.last_trip}>
             <View>
               <Text style={{textAlign: 'center'}}>
@@ -84,7 +108,7 @@ const UsageView = React.createClass({
                 <ListItem>
                   <View>
                     <Text>City: {this.getReport(trip).city}, Highway: {this.getReport(trip).highway}, Stop and Go: {this.getReport(trip).stop_and_go}</Text>
-                    <Text>Start time: {new Date(trip.start_timestamp).toString()}</Text>
+                    <Text>Start: {new Date(trip.start_timestamp).toString()}</Text>
                     <Text>Distance: {this.convertMeters(trip.meters_travelled).toString() + (this.useMetric() ? ' km' : ' mi')}</Text>
                   </View>
                 </ListItem>
@@ -161,7 +185,8 @@ const UsageView = React.createClass({
 const styles = StyleSheet.create({
   last_trip: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   icon: {
     width: 45,
