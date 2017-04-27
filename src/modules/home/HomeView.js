@@ -200,7 +200,7 @@ const HomeView = React.createClass({
       else
         var region = NativeModules.SettingsManager.settings.AppleLocale;
 
-      if (region == 'en_US' || region == 'en_GB') {
+      if (region.endsWith('US') || region.endsWith('GB')) {
         var units = ' mi';
         var meters = Math.round(meters / 1609.344);
         meters = meters.toString() + units;
@@ -537,12 +537,12 @@ const HomeView = React.createClass({
                     style={{alignSelf: 'center'}}
                     textStyle={{color: colors.textPrimary}}
                     onPress={() => this.setOdometer(this.state.new_meters)}
-              >Save changes</Button>
+              >{loc.home.save}</Button>
               <Button transparent
                     textStyle={{color: 'black'}}
                     style={{alignSelf: 'center'}}
                     onPress={() => this.setState({modalVisible: false})}
-              >Cancel</Button>
+              >{loc.home.cancel}</Button>
             </View>
           </Modal>
         </Content>

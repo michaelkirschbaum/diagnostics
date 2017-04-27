@@ -144,7 +144,9 @@ const en = {
     noTrips: 'You haven\'t taken any trips yet.',
     support: 'SUPPORT',
     call: 'A representative will call you shortly.',
-    supportError: 'Request failed. Try again.'
+    supportError: 'Request failed. Try again.',
+    save: 'Save changes',
+    cancel: 'Cancel'
   },
   settings: {
     settings: 'Settings',

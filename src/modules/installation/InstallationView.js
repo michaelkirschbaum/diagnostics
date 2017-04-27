@@ -75,12 +75,12 @@ const InstallationView = React.createClass({
     this.setState({modalVisible: true});
 
     // timeout connection request and notify user of necessary action
-    var timeout = 10000;
+    var timeout = 15000;
 
-    var connection_alert = setInterval(function() {
+    var connection_alert = setTimeout(function() {
       Alert.alert(
-        'Connect Device',
-        'Puls device needs to be reset. Hold the device button for 10 seconds to continue.',
+        loc.home.connection_error,
+        loc.home.reset,
         {text: 'OK', onPress: () => undefined}
       );
     }, timeout);
@@ -90,7 +90,7 @@ const InstallationView = React.createClass({
     var resp = await conn.connectDevice(id);
 
     // stop timeout
-    clearInterval(connection_alert);
+    clearTimeout(connection_alert);
 
     // handle failure, bluetooth failure, or success
     if (true) { // should be resp

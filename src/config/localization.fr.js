@@ -143,7 +143,9 @@ const fr = {
     noTrips: 'Vous n\'avez pas encore effectué de voyages.',
     support: 'SOUTIEN',
     call: 'Un représentant vous appellera sous peu.',
-    supportError: 'Demande échoué. Réessayer.'
+    supportError: 'Demande échoué. Réessayer.',
+    save: 'Sauvegarder les modifications',
+    cancel: 'Annuler'
   },
   settings: {
     settings: 'Paramètres',
