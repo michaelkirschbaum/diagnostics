@@ -1,5 +1,16 @@
-WHAT'S NEW IN VERSION 00.00.0209
---------------------------
+WHAT'S NEW IN VERSION 00.00.0235
+--------------------------------
 
-iOS SDK:
- - Change to Norauto login to obtain valid token at login rather than at first request
+React Native Fixes:
+ - Usage view should display time in local time
+ - When no drive data, format better the Usage view.
+ - App displays instructions to reset sensor if connection fails
+ - Usage view displays date and time and mileage of last trip
+ - Modals are not translated and not in the correct units - esp. changing the mileage.
+ - Add back the "AskMiles" button at the top right, and point it to carfit's zendesk account under all conditions (Auth0 and Norauto) using the right language code.
+ - CARFIT usage is showing in Miles for FR (should be in KM for all regions except the US and UK).
+ - REMOVE FROM UI: Be able to take a picture of the user car.
+ - App fails to pair the sensor and gets stuck with no "Continue" button.
+ - My Account shows "Mes vehicules" as the title.
+
+ 
