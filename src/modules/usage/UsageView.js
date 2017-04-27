@@ -55,29 +55,21 @@ const UsageView = React.createClass({
             }}/>
 
           <View style={styles.last_trip}>
-            <View>
-              <Text style={{textAlign: 'center'}}>
-                <Image source={require('../../../images/icons/data-usage.png')} style={styles.trip_icon} />
-                {new Date(this.lastTrip().start_timestamp).toDateString()}
-              </Text>
+            <View style={styles.iconContainer}>
+              <Image source={require('../../../images/icons/data-usage.png')} style={styles.icon} />
+              <Text>{new Date(this.lastTrip().start_timestamp).toDateString().slice(4, 15)}</Text>
             </View>
-            <View>
-              <Text style={{textAlign: 'center'}}>
-                <Image source={require('../../../images/icons/time-usage.png')} style={styles.trip_icon} />
-                {new Date(this.lastTrip().start_timestamp).toTimeString()}
-              </Text>
+            <View style={styles.iconContainer}>
+              <Image source={require('../../../images/icons/time-usage.png')} style={styles.icon} />
+              <Text>{new Date(this.lastTrip().start_timestamp).toTimeString().split(" ").shift()}</Text>
             </View>
-            <View>
-              <Text style={{textAlign: 'center'}}>
-                <Image source={require('../../../images/icons/distance-usage.png')} style={styles.trip_icon} />
-                {this.convertMeters(this.lastTrip().meters_travelled) + (this.useMetric() ? ' km' : ' mi')}
-              </Text>
+            <View style={styles.iconContainer}>
+              <Image source={require('../../../images/icons/distance-usage.png')} style={styles.icon} />
+              <Text>{this.convertMeters(this.lastTrip().meters_travelled) + (this.useMetric() ? ' km' : ' mi')}</Text>
             </View>
-            <View>
-              <Text style={{textAlign: 'center'}}>
-                <Image source={require('../../../images/icons/smoothness-usage.png')} style={styles.trip_icon} />
-                N/A
-              </Text>
+            <View style={styles.iconContainer}>
+              <Image source={require('../../../images/icons/smoothness-usage.png')} style={styles.icon} />
+              <Text>N/A</Text>
             </View>
           </View>
 
@@ -93,19 +85,19 @@ const UsageView = React.createClass({
           <View style={styles.last_trip}>
             <View>
               <Text style={{textAlign: 'center'}}>
-                <Image source={require('../../../images/icons/highway.png')} style={styles.report_icon}/>
+                <Image source={require('../../../images/icons/highway.png')} style={styles.icon}/>
                 {this.getReport(this.lastTrip()).highway}
               </Text>
             </View>
             <View>
               <Text style={{textAlign: 'center'}}>
-                <Image source={require('../../../images/icons/city.png')} style={styles.report_icon}/>
+                <Image source={require('../../../images/icons/city.png')} style={styles.icon}/>
                 <Text>{this.getReport(this.lastTrip()).city}</Text>
               </Text>
             </View>
             <View>
               <Text style={{textAlign: 'center'}}>
-                <Image source={require('../../../images/icons/stop-and-go.png')} style={styles.report_icon}/>
+                <Image source={require('../../../images/icons/stop-and-go.png')} style={styles.icon}/>
                 {this.getReport(this.lastTrip()).stop_and_go}
               </Text>
             </View>
@@ -206,21 +198,21 @@ const UsageView = React.createClass({
 const styles = StyleSheet.create({
   last_trip: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginLeft: 10,
+    marginRight: 10
   },
-  report_icon: {
-    width: 45,
-    height: 45,
-    justifyContent: 'center',
-    alignItems: 'center',
-    resizeMode: 'center'
-  },
-  trip_icon: {
+  icon: {
     width: 32,
     height: 32,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignSelf: 'center',
     resizeMode: 'contain'
+  },
+  iconContainer: {
+    flexDirection: 'column',
+    justifyContent: 'center'
   }
 });
 
