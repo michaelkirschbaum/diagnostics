@@ -79,8 +79,8 @@ const InstallationView = React.createClass({
 
     var connection_alert = setTimeout(function() {
       Alert.alert(
-        loc.home.connection_error,
-        loc.home.reset,
+        loc.login.connection_error,
+        loc.login.reset,
         {text: 'OK', onPress: () => undefined}
       );
     }, timeout);
