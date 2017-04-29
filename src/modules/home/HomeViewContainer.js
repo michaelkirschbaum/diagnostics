@@ -3,12 +3,14 @@ import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCom
 import HomeView from './HomeView';
 import {fetchOdometer} from './HomeState';
 import {setDrive, setConnection} from '../installation/InstallationState';
+import {setOdometer} from '../carInstalltion/CarInstallationState';
 
 export default connect(
   state => ({
     navigationState: state.get('navigationState').toJS(),
     home: state.get('home').toJS(),
-    connected: state.get('installation').get("connected")
+    connected: state.get('installation').get("connected"),
+    vehicle: state.get('carInstallation').toJS()
   }),
   dispatch => ({
     switchRoute(index) {
@@ -34,6 +36,9 @@ export default connect(
     },
     setConnection(status) {
       dispatch(setConnection(status));
+    },
+    setOdometer(distance) {
+      dispatch(setOdometer(distance));
     }
   })
 )(HomeView);

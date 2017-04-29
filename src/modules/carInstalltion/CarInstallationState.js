@@ -6,7 +6,8 @@ const initialState = Map({
   pageIndex: 0,
   enterMode: 'license',
   vin: '',
-  vehicles: []
+  vehicles: [],
+  odometer: 0
 });
 
 // Actions
@@ -15,6 +16,7 @@ const ENTER_MODE = 'CarInstallationState/ENTER_MODE';
 const LOADING = 'CarInstallationState/LOADING';
 const SET_VEHICLE = 'CarInstallationState/SET_VEHICLE';
 const ADD_VEHICLE = 'CarInstallationState/ADD_VEHICLE';
+const SET_ODOMETER = 'SET_ODOMETER';
 
 // Action Creaters
 export function setPageIndex(value) {
@@ -31,6 +33,10 @@ export function setVehicle(value) {
 
 export function addVehicle(vehicle) {
   return {type: ADD_VEHICLE, payload: vehicle}
+}
+
+export function setOdometer(distance) {
+  return {type: SET_ODOMETER, payload: distance}
 }
 
 // Reducerm,
@@ -50,6 +56,9 @@ export default function CarInstallationStateReducer(state = initialState, action
 
     case ADD_VEHICLE:
       return state.set('vehicles', state.get("vehicles").concat(action.payload));
+
+    case SET_ODOMETER:
+      return state.set('odometer', action.payload);
 
     default:
       return state;

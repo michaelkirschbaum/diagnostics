@@ -83,7 +83,14 @@ const CarInstallationStateView = React.createClass({
         // store vehicle to be accessed in verification
         this.setState({vehicle: response});
 
+        // store vehicle info
         this.props.setVehicle(response["vin"]);
+        var distance = vehicle.getMileage();
+        if (distance)
+          this.props.setOdometer(distance);
+        else {
+          this.props.setOdometer(0);
+        }
 
         // disable back button before presenting modal
         this.setState({returnDisabled: true});
@@ -113,7 +120,9 @@ const CarInstallationStateView = React.createClass({
         // store vehicle to be accessed in verification
         this.setState({vehicle: response});
 
+        // store vehicle info
         this.props.setVehicle(response["vin"]);
+        this.props.setOdometer(vehicle.getMileage());
 
         // disable back button before presenting modal
         this.setState({returnDisabled: true});

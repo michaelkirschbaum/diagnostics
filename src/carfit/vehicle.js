@@ -14,6 +14,8 @@ export default class Vehicle {
     try {
       var response = await this.manager.onBoardVehicleWithVIN(vin);
 
+      this.vin = response["vin"];
+
       // check whether promise was resolved
       return response;
     } catch (e) {
@@ -24,6 +26,8 @@ export default class Vehicle {
   async addByPlate(plate, region) {
     try {
       var response = await this.manager.onBoardVehicleWithPlate(plate, region, null);
+
+      this.vin = response["vin"];
 
       return response;
     } catch (e) {

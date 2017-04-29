@@ -77,7 +77,7 @@ const HomeView = React.createClass({
     var connectionEmitter = new NativeEventEmitter(CarFitManager);
 
     // get vehicle
-    const vin = store.getState().get("carInstallation").get("vin");
+    const vin = this.props.vehicle.vin;
     var vehicle = new Vehicle(vin);
 
     // display odometer
@@ -168,7 +168,7 @@ const HomeView = React.createClass({
   async loadAlerts() {
     var vehicle = new Vehicle();
 
-    const vin = store.getState().get("carInstallation").get("vin");
+    const vin = this.props.vehicle.vin;
     // backlog types: recall, maintenance, alert, bulletin
     var alerts = await vehicle.getAlerts('alert', vin);
 
@@ -192,34 +192,30 @@ const HomeView = React.createClass({
 
   async loadMileage(vehicle) {
     // load mileage
-    var meters = await vehicle.getMileage();
+    var meters = this.props.vehicle.odometer;
 
-    if (meters) {
-      if (Platform.OS === 'android')
-        console.warning("Unable to get locale.");
-      else
-        var region = NativeModules.SettingsManager.settings.AppleLocale;
+    if (Platform.OS === 'android')
+      console.warning("Unable to get locale.");
+    else
+      var region = NativeModules.SettingsManager.settings.AppleLocale;
 
-      if (region.endsWith('US') || region.endsWith('GB')) {
-        var units = ' mi';
-        var meters = Math.round(meters / 1609.344);
-        meters = meters.toString() + units;
-      } else {
-        var units = ' km';
-        var meters = Math.round(meters / 1000);
-        meters = meters.toString() + units;
-      }
-
-      this.setState({meters});
+    if (region.endsWith('US') || region.endsWith('GB')) {
+      var units = ' mi';
+      var meters = Math.round(meters / 1609.344);
+      meters = meters.toString() + units;
     } else {
-      this.loadMileage(vehicle);
+      var units = ' km';
+      var meters = Math.round(meters / 1000);
+      meters = meters.toString() + units;
     }
+
+    this.setState({meters});
   },
 
   async loadUsage() {
     var vehicle = new Vehicle();
 
-    const vin = store.getState().get("carInstallation").get("vin");
+    const vin = this.props.vehicle.vin;
     var trips = await vehicle.getTrips(vin);
 
     if (trips) {
@@ -267,7 +263,7 @@ const HomeView = React.createClass({
 
   // accepts string
   async setOdometer(distance) {
-    const vin = store.getState().get("carInstallation").get("vin");
+    const vin = this.props.vehicle.vin;
     var vehicle = new Vehicle(vin);
 
     if (isNaN(distance))
@@ -291,10 +287,10 @@ const HomeView = React.createClass({
         distance = distance + units;
       }
 
-      vehicle.setMileage(vin, meters);
-
       // accept promise?
       this.setState({meters: distance});
+      this.props.setOdometer(meters);
+      vehicle.setMileage(vin, meters);
 
       // hide modal
       this.setState({modalVisible: false});
@@ -302,7 +298,7 @@ const HomeView = React.createClass({
   },
 
   async loadVehicle() {
-    const vin = store.getState().get("carInstallation").get("vin");
+    const vin = this.props.vehicle.vin;
 
     var vehicle = new Vehicle(vin);
 
@@ -373,6 +369,7 @@ const HomeView = React.createClass({
 
     // update odometer
     this.setState({meters: updated.toString() + ' ' + units});
+    this.props.setOdometer(updated);
 
     // set new cumulative distance
     this.setState({total_distance: distance});

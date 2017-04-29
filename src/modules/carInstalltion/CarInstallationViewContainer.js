@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted} from '../navigation/NavigationState';
-import {setPageIndex, setEnterMode, setVehicle, addVehicle} from './CarInstallationState';
+import {setPageIndex, setEnterMode, setVehicle, addVehicle, setOdometer} from './CarInstallationState';
 import InstallationView from './CarInstallationView';
 
 export default connect(
@@ -35,6 +35,9 @@ export default connect(
     },
     addVehicle(vehicle) {
       dispatch(addVehicle(vehicle));
+    },
+    setOdometer(distance) {
+      dispatch(setOdometer(distance));
     }
   })
 )(InstallationView);
