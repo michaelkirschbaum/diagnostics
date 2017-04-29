@@ -444,25 +444,27 @@ const HomeView = React.createClass({
               marginBottom: 5,
               }}/>
 
-              <View style={styles.dataBlockContainer}>
-                <View style={styles.dataIcon}>
-                  <Image source={require('../../../images/icons/push.png')} style={styles.icon}/>
+            {this.locationFrance() &&
+              <View style={{flexDirection: 'column'}}>
+                <View style={styles.dataBlockContainer}>
+                  <View style={styles.dataIcon}>
+                    <Image source={require('../../../images/icons/push.png')} style={styles.icon}/>
+                  </View>
+                  <View style={styles.dataBlock}>
+                    <H3 style={{fontWeight: "bold", color: actionColor, fontSize: responsiveFontSize(2.35)}}>{loc.home.button}</H3>
+                    <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
+                    <H3 style={styles.text}>{buttonAction}</H3>
+                  </View>
                 </View>
-                <View style={styles.dataBlock}>
-                  <H3 style={{fontWeight: "bold", color: actionColor, fontSize: responsiveFontSize(2.35)}}>{loc.home.button}</H3>
-                  <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
-                  <H3 style={styles.text}>{buttonAction}</H3>
-                </View>
-              </View>
-              {this.locationFrance() &&
                 <Button rounded
-                        bordered={false}
-                        style={{alignSelf: 'center', width: 120, height: 45}}
-                        textStyle={{color: colors.textPrimary}}
-                        onPress={this.onNextPress}>
+                          bordered={false}
+                          style={{alignSelf: 'center', width: 115, height: 43}}
+                          textStyle={{color: colors.textPrimary}}
+                          onPress={this.onNextPress}>
                   <Image source={require('../../../images/icons/push-button.png')} style={styles.icon}/>
                 </Button>
-              }
+              </View>
+            }
 
             {!this.locationFrance() &&
               <View style={styles.dataBlockContainer}>

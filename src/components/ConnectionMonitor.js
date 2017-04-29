@@ -16,7 +16,9 @@ const ConnectionMonitor = React.createClass({
         <Image source={require('../../images/car-circle-home.png')} style={styles.image}/>
       );
     else
-      return null;
+      return (
+        <Image source={require('../../images/icons/black-square.png')} style={styles.image}/>
+      );
   }
 });
 
