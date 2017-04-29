@@ -27,8 +27,6 @@ export default class Vehicle {
 
       return response;
     } catch (e) {
-      console.log(e);
-
       return null;
     }
   }
