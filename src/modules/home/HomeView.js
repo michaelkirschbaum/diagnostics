@@ -328,34 +328,19 @@ const HomeView = React.createClass({
   },
 
   async setOdometer(distance) {
+    // get vehicle
     const vin = this.props.vehicle.vin;
     var vehicle = new Vehicle(vin);
 
     if (isNaN(distance))
       this.setState({modalVisible: false});
     else {
-      // set odometer
-      if (Platform.OS === 'android')
-        console.error("Unable to get locale.");
-      else
-        var region = NativeModules.SettingsManager.settings.AppleLocale;
+      // set local
+      this.setState({meters: distance + (this.useMetric() ? ' km' : ' mi')});
+      this.props.setOdometer(this.convertToMeters(parseInt(distance)));
 
-      if (region == 'en_US' || region == 'en_GB') {
-        var meters = Math.round(parseInt(distance) * 1609.344);
-        var units = ' mi';
-
-        distance = distance + units;
-      } else {
-        var meters = Math.round(parseInt(distance) * 1000);
-        var units = ' km';
-
-        distance = distance + units;
-      }
-
-      // accept promise?
-      this.setState({meters: distance});
-      this.props.setOdometer(meters);
-      vehicle.setMileage(vin, meters);
+      // set db
+      vehicle.setMileage(vin, this.convertToMeters(parseInt(distance)));
 
       // hide modal
       this.setState({modalVisible: false});
@@ -556,9 +541,9 @@ const HomeView = React.createClass({
 
     // if in US or Britain use Miles, otherwise use Kilometers
     if (region.endsWith('US') || region.endsWith('en_GB')) {
-      return Math.round(meters * 1609.344);
+      return Math.round(distance * 1609.344);
     } else {
-      return Math.round(meters * 1000);
+      return Math.round(distance * 1000);
     }
   },
 
