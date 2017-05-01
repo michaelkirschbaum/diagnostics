@@ -32,21 +32,30 @@ import {
   Card,
   CardItem
 } from 'native-base';
-import colors from '../../config/colors';
-import en from '../../config/localization.en';
-import fr from '../../config/localization.fr';
-import carfitTheme from '../../config/carfit-theme';
-import Swiper from 'react-native-swiper';
-import * as NavigationState from '../navigation/NavigationState';
-import Vehicle from '../../carfit/vehicle';
+
+// reducers
 import store from '../../redux/store';
-import createFragment from 'react-addons-create-fragment';
-const {CarFitManager} = NativeModules;
-import Connection from '../../carfit/connection';
+import * as NavigationState from '../navigation/NavigationState';
+
+// components
 import Modal from 'react-native-simple-modal';
 import Spinner from 'react-native-loading-spinner-overlay';
 import ConnectionMonitor from '../../components/ConnectionMonitor';
+import Swiper from 'react-native-swiper';
+
+// ios bridge
+import Connection from '../../carfit/connection';
+import Vehicle from '../../carfit/vehicle';
+const {CarFitManager} = NativeModules;
+
+// style
+import colors from '../../config/colors';
+import carfitTheme from '../../config/carfit-theme';
 import {responsiveWidth, responsiveHeight, responsiveFontSize} from 'react-native-responsive-dimensions';
+
+// languages
+import en from '../../config/localization.en';
+import fr from '../../config/localization.fr';
 
 // set language
 if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
@@ -70,7 +79,189 @@ const HomeView = React.createClass({
     };
   },
 
-  propTypes: {},
+  render() {
+    // button values
+    let buttonAction = loc.home.click;
+
+    // alert values
+    let alertAction = loc.home.serviceNeeded;
+    let alertColor = colors.secondary;
+
+    // usage values
+    let usageAction = loc.home.lastTrip;
+    let actionColor = colors.primary;
+
+    // value values
+    let valueAction = loc.home.trending;
+    let valueDescription = loc.home.comingSoon;
+
+    return (
+      <Container theme={carfitTheme}>
+        <View style={styles.headerLine}/>
+        <Content
+          padder={false}
+          keyboardShouldPersistTaps="always"
+          style={{backgroundColor: colors.backgroundPrimary}}
+          ref={c => this._content = c}>
+
+          <View style={styles.container}>
+            <View style={styles.profileContainer}>
+              <TouchableOpacity onPress={this.onSettingsPress}>
+                <Image source={require('../../../images/icons/settings.png')}
+                       style={styles.icon}/>
+              </TouchableOpacity>
+
+              <ConnectionMonitor connected={this.props.connected}/>
+
+              <TouchableOpacity onPress={this.onMilesPress}>
+                <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.profileHeaderContainer}>
+              <H1>{this.state.title}</H1>
+              <H2 style={{marginTop: 5}}>{this.state.description}</H2>
+              <Button rounded
+                      style={styles.milesButton}
+                      textStyle={{color: colors.textPrimary, fontSize: responsiveFontSize(2.35)}}
+                      onPress={() => this.setState({modalVisible: true})}
+              >{this.state.meters}</Button>
+            </View>
+
+            <View style={{
+              height: 1,
+              backgroundColor: colors.headerTextColor,
+              marginLeft: 5,
+              marginRight: 5,
+              marginTop: 5,
+              marginBottom: 5,
+              }}/>
+
+            {this.locationFrance() &&
+              <View style={{flexDirection: 'column'}}>
+                <View style={styles.dataBlockContainer}>
+                  <View style={styles.dataIcon}>
+                    <Image source={require('../../../images/icons/push.png')} style={styles.icon}/>
+                  </View>
+                  <View style={styles.dataBlock}>
+                    <H3 style={{fontWeight: "bold", color: actionColor, fontSize: responsiveFontSize(2.35)}}>{loc.home.button}</H3>
+                    <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
+                    <H3 style={styles.text}>{buttonAction}</H3>
+                  </View>
+                </View>
+                <Button rounded
+                          bordered={false}
+                          style={{alignSelf: 'center', width: 115, height: 43}}
+                          textStyle={{color: colors.textPrimary}}
+                          onPress={this.onButtonPress}>
+                  <Image source={require('../../../images/icons/push-button.png')} style={styles.icon}/>
+                </Button>
+              </View>
+            }
+
+            {!this.locationFrance() &&
+              <View style={styles.dataBlockContainer}>
+                <View style={styles.dataIcon}>
+                  <Image source={require('../../../images/icons/service.png')} style={styles.icon}/>
+                </View>
+                <View style={styles.dataBlock}>
+                  <H3 style={{fontWeight: "bold", color: alertColor, fontSize: responsiveFontSize(2.35)}}>{loc.home.alert}</H3>
+                  <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
+                  <H3 style={styles.text}>{alertAction}</H3>
+                  <Text style={styles.text}>{this.state.alert}</Text>
+                </View>
+                <View style={styles.dataAction}>
+                  <Button transparent onPress={() => this.props.pushRoute({key: 'Alerts', title: loc.home.alert})}>
+                    <Icon active name="ios-arrow-forward"></Icon>
+                  </Button>
+                </View>
+              </View>
+            }
+
+            <View style={styles.dataBlockContainer}>
+              <View style={styles.dataIcon}>
+                <Image source={require('../../../images/icons/usage.png')} style={styles.icon}/>
+              </View>
+              <View style={styles.dataBlock}>
+                <H3 style={{fontWeight: "bold", color: actionColor, fontSize: responsiveFontSize(2.35)}}>{loc.home.usage}</H3>
+                <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
+                <H3 style={styles.text}>{usageAction}</H3>
+                <Text>{this.state.trips}</Text>
+              </View>
+              <View style={styles.dataAction}>
+                <Button transparent onPress={() => this.props.pushRoute({key: 'Usage', title: loc.home.usage})}>
+                  <Icon active name="ios-arrow-forward"></Icon>
+                </Button>
+              </View>
+            </View>
+
+            <View style={styles.dataBlockContainer}>
+              <View style={styles.dataIcon}>
+                <Image source={require('../../../images/icons/usage.png')} style={styles.icon}/>
+              </View>
+              <View style={styles.dataBlock}>
+                <H3 style={{fontWeight: "bold", color: colors.headerTextColor, fontSize: responsiveFontSize(2.35)}}>{loc.home.value}</H3>
+                <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
+                <H3 style={{color: colors.headerTextColor, fontSize: responsiveFontSize(2.35)}}>{valueAction}</H3>
+                <Text style={{color: colors.headerTextColor, fontSize: responsiveFontSize(2.35)}}>{valueDescription}</Text>
+              </View>
+              {/* <View style={styles.dataAction}>
+                <Icon active name="ios-arrow-forward"></Icon>
+              </View> */}
+            </View>
+          </View>
+
+          <Modal
+            open={this.state.modalVisible}
+            modalDidOpen={() => undefined}
+            modalDidClose={() => undefined}
+            style={{alignItems: 'center'}}
+            closeOnTouchOutside={false}
+            containerStyle={{}}
+            modalStyle={{
+              borderRadius: 7,
+              height: 200
+            }}>
+            <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between'}}>
+              <Text style={{color: 'black', alignSelf: 'center'}}>{this.useMetric() ? loc.home.updateKm : loc.home.updateMi}</Text>
+              <InputGroup>
+                <Input style={styles.textInput}
+                  ref='mileageInput'
+                  placeholder={this.useMetric() ? loc.home.kilometrage : loc.home.mileage}
+                  onChangeText={(text) => this.setState({new_meters: text})}
+                />
+              </InputGroup>
+
+              <Button rounded
+                    style={{alignSelf: 'center'}}
+                    textStyle={{color: colors.textPrimary}}
+                    onPress={() => this.setOdometer(this.state.new_meters)}
+              >{loc.home.save}</Button>
+
+              <Button transparent
+                    textStyle={{color: 'black'}}
+                    style={{alignSelf: 'center'}}
+                    onPress={() => this.setState({modalVisible: false})}
+              >{loc.home.cancel}</Button>
+            </View>
+          </Modal>
+        </Content>
+
+        {!this.locationFrance() &&
+          <Footer theme={carfitTheme} style={styles.footer}>
+            <View style={styles.bottomContainer}>
+              <Button rounded
+                      bordered={false}
+                      style={{alignSelf: 'auto', width: 120, height: 45}}
+                      textStyle={{color: colors.textPrimary}}
+                      onPress={this.onButtonPress}>
+                <Image source={require('../../../images/icons/phone.png')} style={styles.icon}/>
+              </Button>
+            </View>
+          </Footer>
+        }
+      </Container>
+    );
+  },
 
   componentDidMount() {
     var that = this;
@@ -105,17 +296,72 @@ const HomeView = React.createClass({
     );
 
     this.setState({distance_subscription});
-/*
+    /*
     // update odometer while not 'in trip'
     setInterval(function() {
       if (!store.getState().get("installation").get("in_drive")) {
         that.loadMileage(vehicle).done();
         that.setState({total_distance: 0});
       }
-    }, interval); */
+    }, interval);
+    */
   },
 
-  async onNextPress() {
+  componentWillUnmount() {
+    // stop listening to meters traveled
+    this.state.distance_subscription.remove();
+  },
+
+  // Forward setNativeProps to a child
+  setNativeProps(nativeProps) {
+    this._root.setNativeProps(nativeProps);
+  },
+
+  onSettingsPress() {
+    this.props.pushRoute({key: 'Settings', title: loc.settings.settings});
+  },
+
+  onMilesPress() {
+    // point to zendesk
+    Linking.openURL("https://carfit.zendesk.com/").catch(err => console.error('An error occurred', err));
+  },
+
+  async setOdometer(distance) {
+    const vin = this.props.vehicle.vin;
+    var vehicle = new Vehicle(vin);
+
+    if (isNaN(distance))
+      this.setState({modalVisible: false});
+    else {
+      // set odometer
+      if (Platform.OS === 'android')
+        console.error("Unable to get locale.");
+      else
+        var region = NativeModules.SettingsManager.settings.AppleLocale;
+
+      if (region == 'en_US' || region == 'en_GB') {
+        var meters = Math.round(parseInt(distance) * 1609.344);
+        var units = ' mi';
+
+        distance = distance + units;
+      } else {
+        var meters = Math.round(parseInt(distance) * 1000);
+        var units = ' km';
+
+        distance = distance + units;
+      }
+
+      // accept promise?
+      this.setState({meters: distance});
+      this.props.setOdometer(meters);
+      vehicle.setMileage(vin, meters);
+
+      // hide modal
+      this.setState({modalVisible: false});
+    }
+  },
+
+  async onButtonPress() {
     // this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
     // this.props.switchRoute('Overview');
     // this.props.switchRoute(2);
@@ -136,33 +382,6 @@ const HomeView = React.createClass({
         {text: 'OK', onPress: () => console.log('OK Pressed.')}
       );
     }
-  },
-
-  // Forward setNativeProps to a child
-  setNativeProps(nativeProps) {
-    this._root.setNativeProps(nativeProps);
-  },
-
-  onSettingsPress() {
-    this.props.pushRoute({key: 'Settings', title: loc.settings.settings});
-  },
-
-  onMilesPress() {
-    // point to zendesk
-    Linking.openURL("https://carfit.zendesk.com/").catch(err => console.error('An error occurred', err));
-  },
-
-  onMyCarsPress() {
-    this.props.pushRoute({key: 'Details', title: loc.settings.settings});
-  },
-
-  popRoute() {
-    this.props.onNavigateBack();
-  },
-
-  componentWillUnmount() {
-    // stop listening to meters traveled
-    this.state.distance_subscription.remove();
   },
 
   async loadAlerts() {
@@ -261,42 +480,6 @@ const HomeView = React.createClass({
     }
   },
 
-  // accepts string
-  async setOdometer(distance) {
-    const vin = this.props.vehicle.vin;
-    var vehicle = new Vehicle(vin);
-
-    if (isNaN(distance))
-      this.setState({modalVisible: false});
-    else {
-      // set odometer
-      if (Platform.OS === 'android')
-        console.error("Unable to get locale.");
-      else
-        var region = NativeModules.SettingsManager.settings.AppleLocale;
-
-      if (region == 'en_US' || region == 'en_GB') {
-        var meters = Math.round(parseInt(distance) * 1609.344);
-        var units = ' mi';
-
-        distance = distance + units;
-      } else {
-        var meters = Math.round(parseInt(distance) * 1000);
-        var units = ' km';
-
-        distance = distance + units;
-      }
-
-      // accept promise?
-      this.setState({meters: distance});
-      this.props.setOdometer(meters);
-      vehicle.setMileage(vin, meters);
-
-      // hide modal
-      this.setState({modalVisible: false});
-    }
-  },
-
   async loadVehicle() {
     const vin = this.props.vehicle.vin;
 
@@ -328,11 +511,6 @@ const HomeView = React.createClass({
     } else {
       console.log("photo not loaded");
     }
-  },
-
-  renderPhoto() {
-    if (this.state.photo !== '')
-      return <Image source={{uri: this.state.photo}}/>;
   },
 
   addDistance(meters) {
@@ -371,184 +549,8 @@ const HomeView = React.createClass({
     }
   },
 
-  render() {
-    let status = this.state.connected;
-
-    let windowHeight = Dimensions.get('window').height;
-    let windowWidth = Dimensions.get('window').width;
-
-    let buttonAction = loc.home.click;
-
-    let alertAction = loc.home.serviceNeeded;
-    let alertColor = colors.secondary;
-
-    let usageAction = loc.home.lastTrip;
-    let usageDescription = '5.1 km';
-    let actionColor = colors.primary;
-
-    let valueAction = loc.home.trending;
-    let valueDescription = loc.home.comingSoon;
-
-    return (
-      <Container theme={carfitTheme}>
-        <View style={styles.headerLine}/>
-        <Content
-          padder={false}
-          keyboardShouldPersistTaps="always"
-          style={{backgroundColor: colors.backgroundPrimary}}
-          ref={c => this._content = c}>
-
-          <View style={styles.container}>
-            <View style={styles.profileContainer}>
-              <TouchableOpacity onPress={this.onSettingsPress}>
-                <Image source={require('../../../images/icons/settings.png')}
-                       style={styles.icon}/>
-              </TouchableOpacity>
-              <ConnectionMonitor connected={this.props.connected}/>
-              <TouchableOpacity onPress={this.onMilesPress}>
-                <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.profileHeaderContainer}>
-              <H1>{this.state.title}</H1>
-              <H2 style={{marginTop: 5}}>{this.state.description}</H2>
-              <Button rounded
-                      style={styles.milesButton}
-                      textStyle={{color: colors.textPrimary, fontSize: responsiveFontSize(2.35)}}
-                      onPress={() => this.setState({modalVisible: true})}
-              >{this.state.meters}</Button>
-            </View>
-
-            <View style={{
-              height: 1,
-              backgroundColor: colors.headerTextColor,
-              marginLeft: 5,
-              marginRight: 5,
-              marginTop: 5,
-              marginBottom: 5,
-              }}/>
-
-            {this.locationFrance() &&
-              <View style={{flexDirection: 'column'}}>
-                <View style={styles.dataBlockContainer}>
-                  <View style={styles.dataIcon}>
-                    <Image source={require('../../../images/icons/push.png')} style={styles.icon}/>
-                  </View>
-                  <View style={styles.dataBlock}>
-                    <H3 style={{fontWeight: "bold", color: actionColor, fontSize: responsiveFontSize(2.35)}}>{loc.home.button}</H3>
-                    <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
-                    <H3 style={styles.text}>{buttonAction}</H3>
-                  </View>
-                </View>
-                <Button rounded
-                          bordered={false}
-                          style={{alignSelf: 'center', width: 115, height: 43}}
-                          textStyle={{color: colors.textPrimary}}
-                          onPress={this.onNextPress}>
-                  <Image source={require('../../../images/icons/push-button.png')} style={styles.icon}/>
-                </Button>
-              </View>
-            }
-
-            {!this.locationFrance() &&
-              <View style={styles.dataBlockContainer}>
-                <View style={styles.dataIcon}>
-                  <Image source={require('../../../images/icons/service.png')} style={styles.icon}/>
-                </View>
-                <View style={styles.dataBlock}>
-                  <H3 style={{fontWeight: "bold", color: alertColor, fontSize: responsiveFontSize(2.35)}}>{loc.home.alert}</H3>
-                  <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
-                  <H3 style={styles.text}>{alertAction}</H3>
-                  <Text style={styles.text}>{this.state.alert}</Text>
-                </View>
-                <View style={styles.dataAction}>
-                  <Button transparent onPress={() => this.props.pushRoute({key: 'Alerts', title: loc.home.alert})}>
-                    <Icon active name="ios-arrow-forward"></Icon>
-                  </Button>
-                </View>
-              </View>
-            }
-
-            <View style={styles.dataBlockContainer}>
-              <View style={styles.dataIcon}>
-                <Image source={require('../../../images/icons/usage.png')} style={styles.icon}/>
-              </View>
-              <View style={styles.dataBlock}>
-                <H3 style={{fontWeight: "bold", color: actionColor, fontSize: responsiveFontSize(2.35)}}>{loc.home.usage}</H3>
-                <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
-                <H3 style={styles.text}>{usageAction}</H3>
-                <Text>{this.state.trips}</Text>
-              </View>
-              <View style={styles.dataAction}>
-                <Button transparent onPress={() => this.props.pushRoute({key: 'Usage', title: loc.home.usage})}>
-                  <Icon active name="ios-arrow-forward"></Icon>
-                </Button>
-              </View>
-            </View>
-
-            <View style={styles.dataBlockContainer}>
-              <View style={styles.dataIcon}>
-                <Image source={require('../../../images/icons/usage.png')} style={styles.icon}/>
-              </View>
-              <View style={styles.dataBlock}>
-                <H3 style={{fontWeight: "bold", color: colors.headerTextColor, fontSize: responsiveFontSize(2.35)}}>{loc.home.value}</H3>
-                <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
-                <H3 style={{color: colors.headerTextColor, fontSize: responsiveFontSize(2.35)}}>{valueAction}</H3>
-                <Text style={{color: colors.headerTextColor, fontSize: responsiveFontSize(2.35)}}>{valueDescription}</Text>
-              </View>
-              {/* <View style={styles.dataAction}>
-                <Icon active name="ios-arrow-forward"></Icon>
-              </View> */}
-            </View>
-          </View>
-          <Modal
-            open={this.state.modalVisible}
-            modalDidOpen={() => undefined}
-            modalDidClose={() => undefined}
-            style={{alignItems: 'center'}}
-            closeOnTouchOutside={false}
-            containerStyle={{}}
-            modalStyle={{
-              borderRadius: 7,
-              height: 200
-            }}>
-            <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between'}}>
-              <Text style={{color: 'black', alignSelf: 'center'}}>{this.useMetric() ? loc.home.updateKm : loc.home.updateMi}</Text>
-              <InputGroup>
-                <Input style={styles.textInput}
-                  ref='mileageInput'
-                  placeholder={this.useMetric() ? loc.home.kilometrage : loc.home.mileage}
-                  onChangeText={(text) => this.setState({new_meters: text})}
-                />
-              </InputGroup>
-              <Button rounded
-                    style={{alignSelf: 'center'}}
-                    textStyle={{color: colors.textPrimary}}
-                    onPress={() => this.setOdometer(this.state.new_meters)}
-              >{loc.home.save}</Button>
-              <Button transparent
-                    textStyle={{color: 'black'}}
-                    style={{alignSelf: 'center'}}
-                    onPress={() => this.setState({modalVisible: false})}
-              >{loc.home.cancel}</Button>
-            </View>
-          </Modal>
-        </Content>
-        {!this.locationFrance() &&
-          <Footer theme={carfitTheme} style={styles.footer}>
-            <View style={styles.bottomContainer}>
-              <Button rounded
-                      bordered={false}
-                      style={{alignSelf: 'auto', width: 120, height: 45}}
-                      textStyle={{color: colors.textPrimary}}
-                      onPress={this.onNextPress}>
-                <Image source={require('../../../images/icons/phone.png')} style={styles.icon}/>
-              </Button>
-            </View>
-          </Footer>
-        }
-      </Container>
-    );
+  minimumDistance(trip) {
+    return this.convertMeters(trip.meters_travelled) > 0;
   },
 
   locationFrance() {
@@ -556,10 +558,6 @@ const HomeView = React.createClass({
       return true;
     else
       return false;
-  },
-
-  minimumDistance(trip) {
-    return this.convertMeters(trip.meters_travelled) > 0;
   },
 
   useMetric() {
