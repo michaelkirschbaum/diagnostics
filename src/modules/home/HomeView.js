@@ -369,7 +369,7 @@ const HomeView = React.createClass({
     if (meters = await vehicle.getMileage())
       this.setState({meters: this.convertToLocal(meters).toString() + (this.useMetric() ? ' km' : ' mi')});
     else
-      this.setState({meters: 'Not available'});
+      this.setState({meters: ''});
   },
 
   async loadAlerts() {
