@@ -263,66 +263,67 @@ const HomeView = React.createClass({
     );
   },
 
-  componentDidMount() {
-    var that = this;
-    var connectionEmitter = new NativeEventEmitter(CarFitManager);
-
-    // get vehicle
-    const vin = this.props.vehicle.vin;
-    var vehicle = new Vehicle(vin);
-
-    // display odometer
-    that.loadMileage(vehicle).done();
-
-    // display most current vehicle alert
-    that.loadAlerts().done();
-
-    // refresh interval
-    var interval = 60000;
-
-    // display and update last trip distance
-    that.loadUsage().done();
-    setInterval(function() {
-      that.loadUsage().done();
-    }, interval);
-
-    // display vehicle information
-    that.loadVehicle().done();
-
-    // listen for meters traveled
-    var distance_subscription = connectionEmitter.addListener(
-      'TripMetersTraveled',
-      (notification) => this.addDistance(notification["metersTraveled"])
-    );
-
-    this.setState({distance_subscription});
-    /*
-    // update odometer while not 'in trip'
-    setInterval(function() {
-      if (!store.getState().get("installation").get("in_drive")) {
-        that.loadMileage(vehicle).done();
-        that.setState({total_distance: 0});
-      }
-    }, interval);
-    */
-  },
-
-  componentWillUnmount() {
-    // stop listening to meters traveled
-    this.state.distance_subscription.remove();
-  },
-
   // Forward setNativeProps to a child
   setNativeProps(nativeProps) {
     this._root.setNativeProps(nativeProps);
   },
 
+  componentDidMount() {
+    // event listners
+    var connectionEmitter = new NativeEventEmitter(CarFitManager);
+
+    // data sync
+    var interval = 60000;
+
+    // get vehicle
+    const vin = this.props.vehicle.vin;
+    var vehicle = new Vehicle(vin);
+
+    // display vehicle information
+    this.loadVehicle().done();
+
+    // display odometer
+    this.loadMileage(vehicle).done();
+
+    // update odometer while driving
+    var distance_subscription = connectionEmitter.addListener(
+      'TripMetersTraveled',
+      (notification) => this.addDistance(notification["metersTraveled"])
+    );
+    this.setState({distance_subscription});
+
+    // display most current vehicle alert
+    this.loadAlerts().done();
+
+    // display and update last trip distance
+    this.loadUsage().done();
+    setInterval(function() {
+      this.loadUsage().done();
+    }.bind(this), interval);
+
+    /*
+    // update odometer while not driving
+    setInterval(function() {
+      if (!store.getState().get("installation").get("in_drive")) {
+        that.loadMileage(vehicle).done();
+        that.setState({total_distance: 0});
+      }
+    }.bind(this), interval);
+    */
+  },
+
+  componentWillUnmount() {
+    // stop updating distance traveled
+    this.state.distance_subscription.remove();
+  },
+
   onSettingsPress() {
+    // go to settings
     this.props.pushRoute({key: 'Settings', title: loc.settings.settings});
   },
 
   onMilesPress() {
-    // point to zendesk
+    // go to zendesk
     Linking.openURL("https://carfit.zendesk.com/").catch(err => console.error('An error occurred', err));
   },
 
@@ -384,6 +385,28 @@ const HomeView = React.createClass({
     }
   },
 
+  async loadMileage(vehicle) {
+    // load mileage
+    var meters = this.props.vehicle.odometer;
+
+    if (Platform.OS === 'android')
+      console.warning("Unable to get locale.");
+    else
+      var region = NativeModules.SettingsManager.settings.AppleLocale;
+
+    if (region.endsWith('US') || region.endsWith('GB')) {
+      var units = ' mi';
+      var meters = Math.round(meters / 1609.344);
+      meters = meters.toString() + units;
+    } else {
+      var units = ' km';
+      var meters = Math.round(meters / 1000);
+      meters = meters.toString() + units;
+    }
+
+    this.setState({meters});
+  },
+
   async loadAlerts() {
     var vehicle = new Vehicle();
 
@@ -407,28 +430,6 @@ const HomeView = React.createClass({
     } else {
       this.setState({alert: 'Not available'});
     }
-  },
-
-  async loadMileage(vehicle) {
-    // load mileage
-    var meters = this.props.vehicle.odometer;
-
-    if (Platform.OS === 'android')
-      console.warning("Unable to get locale.");
-    else
-      var region = NativeModules.SettingsManager.settings.AppleLocale;
-
-    if (region.endsWith('US') || region.endsWith('GB')) {
-      var units = ' mi';
-      var meters = Math.round(meters / 1609.344);
-      meters = meters.toString() + units;
-    } else {
-      var units = ' km';
-      var meters = Math.round(meters / 1000);
-      meters = meters.toString() + units;
-    }
-
-    this.setState({meters});
   },
 
   async loadUsage() {
@@ -553,13 +554,6 @@ const HomeView = React.createClass({
     return this.convertMeters(trip.meters_travelled) > 0;
   },
 
-  locationFrance() {
-    if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
-      return true;
-    else
-      return false;
-  },
-
   useMetric() {
     var region = NativeModules.SettingsManager.settings.AppleLocale;
 
@@ -567,6 +561,13 @@ const HomeView = React.createClass({
       return false;
     else
       return true;
+  },
+
+  locationFrance() {
+    if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+      return true;
+    else
+      return false;
   }
 });
 
