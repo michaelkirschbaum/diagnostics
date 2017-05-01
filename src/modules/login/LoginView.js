@@ -59,7 +59,11 @@ const LoginView = React.createClass({
         login.auth0('carfit.auth0.com', token);
       });
 
-      this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome});
+      // if norauto user, skip welcome view
+      if (this.locationFrance())
+        this.props.pushRoute({key: 'Installation', title: loc.welcome.welcome});
+      else
+        this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome});
     }
   },
 

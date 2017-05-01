@@ -25,10 +25,7 @@ const WelcomeView = React.createClass({
   },
 
   onNextPress() {
-    this.props.pushRoute({
-      key: 'Installation',
-      title: loc.welcome.welcome
-    });
+    this.props.pushRoute({key: 'Installation', title: loc.welcome.welcome});
   },
 
   render() {
