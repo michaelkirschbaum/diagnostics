@@ -350,11 +350,7 @@ const HomeView = React.createClass({
   },
 
   async onButtonPress() {
-    // this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
-    // this.props.switchRoute('Overview');
-    // this.props.switchRoute(2);
     var conn = new Connection();
-
     var resp = await conn.simulateButtonClick();
 
     if (resp)
@@ -373,17 +369,14 @@ const HomeView = React.createClass({
   },
 
   async loadAlerts() {
-    var vehicle = new Vehicle();
-
     const vin = this.props.vehicle.vin;
-    // backlog types: recall, maintenance, alert, bulletin
+    var vehicle = new Vehicle(vin);
+
     var alerts = await vehicle.getAlerts('alert', vin);
 
     if (alerts) {
       // set to first alert
       var alert = alerts[0].summary;
-
-      // set
       this.setState({alert});
 
       // serialize alerts
@@ -399,8 +392,8 @@ const HomeView = React.createClass({
 
   async loadUsage() {
     var vehicle = new Vehicle();
-
     const vin = this.props.vehicle.vin;
+
     var trips = await vehicle.getTrips(vin);
 
     if (trips) {
@@ -415,13 +408,7 @@ const HomeView = React.createClass({
         var trip = this.convertToLocal(trip);
 
         // add units
-        var region = NativeModules.SettingsManager.settings.AppleLocale;
-
-        if (region.endsWith('US') || region.endsWith('GB')) {
-          trip = trip.toString() + ' mi';
-        } else {
-          trip = trip.toString() + ' km';
-        }
+        trip = trip.toString() + (this.useMetric() ? ' km' : ' mi');
       }
       else
         trip = 'Not available';
@@ -447,13 +434,12 @@ const HomeView = React.createClass({
   },
 
   async loadVehicle() {
+    // get vehicle
     const vin = this.props.vehicle.vin;
-
     var vehicle = new Vehicle(vin);
 
     // load title
     var title = await vehicle.getTitle();
-
     if (title) {
       this.setState({title});
     } else {
@@ -462,7 +448,6 @@ const HomeView = React.createClass({
 
     // load description
     var description = await vehicle.getDescription();
-
     if (description) {
       this.setState({description});
     } else {
@@ -471,7 +456,6 @@ const HomeView = React.createClass({
 
     // load photo
     var photo = await vehicle.getPhoto();
-
     if (photo) {
       this.setState({photo});
     } else {
@@ -479,6 +463,7 @@ const HomeView = React.createClass({
     }
   },
 
+  // todo: maintenance
   addDistance(meters) {
     // convert
     var distance = this.convertToLocal(meters);
