@@ -282,10 +282,8 @@ const HomeView = React.createClass({
     // display vehicle information
     this.loadVehicle().done();
 
-    // load mileage
-    var meters = this.props.vehicle.odometer;
-    var distance = this.convertToLocal(meters);
-    this.setState({meters: distance + (this.useMetric() ? ' km' : ' mi')});
+    // load odometer
+    this.loadOdometer().done();
 
     // update odometer while driving
     var distance_subscription = connectionEmitter.addListener(
@@ -293,6 +291,14 @@ const HomeView = React.createClass({
       (notification) => this.addDistance(notification["metersTraveled"])
     );
     this.setState({distance_subscription});
+
+    // update odometer while not driving
+    setInterval(function() {
+      if (!store.getState().get("installation").get("in_drive")) {
+        this.loadOdometer(vehicle).done();
+        this.setState({total_distance: 0});
+      }
+    }.bind(this), interval);
 
     // display most current vehicle alert
     this.loadAlerts().done();
@@ -302,16 +308,6 @@ const HomeView = React.createClass({
     setInterval(function() {
       this.loadUsage().done();
     }.bind(this), interval);
-
-    /*
-    // update odometer while not driving
-    setInterval(function() {
-      if (!store.getState().get("installation").get("in_drive")) {
-        that.loadMileage(vehicle).done();
-        that.setState({total_distance: 0});
-      }
-    }.bind(this), interval);
-    */
   },
 
   componentWillUnmount() {
@@ -339,7 +335,6 @@ const HomeView = React.createClass({
     else {
       // set local
       this.setState({meters: distance + (this.useMetric() ? ' km' : ' mi')});
-      this.props.setOdometer(this.convertToMeters(parseInt(distance)));
 
       // set db
       vehicle.setMileage(vin, this.convertToMeters(parseInt(distance)));
@@ -368,12 +363,20 @@ const HomeView = React.createClass({
     }
   },
 
+  async loadOdometer() {
+    var vehicle = new Vehicle(this.props.vehicle.vin);
+
+    if (meters = await vehicle.getMileage())
+      this.setState({meters: this.convertToLocal(meters).toString() + (this.useMetric() ? ' km' : ' mi')});
+    else
+      this.setState({meters: 'Not available'});
+  },
+
   async loadAlerts() {
     const vin = this.props.vehicle.vin;
     var vehicle = new Vehicle(vin);
 
     var alerts = await vehicle.getAlerts('alert', vin);
-
     if (alerts) {
       // set to first alert
       var alert = alerts[0].summary;
@@ -483,7 +486,6 @@ const HomeView = React.createClass({
 
     // update odometer
     this.setState({meters: updated.toString() + ' ' + units});
-    this.props.setOdometer(this.convertToMeters(updated));
 
     // set new cumulative distance
     this.setState({total_distance: distance});
