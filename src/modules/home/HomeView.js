@@ -282,8 +282,10 @@ const HomeView = React.createClass({
     // display vehicle information
     this.loadVehicle().done();
 
-    // display odometer
-    this.loadMileage(vehicle).done();
+    // load mileage
+    var meters = this.props.vehicle.odometer;
+    var distance = this.convertToLocal(meters);
+    this.setState({meters: distance + (this.useMetric() ? ' km' : ' mi')});
 
     // update odometer while driving
     var distance_subscription = connectionEmitter.addListener(
@@ -368,28 +370,6 @@ const HomeView = React.createClass({
         {text: 'OK', onPress: () => console.log('OK Pressed.')}
       );
     }
-  },
-
-  async loadMileage(vehicle) {
-    // load mileage
-    var meters = this.props.vehicle.odometer;
-
-    if (Platform.OS === 'android')
-      console.warning("Unable to get locale.");
-    else
-      var region = NativeModules.SettingsManager.settings.AppleLocale;
-
-    if (region.endsWith('US') || region.endsWith('GB')) {
-      var units = ' mi';
-      var meters = Math.round(meters / 1609.344);
-      meters = meters.toString() + units;
-    } else {
-      var units = ' km';
-      var meters = Math.round(meters / 1000);
-      meters = meters.toString() + units;
-    }
-
-    this.setState({meters});
   },
 
   async loadAlerts() {
@@ -500,15 +480,16 @@ const HomeView = React.createClass({
   },
 
   addDistance(meters) {
-    // convert depending on location
+    // convert
     var distance = this.convertToLocal(meters);
 
-    // meters is cumulative distance traveled - subtract previous total distance from odometer
+    // subtract previous total distance from odometer
     var odometer = this.state.meters;
 
     if (odometer == '')
       odometer = '0 mi';
 
+    // parse odometer
     var current = parseInt(odometer.split(" ")[0]) - this.state.total_distance;
     var units = odometer.split(" ")[1];
 
@@ -517,7 +498,7 @@ const HomeView = React.createClass({
 
     // update odometer
     this.setState({meters: updated.toString() + ' ' + units});
-    this.props.setOdometer(updated);
+    this.props.setOdometer(this.convertToMeters(updated));
 
     // set new cumulative distance
     this.setState({total_distance: distance});
