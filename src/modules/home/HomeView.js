@@ -447,7 +447,7 @@ const HomeView = React.createClass({
         var trip = trips[trips.length - 1].meters_travelled;
 
         // convert to miles
-        var trip = this.convertMeters(trip);
+        var trip = this.convertToLocal(trip);
 
         // add units
         var region = NativeModules.SettingsManager.settings.AppleLocale;
@@ -516,7 +516,7 @@ const HomeView = React.createClass({
 
   addDistance(meters) {
     // convert depending on location
-    var distance = this.convertMeters(meters);
+    var distance = this.convertToLocal(meters);
 
     // meters is cumulative distance traveled - subtract previous total distance from odometer
     var odometer = this.state.meters;
@@ -538,20 +538,33 @@ const HomeView = React.createClass({
     this.setState({total_distance: distance});
   },
 
-  convertMeters(meters) {
+  convertToLocal(meters) {
     // get location
     var region = NativeModules.SettingsManager.settings.AppleLocale;
 
     // if in US or Britain use Miles, otherwise use Kilometers
-    if (region == 'en_US' || region == 'en_GB') {
+    if (region.endsWith('US') || region.endsWith('en_GB')) {
       return Math.round(meters / 1609.344);
     } else {
       return Math.round(meters / 1000);
     }
   },
 
+  convertToMeters(distance) {
+    // get location
+    var region = NativeModules.SettingsManager.settings.AppleLocale;
+
+    // if in US or Britain use Miles, otherwise use Kilometers
+    if (region.endsWith('US') || region.endsWith('en_GB')) {
+      return Math.round(meters * 1609.344);
+    } else {
+      return Math.round(meters * 1000);
+    }
+  },
+
+  // todo: use map instead
   minimumDistance(trip) {
-    return this.convertMeters(trip.meters_travelled) > 0;
+    return this.convertToLocal(trip.meters_travelled) > 0;
   },
 
   useMetric() {
