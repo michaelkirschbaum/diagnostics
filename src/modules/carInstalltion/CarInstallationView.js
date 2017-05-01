@@ -496,7 +496,11 @@ const CarInstallationStateView = React.createClass({
   verifyVehicle(vehicle) {
     // save vehicle
     this.props.addVehicle(vehicle);
-    this.props.switchRoute(2);
+
+    if (this.locationFrance())
+      this.props.pushRoute({key: 'Home', title: loc.settings.settings});
+    else
+      this.props.switchRoute(2);
   },
 
   turnOffModal() {
@@ -511,6 +515,13 @@ const CarInstallationStateView = React.createClass({
 
   locationIsUS() {
     if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("US"))
+      return true;
+    else
+      return false;
+  },
+
+  locationFrance() {
+    if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
       return true;
     else
       return false;
