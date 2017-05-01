@@ -26,22 +26,34 @@ import {
   ListItem,
   Picker
 } from 'native-base';
+
+// style
 import colors from '../../config/colors';
 import carfitTheme from '../../config/carfit-theme';
-import Swiper from 'react-native-swiper';
+import {responsiveWidth, responsiveHeight, responsiveFontSize} from 'react-native-responsive-dimensions';
+
+// reducers
 import * as NavigationState from '../navigation/NavigationState';
-import Vehicle from '../../carfit/vehicle';
+
+// components
 import PickerContainer from '../../components/PickerContainer';
+import Modal from 'react-native-simple-modal';
+import SimplePicker from 'react-native-simple-picker';
+import Swiper from 'react-native-swiper';
+
+// bridge
+import Vehicle from '../../carfit/vehicle';
+const {CarFitManager} = NativeModules;
+
+// languages
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
+
+// set language
 if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
   var loc = en;
-import Modal from 'react-native-simple-modal';
-import SimplePicker from 'react-native-simple-picker';
-const {CarFitManager} = NativeModules;
-import {responsiveWidth, responsiveHeight, responsiveFontSize} from 'react-native-responsive-dimensions';
 
 /**
  * Login view
@@ -67,117 +79,10 @@ const CarInstallationStateView = React.createClass({
     carInstallation: PropTypes.object.isRequired
   },
 
-  async addVIN(vin) {
-    this.setState({connecting: true});
-
-    // add user vehicle
-    vehicle = new Vehicle();
-
-    if (!this.validVIN(vin))
-      console.log("Invalid VIN.");
-    else {
-      var response = await vehicle.addByVIN(vin);
-
-      // notify user whether vehicle has been added
-      if (response) {
-        // store vehicle to be accessed in verification
-        this.setState({vehicle: response});
-
-        // store vehicle info
-        this.props.setVehicle(response["vin"]);
-        var distance = vehicle.getMileage();
-        if (distance)
-          this.props.setOdometer(distance);
-        else {
-          this.props.setOdometer(0);
-        }
-
-        // disable back button before presenting modal
-        this.setState({returnDisabled: true});
-
-        // verify vehicle
-        this.setState({modalVisible: true});
-      }
-      else {
-        this.setState({failureModalVisible: true});
-      }
-    }
-  },
-
-  async addPlate(plate, region) {
-    this.setState({connecting: true});
-
-    // add user vehicle
-    vehicle = new Vehicle();
-
-    if (!this.validPlate(plate))
-      console.log("Invalid plate.");
-    else {
-      var response = await vehicle.addByPlate(plate, region);
-
-      // notify user whether vehicle has been added
-      if (response) {
-        // store vehicle to be accessed in verification
-        this.setState({vehicle: response});
-
-        // store vehicle info
-        this.props.setVehicle(response["vin"]);
-        this.props.setOdometer(vehicle.getMileage());
-
-        // disable back button before presenting modal
-        this.setState({returnDisabled: true});
-
-        // verify vehicle
-        this.setState({modalVisible: true});
-      }
-      else {
-        this.setState({failureModalVisible: true});
-      }
-    }
-  },
-
-  validVIN(vin) {
-    return true;
-  },
-
-  validPlate(plate) {
-    return true;
-  },
-
-  popRoute() {
-    this.props.setPageIndex(0);
-    this.props.onNavigateBack();
-  },
-
-  setPage(index) {
-    this.props.setPageIndex(index);
-  },
-
-  setMode(mode) {
-    this.props.setEnterMode(mode);
-  },
-
-  verifyVehicle(vehicle) {
-    // save vehicle
-    this.props.addVehicle(vehicle);
-    this.props.switchRoute(2);
-  },
-
-  turnOffModal() {
-    // enable back button
-    this.setState({returnDisabled: false});
-
-    // disable modal
-    this.setState({connecting: false});
-    this.setState({modalVisible: false});
-    this.setState({failureModalVisible: false});
-  },
-
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
     let windowRatio = windowHeight / windowWidth;
-
     let headerTitle = loc.carInstallation.inCarInstallation;
     switch (this.props.carInstallation.pageIndex) {
       case 0:
@@ -498,12 +403,118 @@ const CarInstallationStateView = React.createClass({
     );
   },
 
+  async addVIN(vin) {
+    this.setState({connecting: true});
+
+    // add user vehicle
+    vehicle = new Vehicle();
+
+    if (!this.validVIN(vin))
+      console.log("Invalid VIN.");
+    else {
+      var response = await vehicle.addByVIN(vin);
+
+      // notify user whether vehicle has been added
+      if (response) {
+        // store vehicle to be accessed in verification
+        this.setState({vehicle: response});
+
+        // store vehicle info
+        this.props.setVehicle(response["vin"]);
+        var distance = vehicle.getMileage();
+        if (distance)
+          this.props.setOdometer(distance);
+        else {
+          this.props.setOdometer(0);
+        }
+
+        // disable back button before presenting modal
+        this.setState({returnDisabled: true});
+
+        // verify vehicle
+        this.setState({modalVisible: true});
+      }
+      else {
+        this.setState({failureModalVisible: true});
+      }
+    }
+  },
+
+  async addPlate(plate, region) {
+    this.setState({connecting: true});
+
+    // add user vehicle
+    vehicle = new Vehicle();
+
+    if (!this.validPlate(plate))
+      console.log("Invalid plate.");
+    else {
+      var response = await vehicle.addByPlate(plate, region);
+
+      // notify user whether vehicle has been added
+      if (response) {
+        // store vehicle to be accessed in verification
+        this.setState({vehicle: response});
+
+        // store vehicle info
+        this.props.setVehicle(response["vin"]);
+        this.props.setOdometer(vehicle.getMileage());
+
+        // disable back button before presenting modal
+        this.setState({returnDisabled: true});
+
+        // verify vehicle
+        this.setState({modalVisible: true});
+      }
+      else {
+        this.setState({failureModalVisible: true});
+      }
+    }
+  },
+
+  validVIN(vin) {
+    return true;
+  },
+
+  validPlate(plate) {
+    return true;
+  },
+
+  popRoute() {
+    this.props.setPageIndex(0);
+    this.props.onNavigateBack();
+  },
+
+  setPage(index) {
+    this.props.setPageIndex(index);
+  },
+
+  setMode(mode) {
+    this.props.setEnterMode(mode);
+  },
+
+  verifyVehicle(vehicle) {
+    // save vehicle
+    this.props.addVehicle(vehicle);
+    this.props.switchRoute(2);
+  },
+
+  turnOffModal() {
+    // enable back button
+    this.setState({returnDisabled: false});
+
+    // disable modal
+    this.setState({connecting: false});
+    this.setState({modalVisible: false});
+    this.setState({failureModalVisible: false});
+  },
+
   locationIsUS() {
     if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("US"))
       return true;
     else
       return false;
-  },
+  }
 });
 
 const styles = StyleSheet.create({

@@ -43,7 +43,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import ConnectionMonitor from '../../components/ConnectionMonitor';
 import Swiper from 'react-native-swiper';
 
-// ios bridge
+// bridge
 import Connection from '../../carfit/connection';
 import Vehicle from '../../carfit/vehicle';
 const {CarFitManager} = NativeModules;
@@ -279,13 +279,11 @@ const HomeView = React.createClass({
     const vin = this.props.vehicle.vin;
     var vehicle = new Vehicle(vin);
 
-    // display vehicle information
+    // show vehicle information
     this.loadVehicle().done();
 
-    // load mileage
-    var meters = this.props.vehicle.odometer;
-    var distance = this.convertToLocal(meters);
-    this.setState({meters: distance + (this.useMetric() ? ' km' : ' mi')});
+    // show odometer
+    this.loadOdometer().done();
 
     // update odometer while driving
     var distance_subscription = connectionEmitter.addListener(
@@ -294,24 +292,24 @@ const HomeView = React.createClass({
     );
     this.setState({distance_subscription});
 
-    // display most current vehicle alert
-    this.loadAlerts().done();
-
-    // display and update last trip distance
-    this.loadUsage().done();
-    setInterval(function() {
-      this.loadUsage().done();
-    }.bind(this), interval);
-
-    /*
     // update odometer while not driving
     setInterval(function() {
       if (!store.getState().get("installation").get("in_drive")) {
-        that.loadMileage(vehicle).done();
-        that.setState({total_distance: 0});
+        this.loadOdometer(vehicle).done();
+        this.setState({total_distance: 0});
       }
     }.bind(this), interval);
-    */
+
+    // show most current vehicle alert
+    this.loadAlerts().done();
+
+    // show last trip distance
+    this.loadUsage().done();
+
+    // update last trip distance
+    setInterval(function() {
+      this.loadUsage().done();
+    }.bind(this), interval);
   },
 
   componentWillUnmount() {
@@ -339,7 +337,6 @@ const HomeView = React.createClass({
     else {
       // set local
       this.setState({meters: distance + (this.useMetric() ? ' km' : ' mi')});
-      this.props.setOdometer(this.convertToMeters(parseInt(distance)));
 
       // set db
       vehicle.setMileage(vin, this.convertToMeters(parseInt(distance)));
@@ -368,12 +365,20 @@ const HomeView = React.createClass({
     }
   },
 
+  async loadOdometer() {
+    var vehicle = new Vehicle(this.props.vehicle.vin);
+
+    if (meters = await vehicle.getMileage())
+      this.setState({meters: this.convertToLocal(meters).toString() + (this.useMetric() ? ' km' : ' mi')});
+    else
+      this.setState({meters: ''});
+  },
+
   async loadAlerts() {
     const vin = this.props.vehicle.vin;
     var vehicle = new Vehicle(vin);
 
     var alerts = await vehicle.getAlerts('alert', vin);
-
     if (alerts) {
       // set to first alert
       var alert = alerts[0].summary;
@@ -404,7 +409,7 @@ const HomeView = React.createClass({
       if (trips.length) {
         var trip = trips[trips.length - 1].meters_travelled;
 
-        // convert to miles
+        // convert
         var trip = this.convertToLocal(trip);
 
         // add units
@@ -463,7 +468,6 @@ const HomeView = React.createClass({
     }
   },
 
-  // todo: maintenance
   addDistance(meters) {
     // convert
     var distance = this.convertToLocal(meters);
@@ -483,7 +487,6 @@ const HomeView = React.createClass({
 
     // update odometer
     this.setState({meters: updated.toString() + ' ' + units});
-    this.props.setOdometer(this.convertToMeters(updated));
 
     // set new cumulative distance
     this.setState({total_distance: distance});
@@ -506,16 +509,11 @@ const HomeView = React.createClass({
     var region = NativeModules.SettingsManager.settings.AppleLocale;
 
     // if in US or Britain use Miles, otherwise use Kilometers
-    if (region.endsWith('US') || region.endsWith('en_GB')) {
+    if (region.endsWith('US') || region.endsWith('GB')) {
       return Math.round(distance * 1609.344);
     } else {
       return Math.round(distance * 1000);
     }
-  },
-
-  // todo: use map instead
-  minimumDistance(trip) {
-    return this.convertToLocal(trip.meters_travelled) > 0;
   },
 
   useMetric() {
@@ -532,6 +530,11 @@ const HomeView = React.createClass({
       return true;
     else
       return false;
+  },
+
+  // todo: use map instead
+  minimumDistance(trip) {
+    return this.convertToLocal(trip.meters_travelled) > 0;
   }
 });
 
