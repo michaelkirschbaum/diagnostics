@@ -45,12 +45,6 @@ const DetailsView = React.createClass({
 
   },
 
-  onNextPress() {
-    // this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
-    // this.props.switchRoute('Overview');
-    // this.props.switchRoute(2);
-  },
-
   popRoute() {
     this.props.onNavigateBack();
   },

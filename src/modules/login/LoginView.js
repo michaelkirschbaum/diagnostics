@@ -293,6 +293,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginLeft: 16,
     marginRight: 16,
+    textAlign: 'center'
   },
   textBody: {
     color: colors.textPrimary,
