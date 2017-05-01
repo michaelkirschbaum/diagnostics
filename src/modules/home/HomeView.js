@@ -194,20 +194,22 @@ const HomeView = React.createClass({
               </View>
             </View>
 
-            <View style={styles.dataBlockContainer}>
-              <View style={styles.dataIcon}>
-                <Image source={require('../../../images/icons/usage.png')} style={styles.icon}/>
+            {!this.locationFrance() &&
+              <View style={styles.dataBlockContainer}>
+                <View style={styles.dataIcon}>
+                  <Image source={require('../../../images/icons/usage.png')} style={styles.icon}/>
+                </View>
+                <View style={styles.dataBlock}>
+                  <H3 style={{fontWeight: "bold", color: colors.headerTextColor, fontSize: responsiveFontSize(2.35)}}>{loc.home.value}</H3>
+                  <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
+                  <H3 style={{color: colors.headerTextColor, fontSize: responsiveFontSize(2.35)}}>{valueAction}</H3>
+                  <Text style={{color: colors.headerTextColor, fontSize: responsiveFontSize(2.35)}}>{valueDescription}</Text>
+                </View>
+                {/* <View style={styles.dataAction}>
+                  <Icon active name="ios-arrow-forward"></Icon>
+                </View> */}
               </View>
-              <View style={styles.dataBlock}>
-                <H3 style={{fontWeight: "bold", color: colors.headerTextColor, fontSize: responsiveFontSize(2.35)}}>{loc.home.value}</H3>
-                <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
-                <H3 style={{color: colors.headerTextColor, fontSize: responsiveFontSize(2.35)}}>{valueAction}</H3>
-                <Text style={{color: colors.headerTextColor, fontSize: responsiveFontSize(2.35)}}>{valueDescription}</Text>
-              </View>
-              {/* <View style={styles.dataAction}>
-                <Icon active name="ios-arrow-forward"></Icon>
-              </View> */}
-            </View>
+            }
           </View>
 
           <Modal
