@@ -335,22 +335,6 @@ const HomeView = React.createClass({
       return <Image source={{uri: this.state.photo}}/>;
   },
 
-  renderOdometerUpdate() {
-    if (NativeModules.SettingsManager.settings.AppleLocale == 'en_US') {
-      return <Input
-        ref='mileageInput'
-        placeholder={loc.home.mileage}
-        onChangeText={(text) => this.setState({new_meters: text})}
-      />
-    } else {
-      return <Input
-        ref='mileageInput'
-        placeholder={loc.home.kilometrage}
-        onChangeText={(text) => this.setState({new_meters: text})}
-      />
-    }
-  },
-
   addDistance(meters) {
     // convert depending on location
     var distance = this.convertMeters(meters);
@@ -525,12 +509,17 @@ const HomeView = React.createClass({
             closeOnTouchOutside={false}
             containerStyle={{}}
             modalStyle={{
-              borderRadius: 7
+              borderRadius: 7,
+              height: 200
             }}>
-            <View>
+            <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between'}}>
               <Text style={{color: 'black', alignSelf: 'center'}}>{this.useMetric() ? loc.home.updateKm : loc.home.updateMi}</Text>
               <InputGroup>
-                {this.renderOdometerUpdate()}
+                <Input style={styles.textInput}
+                  ref='mileageInput'
+                  placeholder={this.useMetric() ? loc.home.kilometrage : loc.home.mileage}
+                  onChangeText={(text) => this.setState({new_meters: text})}
+                />
               </InputGroup>
               <Button rounded
                     style={{alignSelf: 'center'}}
@@ -628,7 +617,6 @@ const styles = StyleSheet.create({
   dataAction: {
     marginLeft: 16,
   },
-
   askMilesContainer: {
     marginTop: 22
   },
@@ -636,7 +624,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.inputBackground,
     borderColor: colors.primary,
     borderWidth: 2.5,
-    marginTop: 22
+    borderRadius: 20,
+    width: 220,
+    alignSelf: 'center'
   },
   image: {
     width: 75,
