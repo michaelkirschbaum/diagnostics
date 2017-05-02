@@ -193,6 +193,7 @@ const fr = {
     identifier: 'Identifiant',
     password: 'Mot de passe',
     changePassword: 'Changer le mot de passe',
+    myAccount: 'Mon compte'
   },
   legal: {
     privacy: 'Politique de confidentialité',

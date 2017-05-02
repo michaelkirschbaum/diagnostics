@@ -73,7 +73,7 @@ const AccountView = React.createClass({
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
 
-    let headerTitle = loc.myCars.myCars;
+    let headerTitle = loc.account.myAccount;
 
     let name = "Sam's Car";
     let mileage = "10,345 km";

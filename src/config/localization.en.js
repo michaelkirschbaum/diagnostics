@@ -194,6 +194,7 @@ const en = {
     identifier: 'User ID',
     password: 'Password',
     changePassword: 'Change Password',
+    myAccount: 'My account'
   },
   legal: {
     privacy: 'Privacy Policy',
