@@ -117,7 +117,6 @@ const LoginView = React.createClass({
         >
           <View style={styles.instructionsContainer}>
             <Image source={require('../../../images/norauto.png')} style={styles.logo}/>
-            <Text style={styles.welcomeTitle}>{loc.login.connect}</Text>
             <Text style={styles.textBody}>{loc.login.welcome1}</Text>
             <Text style={styles.textBody}>{loc.login.welcome2}</Text>
             <Text style={styles.textBody}>{loc.login.welcome3}</Text>
