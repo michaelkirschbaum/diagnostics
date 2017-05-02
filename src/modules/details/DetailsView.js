@@ -41,14 +41,6 @@ import * as NavigationState from '../navigation/NavigationState';
  * Otherwise pass by.
  */
 const DetailsView = React.createClass({
-  propTypes: {
-
-  },
-
-  popRoute() {
-    this.props.onNavigateBack();
-  },
-
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
@@ -72,7 +64,7 @@ const DetailsView = React.createClass({
       model: vehicle.model,
       mpgCity: this.fuelConsumption(vehicle.meters_per_liter_city),
       mpgHighway: this.fuelConsumption(vehicle.meters_per_liter_highway),
-      license: '',
+      license: vehicle.plate,
       vin: vehicle.vin,
       drivenWheels: vehicle.driven_wheels,
       trimLevel: vehicle.gettrim_level,
@@ -98,7 +90,7 @@ const DetailsView = React.createClass({
     return (
       <Container theme={carfitTheme}>
         <Header>
-          <Button transparent onPress={() => this.popRoute()}>
+          <Button transparent onPress={() => this.props.onNavigateBack()}>
             <Icon name="ios-arrow-back"/>
           </Button>
           <Title>{headerTitle}</Title>
@@ -230,7 +222,8 @@ const styles = StyleSheet.create({
   },
   sectionDetails: {
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   sectionAction: {
 

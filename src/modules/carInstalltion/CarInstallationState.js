@@ -39,7 +39,7 @@ export function setOdometer(distance) {
   return {type: SET_ODOMETER, payload: distance}
 }
 
-// Reducerm,
+// Reducer,
 export default function CarInstallationStateReducer(state = initialState, action = {}) {
   switch (action.type) {
     case CHANGE_PAGE:

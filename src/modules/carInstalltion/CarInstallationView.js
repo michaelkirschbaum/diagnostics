@@ -49,17 +49,16 @@ const {CarFitManager} = NativeModules;
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
 
+// regions
+import country_codes from '../../config/regions_cn';
+import state_codes from '../../config/regions_st';
+
 // set language
 if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
   var loc = en;
 
-/**
- * Login view
- * Likely to be the main app view, but will only display login dialog when needed.
- * Otherwise pass by.
- */
 const CarInstallationStateView = React.createClass({
   getInitialState: function() {
     return {
@@ -75,15 +74,15 @@ const CarInstallationStateView = React.createClass({
   },
 
   propTypes: {
-    // dispatch: PropTypes.func.isRequired
     carInstallation: PropTypes.object.isRequired
   },
 
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
-    let windowRatio = windowHeight / windowWidth;
+
     let headerTitle = loc.carInstallation.inCarInstallation;
+
     switch (this.props.carInstallation.pageIndex) {
       case 0:
         headerTitle = loc.carInstallation.inCarInstallation;
@@ -100,112 +99,7 @@ const CarInstallationStateView = React.createClass({
 
     let finalView = this.props.carInstallation.enterMode
 
-    let state_codes = {
-      "Alabama": "AL",
-      "Alaska": "AK",
-      "Arizona": "AZ",
-      "Arkansas": "AR",
-      "California": "CA",
-      "Colorado": "CO",
-      "Connecticut": "CT",
-      "Delaware": "DE",
-      "Florida": "FL",
-      "Georgia": "GA",
-      "Hawaii": "HI",
-      "Idaho": "ID",
-      "Illinois": "IL",
-      "Indiana": "IN",
-      "Iowa": "IA",
-      "Kansas": "KS",
-      "Kentucky": "KY",
-      "Louisiana": "LA",
-      "Maine": "ME",
-      "Maryland": "MD",
-      "Massachusetts": "MA",
-      "Michigan": "MI",
-      "Minnesota": "MN",
-      "Mississippi": "MS",
-      "Missouri": "MO",
-      "Montana": "MT",
-      "Nebraska": "NE",
-      "Nevada": "NV",
-      "New Hampshire": "NH",
-      "New Jersey": "NJ",
-      "New Mexico": "NM",
-      "New York": "NY",
-      "North Carolina": "NC",
-      "North Dakota": "ND",
-      "Ohio": "OH",
-      "Oklahoma": "OK",
-      "Oregon": "OR",
-      "Pennsylvania": "PA",
-      "Rhode Island": "RI",
-      "South Carolina": "SC",
-      "South Dakota": "SD",
-      "Tennessee": "TN",
-      "Texas": "TX",
-      "Utah": "UT",
-      "Vermont": "VT",
-      "Virginia": "VA",
-      "Washington": "WA",
-      "West Virginia": "WV",
-      "Wisconsin": "WI",
-      "Wyoming": "WY"
-    };
-
-    let country_codes = {
-      "Albania": "AL",
-      "Andorra": "AD",
-      "Austria": "AT",
-      "Belarus": "BY",
-      "Belgium": "BE",
-      "Bosnia": "BA",
-      "Bulgaria": "BG",
-      "Croatia": "HR",
-      "Cyprus": "CY",
-      "Czech Republic": "CZ",
-      "Denmark": "DK",
-      "Estonia": "EE",
-      "Faroe Islands": "FO",
-      "Finland": "FI",
-      "France": "FR",
-      "Germany": "DE",
-      "Gibraltar": "GI",
-      "Greece": "GR",
-      "Hungary": "HU",
-      "Iceland": "IS",
-      "Ireland": "IE",
-      "Isle of Man": "IM",
-      "Italy": "IT",
-      "Kosovo": "RS",
-      "Latvia": "LV",
-      "Liechtenstein": "LI",
-      "Lithuania": "LT",
-      "Luxembourg": "LU",
-      "Macedonia": "MK",
-      "Malta": "MT",
-      "Moldova": "MD",
-      "Monaco": "MC",
-      "Montenegro": "ME",
-      "Netherlands": "NL",
-      "Norway": "NO",
-      "Poland": "PL",
-      "Portugal": "PT",
-      "Romania": "RO",
-      "San Marino": "SM",
-      "Serbia": "RS",
-      "Slovakia": "SK",
-      "Slovenia": "SI",
-      "Spain": "ES",
-      "Sweden": "SE",
-      "Switzerland": "CH",
-      "Ukraine": "UA",
-      "United Kingdom": "GB",
-      "Vatican City": "VA",
-      "Yugoslavia": "RS"
-    };
-
-    let regions = this.locationIsUS() ? Object.keys(state_codes) : Object.keys(country_codes);
+    let regions = this.locationUS() ? Object.keys(state_codes) : Object.keys(country_codes);
 
     getFinalView = function () {
 
@@ -217,7 +111,6 @@ const CarInstallationStateView = React.createClass({
                 <Image source={require('../../../images/enter-plate.png')} style={styles.icon}/>
               </TouchableOpacity>
             </View> */}
-
             <Image source={require('../../../images/enter-vin.png')} style={styles.image}/>
             <InputGroup borderType='rounded' style={styles.textInput}>
               <Input
@@ -228,7 +121,8 @@ const CarInstallationStateView = React.createClass({
             </InputGroup>
             <Text
               style={{marginTop: 22, textAlign: "center", color: colors.primary, textDecorationLine: 'underline', fontSize: responsiveFontSize(2.35)}}
-              onPress={() => { this.setMode('license') }}>{loc.carInstallation.enterLicensePlate}</Text>
+              onPress={() => { this.setMode('license') }}>{loc.carInstallation.enterLicensePlate}
+            </Text>
             <View style={styles.bottomContainer}>
               <Button rounded
                       style={{alignSelf: 'auto'}}
@@ -251,7 +145,6 @@ const CarInstallationStateView = React.createClass({
                 <Image source={require('../../../images/enter-vin.png')} style={styles.icon}/>
               </TouchableOpacity>
             </View> */}
-
             <Image source={require('../../../images/enter-plate.png')} style={styles.image}/>
              <InputGroup borderType='rounded' style={styles.textInput}>
               <Input
@@ -270,7 +163,8 @@ const CarInstallationStateView = React.createClass({
             </InputGroup>
             <Text
               style={{marginTop: 22, textAlign: "center", color: colors.primary, textDecorationLine: 'underline'}}
-              onPress={() => { this.setMode('vin') }}>{loc.carInstallation.enterByVin}</Text>
+              onPress={() => { this.setMode('vin') }}>{loc.carInstallation.enterByVin}
+            </Text>
             <View style={styles.bottomContainer}>
               <Button rounded
                       style={{alignSelf: 'auto'}}
@@ -287,9 +181,8 @@ const CarInstallationStateView = React.createClass({
               ref={'regionPicker'}
               options={regions}
               onSubmit={(option) => {
-                {/* lookup code for region */}
                 this.setState({
-                  region: this.locationIsUS() ? state_codes[option] : country_codes[option]
+                  region: this.locationUS() ? state_codes[option] : country_codes[option]
                 });
               }}
             />
@@ -337,6 +230,7 @@ const CarInstallationStateView = React.createClass({
               {getFinalView()}
             </View>
           </Swiper>
+
           <Modal
             open={this.state.modalVisible}
             modalDidOpen={() => undefined}
@@ -453,6 +347,9 @@ const CarInstallationStateView = React.createClass({
 
       // notify user whether vehicle has been added
       if (response) {
+        // add license plate
+        response["plate"] = plate;
+
         // store vehicle to be accessed in verification
         this.setState({vehicle: response});
 
@@ -513,7 +410,7 @@ const CarInstallationStateView = React.createClass({
     this.setState({failureModalVisible: false});
   },
 
-  locationIsUS() {
+  locationUS() {
     if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("US"))
       return true;
     else
@@ -533,16 +430,10 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: colors.headerTextColor
   },
-  container: {
-    // flex: 1,
-    // height: 200,
-    // width: 100
-  },
   askMilesContainer: {
     marginTop: 22
   },
   textInput: {
-    // alignSelf: 'stretch',
     backgroundColor: colors.inputBackground,
     borderColor: colors.primary,
     borderWidth: 2.5,
@@ -567,7 +458,6 @@ const styles = StyleSheet.create({
     marginBottom: 8
   },
   bottomContainer: {
-    // flex: 1,
     marginTop: 22,
     justifyContent: 'center',
     alignItems: 'center'
@@ -584,7 +474,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 55,
-    // backgroundColor: '#002200',
     marginBottom: 16,
   },
   spinner: {
