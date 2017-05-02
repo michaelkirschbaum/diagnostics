@@ -24,22 +24,19 @@ import {
 } from 'native-base';
 import _ from 'lodash';
 import colors from '../../config/colors';
-import en from '../../config/localization.en';
-import fr from '../../config/localization.fr';
-if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
-  var loc = fr;
-else
-  var loc = en;
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import store from '../../redux/store';
 import * as NavigationState from '../navigation/NavigationState';
+import en from '../../config/localization.en';
+import fr from '../../config/localization.fr';
 
-/**
- * Login view
- * Likely to be the main app view, but will only display login dialog when needed.
- * Otherwise pass by.
- */
+// set language
+if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
+  var loc = fr;
+else
+  var loc = en;
+
 const DetailsView = React.createClass({
   render() {
     let windowHeight = Dimensions.get('window').height;
@@ -50,25 +47,25 @@ const DetailsView = React.createClass({
     // get current vehicle
     let vehicle = this.props.carInstallation.vehicles.slice(-1)[0];
 
-    let name = vehicle.name;
-    let mileage = this.convertMeters(vehicle.current_meters);
-    let image = '';
+    let name = vehicle.name ? vehicle.name : 'Not available';
+    let mileage = '';
+    let image = 'Not available';
 
     let connected = this.props.connected ? "Connected" : "Disconnected";
 
-    let phone = '';
+    let phone = 'Not available';
 
     let infoDetailsData = {
-      year: vehicle.year,
-      make: vehicle.make,
-      model: vehicle.model,
-      mpgCity: this.fuelConsumption(vehicle.meters_per_liter_city),
-      mpgHighway: this.fuelConsumption(vehicle.meters_per_liter_highway),
-      license: vehicle.plate,
+      year: vehicle.year ? vehicle.year : 'Not available',
+      make: vehicle.make ? vehicle.make : 'Not available',
+      model: vehicle.model ? vehicle.model : 'Not available',
+      mpgCity: vehicle.meters_per_liter_city ? this.fuelConsumption(vehicle.meters_per_liter_city) : 'Not available',
+      mpgHighway: vehicle.meters_per_liter_highway ? this.fuelConsumption(vehicle.meters_per_liter_highway) : 'Not available',
+      license: vehicle.plate ? vehicle.plate : 'Not available',
       vin: vehicle.vin,
-      drivenWheels: vehicle.driven_wheels,
-      trimLevel: vehicle.gettrim_level,
-      doors: vehicle.num_doors
+      drivenWheels: vehicle.driven_wheels ? vehicle.driven_wheels : 'Not available',
+      trimLevel: vehicle.gettrim_level ? vehicle.gettrim_level : 'Not available',
+      doors: vehicle.num_doors ? vehicle.num_doors : 'Not available'
     };
 
     let infoDetails = _.map(_.toPairs(infoDetailsData), infoPairs => {
@@ -176,25 +173,25 @@ const DetailsView = React.createClass({
     );
   },
 
-  convertMeters(meters) {
+  convertToLocal(meters) {
     // get location
     var region = NativeModules.SettingsManager.settings.AppleLocale;
 
     // if in US or Britain use Miles, otherwise use Kilometers
-    if (region == 'en_US' || region == 'en_GB') {
-      return Math.round(meters / 1609.344);
-    } else {
-      return Math.round(meters / 1000);
-    }
+    if (region.endsWith('US') || region.endsWith('GB'))
+      return Math.round(meters * 1609.344);
+    else
+      return Math.round(meters * 1000);
   },
 
   fuelConsumption(meters_per_liter) {
+    // get location
     var region = NativeModules.SettingsManager.settings.AppleLocale;
 
-    if (region == 'en_US' || region == 'en_GB')
-      return Math.round(this.convertMeters(meters_per_liter) * 3.78541);
+    if (region.endsWith('US') || region.endsWith('GB'))
+      return Math.round(this.convertToLocal(meters_per_liter) * 3.78541);
     else
-      return Math.round(100 / this.convertMeters(meters_per_liter));
+      return Math.round(100 / this.convertToLocal(meters_per_liter));
   }
 });
 

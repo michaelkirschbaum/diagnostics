@@ -248,7 +248,7 @@ const HomeView = React.createClass({
           </Modal>
         </Content>
 
-        {!this.locationFrance() &&
+        {/*
           <Footer theme={carfitTheme} style={styles.footer}>
             <View style={styles.bottomContainer}>
               <Button rounded
@@ -260,7 +260,7 @@ const HomeView = React.createClass({
               </Button>
             </View>
           </Footer>
-        }
+        */}
       </Container>
     );
   },

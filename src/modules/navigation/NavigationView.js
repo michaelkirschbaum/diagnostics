@@ -136,15 +136,23 @@ const NavigationView = React.createClass({
       (message) => this.props.setConnection(message["status"])
     );
 
-    // listen for support click
-    const support_subscription = connectionEmitter.addListener(
-      'BLEButtonPress',
-      (reminder) => Alert.alert(
-        'Support',
-        'A representative will call you shortly.',
-        {text: 'OK', onPress: () => console.log('OK Pressed')}
-      )
-    );
+    if (this.locationFrance())
+      // listen for support click
+      var support_subscription = connectionEmitter.addListener(
+        'BLEButtonPress',
+        (reminder) => Alert.alert(
+          'Support',
+          'A representative will call you shortly.',
+          {text: 'OK', onPress: () => console.log('OK Pressed')}
+        )
+      );
+  },
+
+  locationFrance() {
+    if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+      return true;
+    else
+      return false;
   }
 });
 
