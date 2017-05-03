@@ -51,7 +51,7 @@ const RegisterView = React.createClass({
       Alert.alert(
         'Login',
         'You are now logged in.',
-        [{text: 'OK', onPress: () => this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome})}],
+        [{text: 'OK', onPress: () => this.props.pushRoute({key: 'Installation', title: loc.welcome.welcome})}],
         {cancellable: false}
       );
     } else {
@@ -126,7 +126,7 @@ const RegisterView = React.createClass({
   },
 
   componentWillMount() {
-    
+
   }
 });
 

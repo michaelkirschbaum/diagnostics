@@ -546,7 +546,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    // height: 300,
     marginLeft: 20,
     marginRight: 20,
   },
@@ -555,14 +554,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 55,
-    // backgroundColor: '#002200',
     marginBottom: 16,
   },
   profileHeaderContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    // backgroundColor: '#220000',
     marginBottom: 16,
   },
   milesButton: {

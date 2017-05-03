@@ -49,7 +49,7 @@ const LoginView = React.createClass({
   continue() {
     var region = NativeModules.SettingsManager.settings.AppleLocale;
 
-    if (region == 'fr_FR' || region == 'en_FR') {
+    if (region.endsWith('FR')) {
       this.props.pushRoute({key: 'Norauto', title: ''})
     } else {
       var login = new Login()
@@ -59,11 +59,7 @@ const LoginView = React.createClass({
         login.auth0('carfit.auth0.com', token);
       });
 
-      // if norauto user, skip welcome view
-      if (this.locationFrance())
-        this.props.pushRoute({key: 'Installation', title: loc.welcome.welcome});
-      else
-        this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome});
+      this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome});
     }
   },
 
