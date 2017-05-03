@@ -6,7 +6,8 @@ const initialState = Map({
     isFetching: false,
     didInvalidate: false,
     meters: 0
-  }
+  },
+  modalVisible: false
 });
 
 // actions

@@ -213,7 +213,7 @@ const HomeView = React.createClass({
           </View>
 
           <Modal
-            open={this.state.modalVisible}
+            open={this.props.home.modalVisible}
             modalDidOpen={() => undefined}
             modalDidClose={() => undefined}
             style={{alignItems: 'center'}}
