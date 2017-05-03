@@ -315,7 +315,7 @@ const CarInstallationStateView = React.createClass({
 
         // store vehicle info
         this.props.setVehicle(response["vin"]);
-        var distance = vehicle.getMileage();
+        var distance = await vehicle.getMileage();
         if (distance)
           this.props.setOdometer(distance);
         else {
@@ -355,7 +355,12 @@ const CarInstallationStateView = React.createClass({
 
         // store vehicle info
         this.props.setVehicle(response["vin"]);
-        this.props.setOdometer(vehicle.getMileage());
+        var meters = await vehicle.getMileage();
+        if (meters)
+          this.props.setOdometer(meters);
+        else {
+          this.props.setOdometer(0);
+        }
 
         // disable back button before presenting modal
         this.setState({returnDisabled: true});

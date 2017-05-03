@@ -213,7 +213,7 @@ const HomeView = React.createClass({
           </View>
 
           <Modal
-            open={this.props.home.modalVisible}
+            open={this.state.modalVisible}
             modalDidOpen={() => undefined}
             modalDidClose={() => undefined}
             style={{alignItems: 'center'}}
@@ -285,7 +285,7 @@ const HomeView = React.createClass({
     this.loadVehicle().done();
 
     // load odometer
-    this.loadOdometer().done();
+    this.setState({meters: this.convertToLocal(this.props.vehicle.odometer).toString() + (this.useMetric() ? ' km' : ' mi')})
 
     // update odometer while driving
     var distance_subscription = connectionEmitter.addListener(
@@ -337,6 +337,7 @@ const HomeView = React.createClass({
     else {
       // set local
       this.setState({meters: distance + (this.useMetric() ? ' km' : ' mi')});
+      this.props.setOdometer(this.convertToMeters(parseInt(distance)));
 
       // set db
       vehicle.setMileage(vin, this.convertToMeters(parseInt(distance)));
@@ -368,8 +369,12 @@ const HomeView = React.createClass({
   async loadOdometer() {
     var vehicle = new Vehicle(this.props.vehicle.vin);
 
-    if (meters = await vehicle.getMileage())
-      this.setState({meters: this.convertToLocal(meters).toString() + (this.useMetric() ? ' km' : ' mi')});
+    if (meters = await vehicle.getMileage()) {
+      if (meters > this.props.vehicle.odometer)
+        this.setState({meters: this.convertToLocal(meters).toString() + (this.useMetric() ? ' km' : ' mi')});
+      else
+        this.setState({meters: this.convertToLocal(this.props.vehicle.odometer).toString() + (this.useMetric() ? ' km' : ' mi')})
+    }
     else
       this.setState({meters: ''});
   },
@@ -488,6 +493,7 @@ const HomeView = React.createClass({
 
     // update odometer
     this.setState({meters: updated.toString() + ' ' + units});
+    this.props.setOdometer(this.convertToMeters(updated));
 
     // set new cumulative distance
     this.setState({total_distance: distance});
