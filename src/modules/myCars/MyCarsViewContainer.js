@@ -5,6 +5,7 @@ import MyCarsView from './MyCarsView';
 export default connect(
   state => ({
     navigationState: state.get('navigationState').toJS(),
+    carInstallation: state.get('carInstallation').toJS()
   }),
   dispatch => ({
     switchRoute(index) {

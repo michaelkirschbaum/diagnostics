@@ -55,7 +55,6 @@ const InstallationView = React.createClass({
   },
 
   propTypes: {
-    // dispatch: PropTypes.func.isRequired
     installation: PropTypes.object.isRequired
   },
 
@@ -168,9 +167,10 @@ const InstallationView = React.createClass({
     // show spinner
     this.setState({modalVisible: true});
 
-    // timeout connection request and notify user of necessary action
+    // timeout interval
     var timeout = 15000;
 
+    // timeout connection request and notify user of necessary action
     var connection_alert = setTimeout(function() {
       Alert.alert(
         loc.login.connection_error,
@@ -218,11 +218,6 @@ const InstallationView = React.createClass({
 
   rediscover() {
     this.props.discover();
-  },
-
-  setPhone(number) {
-    var conn = new Connection();
-    conn.addPhone(number);
   },
 
   continue() {

@@ -27,21 +27,18 @@ import {
 import colors from '../../config/colors';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
-if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
-  var loc = fr;
-else
-  var loc = en;
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import Vehicle from '../../carfit/vehicle';
 import store from '../../redux/store';
 import * as NavigationState from '../navigation/NavigationState';
 
-/**
- * Login view
- * Likely to be the main app view, but will only display login dialog when needed.
- * Otherwise pass by.
- */
+// set language
+if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
+  var loc = fr;
+else
+  var loc = en;
+
 const MyCarsView = React.createClass({
   getInitialState() {
     return {
@@ -51,70 +48,16 @@ const MyCarsView = React.createClass({
     }
   },
 
-  propTypes: {
-
-  },
-
-  componentDidMount() {
-    this.loadVehicle().done();
-  },
-
-  onNextPress() {
-    // this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
-    // this.props.switchRoute('Overview');
-    this.props.switchRoute(2);
-  },
-
-  onMyCarsPress() {
-    this.props.pushRoute({key: 'Details', title: loc.settings.settings});
-  },
-
-  popRoute() {
-    this.props.onNavigateBack();
-  },
-
-  async loadVehicle () {
-    const vin = store.getState().get("carInstallation").get("vin");
-
-    var vehicle = new Vehicle(vin);
-
-    // load title
-    var title = await vehicle.getTitle();
-
-    if (title) {
-      this.setState({title});
-    } else {
-      console.log("title not loaded");
-    }
-
-    // load description
-    var description = await vehicle.getDescription();
-
-    if (description) {
-      this.setState({description});
-    } else {
-      console.log("description not loaded");
-    }
-  },
-
-  addVehicle() {
-
-  },
-
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
-
     let headerTitle = loc.myCars.myCars;
-
-    let carName = "Sam's Car";
-    let carDescription = "Ford Fiesta 2015";
     let carStatus = loc.myCars.active;
 
     return (
       <Container theme={carfitTheme}>
         <Header>
-          <Button transparent onPress={() => this.popRoute()}>
+          <Button transparent onPress={() => this.props.onNavigateBack()}>
             <Icon name="ios-arrow-back"/>
           </Button>
           <Title>{headerTitle}</Title>
@@ -127,18 +70,17 @@ const MyCarsView = React.createClass({
           ref={c => this._content = c}>
 
           <View style={styles.layoutContainer}>
-            <TouchableWithoutFeedback onPress={this.onMyCarsPress}>
+            <TouchableWithoutFeedback onPress={this.props.pushRoute({key: 'Details', title: loc.settings.settings})}>
               <View style={styles.carContainer}>
                 <View style={styles.carImageContainer}>
                   <Text>IMAGE</Text>
                 </View>
                 <View style={styles.carDetailsContainer}>
-                  <H2 style={{fontWeight:'bold'}}>{this.state.title} ({carStatus})</H2>
+                  <H2 style={{fontWeight:'bold'}}>{this.state.title}</H2>
                   <H3>{this.state.description}</H3>
                 </View>
               </View>
             </TouchableWithoutFeedback>
-
 
             <View style={{
               height: 1,
@@ -148,7 +90,6 @@ const MyCarsView = React.createClass({
               }}/>
 
             <View style={styles.carContainer}>
-
               <View style={styles.carImageContainer}>
                 <Image source={require('../../../images/icons/change-car.png')} style={styles.icon}/>
               </View>
@@ -158,14 +99,36 @@ const MyCarsView = React.createClass({
                       onPress={() => this.props.switchRoute('WelcomeRoute')}
                 >{loc.myCars.changeMyCar}</Button>
               </View>
-
             </View>
-
         </View>
-
         </Content>
       </Container>
     );
+  },
+
+  componentDidMount() {
+    this.loadVehicle().done();
+  },
+
+  async loadVehicle () {
+    const vin = this.props.carInstallation.vin;
+    var vehicle = new Vehicle(vin);
+
+    // load title
+    var title = await vehicle.getTitle();
+    if (title) {
+      this.setState({title});
+    } else {
+      this.setState({title: 'Not available'});
+    }
+
+    // load description
+    var description = await vehicle.getDescription();
+    if (description) {
+      this.setState({description});
+    } else {
+      this.setState({title: 'Not available'});
+    }
   }
 });
 
@@ -220,7 +183,6 @@ const styles = StyleSheet.create({
   },
   footer: {
     height: 200,
-    // backgroundColor: colors.backgroundPrimary,
     backgroundColor: '#550000',
     borderColor: colors.backgroundPrimary,
     alignItems: 'flex-start',
