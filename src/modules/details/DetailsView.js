@@ -48,7 +48,7 @@ const DetailsView = React.createClass({
     let vehicle = this.props.carInstallation.vehicles.slice(-1)[0];
 
     let name = vehicle.name ? vehicle.name : 'Not available';
-    let mileage = '';
+    let mileage = this.convertToLocal(this.props.carInstallation.odometer).toString();
     let image = 'Not available';
 
     let connected = this.props.connected ? "Connected" : "Disconnected";
@@ -179,9 +179,9 @@ const DetailsView = React.createClass({
 
     // if in US or Britain use Miles, otherwise use Kilometers
     if (region.endsWith('US') || region.endsWith('GB'))
-      return Math.round(meters * 1609.344);
+      return Math.round(meters / 1609.344);
     else
-      return Math.round(meters * 1000);
+      return Math.round(meters / 1000);
   },
 
   fuelConsumption(meters_per_liter) {
