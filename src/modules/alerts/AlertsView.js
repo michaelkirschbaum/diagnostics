@@ -18,11 +18,13 @@ import {
 import carfitTheme from '../../config/carfit-theme';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
+import colors from '../../config/colors';
+
+// set language
 if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
   var loc = en;
-import colors from '../../config/colors';
 
 const AlertsView = React.createClass({
   getInitialState() {
@@ -31,25 +33,8 @@ const AlertsView = React.createClass({
     };
   },
 
-  async componentDidMount() {
-    try {
-      const alerts = await AsyncStorage.getItem('alerts');
-
-      if (alerts !== null) {
-        // deserialize
-        alerts = JSON.parse(alerts);
-
-        // load
-        this.setState({alerts});
-      }
-    } catch(e) {
-      console.error(e);
-    }
-  },
-
   render() {
     let headerTitle = loc.home.alert;
-
     let alerts = this.state.alerts;
 
     return (
@@ -73,6 +58,18 @@ const AlertsView = React.createClass({
         </Content>
       </Container>
     );
+  },
+
+  async componentDidMount() {
+    try {
+      const alerts = await AsyncStorage.getItem('alerts');
+      if (alerts !== null) {
+        alerts = JSON.parse(alerts);
+        this.setState({alerts});
+      }
+    } catch(e) {
+      console.error(e);
+    }
   }
 });
 

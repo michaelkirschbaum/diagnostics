@@ -55,13 +55,6 @@ const ConnectionSpinner = React.createClass({
 });
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // backgroundColor: 'black',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
   spinner: {
     height: 55,
     width: 200,
