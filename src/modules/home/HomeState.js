@@ -15,6 +15,7 @@ const REQUEST_ODOMETER = 'GET_ODOMETER';
 const RECEIVE_ODOMETER = 'RECEIVE_ODOMETER';
 const REJECT_ODOMETER = 'REJECT_ODOMETER';
 const INVALIDATE_ODOMETER= 'INVALIDATE_ODOMETER';
+const SET_MODAL = 'SET_MODAL';
 
 // action creators
 export function requestOdometer() {
@@ -39,6 +40,13 @@ export function rejectOdometer() {
 export function invalidateOdometer() {
   return {
     type: INVALIDATE_ODOMETER
+  }
+}
+
+export function setModal(status) {
+  return {
+    type: SET_MODAL,
+    payload: status
   }
 }
 
@@ -86,6 +94,9 @@ export default function HomeReducer(state = initialState, action) {
       return Object.assign({}, state, {
         didInvalidate: true
       });
+
+    case SET_MODAL:
+      return state.set('modalVisible', action.payload);
 
     default:
       return state;

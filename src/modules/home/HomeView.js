@@ -32,28 +32,18 @@ import {
   Card,
   CardItem
 } from 'native-base';
-
-// reducers
 import store from '../../redux/store';
 import * as NavigationState from '../navigation/NavigationState';
-
-// components
 import Modal from 'react-native-simple-modal';
 import Spinner from 'react-native-loading-spinner-overlay';
 import ConnectionMonitor from '../../components/ConnectionMonitor';
 import Swiper from 'react-native-swiper';
-
-// ios bridge
 import Connection from '../../carfit/connection';
 import Vehicle from '../../carfit/vehicle';
 const {CarFitManager} = NativeModules;
-
-// style
 import colors from '../../config/colors';
 import carfitTheme from '../../config/carfit-theme';
 import {responsiveWidth, responsiveHeight, responsiveFontSize} from 'react-native-responsive-dimensions';
-
-// languages
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
 
@@ -123,7 +113,7 @@ const HomeView = React.createClass({
               <Button rounded
                       style={styles.milesButton}
                       textStyle={{color: colors.textPrimary, fontSize: responsiveFontSize(2.35)}}
-                      onPress={() => this.setState({modalVisible: true})}
+                      onPress={() => this.props.setModal(true)}
               >{this.state.meters}</Button>
             </View>
 
@@ -213,7 +203,7 @@ const HomeView = React.createClass({
           </View>
 
           <Modal
-            open={this.state.modalVisible}
+            open={this.props.home.modalVisible}
             modalDidOpen={() => undefined}
             modalDidClose={() => undefined}
             style={{alignItems: 'center'}}
@@ -242,7 +232,7 @@ const HomeView = React.createClass({
               <Button transparent
                     textStyle={{color: 'black'}}
                     style={{alignSelf: 'center'}}
-                    onPress={() => this.setState({modalVisible: false})}
+                    onPress={() => this.props.setModal(false)}
               >{loc.home.cancel}</Button>
             </View>
           </Modal>
@@ -343,7 +333,7 @@ const HomeView = React.createClass({
       vehicle.setMileage(vin, this.convertToMeters(parseInt(distance)));
 
       // hide modal
-      this.setState({modalVisible: false});
+      this.props.setModal(false);
     }
   },
 

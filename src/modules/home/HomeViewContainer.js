@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted} from '../navigation/NavigationState';
 import HomeView from './HomeView';
-import {fetchOdometer} from './HomeState';
+import {fetchOdometer, setModal} from './HomeState';
 import {setDrive, setConnection} from '../installation/InstallationState';
 import {setOdometer} from '../carInstalltion/CarInstallationState';
 
@@ -39,6 +39,9 @@ export default connect(
     },
     setOdometer(distance) {
       dispatch(setOdometer(distance));
+    },
+    setModal(status) {
+      dispatch(setModal(status));
     }
   })
 )(HomeView);

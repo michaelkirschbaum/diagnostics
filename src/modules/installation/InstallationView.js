@@ -30,24 +30,21 @@ import {
 import colors from '../../config/colors';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
-if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
-  var loc = fr;
-else
-  var loc = en;
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
 import Connection from '../../carfit/connection';
 import Signal from '../../components/Signal';
 import TimerMixin from 'react-native-timer-mixin';
-const {CarFitManager} = NativeModules;
 import ConnectionSpinner from '../../components/ConnectionSpinner';
+const {CarFitManager} = NativeModules;
 
-/**
- * Login view
- * Likely to be the main app view, but will only display login dialog when needed.
- * Otherwise pass by.
- */
+// set language
+if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
+  var loc = fr;
+else
+  var loc = en;
+
 const InstallationView = React.createClass({
   getInitialState() {
     return {
@@ -62,96 +59,10 @@ const InstallationView = React.createClass({
     installation: PropTypes.object.isRequired
   },
 
-  componentDidMount() {
-    var interval = 2000;
-    var rssi_refresh = setInterval(function() {
-      this.rediscover();
-    }.bind(this), interval);
-
-    this.setState({rssi_refresh});
-  },
-
-  async onNextPress(id) {
-    this.setState({modalVisible: true});
-
-    // timeout connection request and notify user of necessary action
-    var timeout = 15000;
-
-    var connection_alert = setTimeout(function() {
-      Alert.alert(
-        loc.login.connection_error,
-        loc.login.reset,
-        {text: 'OK', onPress: () => undefined}
-      );
-    }, timeout);
-
-    // connect puls device
-    var conn = new Connection();
-    var resp = await conn.connectDevice(id);
-
-    // stop timeout
-    clearTimeout(connection_alert);
-
-    // handle failure, bluetooth failure, or success
-    if (true) { // should be resp
-      // stop refreshing rssi
-      clearInterval(this.state.rssi_refresh);
-
-      // stop ConnectionSpinner
-      this.setState({connected: true});
-    }
-    else
-      Alert.alert(
-        loc.carInstallation.connect,
-        loc.carInstallation.connectError,
-        {text: 'OK', onPress: () => console.log("OK pressed.")},
-        {cancellable: false}
-      );
-  },
-
-  popRoute() {
-    this.props.setPageIndex(0);
-    this.props.clearDevices();
-    this.props.onNavigateBack();
-  },
-
-  setPage(index) {
-    this.props.setPageIndex(index);
-    if (index == 4) {
-      // Start discovery of BLE devices
-      this.props.discover();
-    }
-  },
-
-  rediscover() {
-    this.props.discover();
-  },
-
-  componentWillUpdate(nextProps, nextState) {
-    // console.log('nextProps');
-    // console.log(JSON.stringify(nextProps, null, 2));
-    this.numberOfItems = nextProps.installation.foundDevices.length;
-
-    return true;
-  },
-
-  setPhone(number) {
-    var conn = new Connection();
-
-    conn.addPhone(number);
-  },
-
-  continue() {
-    this.setState({modalVisible: false});
-    this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
-  },
-
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
-
     let items = this.props.installation.foundDevices;
-
     let headerTitle = loc.welcome.connect;
 
     return (
@@ -205,7 +116,7 @@ const InstallationView = React.createClass({
                       renderRow={(item) =>
                             <ListItem>
                               <View style={styles.row}>
-                                <Text onPress={() => this.onNextPress(item.identifier)}>{item.name}</Text>
+                                <Text onPress={() => this.connect(item.identifier)}>{item.name}</Text>
                                 <Signal strength={item.signal}/>
                               </View>
                             </ListItem>
@@ -220,7 +131,6 @@ const InstallationView = React.createClass({
               visible={this.state.modalVisible}>
               <View style={styles.spinnerContainer}>
                 <ConnectionSpinner loading={this.state.connected}/>
-
                 {this.state.connected &&
                   <Button rounded
                     style={styles.button}
@@ -229,11 +139,95 @@ const InstallationView = React.createClass({
                   >{loc.general.continue}</Button>
                 }
               </View>
-
             </Modal>
           </Content>
         </Container>
     );
+  },
+
+  componentDidMount() {
+    // signal strength refresh
+    var interval = 2000;
+
+    var rssi_refresh = setInterval(function() {
+      this.rediscover();
+    }.bind(this), interval);
+
+    this.setState({rssi_refresh});
+  },
+
+  componentWillUpdate(nextProps, nextState) {
+    // console.log('nextProps');
+    // console.log(JSON.stringify(nextProps, null, 2));
+    this.numberOfItems = nextProps.installation.foundDevices.length;
+
+    return true;
+  },
+
+  async connect(device) {
+    // show spinner
+    this.setState({modalVisible: true});
+
+    // timeout connection request and notify user of necessary action
+    var timeout = 15000;
+
+    var connection_alert = setTimeout(function() {
+      Alert.alert(
+        loc.login.connection_error,
+        loc.login.reset,
+        {text: 'OK', onPress: () => undefined}
+      );
+    }, timeout);
+
+    // connect device
+    var conn = new Connection();
+    var resp = await conn.connectDevice(device);
+
+    // stop timeout
+    clearTimeout(connection_alert);
+
+    if (true) {
+      // stop refreshing signals
+      clearInterval(this.state.rssi_refresh);
+
+      // stop spinner
+      this.setState({connected: true});
+    }
+    else
+      Alert.alert(
+        loc.carInstallation.connect,
+        loc.carInstallation.connectError,
+        {text: 'OK', onPress: () => console.log("OK pressed.")},
+        {cancellable: false}
+      );
+  },
+
+  popRoute() {
+    this.props.setPageIndex(0);
+    this.props.clearDevices();
+    this.props.onNavigateBack();
+  },
+
+  setPage(index) {
+    this.props.setPageIndex(index);
+    if (index == 4) {
+      // Start discovery of BLE devices
+      this.props.discover();
+    }
+  },
+
+  rediscover() {
+    this.props.discover();
+  },
+
+  setPhone(number) {
+    var conn = new Connection();
+    conn.addPhone(number);
+  },
+
+  continue() {
+    this.setState({modalVisible: false});
+    this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
   }
 });
 
