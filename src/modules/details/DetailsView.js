@@ -48,7 +48,7 @@ const DetailsView = React.createClass({
     let vehicle = this.props.carInstallation.vehicles.slice(-1)[0];
 
     let name = vehicle.name ? vehicle.name : 'Not available';
-    let mileage = '';
+    let mileage = this.props.carInstallation.odometer;
     let image = 'Not available';
 
     let connected = this.props.connected ? "Connected" : "Disconnected";
