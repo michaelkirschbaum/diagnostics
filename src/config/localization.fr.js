@@ -55,7 +55,8 @@ const fr = {
     stepDescription1: ' votre capteur CARFIT PULS',
     stepDescription2: ' synthèse',
     connection_error: 'Connecter le capteur',
-    reset: 'Le capteur Puls doit être réinitialisé. Maintenez la touche du capteur appuyé pendant 10 secondes pour continuer.'
+    reset: 'Le capteur Puls doit être réinitialisé. Maintenez la touche du capteur appuyé pendant 10 secondes pour continuer.',
+    noneFound: ''
   },
   instructions: {
     enableBattery: 'Activez la batterie.',

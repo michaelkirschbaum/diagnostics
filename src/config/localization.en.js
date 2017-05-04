@@ -24,7 +24,8 @@ const en = {
     welcome3: 'The use you make of it will be our offer of tomorrow',
     attention: 'CAUTION: Application prototype for test. Get your registration number to complete the registration',
     connection_error: 'Connect Device',
-    reset: 'Puls device needs to be reset. Hold the device button for 10 seconds to continue.'
+    reset: 'Puls device needs to be reset. Hold the device button for 10 seconds to continue.',
+    noneFound: 'No devices found'
   },
   verification: { // is this still required with Auth0?
     verification: 'Verification',
