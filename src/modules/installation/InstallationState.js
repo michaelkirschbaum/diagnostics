@@ -2,6 +2,15 @@ import { Map, fromJS } from 'immutable';
 import { loop, Effects } from 'redux-loop';
 import Connection from '../../carfit/connection';
 
+// Pairing States
+const PAIRING_IDLE = 'PAIRING_IDLE';
+const PAIRING_DISCOVERY = 'PAIRING_DISCOVERY';
+const PAIRING_DISCOVERY_RESPONSE = 'PAIRING_DISCOVERY_RESPONSE';
+const PAIRING_ATTEMPTING = 'PAIRING_ATTEMPTING';
+const PAIRING_RESPONSE = 'PAIRING_RESPONSE';
+const PAIRING_FAILURE = 'PAIRING_FAILURE';
+const PAIRING_SUCCESS = 'PAIRING_SUCCESS';
+
 // Initial state
 const initialState = Map({
   pageIndex: 0,
@@ -19,15 +28,6 @@ const START_PAIRING = 'InstallationState/START_PAIRING';
 const CLEAR_DEVICES = 'InstallationState/CLEAR_DEVICES';
 const SET_DRIVE = 'SET_DRIVE';
 const SET_CONNECTION = 'SET_CONNECTION';
-
-// Pairing States
-const PAIRING_IDLE = 'PAIRING_IDLE';
-const PAIRING_DISCOVERY = 'PAIRING_DISCOVERY';
-const PAIRING_DISCOVERY_RESPONSE = 'PAIRING_DISCOVERY_RESPONSE';
-const PAIRING_ATTEMPTING = 'PAIRING_ATTEMPTING';
-const PAIRING_RESPONSE = 'PAIRING_RESPONSE';
-const PAIRING_FAILURE = 'PAIRING_FAILURE';
-const PAIRING_SUCCESS = 'PAIRING_SUCCESS';
 
 // Action Creaters
 export function setPageIndex(value) {
