@@ -31,6 +31,8 @@
 		3E2C365253324A10B3F3615D /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 33A98F90F1994C4285AC3387 /* MaterialIcons.ttf */; };
 		4081BD790380130413941CBF /* libPods-CARFITTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AEDC144F00009D13570A80B /* libPods-CARFITTests.a */; };
 		481FAA4410214872B74B5A2F /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E10D714E4A35405A9322FBF4 /* Ionicons.ttf */; };
+		4A28CA4B1EBB010900156904 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A28CA4D1EBB010900156904 /* InfoPlist.strings */; };
+		4A28CA811EBB092200156904 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A28CA801EBB092200156904 /* Info.plist */; };
 		4A37239F1EA0382600357A8D /* Drive1.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4A37239E1EA0382600357A8D /* Drive1.gpx */; };
 		4A3723C31EA0413400357A8D /* Drive1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A3723C21EA0413400357A8D /* Drive1.png */; };
 		4AEA7A57FCF149B6B6E4CE47 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC03BECFE1DA4193B5E78187 /* FontAwesome.ttf */; };
@@ -312,13 +314,17 @@
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = CARFIT/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = CARFIT/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CARFIT/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = CARFIT/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		2ACF115B72824245B7C41DEE /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		31D49D9D7DB94B3B8597538F /* Comic Sans MS.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Comic Sans MS.ttf"; path = "../node_modules/native-base/Fonts/Comic Sans MS.ttf"; sourceTree = "<group>"; };
 		33A98F90F1994C4285AC3387 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		3637FAEA3AC504DBC9F22FC3 /* Pods-CARFIT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CARFIT.release.xcconfig"; path = "Pods/Target Support Files/Pods-CARFIT/Pods-CARFIT.release.xcconfig"; sourceTree = "<group>"; };
+		4A28CA451EBAFAB500156904 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		4A28CA4C1EBB010900156904 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4A28CA4E1EBB011700156904 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4A28CA4F1EBB011800156904 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4A28CA801EBB092200156904 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CARFIT/Info.plist; sourceTree = "<group>"; };
 		4A37239E1EA0382600357A8D /* Drive1.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Drive1.gpx; sourceTree = "<group>"; };
 		4A3723C21EA0413400357A8D /* Drive1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Drive1.png; sourceTree = "<group>"; };
 		4A8386D1760C4C4CB152FAEB /* poppins_bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = poppins_bold.ttf; path = ../fonts/poppins_bold.ttf; sourceTree = "<group>"; };
@@ -520,9 +526,10 @@
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
-				13B07FB61A68108700A75B9A /* Info.plist */,
+				4A28CA801EBB092200156904 /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				4A28CA4D1EBB010900156904 /* InfoPlist.strings */,
 			);
 			name = CARFIT;
 			sourceTree = "<group>";
@@ -768,6 +775,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -1083,12 +1091,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				4A28CA4B1EBB010900156904 /* InfoPlist.strings in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				82AFE9191EF4421F8A570D36 /* poppins_bold.ttf in Resources */,
 				21DBBEBB75E746029624CF94 /* poppins_light.ttf in Resources */,
 				925B74FCACBE4AF2ADE08FEC /* poppins_medium.ttf in Resources */,
 				806F287C6D0E4ADBA53E8C2A /* poppins_regular.ttf in Resources */,
 				73BF7E57EFD445778CFE3593 /* poppins_semibold.ttf in Resources */,
+				4A28CA811EBB092200156904 /* Info.plist in Resources */,
 				B9BADFFAF83D45C7831FC4CA /* Andale Mono.ttf in Resources */,
 				4A3723C31EA0413400357A8D /* Drive1.png in Resources */,
 				526AABC58F9044BC94BF2005 /* Arial Black.ttf in Resources */,
@@ -1272,8 +1282,20 @@
 			isa = PBXVariantGroup;
 			children = (
 				13B07FB21A68108700A75B9A /* Base */,
+				4A28CA451EBAFAB500156904 /* fr */,
 			);
 			name = LaunchScreen.xib;
+			path = CARFIT;
+			sourceTree = "<group>";
+		};
+		4A28CA4D1EBB010900156904 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4A28CA4C1EBB010900156904 /* Base */,
+				4A28CA4E1EBB011700156904 /* en */,
+				4A28CA4F1EBB011800156904 /* fr */,
+			);
+			name = InfoPlist.strings;
 			path = CARFIT;
 			sourceTree = "<group>";
 		};
@@ -1433,6 +1455,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1467,7 +1490,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				"OTHER_LDFLAGS[arch=*]" = "-lc++";
@@ -1480,6 +1503,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1507,7 +1531,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				"OTHER_LDFLAGS[arch=*]" = "-lc++";
 				SDKROOT = iphoneos;

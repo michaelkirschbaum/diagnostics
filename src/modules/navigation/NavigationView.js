@@ -142,7 +142,7 @@ const NavigationView = React.createClass({
         'BLEButtonPress',
         (reminder) => Alert.alert(
           'Support',
-          'A representative will call you shortly.',
+          loc.home.call,
           {text: 'OK', onPress: () => console.log('OK Pressed')}
         )
       );

@@ -3,7 +3,7 @@
  */
 const fr = {
   general: {
-    continue: 'Continuez',
+    continue: 'Continuer',
   },
   login: {
     email: 'E-mail',
@@ -54,9 +54,9 @@ const fr = {
 //    welcomeParagraph4: 'Guide rapide:',
     step1: 'Se connecter ',
     step2: 'Installer ',
-    step3: 'Application ',
-    stepDescription1: ' votre capteur CARFIT PULS',
-    stepDescription2: ' synthèse'
+    step3: 'Vue d\'ensemble',
+    stepDescription1: ' à votre capteur CARFIT PULS',
+    stepDescription2: ' de l\'application'
   },
   instructions: {
     enableBattery: 'Activez la batterie.',
@@ -64,16 +64,16 @@ const fr = {
     activateBluetooth: 'Activer le Bluetooth.',
     turnOnBLE: 'Activez le Bluetooth de votre téléphone.',
     resetConnection: 'Réinitialiser la connexion.',
-    pressAndHold: 'Maintenez pressé le bouton situé sur le dessus du capteur  pendant 10 secondes pour le réinitialiser. Appuyez sur le bouton pour l\'allumer.',
+    pressAndHold: 'Maintenez pressé le bouton situé sur le dessus du capteur pendant 10 secondes pour le réinitialiser. Appuyez sur le bouton pour l\'allumer.',
     blePairing: 'Activez la batterie.',
     ensurePairing: 'S\'assurer que le capteur est en mode appairage, avec la LED centrale clignotante.',
-    selectBLE: 'Sélectionnez le  capteur CARFIT PULS dans la liste.',
+    selectBLE: 'Sélectionner le capteur CARFIT PULS dans la liste.',
   },
   carInstallation: {
     installation: 'Installation',
     // Page One
-    inCarInstallation: 'Installation dans la voiture.',
-    header1: 'Allez dans votre voiture.',
+    inCarInstallation: 'Installation dans la voiture',
+    header1: 'Allez dans votre voiture',
     message1: 'Installation du capteur CARFIT PULS dans votre voiture',
     header2: 'Préparez l\'adhésif',
     message2: 'Retirez la protection de l\'adhésif',
@@ -98,7 +98,7 @@ const fr = {
     success: 'Voiture identifiée!',
     failure: 'Pas ma voiture',
     notFound: 'La voiture n\'a pas pu être identifiée',
-    retry: 'Réessayer',
+    retry: 'Réessayez',
     support: 'Contactez le support CARFIT',
     connect: 'RELIER',
     connectError: 'Le périphérique n\'a pas pu se connecter.'
@@ -141,9 +141,9 @@ const fr = {
     click: 'J\'appuie sur le bouton ou ici:',
     updateMi: 'Actualiser le kilométrage de la voiture',
     updateKm: 'Actualiser le kilométrage de voiture',
-    noTrips: 'Vous n\'avez pas encore effectué de voyages.',
+    noTrips: 'Vous n\'avez pas encore effectué de trajet.',
     support: 'SOUTIEN',
-    call: 'Un représentant vous appellera sous peu.',
+    call: 'Vous allez être rappelé très vite.',
     supportError: 'Demande échoué. Réessayer.',
     save: 'Sauvegarder les modifications',
     cancel: 'Annuler'
@@ -161,11 +161,14 @@ const fr = {
   },
   myCars: {
     myCars: 'Mes véhicules',
-    active: 'Ma véhicule active',
-    changeMyCar: 'Changer mon véhicule',
+    active: 'Véhicule active',
+    changeMyCar: 'Changer de véhicule',
+    notAvailable: 'Non disponible',
+    connected:  'Connecté',
+    disconnected: 'Débranché',
   },
   details: {
-    displayInfo: 'Information de véhicule',
+    displayInfo: 'Information du véhicule',
     name: 'Nom',
     mileage: 'Kilométrage',
     image: 'Photo',
@@ -180,7 +183,7 @@ const fr = {
     model: 'Modèle',
     mpgCity: 'Consommation urbaine (L/100km)',
     mpgHighway: 'Consommation autoroute (L/100km)',
-    license: 'Numéro d\'immatriculation',
+    license: 'Immatriculation',
     vin: 'VIN',
     drivenWheels: 'Roues motrices',
     trimLevel: 'Niveau de finition',
@@ -203,7 +206,7 @@ const fr = {
   register: {
     signin: 'Se connecter',
     first: 'Prénom',
-    last: 'Nom de famille',
+    last: 'Nom',
     email: 'name@example.com',
     phoneInput: '+XX XX XX XX XX X',
     phone: 'Téléphone'
