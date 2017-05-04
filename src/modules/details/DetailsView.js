@@ -55,25 +55,25 @@ const DetailsView = React.createClass({
     // get current vehicle
     let vehicle = this.props.carInstallation.vehicles.slice(-1)[0];
 
-    let name = vehicle.name ? vehicle.name : 'Not available';
+    let name = vehicle.name ? vehicle.name : loc.myCars.notAvailable;
     let mileage = this.convertToLocal(this.props.carInstallation.odometer).toString();
-    let image = 'Not available';
+    let image = loc.myCars.notAvailable;
 
-    let connected = this.props.connected ? "Connected" : "Disconnected";
+    let connected = this.props.connected ? loc.myCars.connected : loc.myCars.disconnected;
 
-    let phone = 'Not available';
+    let phone = loc.myCars.notAvailable;
 
     let infoDetailsData = {
-      year: vehicle.year ? vehicle.year : 'Not available',
-      make: vehicle.make ? vehicle.make : 'Not available',
-      model: vehicle.model ? vehicle.model : 'Not available',
-      mpgCity: vehicle.meters_per_liter_city ? this.fuelConsumption(vehicle.meters_per_liter_city) : 'Not available',
-      mpgHighway: vehicle.meters_per_liter_highway ? this.fuelConsumption(vehicle.meters_per_liter_highway) : 'Not available',
-      license: vehicle.plate ? vehicle.plate : 'Not available',
+      year: vehicle.year ? vehicle.year : loc.myCars.notAvailable,
+      make: vehicle.make ? vehicle.make : loc.myCars.notAvailable,
+      model: vehicle.model ? vehicle.model : loc.myCars.notAvailable,
+      mpgCity: vehicle.meters_per_liter_city ? this.fuelConsumption(vehicle.meters_per_liter_city) : loc.myCars.notAvailable,
+      mpgHighway: vehicle.meters_per_liter_highway ? this.fuelConsumption(vehicle.meters_per_liter_highway) : loc.myCars.notAvailable,
+      license: vehicle.plate ? vehicle.plate : loc.myCars.notAvailable,
       vin: vehicle.vin,
-      drivenWheels: vehicle.driven_wheels ? vehicle.driven_wheels : 'Not available',
-      trimLevel: vehicle.gettrim_level ? vehicle.gettrim_level : 'Not available',
-      doors: vehicle.num_doors ? vehicle.num_doors : 'Not available'
+      drivenWheels: vehicle.driven_wheels ? vehicle.driven_wheels : loc.myCars.notAvailable,
+      trimLevel: vehicle.gettrim_level ? vehicle.gettrim_level : loc.myCars.notAvailable,
+      doors: vehicle.num_doors ? vehicle.num_doors : loc.myCars.notAvailable
     };
 
     let infoDetails = _.map(_.toPairs(infoDetailsData), infoPairs => {

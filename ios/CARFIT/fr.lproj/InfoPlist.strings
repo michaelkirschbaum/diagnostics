@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  CARFIT
+
+  Created by Nabyl Bennouri on 5/3/17.
+  Copyright © 2017 Facebook. All rights reserved.
+*/
+
+NSCameraUsageDescription = "CARFIT utilise la camera pour prendre des photos de votre véhicule";
+NSLocationAlwaysUsageDescription = "CARFIT utilise constament le service de localisation";
+NSPhotoLibraryUsageDescription = "CARFIT utilise votre librairie pour les photos de votre véhicule";

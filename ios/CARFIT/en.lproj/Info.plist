@@ -23,7 +23,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>2</string>
 	<key>CFPAWSAPIGatewayURL</key>
 	<string>https://tnexnmzch3.execute-api.us-east-1.amazonaws.com/dev</string>
 	<key>CodePushDeploymentKey</key>
@@ -64,7 +64,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>CARFIT uses camera for vehicle photos</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>CARFIT always uses location service</string>
+	<string>CarFit always uses location service</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>CARFIT uses Photo for Vehicle photo</string>
 	<key>UIAppFonts</key>
@@ -111,6 +111,8 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>

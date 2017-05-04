@@ -164,6 +164,7 @@ const en = {
     myCars: 'My cars',
     active: 'Active',
     changeMyCar: 'Change my car',
+    notAvailable: 'Not available',
   },
   details: {
     displayInfo: 'DISPLAY INFO',
