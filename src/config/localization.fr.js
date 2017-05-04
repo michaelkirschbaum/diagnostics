@@ -22,7 +22,10 @@ const fr = {
     welcome1: 'Promis, vous ne serez plus jamais seul en auto',
     welcome2: '24h/24 et 7j/7',
     welcome3: 'L\'utilisation que vous en ferez sera notre offre de demain !',
-    attention: 'ATTENTION: Prototype d\'application pour test. Munissez-vous de votre numéro d\'immatriculation pour finaliser l\'inscription'
+    attention: 'ATTENTION: Prototype d\'application pour test. Munissez-vous de votre numéro d\'immatriculation pour finaliser l\'inscription',
+    connection_error: 'Connecter le capteur',
+    reset: 'Le capteur Puls doit être réinitialisé. Maintenez la touche du capteur appuyé pendant 10 secondes pour continuer.',
+    noneFound: 'Aucun périphérique trouvé. Allumez un périphérique en cliquant dessus.'
   },
   verification: { // is this still required with Auth0?
     verification: 'Vérification',
@@ -53,10 +56,7 @@ const fr = {
     step2: 'Installer ',
     step3: 'Application ',
     stepDescription1: ' votre capteur CARFIT PULS',
-    stepDescription2: ' synthèse',
-    connection_error: 'Connecter le capteur',
-    reset: 'Le capteur Puls doit être réinitialisé. Maintenez la touche du capteur appuyé pendant 10 secondes pour continuer.',
-    noneFound: ''
+    stepDescription2: ' synthèse'
   },
   instructions: {
     enableBattery: 'Activez la batterie.',

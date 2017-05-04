@@ -217,8 +217,8 @@ const InstallationView = React.createClass({
       // notify user if no devices are found
       if (!this.props.installation.foundDevices.length)
         Alert.alert(
-          'CONNECT DEVICE',
-          'Unable to detect devices.',
+          loc.login.connection_error,
+          loc.login.noneFound,
           {text: 'OK', onPress: () => console.log('OK pressed.')}
         );
     }
