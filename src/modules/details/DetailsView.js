@@ -38,6 +38,14 @@ else
   var loc = en;
 
 const DetailsView = React.createClass({
+  propTypes: {
+
+  },
+
+  popRoute() {
+    this.props.onNavigateBack();
+  },
+
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
@@ -87,7 +95,7 @@ const DetailsView = React.createClass({
     return (
       <Container theme={carfitTheme}>
         <Header>
-          <Button transparent onPress={() => this.props.onNavigateBack()}>
+          <Button transparent onPress={() => this.popRoute()}>
             <Icon name="ios-arrow-back"/>
           </Button>
           <Title>{headerTitle}</Title>

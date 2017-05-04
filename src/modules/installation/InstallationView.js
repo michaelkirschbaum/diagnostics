@@ -213,14 +213,14 @@ const InstallationView = React.createClass({
     if (index == 4) {
       // Start discovery of BLE devices
       this.props.discover();
-
+      /*
       // notify user if no devices are found
       if (!this.props.installation.foundDevices.length)
         Alert.alert(
           loc.login.connection_error,
           loc.login.noneFound,
           {text: 'OK', onPress: () => console.log('OK pressed.')}
-        );
+        ); */
     }
   },
 

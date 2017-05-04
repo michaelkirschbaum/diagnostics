@@ -2,14 +2,15 @@ import {fromJS} from 'immutable';
 import {NativeModules} from 'react-native';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
+import _ from 'lodash';
+import {NavigationExperimental} from 'react-native';
+const {StateUtils: NavigationStateUtils} = NavigationExperimental;
+
+// set language
 if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
   var loc = en;
-import _ from 'lodash';
-import {NavigationExperimental} from 'react-native';
-
-const {StateUtils: NavigationStateUtils} = NavigationExperimental;
 
 // Actions
 const PUSH_ROUTE = 'NavigationState/PUSH_ROUTE';
