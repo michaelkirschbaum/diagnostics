@@ -70,7 +70,7 @@ const MyCarsView = React.createClass({
           ref={c => this._content = c}>
 
           <View style={styles.layoutContainer}>
-            <TouchableWithoutFeedback onPress={this.props.pushRoute({key: 'Details', title: loc.settings.settings})}>
+            <TouchableWithoutFeedback onPress={this.onMyCarsPress}>
               <View style={styles.carContainer}>
                 <View style={styles.carImageContainer}>
                   <Text>IMAGE</Text>
@@ -129,6 +129,10 @@ const MyCarsView = React.createClass({
     } else {
       this.setState({title: 'Not available'});
     }
+  },
+
+  onMyCarsPress() {
+    // this.props.pushRoute({key: 'Details', title: loc.settings.settings});
   }
 });
 

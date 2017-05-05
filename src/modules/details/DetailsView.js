@@ -38,19 +38,10 @@ else
   var loc = en;
 
 const DetailsView = React.createClass({
-  propTypes: {
-
-  },
-
-  popRoute() {
-    this.props.onNavigateBack();
-  },
-
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
-
-    let headerTitle = loc.myCars.myCars;
+    let headerTitle = loc.details.details;
 
     // get current vehicle
     let vehicle = this.props.carInstallation.vehicles.slice(-1)[0];
@@ -95,7 +86,7 @@ const DetailsView = React.createClass({
     return (
       <Container theme={carfitTheme}>
         <Header>
-          <Button transparent onPress={() => this.popRoute()}>
+          <Button transparent onPress={() => this.props.onNavigateBack()}>
             <Icon name="ios-arrow-back"/>
           </Button>
           <Title>{headerTitle}</Title>

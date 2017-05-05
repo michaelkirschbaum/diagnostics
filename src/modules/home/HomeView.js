@@ -100,9 +100,7 @@ const HomeView = React.createClass({
                 <Image source={require('../../../images/icons/settings.png')}
                        style={styles.icon}/>
               </TouchableOpacity>
-
               <ConnectionMonitor connected={this.props.connected}/>
-
               <TouchableOpacity onPress={this.onMilesPress}>
                 <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
               </TouchableOpacity>
@@ -308,7 +306,6 @@ const HomeView = React.createClass({
   },
 
   onSettingsPress() {
-    // go to settings
     this.props.pushRoute({key: 'Settings', title: loc.settings.settings});
   },
 
