@@ -14,23 +14,10 @@ if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
 else
   var loc = en;
 import carfitTheme from '../../config/carfit-theme';
-
 import * as NavigationState from '../navigation/NavigationState';
 
-/**
- * Welcome view
- */
 const CarInstallationStartView = React.createClass({
-  propTypes: {
-    // dispatch: PropTypes.func.isRequired
-  },
-
-  onNextPress() {
-    this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
-  },
-
   render() {
-
     return (
         <Container theme={carfitTheme}>
           <Header>
@@ -98,6 +85,10 @@ const CarInstallationStartView = React.createClass({
           </Footer>
         </Container>
     );
+  },
+
+  onNextPress() {
+    this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
   }
 });
 
