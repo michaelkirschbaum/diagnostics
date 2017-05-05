@@ -21,7 +21,7 @@ import carfitTheme from '../../config/carfit-theme';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
 import colors from '../../config/colors';
-import d3 from 'd3';
+import UsageGraph from '../../components/UsageGraph';
 
 // set language
 if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
@@ -115,22 +115,7 @@ const UsageView = React.createClass({
             marginBottom: 5,
             }}/>
 
-          <View>
-            {!this.state.trips.length &&
-              <Text style={{alignSelf: 'center'}}>{loc.home.noTrips}</Text>
-            }
-            <List dataArray={this.state.trips.reverse()}
-              renderRow={(trip) =>
-                <ListItem>
-                  <View>
-                    <Text>City: {this.getReport(trip).city}, Highway: {this.getReport(trip).highway}, Stop and Go: {this.getReport(trip).stop_and_go}</Text>
-                    <Text>Start: {new Date(trip.start_timestamp).toString()}</Text>
-                    <Text>Distance: {this.convertMeters(trip.meters_travelled).toString() + (this.useMetric() ? ' km' : ' mi')}</Text>
-                  </View>
-                </ListItem>
-              }>
-            </List>
-          </View>
+          <UsageGraph data={this.state.trips}/>
         </Content>
       </Container>
     );
