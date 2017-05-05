@@ -21,6 +21,7 @@ import carfitTheme from '../../config/carfit-theme';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
 import colors from '../../config/colors';
+import d3 from 'd3';
 
 // set language
 if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
