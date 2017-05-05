@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted} from '../navigation/NavigationState';
+import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted, newVehicle} from '../navigation/NavigationState';
 import MyCarsView from './MyCarsView';
 
 export default connect(
@@ -23,5 +23,8 @@ export default connect(
     closeDrawer() {
       dispatch(closeDrawer());
     },
+    newVehicle() {
+      dispatch(newVehicle());
+    }
   })
 )(MyCarsView);

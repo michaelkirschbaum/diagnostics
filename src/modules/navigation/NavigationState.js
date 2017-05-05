@@ -18,6 +18,7 @@ const POP_ROUTE = 'NavigationState/POP_ROUTE';
 const SWITCH_ROUTE = 'NavigationState/SWITCH_ROUTE';
 const DRAWER_OPEN = 'NavigationState/DRAWER_OPEN';
 const DRAWER_CLOSE = 'NavigationState/DRAWER_CLOSE';
+const NEW_VEHICLE = 'NavigationState/NEW_VEHICLE';
 
 // Action creators
 export function pushRoute(route) {
@@ -68,6 +69,12 @@ export function openDrawer(): Action {
 export function closeDrawer(): Action {
   return {
     type: DRAWER_CLOSE,
+  };
+}
+
+export function newVehicle() {
+  return {
+    type: NEW_VEHICLE
   };
 }
 
@@ -149,7 +156,7 @@ export default function NavigationReducer(state = initialState, action) {
         // console.log("roots  ", roots);
         console.log("nextTabs  ", nextTabs);
       if (roots !== nextTabs) {
-        return state.set('roots', fromJS(nextTabs));
+        state.set('roots', fromJS(nextTabs));
       }
       return state;
     }
@@ -159,6 +166,10 @@ export default function NavigationReducer(state = initialState, action) {
     }
     case DRAWER_CLOSE: {
       return state.set('drawerOpen', false);
+    }
+
+    case NEW_VEHICLE: {
+      return initialState.set('roots', initialState.get('roots').set('index', 1));
     }
 
     default:

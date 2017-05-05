@@ -48,27 +48,6 @@ const AccountView = React.createClass({
     };
   },
 
-  componentDidMount() {
-    this.getUserID().done();
-  },
-
-  onNextPress() {
-    // this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
-    // this.props.switchRoute('Overview');
-    // this.props.switchRoute(2);
-  },
-
-  popRoute() {
-    this.props.onNavigateBack();
-  },
-
-  async getUserID() {
-    var login = new Login();
-    var userID = await login.getUser();
-
-    this.setState({userID});
-  },
-
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
@@ -121,7 +100,7 @@ const AccountView = React.createClass({
           <View style={styles.layoutContainer}>
 
             {accountDetails}
-{/*
+            {/*
             <View style={styles.sectionContainer}>
               <View style={styles.sectionDetails}>
                 <H3 style={styles.sectionTitle}>{loc.account.password}</H3>
@@ -131,12 +110,26 @@ const AccountView = React.createClass({
                 <Icon active name="ios-arrow-forward"></Icon>
               </View>
             </View>
-*/}
+            */}
           </View>
 
         </Content>
       </Container>
     );
+  },
+
+  componentDidMount() {
+    this.getUserID().done();
+  },
+
+  popRoute() {
+    this.props.onNavigateBack();
+  },
+
+  async getUserID() {
+    var login = new Login();
+    var userID = await login.getUser();
+    this.setState({userID});
   }
 });
 
