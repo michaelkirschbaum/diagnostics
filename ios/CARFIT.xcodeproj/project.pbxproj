@@ -1391,6 +1391,7 @@
 					"$(SRCROOT)/../node_modules/aws-sdk-react-native-lambda/ios/Lambda/**",
 				);
 				INFOPLIST_FILE = CARFIT/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1399,6 +1400,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.carfit.app01;
 				PRODUCT_NAME = CARFIT;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1438,6 +1440,7 @@
 					"$(SRCROOT)/../node_modules/aws-sdk-react-native-lambda/ios/Lambda/**",
 				);
 				INFOPLIST_FILE = CARFIT/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1446,6 +1449,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.carfit.app01;
 				PRODUCT_NAME = CARFIT;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

@@ -70,7 +70,7 @@ const MyCarsView = React.createClass({
           ref={c => this._content = c}>
 
           <View style={styles.layoutContainer}>
-            <TouchableWithoutFeedback onPress={this.onMyCarsPress}>
+          <TouchableWithoutFeedback onPress={this.onMyCarsPress}>
               <View style={styles.carContainer}>
                 <View style={styles.carImageContainer}>
                   <Text>IMAGE</Text>
@@ -132,7 +132,7 @@ const MyCarsView = React.createClass({
   },
 
   onMyCarsPress() {
-    // this.props.pushRoute({key: 'Details', title: loc.settings.settings});
+    this.props.pushRoute({key: 'Details', title: loc.settings.settings});
   }
 });
 

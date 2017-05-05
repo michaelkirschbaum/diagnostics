@@ -23,7 +23,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>4</string>
 	<key>CFPAWSAPIGatewayURL</key>
 	<string>https://tnexnmzch3.execute-api.us-east-1.amazonaws.com/dev</string>
 	<key>CodePushDeploymentKey</key>

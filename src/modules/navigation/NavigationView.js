@@ -19,7 +19,12 @@ import {Drawer, Content, Text, List, ListItem} from 'native-base';
 import NavigationDemoDrawer from './NavigationDemoDrawer';
 const {CarFitManager} = NativeModules;
 import stylesMain from '../../config/styles';
-
+import en from '../../config/localization.en';
+import fr from '../../config/localization.fr';
+if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
+  var loc = fr;
+else
+  var loc = en;
 // const styles = stylesMain;
 
 // Customize bottom tab bar height here if desired
