@@ -216,11 +216,7 @@ const InstallationView = React.createClass({
 
       // notify user if no devices are found
       if (!this.props.installation.foundDevices.length)
-        Alert.alert(
-          loc.login.connection_error,
-          loc.login.noneFound,
-          {text: 'OK', onPress: () => console.log('OK pressed.')}
-        );
+        this.continue();
     }
   },
 
@@ -230,7 +226,19 @@ const InstallationView = React.createClass({
 
   continue() {
     this.setState({modalVisible: false});
-    this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
+
+    // if norauto user skip CarStartInstallation
+    if (this.locationFrance())
+      this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
+    else
+      this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
+  },
+
+  locationFrance() {
+    if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+      return true;
+    else
+      return false;
   }
 });
 

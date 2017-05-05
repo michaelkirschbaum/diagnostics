@@ -20,11 +20,13 @@ import {
 import carfitTheme from '../../config/carfit-theme';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
+import colors from '../../config/colors';
+
+// set language
 if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
   var loc = en;
-import colors from '../../config/colors';
 
 const UsageView = React.createClass({
   getInitialState() {
