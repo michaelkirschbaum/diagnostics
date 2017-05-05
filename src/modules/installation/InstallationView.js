@@ -197,8 +197,8 @@ const InstallationView = React.createClass({
       Alert.alert(
         loc.carInstallation.connect,
         loc.carInstallation.connectError,
-        {text: 'OK', onPress: () => console.log("OK pressed.")},
-        {cancellable: false}
+        [{text: 'OK', onPress: () => console.log("OK pressed.")},
+        {cancellable: false}]
       );
   },
 
@@ -215,8 +215,14 @@ const InstallationView = React.createClass({
       this.props.discover();
 
       // notify user if no devices are found
-      if (!this.props.installation.foundDevices.length)
-        this.continue();
+      if (!this.props.installation.foundDevices.length) {
+        Alert.alert(
+          loc.login.connection_error,
+          loc.login.noneFound,
+          [{text: 'OK', onPress: () => setPage(0)},
+          {cancellable: false}]
+        );
+      }
     }
   },
 
