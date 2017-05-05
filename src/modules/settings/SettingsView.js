@@ -34,20 +34,44 @@ import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
 
-/**
- * Login view
- * Likely to be the main app view, but will only display login dialog when needed.
- * Otherwise pass by.
- */
 const SettingsView = React.createClass({
-  propTypes: {
+  render() {
+    let windowHeight = Dimensions.get('window').height;
+    let windowWidth = Dimensions.get('window').width;
+    headerTitle = loc.settings.settings;
 
-  },
+    return (
+      <Container theme={carfitTheme}>
+        <Header>
+          <Button transparent onPress={() => this.popRoute()}>
+            <Icon name="ios-arrow-back"/>
+          </Button>
+          <Title>{headerTitle}</Title>
+        </Header>
+        <View style={styles.headerLine}/>
+        <Content
+          padder={false}
+          keyboardShouldPersistTaps="always"
+          style={{flex: 1, backgroundColor: colors.backgroundPrimary, height: windowHeight}}
+          ref={c => this._content = c}>
 
-  onNextPress() {
-    // this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
-    // this.props.switchRoute('Overview');
-    this.props.switchRoute(2);
+          <View style={styles.layoutContainer}>
+            <View style={styles.settingsContainer}>
+              <H1 style={styles.menuText} onPress={this.onMyCarsPress}>{loc.settings.myCars}</H1>
+              {/* <H1 style={styles.menuText}>{loc.settings.sensors}</H1> */}
+              <H1 style={styles.menuText} onPress={this.onMyAccountPress}>{loc.settings.myAccount}</H1>
+              {/* <H1 style={styles.menuText} onPress={this.onDrivePress}>{loc.settings.drive}</H1> */}
+              {/* <H1 style={styles.menuText}>{loc.settings.useWiFi}</H1> */}
+            </View>
+            <View style={styles.settingsSubContainer}>
+              <H2 style={{marginBottom: 7}} onPress={this.onTermsPress}>{loc.settings.terms}</H2>
+              <H2 onPress={this.onPrivacyPress}>{loc.settings.privacy}</H2>
+              <Text style={{paddingTop: 20}}>{loc.settings.copyright}</Text>
+            </View>
+        </View>
+        </Content>
+      </Container>
+    );
   },
 
   onMyCarsPress() {
@@ -72,50 +96,6 @@ const SettingsView = React.createClass({
 
   popRoute() {
     this.props.onNavigateBack();
-  },
-
-  render() {
-    let windowHeight = Dimensions.get('window').height;
-    let windowWidth = Dimensions.get('window').width;
-
-    headerTitle = loc.settings.settings;
-
-    return (
-      <Container theme={carfitTheme}>
-        <Header>
-          <Button transparent onPress={() => this.popRoute()}>
-            <Icon name="ios-arrow-back"/>
-          </Button>
-          <Title>{headerTitle}</Title>
-        </Header>
-        <View style={styles.headerLine}/>
-        <Content
-          padder={false}
-          keyboardShouldPersistTaps="always"
-          style={{flex: 1, backgroundColor: colors.backgroundPrimary, height: windowHeight}}
-          ref={c => this._content = c}>
-
-          <View style={styles.layoutContainer}>
-
-            <View style={styles.settingsContainer}>
-              <H1 style={styles.menuText} onPress={this.onMyCarsPress}>{loc.settings.myCars}</H1>
-              {/* <H1 style={styles.menuText}>{loc.settings.sensors}</H1> */}
-              <H1 style={styles.menuText} onPress={this.onMyAccountPress}>{loc.settings.myAccount}</H1>
-              {/* <H1 style={styles.menuText} onPress={this.onDrivePress}>{loc.settings.drive}</H1> */}
-              {/* <H1 style={styles.menuText}>{loc.settings.useWiFi}</H1> */}
-            </View>
-
-            <View style={styles.settingsSubContainer}>
-              <H2 style={{marginBottom: 7}} onPress={this.onTermsPress}>{loc.settings.terms}</H2>
-              <H2 onPress={this.onPrivacyPress}>{loc.settings.privacy}</H2>
-              <Text style={{paddingTop: 20}}>{loc.settings.copyright}</Text>
-            </View>
-
-        </View>
-
-        </Content>
-      </Container>
-    );
   }
 });
 

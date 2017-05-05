@@ -167,15 +167,14 @@ const en = {
     notAvailable: 'Not available',
   },
   details: {
+    details: 'Details',
     displayInfo: 'DISPLAY INFO',
     name: 'Name',
     mileage: 'Mileage',
     image: 'Image',
-
     connectedSensors: 'CONNECTED SENSORS',
     carfit: 'CARFIT',
     phone: 'Phone',
-
     info: 'INFO',
     year: 'Year',
     make: 'Make',

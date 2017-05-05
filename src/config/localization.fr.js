@@ -168,6 +168,7 @@ const fr = {
     disconnected: 'Débranché',
   },
   details: {
+    details: 'Détails'
     displayInfo: 'Information du véhicule',
     name: 'Nom',
     mileage: 'Kilométrage',
