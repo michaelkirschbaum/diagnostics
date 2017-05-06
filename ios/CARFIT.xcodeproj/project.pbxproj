@@ -56,6 +56,8 @@
 		9B0CA1921E52DFE000BA3786 /* CarFitManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CA1911E52DFE000BA3786 /* CarFitManager.m */; };
 		9EC3AE9BEB384C189703DC50 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC164155803741F2BD31A5CB /* libRNVectorIcons.a */; };
 		A1270C991EBD4061005BC106 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1270C7A1EBD4023005BC106 /* libART.a */; };
+		A1B84E0B1EBD7D8300ABDCB7 /* libRNBluetoothState.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1B84E091EBD7D4E00ABDCB7 /* libRNBluetoothState.a */; };
+		A1B84E0D1EBD7DD000ABDCB7 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1B84E0C1EBD7DD000ABDCB7 /* CoreBluetooth.framework */; };
 		A3DC2A55AC46464D843FEB26 /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58815678E2254306B5EAD0E5 /* Roboto_medium.ttf */; };
 		A6AEDBECD1554247AEA86E2C /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63FE2BA13523425A90D4C1ED /* libCodePush.a */; };
 		B537D29DE3D6459DAA080918 /* Microsoft Sans Serif.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B8A1E1473824221B0B3CF31 /* Microsoft Sans Serif.ttf */; };
@@ -277,6 +279,13 @@
 			remoteGlobalIDString = 0CF68AC11AF0540F00FF9E5C;
 			remoteInfo = ART;
 		};
+		A1B84E081EBD7D4E00ABDCB7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1B84DE51EBD7D4E00ABDCB7 /* RNBluetoothState.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNBluetoothState;
+		};
 		A1DB36B51E9C27B0002F47BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E282DFBC00B74543A4CBD373 /* RCTCamera.xcodeproj */;
@@ -360,6 +369,8 @@
 		9B0CA1901E52DFE000BA3786 /* CarFitManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CarFitManager.h; path = CARFIT/CarFitManager.h; sourceTree = "<group>"; };
 		9B0CA1911E52DFE000BA3786 /* CarFitManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CarFitManager.m; path = CARFIT/CarFitManager.m; sourceTree = "<group>"; };
 		A1270C741EBD4023005BC106 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
+		A1B84DE51EBD7D4E00ABDCB7 /* RNBluetoothState.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBluetoothState.xcodeproj; path = "../node_modules/react-native-bluetooth-state/RNBluetoothState.xcodeproj"; sourceTree = "<group>"; };
+		A1B84E0C1EBD7DD000ABDCB7 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		A564B9601A734B6E86399B54 /* Core.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = Core.xcodeproj; path = "../node_modules/aws-sdk-react-native-core/ios/Core.xcodeproj"; sourceTree = "<group>"; };
 		AC164155803741F2BD31A5CB /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		C7CE4E592F594E62A036A12B /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
@@ -392,6 +403,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1B84E0D1EBD7DD000ABDCB7 /* CoreBluetooth.framework in Frameworks */,
+				A1B84E0B1EBD7D8300ABDCB7 /* libRNBluetoothState.a in Frameworks */,
 				A1270C991EBD4061005BC106 /* libART.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -573,6 +586,7 @@
 		3AA4F5A5ADBD494EA439E38E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1B84E0C1EBD7DD000ABDCB7 /* CoreBluetooth.framework */,
 				2ACF115B72824245B7C41DEE /* libz.tbd */,
 				894D1FE89A03778149D6AF67 /* libPods-CARFIT.a */,
 				6AEDC144F00009D13570A80B /* libPods-CARFITTests.a */,
@@ -626,6 +640,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				A1B84DE51EBD7D4E00ABDCB7 /* RNBluetoothState.xcodeproj */,
 				A1270C741EBD4023005BC106 /* ART.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -694,6 +709,14 @@
 			isa = PBXGroup;
 			children = (
 				A1270C7A1EBD4023005BC106 /* libART.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A1B84DE61EBD7D4E00ABDCB7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A1B84E091EBD7D4E00ABDCB7 /* libRNBluetoothState.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -867,6 +890,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = A1B84DE61EBD7D4E00ABDCB7 /* Products */;
+					ProjectRef = A1B84DE51EBD7D4E00ABDCB7 /* RNBluetoothState.xcodeproj */;
 				},
 				{
 					ProductGroup = D348810F1E3DC7D00064498D /* Products */;
@@ -1083,6 +1110,13 @@
 			fileType = archive.ar;
 			path = libART.a;
 			remoteRef = A1270C791EBD4023005BC106 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A1B84E091EBD7D4E00ABDCB7 /* libRNBluetoothState.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNBluetoothState.a;
+			remoteRef = A1B84E081EBD7D4E00ABDCB7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		A1DB36B61E9C27B0002F47BC /* libRCTCamera.a */ = {

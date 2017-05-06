@@ -25,7 +25,8 @@ const fr = {
     attention: 'ATTENTION: Prototype d\'application pour test. Munissez-vous de votre numéro d\'immatriculation pour finaliser l\'inscription',
     connection_error: 'Connecter le capteur',
     reset: 'Le capteur Puls doit être réinitialisé. Maintenez la touche du capteur appuyé pendant 10 secondes pour continuer.',
-    noneFound: 'Aucun périphérique trouvé. Allumez un périphérique en cliquant dessus.'
+    noneFound: 'Aucun périphérique trouvé. Allumez un périphérique en cliquant dessus.',
+    bluetooth: 'Bluetooth est éteint. Activez pour continuer.'
   },
   verification: { // is this still required with Auth0?
     verification: 'Vérification',

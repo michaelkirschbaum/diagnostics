@@ -37,6 +37,7 @@ import Connection from '../../carfit/connection';
 import Signal from '../../components/Signal';
 import TimerMixin from 'react-native-timer-mixin';
 import ConnectionSpinner from '../../components/ConnectionSpinner';
+import BluetoothState from 'react-native-bluetooth-state';
 const {CarFitManager} = NativeModules;
 
 // set language
@@ -50,7 +51,8 @@ const InstallationView = React.createClass({
     return {
       rssi_refresh: '',
       connected: false,
-      modalVisible: false
+      modalVisible: false,
+      bluetoothStatus: 'unknown'
     };
   },
 
@@ -144,6 +146,14 @@ const InstallationView = React.createClass({
     );
   },
 
+  componentWillMount() {
+    BluetoothState.subscribe(status => {
+      this.setState({bluetoothStatus: status});
+    });
+
+    BluetoothState.initialize();
+  },
+
   componentDidMount() {
     // signal strength refresh
     var interval = 2000;
@@ -214,8 +224,15 @@ const InstallationView = React.createClass({
       // Start discovery of BLE devices
       this.props.discover();
 
+      if (this.state.bluetoothStatus == "off")
+        Alert.alert(
+          loc.login.connection_error,
+          'bluetooth off',
+          [{text: 'OK', onPress: () => undefined},
+          {cancellable: false}]
+        );
       // notify user if no devices are found
-      if (!this.props.installation.foundDevices.length) {
+      else if (!this.props.installation.foundDevices.length) {
         Alert.alert(
           loc.login.connection_error,
           loc.login.noneFound,
