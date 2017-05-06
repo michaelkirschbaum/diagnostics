@@ -405,7 +405,7 @@ const CarInstallationStateView = React.createClass({
     if (this.locationFrance())
       this.props.pushRoute({key: 'Home', title: loc.settings.settings});
     else
-      this.props.switchRoute(2);
+      this.props.pushRoute({key: 'Overview', title: loc.overview.overview});
   },
 
   turnOffModal() {

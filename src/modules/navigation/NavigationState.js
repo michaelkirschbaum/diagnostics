@@ -45,7 +45,7 @@ export function switchRoute(index) {
         payload = 1;
         break;
       case 'Overview':
-        payload = 1;
+        payload = 2;
         break;
       case 'MainRoute':
         payload = 3;
