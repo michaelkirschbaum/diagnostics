@@ -224,6 +224,7 @@ const InstallationView = React.createClass({
       // Start discovery of BLE devices
       this.props.discover();
 
+      // notify user if bluetooth is off
       if (this.state.bluetoothStatus == "off")
         Alert.alert(
           loc.login.connection_error,
