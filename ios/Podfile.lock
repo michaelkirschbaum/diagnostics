@@ -14,15 +14,15 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - AWSAPIGateway (2.5.5):
-    - AWSCore (= 2.5.5)
-  - AWSCognito (2.5.5):
-    - AWSCore (= 2.5.5)
-  - AWSCore (2.5.5)
-  - AWSS3 (2.5.5):
-    - AWSCore (= 2.5.5)
+  - AWSAPIGateway (2.5.6):
+    - AWSCore (= 2.5.6)
+  - AWSCognito (2.5.6):
+    - AWSCore (= 2.5.6)
+  - AWSCore (2.5.6)
+  - AWSS3 (2.5.6):
+    - AWSCore (= 2.5.6)
   - BuddyBuildSDK (1.0.15)
-  - CarFitiOSSDK (0.0.68):
+  - CarFitiOSSDK (0.0.69):
     - AWSAPIGateway
     - AWSCognito
     - AWSCore
@@ -53,9 +53,9 @@ PODS:
   - Lock/WebView (1.29.1):
     - Lock/CoreUI
   - Masonry (0.6.4)
-  - Realm (2.6.2):
-    - Realm/Headers (= 2.6.2)
-  - Realm/Headers (2.6.2)
+  - Realm (2.7.0):
+    - Realm/Headers (= 2.7.0)
+  - Realm/Headers (2.7.0)
   - SimpleKeychain (0.7.0)
   - TouchIDAuth (0.2.0):
     - SimpleKeychain (~> 0.3)
@@ -72,17 +72,17 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  AWSAPIGateway: e4da1a679ccffbfdb95533d0346436495f2115ce
-  AWSCognito: 5f1dddb8669682b1224c19c214270a942e438b06
-  AWSCore: 665371d51ccdfe62430c586e3cb8e57eff8ce09d
-  AWSS3: 7a910824991e5dc13971f7ae73230d354666880e
+  AWSAPIGateway: 63e309ef43c094bc4c695a4e6cc4c9c184389f97
+  AWSCognito: 18edcf80780d45229371dc954c77c825c617f9c4
+  AWSCore: 47109d026cdbc1272624caa73114fbdd2ba3ad66
+  AWSS3: 5ba117abcbf766c4ec405b255c51dbf8bbc588ce
   BuddyBuildSDK: b3038125612b1ad389c2aa89e4787dcb75cac89a
-  CarFitiOSSDK: 62c30ac936700c770d25836b579939edac91d2e6
+  CarFitiOSSDK: 2676e52b3bd18893a3a959d1303bd864c091a413
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Lock: 8dcce0f7b77961141f11431f30d8fcc07a2708d3
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
-  Realm: 29222766425b9f831228f81b63f0e38a97a4d700
+  Realm: 07e5d3a9e0e41d65fd5f9f05150ed6295d0f093b
   SimpleKeychain: b50cef3b87939d480ea1143425c00f5b4b70fe21
   TouchIDAuth: 0cf861f58a2cacfc1c12cb02de4850729d943c81
 
