@@ -403,7 +403,7 @@ const CarInstallationStateView = React.createClass({
     this.props.setOdometerModal(true);
 
     if (this.locationFrance())
-      this.props.switchRoute('MainRoute');
+      this.props.pushRoute({key: 'Home', title: loc.settings.settings});
     else
       this.props.switchRoute(2);
   },
