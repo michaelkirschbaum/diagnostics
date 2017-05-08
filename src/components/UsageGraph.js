@@ -38,8 +38,6 @@ const UsageGraph = React.createClass({
           .order(d3.stackOrderNone)
           .offset(d3.stackOffsetNone);
 
-    var series = stack(data);
-
     // return stack(data);
   }
 });
