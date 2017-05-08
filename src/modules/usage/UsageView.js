@@ -115,7 +115,25 @@ const UsageView = React.createClass({
             marginBottom: 5,
             }}/>
 
-          <UsageGraph data={this.state.trips} />
+          {/* <UsageGraph data={this.state.trips} /> */}
+
+          <View>
+            {!this.state.trips.length &&
+              <Text style={{alignSelf: 'center'}}>{loc.home.noTrips}</Text>
+            }
+            <List dataArray={this.state.trips.reverse()}
+              renderRow={(trip) =>
+                <ListItem>
+                  <View>
+                    <Text>City: {this.getReport(trip).city}, Highway: {this.getReport(trip).highway}, Stop and Go: {this.getReport(trip).stop_and_go}</Text>
+                    <Text>Start: {new Date(trip.start_timestamp).toString()}</Text>
+                    <Text>Distance: {this.convertMeters(trip.meters_travelled).toString() + (this.useMetric() ? ' km' : ' mi')}</Text>
+                  </View>
+                </ListItem>
+              }>
+            </List>
+          </View>
+
         </Content>
       </Container>
     );
