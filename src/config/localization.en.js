@@ -26,7 +26,10 @@ const en = {
     connection_error: 'Connect Device',
     reset: 'Puls device needs to be reset. Hold the device button for 10 seconds to continue.',
     noneFound: 'No devices found. Turn on a device by clicking it.',
-    bluetooth: 'Bluetooth is off. Turn on to continue.'
+    bluetooth: 'Bluetooth is off. Turn on to continue.',
+    login: 'S\'identifier',
+    success: 'Vous êtes maintenant connecté.',
+    failure: 'Échec de la connexion. Réessayer.'
   },
   verification: { // is this still required with Auth0?
     verification: 'Verification',
@@ -65,8 +68,8 @@ const en = {
     activateBluetooth: 'Activate Bluetooth',
     turnOnBLE: 'Turn your phone\'s Bluetooth on.',
     resetConnection: 'Reset connection',
-    pressAndHold: 'Press & hold the center of the CARFIT PULS sensor for 10s to reset the sensor. \nTap to turn it on.',
-    blePairing: 'Enable battery power',
+    pressAndHold: 'Press & hold the center of the CARFIT PULS sensor for 10s to reset the sensor.',
+    blePairing: 'Tap button to turn it on.',
     ensurePairing: 'Ensure the CARFIT PULS sensor in pairing mode with the center LED flashing.',
     selectBLE: 'Select your CARFIT PULS sensor from the list to connect.',
   },

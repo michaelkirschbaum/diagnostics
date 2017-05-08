@@ -26,6 +26,7 @@ else
   var loc = en;
 import store from '../../redux/store';
 import Login from '../../carfit/login';
+import Connection from '../../carfit/connection';
 
 const RegisterView = React.createClass({
   getInitialState() {
@@ -38,6 +39,10 @@ const RegisterView = React.createClass({
 
   async authenticate(first, last, phone, code) {
     var login = new Login();
+    var conn = new Connection();
+
+    // set phone number
+    conn.addPhone(phone);
 
     // user information
     var demographics = {
@@ -49,15 +54,15 @@ const RegisterView = React.createClass({
     var response = await login.norauto(code, demographics);
     if (true) {
       Alert.alert(
-        'Login',
-        'You are now logged in.',
+        loc.login.login,
+        loc.login.success,
         [{text: 'OK', onPress: () => this.props.pushRoute({key: 'Installation', title: loc.welcome.welcome})}],
         {cancellable: false}
       );
     } else {
       Alert.alert(
-        'Login',
-        'Log in failed. Try again.',
+        loc.login.login,
+        loc.login.failure,
         [{text: 'OK', onPress: () => console.log("Error: login failed")}]
       );
     }

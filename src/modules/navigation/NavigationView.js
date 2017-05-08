@@ -146,7 +146,7 @@ const NavigationView = React.createClass({
       var support_subscription = connectionEmitter.addListener(
         'BLEButtonPress',
         (reminder) => Alert.alert(
-          'Support',
+          loc.home.support,
           loc.home.call,
           {text: 'OK', onPress: () => console.log('OK Pressed')}
         )

@@ -6,6 +6,8 @@ import {
 import {
   Text
 } from 'native-base';
+var d3 = require('d3');
+var d3Shape = require('d3-shape');
 
 const {
   Surface,
@@ -13,16 +15,31 @@ const {
   Shape,
 } = ART;
 
-class UsageGraph extends Component {
+const UsageGraph = React.createClass({
   render() {
+    let trips = this.props.data.slice(-10).reverse().map(function(trip) {
+      return {"highway": trip.secs_above_72kph, "stop-and-go": trip.secs_below_72kph, "city": trip.secs_below_10kph};
+    });
+
     return (
       <Surface>
         <Group>
-          <Shape />
+          <Shape
+            d={this.drawGraph()}
+          />
         </Group>
       </Surface>
     );
+  },
+
+  drawGraph() {
+  var stack = d3Shape.stack()
+        .keys(["highway", "stop-and-go", "city"])
+        .order(d3.stackOrderNone)
+        .offset(d3.stackOffsetNone);
+
+    // return stack(this.props.trips);
   }
-}
+});
 
 export default UsageGraph;

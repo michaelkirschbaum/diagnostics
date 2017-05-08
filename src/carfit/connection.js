@@ -47,11 +47,11 @@ export default class Connection {
 
   addPhone(number) {
     this.manager.setPhone(number);
-
+    /*
     Alert.alert(
       'Support',
       'Your phone number has been added.',
       {text: 'OK', onPress: () => console.log('OK Pressed.')},
-    );
+    ); */
   }
 }
