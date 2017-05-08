@@ -26,7 +26,10 @@ const fr = {
     connection_error: 'Connecter le capteur',
     reset: 'Le capteur Puls doit être réinitialisé. Maintenez la touche du capteur appuyé pendant 10 secondes pour continuer.',
     noneFound: 'Aucun périphérique trouvé. Allumez un périphérique en cliquant dessus.',
-    bluetooth: 'Bluetooth est éteint. Activez pour continuer.'
+    bluetooth: 'Bluetooth est éteint. Activez pour continuer.',
+    login: 'S\'identifier',
+    success: 'Vous êtes maintenant connecté.',
+    failure: 'Échec de la connexion. Réessayer.'
   },
   verification: { // is this still required with Auth0?
     verification: 'Vérification',
