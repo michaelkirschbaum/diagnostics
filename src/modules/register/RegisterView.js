@@ -42,7 +42,7 @@ const RegisterView = React.createClass({
     var conn = new Connection();
 
     // set phone number
-    conn.addPhone(phone);
+    // conn.addPhone(phone);
 
     // user information
     var demographics = {

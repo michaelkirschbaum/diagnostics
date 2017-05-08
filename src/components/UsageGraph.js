@@ -25,20 +25,22 @@ const UsageGraph = React.createClass({
       <Surface>
         <Group>
           <Shape
-            d={this.drawGraph()}
+            d={this.drawGraph(this.props)}
           />
         </Group>
       </Surface>
     );
   },
 
-  drawGraph() {
-  var stack = d3Shape.stack()
-        .keys(["highway", "stop-and-go", "city"])
-        .order(d3.stackOrderNone)
-        .offset(d3.stackOffsetNone);
+  drawGraph(data) {
+    var stack = d3Shape.stack()
+          .keys(["highway", "stop-and-go", "city"])
+          .order(d3.stackOrderNone)
+          .offset(d3.stackOffsetNone);
 
-    // return stack(this.props.trips);
+    var series = stack(data);
+
+    // return stack(data);
   }
 });
 

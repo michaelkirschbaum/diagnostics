@@ -115,7 +115,7 @@ const UsageView = React.createClass({
             marginBottom: 5,
             }}/>
 
-          {/* <UsageGraph data={this.state.trips} /> */}
+          <UsageGraph data={this.state.trips} />
 
           <View>
             {!this.state.trips.length &&
