@@ -26,7 +26,10 @@ const en = {
     connection_error: 'Connect Device',
     reset: 'Puls device needs to be reset. Hold the device button for 10 seconds to continue.',
     noneFound: 'No devices found. Turn on a device by clicking it.',
-    bluetooth: 'Bluetooth is off. Turn on to continue.'
+    bluetooth: 'Bluetooth is off. Turn on to continue.',
+    login: 'Login',
+    success: 'You are now logged in.',
+    failure: 'Log in failed. Try again.'
   },
   verification: { // is this still required with Auth0?
     verification: 'Verification',
