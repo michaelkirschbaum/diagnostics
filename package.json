@@ -70,6 +70,7 @@
     "remote-redux-devtools-on-debugger": "^0.7.0",
     "rxjs": "^5.0.1",
     "standard-http-error": "^2.0.0",
+    "through": "^2.3.8",
     "ultron": "^1.1.0",
     "url-parse": "^1.1.8"
   },
