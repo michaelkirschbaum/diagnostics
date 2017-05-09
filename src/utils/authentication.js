@@ -1,5 +1,5 @@
 import {AsyncStorage} from 'react-native';
-import { AWSCognitoCredentials } from 'aws-sdk-react-native-core';
+// import { AWSCognitoCredentials } from 'aws-sdk-react-native-core';
 
 const AUTHENTICATION_STORAGE_KEY = 'CarFitState:Authentication';
 
