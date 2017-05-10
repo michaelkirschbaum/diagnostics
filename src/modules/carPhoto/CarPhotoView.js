@@ -82,7 +82,7 @@ const CarPhotoView = React.createClass({
 
     const options = {};
     this.camera.capture({metadata: options})
-      .then((data) => vehicle.setPhoto(data, "name"))
+      .then((data) => vehicle.setPhoto(data.path, "name"))
       .catch(err => console.error(err));
   }
 });
