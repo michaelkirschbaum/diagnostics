@@ -583,7 +583,8 @@ const styles = StyleSheet.create({
     borderWidth: 2.5,
     borderRadius: 20,
     width: 220,
-    alignSelf: 'center'
+    alignSelf: 'center',
+    textAlign: 'center'
   },
   image: {
     width: 75,
