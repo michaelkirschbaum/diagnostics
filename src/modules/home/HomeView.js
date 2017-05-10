@@ -59,7 +59,7 @@ const HomeView = React.createClass({
       alert: '',
       modalVisible: false,
       meters: '',
-      trips: [],
+      trips: '',
       title: '',
       description: '',
       photo: '',

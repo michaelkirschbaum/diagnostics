@@ -34,11 +34,6 @@ import * as NavigationState from '../navigation/NavigationState';
 import Camera from 'react-native-camera';
 import Vehicle from '../../carfit/vehicle';
 
-/**
- * Login view
- * Likely to be the main app view, but will only display login dialog when needed.
- * Otherwise pass by.
- */
 const CarPhotoView = React.createClass({
   propTypes: {
 

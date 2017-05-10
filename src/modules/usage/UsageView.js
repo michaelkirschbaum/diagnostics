@@ -121,7 +121,7 @@ const UsageView = React.createClass({
             {!this.state.trips.length &&
               <Text style={{alignSelf: 'center'}}>{loc.home.noTrips}</Text>
             }
-            <List dataArray={this.state.trips.reverse()}
+            <List dataArray={this.state.trips}
               renderRow={(trip) =>
                 <ListItem>
                   <View>
@@ -133,7 +133,6 @@ const UsageView = React.createClass({
               }>
             </List>
           </View>
-
         </Content>
       </Container>
     );
@@ -185,7 +184,7 @@ const UsageView = React.createClass({
 
   lastTrip() {
     if (this.state.trips.length) {
-      return this.state.trips[this.state.trips.length - 1];
+      return this.state.trips[0];
     }
 
     return {secs_below_72kph: 0, secs_above_72kph: 0, secs_below_10kph: 0}
