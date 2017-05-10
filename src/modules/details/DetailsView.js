@@ -20,66 +20,51 @@ import {
   H3,
   H2,
   H1,
-  List,
   ListItem
 } from 'native-base';
 import _ from 'lodash';
 import colors from '../../config/colors';
+import carfitTheme from '../../config/carfit-theme';
+import Swiper from 'react-native-swiper';
+import store from '../../redux/store';
+import * as NavigationState from '../navigation/NavigationState';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
-if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+
+// set language
+if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
   var loc = en;
-import carfitTheme from '../../config/carfit-theme';
-import Swiper from 'react-native-swiper';
 
-import * as NavigationState from '../navigation/NavigationState';
-
-/**
- * Login view
- * Likely to be the main app view, but will only display login dialog when needed.
- * Otherwise pass by.
- */
 const DetailsView = React.createClass({
-  propTypes: {
-
-  },
-
-  onNextPress() {
-    // this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
-    // this.props.switchRoute('Overview');
-    // this.props.switchRoute(2);
-  },
-
-  popRoute() {
-    this.props.onNavigateBack();
-  },
-
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
+    let headerTitle = loc.details.details;
 
-    let headerTitle = loc.myCars.myCars;
+    // get current vehicle
+    let vehicle = this.props.carInstallation.vehicles.slice(-1)[0];
 
-    let name = "Sam's Car";
-    let mileage = "10,345 km";
-    let image = "PICTURE";
+    let name = vehicle.name ? vehicle.name : loc.myCars.notAvailable;
+    let mileage = this.convertToLocal(this.props.carInstallation.odometer).toString();
+    let image = loc.myCars.notAvailable;
 
-    let connected = "Connected";
-    let phone = "Sam's iPhone 6";
+    let connected = this.props.connected ? loc.myCars.connected : loc.myCars.disconnected;
+
+    let phone = loc.myCars.notAvailable;
 
     let infoDetailsData = {
-      year: '2015',
-      make: 'Ford',
-      model: 'Fiesta',
-      mpgCity: 28,
-      mpgHighway: 36,
-      license: 'AY582RE',
-      vin: 'JHRD77874C026456',
-      drivenWheels: 'Front wheel drive',
-      trimLevel: 'SE',
-      doors: 4,
+      year: vehicle.year ? vehicle.year : loc.myCars.notAvailable,
+      make: vehicle.make ? vehicle.make : loc.myCars.notAvailable,
+      model: vehicle.model ? vehicle.model : loc.myCars.notAvailable,
+      mpgCity: vehicle.meters_per_liter_city ? this.fuelConsumption(vehicle.meters_per_liter_city) : loc.myCars.notAvailable,
+      mpgHighway: vehicle.meters_per_liter_highway ? this.fuelConsumption(vehicle.meters_per_liter_highway) : loc.myCars.notAvailable,
+      license: vehicle.plate ? vehicle.plate : loc.myCars.notAvailable,
+      vin: vehicle.vin,
+      drivenWheels: vehicle.driven_wheels ? vehicle.driven_wheels : loc.myCars.notAvailable,
+      trimLevel: vehicle.gettrim_level ? vehicle.gettrim_level : loc.myCars.notAvailable,
+      doors: vehicle.num_doors ? vehicle.num_doors : loc.myCars.notAvailable
     };
 
     let infoDetails = _.map(_.toPairs(infoDetailsData), infoPairs => {
@@ -101,14 +86,14 @@ const DetailsView = React.createClass({
     return (
       <Container theme={carfitTheme}>
         <Header>
-          <Button transparent onPress={() => this.popRoute()}>
+          <Button transparent onPress={() => this.props.onNavigateBack()}>
             <Icon name="ios-arrow-back"/>
           </Button>
           <Title>{headerTitle}</Title>
         </Header>
         <View style={styles.headerLine}/>
         <Content
-          padder
+          padder={false}
           keyboardShouldPersistTaps="always"
           style={{flex: 1, backgroundColor: colors.backgroundPrimary, height: windowHeight}}
           ref={c => this._content = c}>
@@ -124,9 +109,9 @@ const DetailsView = React.createClass({
                 <H3 style={styles.sectionTitle}>{loc.details.name}</H3>
                 <Text>{name}</Text>
               </View>
-              <View style={styles.sectionAction}>
+              {/* <View style={styles.sectionAction}>
                 <Icon active name="ios-arrow-forward"></Icon>
-              </View>
+              </View> */}
             </View>
             <View style={{height: 1,backgroundColor: colors.headerTextColor,marginTop: 17,marginBottom: 17,}}/>
             <View style={styles.sectionContainer}>
@@ -134,9 +119,9 @@ const DetailsView = React.createClass({
                 <H3 style={styles.sectionTitle}>{loc.details.mileage}</H3>
                 <Text>{mileage}</Text>
               </View>
-              <View style={styles.sectionAction}>
+              {/* <View style={styles.sectionAction}>
                 <Icon active name="ios-arrow-forward"></Icon>
-              </View>
+              </View> */}
             </View>
             <View style={{height: 1,backgroundColor: colors.headerTextColor,marginTop: 17,marginBottom: 17,}}/>
             <View style={styles.sectionContainer}>
@@ -144,9 +129,9 @@ const DetailsView = React.createClass({
                 <H3 style={styles.sectionTitle}>{loc.details.image}</H3>
                 <Text>{image}</Text>
               </View>
-              <View style={styles.sectionAction}>
+              {/* <View style={styles.sectionAction}>
                 <Icon active name="ios-arrow-forward"></Icon>
-              </View>
+              </View> */}
             </View>
             <View style={{height: 1,backgroundColor: colors.headerTextColor,marginTop: 17,marginBottom: 17,}}/>
 
@@ -159,9 +144,9 @@ const DetailsView = React.createClass({
                 <H3 style={styles.sectionTitle}>{loc.details.carfit}</H3>
                 <Text>{connected}</Text>
               </View>
-              <View style={styles.sectionAction}>
+              {/* <View style={styles.sectionAction}>
                 <Icon active name="ios-arrow-forward"></Icon>
-              </View>
+              </View> */}
             </View>
             <View style={{height: 1,backgroundColor: colors.headerTextColor,marginTop: 17,marginBottom: 17,}}/>
             <View style={styles.sectionContainer}>
@@ -169,9 +154,9 @@ const DetailsView = React.createClass({
                 <H3 style={styles.sectionTitle}>{loc.details.phone}</H3>
                 <Text>{phone}</Text>
               </View>
-              <View style={styles.sectionAction}>
+              {/* <View style={styles.sectionAction}>
                 <Icon active name="ios-arrow-forward"></Icon>
-              </View>
+              </View> */}
             </View>
             <View style={{height: 1,backgroundColor: colors.headerTextColor,marginTop: 17,marginBottom: 17,}}/>
 
@@ -185,6 +170,27 @@ const DetailsView = React.createClass({
         </Content>
       </Container>
     );
+  },
+
+  convertToLocal(meters) {
+    // get location
+    var region = NativeModules.SettingsManager.settings.AppleLocale;
+
+    // if in US or Britain use Miles, otherwise use Kilometers
+    if (region.endsWith('US') || region.endsWith('GB'))
+      return Math.round(meters / 1609.344);
+    else
+      return Math.round(meters / 1000);
+  },
+
+  fuelConsumption(meters_per_liter) {
+    // get location
+    var region = NativeModules.SettingsManager.settings.AppleLocale;
+
+    if (region.endsWith('US') || region.endsWith('GB'))
+      return Math.round(this.convertToLocal(meters_per_liter) * 3.78541);
+    else
+      return Math.round(100 / this.convertToLocal(meters_per_liter));
   }
 });
 
@@ -212,7 +218,8 @@ const styles = StyleSheet.create({
   },
   sectionDetails: {
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   sectionAction: {
 
@@ -223,9 +230,6 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontWeight: 'bold'
   },
-
-
-
   textInput: {
     backgroundColor: colors.inputBackground,
     borderColor: colors.primary,
@@ -237,7 +241,6 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     fontWeight: "bold"
   },
-
   image: {
     width: 300,
     height: 300,

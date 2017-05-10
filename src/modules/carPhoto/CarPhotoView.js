@@ -24,20 +24,16 @@ import {
 import colors from '../../config/colors';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
-if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
   var loc = en;
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
-
 import * as NavigationState from '../navigation/NavigationState';
+import Camera from 'react-native-camera';
+import Vehicle from '../../carfit/vehicle';
 
-/**
- * Login view
- * Likely to be the main app view, but will only display login dialog when needed.
- * Otherwise pass by.
- */
 const CarPhotoView = React.createClass({
   propTypes: {
 
@@ -67,25 +63,27 @@ const CarPhotoView = React.createClass({
           </Button>
           <Title>{headerTitle}</Title>
         </Header>
-        <View style={styles.headerLine}/>
-        <Content
-          padder
-          keyboardShouldPersistTaps="always"
-          style={{backgroundColor: colors.backgroundPrimary}}
-          ref={c => this._content = c}>
-
-        </Content>
-        <Footer theme={carfitTheme} style={styles.footer}>
-          <View style={styles.bottomContainer}>
-            <Button rounded
-                    style={{alignSelf: 'auto'}}
-                    textStyle={{color: colors.textPrimary}}
-                    onPress={this.onNextPress}
-            >{loc.general.continue}</Button>
-          </View>
-        </Footer>
+        <View style={styles.container}>
+          <Camera
+            ref={(cam) => {
+              this.camera = cam;
+            }}
+            style={styles.preview}
+            aspect={Camera.constants.Aspect.fill}>
+            <Text style={styles.capture} onPress={this.takePicture}>Capture</Text>
+          </Camera>
+        </View>
       </Container>
     );
+  },
+
+  takePicture() {
+    var vehicle = new Vehicle();
+
+    const options = {};
+    this.camera.capture({metadata: options})
+      .then((data) => vehicle.setPhoto(data.path, "name"))
+      .catch(err => console.error(err));
   }
 });
 
@@ -95,7 +93,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.headerTextColor
   },
   container: {
-    height: 300,
+    flex: 1,
+    flexDirection: 'row',
   },
   askMilesContainer: {
     marginTop: 22
@@ -132,6 +131,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  preview: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  capture: {
+    flex: 0,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    color: '#000',
+    padding: 10,
+    margin: 40
   }
 });
 

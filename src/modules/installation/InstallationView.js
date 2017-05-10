@@ -7,7 +7,10 @@ import {
   TouchableOpacity,
   NativeEventEmitter,
   NativeModules,
-  ActivityIndicator
+  ActivityIndicator,
+  Modal,
+  Animated,
+  Alert
 } from 'react-native';
 import {
   Container,
@@ -21,131 +24,46 @@ import {
   Text,
   H3,
   List,
-  ListItem
+  ListItem,
+  Footer
 } from 'native-base';
 import colors from '../../config/colors';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
-if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
-  var loc = fr;
-else
-  var loc = en;
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
 import Connection from '../../carfit/connection';
 import Signal from '../../components/Signal';
 import TimerMixin from 'react-native-timer-mixin';
+import ConnectionSpinner from '../../components/ConnectionSpinner';
+import BluetoothState from 'react-native-bluetooth-state';
 const {CarFitManager} = NativeModules;
 
-/**
- * Login view
- * Likely to be the main app view, but will only display login dialog when needed.
- * Otherwise pass by.
- */
+// set language
+if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
+  var loc = fr;
+else
+  var loc = en;
+
 const InstallationView = React.createClass({
   getInitialState() {
     return {
       rssi_refresh: '',
-      connecting: false
+      connected: false,
+      modalVisible: false,
+      bluetoothStatus: 'unknown'
     };
   },
 
   propTypes: {
-    // dispatch: PropTypes.func.isRequired
     installation: PropTypes.object.isRequired
-  },
-
-  componentDidMount() {
-    var interval = 2000;
-    var rssi_refresh = setInterval(function() {
-      this.rediscover();
-    }.bind(this), interval);
-
-    this.setState({rssi_refresh});
-  },
-
-  async onNextPress(id) {
-    this.setState({connecting: true});
-
-    var connectionEmitter = new NativeEventEmitter(CarFitManager);
-
-    // set flag for start of trip
-    var trip_subscription = connectionEmitter.addListener(
-      'TripStartOfTravel',
-      (notification) => this.props.setDrive(true)
-    );
-
-    // set flag for end of trip
-    var trip_subscription = connectionEmitter.addListener(
-      'TripEndOfTravel',
-      (notification) => this.props.setDrive(false)
-    );
-
-    // flag bluetooth connection status
-    var connection_subscription = connectionEmitter.addListener(
-      'BLEDeviceConnectionStatus',
-      (message) => this.props.setConnection(message["status"])
-    );
-
-    // connect puls device
-    var conn = new Connection();
-    var resp = await conn.connectDevice(id);
-
-    // handle failure, bluetooth failure, or success
-    if (true) { // should be resp
-      // stop refreshing rssi
-      clearInterval(this.state.rssi_refresh);
-
-      this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
-    }
-    else
-      Alert.alert(
-        'Puls',
-        'Device failed to connect.',
-        {text: 'OK', onPress: () => console.log("OK pressed.")},
-        {cancellable: false}
-      );
-  },
-
-  popRoute() {
-    this.props.setPageIndex(0);
-    this.props.clearDevices();
-    this.props.onNavigateBack();
-  },
-
-  setPage(index) {
-    this.props.setPageIndex(index);
-    if (index == 4) {
-      // Start discovery of BLE devices
-      this.props.discover();
-    }
-  },
-
-  rediscover() {
-    this.props.discover();
-  },
-
-  componentWillUpdate(nextProps, nextState) {
-    // console.log('nextProps');
-    // console.log(JSON.stringify(nextProps, null, 2));
-    this.numberOfItems = nextProps.installation.foundDevices.length;
-
-    return true;
-  },
-
-  setPhone(number) {
-    var conn = new Connection();
-
-    conn.addPhone(number);
   },
 
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
-
     let items = this.props.installation.foundDevices;
-
     let headerTitle = loc.welcome.connect;
 
     return (
@@ -158,7 +76,7 @@ const InstallationView = React.createClass({
           </Header>
           <View style={styles.headerLine} />
           <Content
-            padder
+            padder={false}
             keyboardShouldPersistTaps="always"
             style={{backgroundColor: colors.backgroundPrimary}}
             ref={c => this._content = c}>
@@ -199,36 +117,152 @@ const InstallationView = React.createClass({
                       renderRow={(item) =>
                             <ListItem>
                               <View style={styles.row}>
-                                <Text onPress={() => this.onNextPress(item.identifier)}>{item.name}</Text>
+                                <Text onPress={() => this.connect(item.identifier)}>{item.name}</Text>
                                 <Signal strength={item.signal}/>
                               </View>
                             </ListItem>
                         }>
                 </List>
-
-                {/* <InputGroup borderType='rounded' style={styles.textInput}>
-                  <Input
-                    ref='phoneInput'
-                    placeholder="Enter phone number to receive support."
-                    onChangeText = {(text) => this.setState({text})}
-                  />
-                </InputGroup> */}
-                {/* <View style={styles.bottomContainer}>
-                  <Button rounded
-                          textStyle={{color: colors.textPrimary, textDecorationLine: 'underline'}}
-                          onPress={() => this.setPhone(this.state.text)}
-                  >{loc.general.continue}</Button>
-                </View> */}
-                <ActivityIndicator
-                  style={styles.spinner}
-                  animating={this.state.connecting}
-                  size='large'
-                />
               </View>
             </Swiper>
+            <Modal
+              animationType={'none'}
+              transparent={false}
+              closeOnTouchOutside={true}
+              visible={this.state.modalVisible}>
+              <View style={styles.spinnerContainer}>
+                <ConnectionSpinner loading={this.state.connected}/>
+                {this.state.connected &&
+                  <Button rounded
+                    style={styles.button}
+                    textStyle={{color: colors.textPrimary}}
+                    onPress={() => this.continue()}
+                  >{loc.general.continue}</Button>
+                }
+              </View>
+            </Modal>
           </Content>
         </Container>
     );
+  },
+
+  componentWillMount() {
+    BluetoothState.subscribe(status => {
+      this.setState({bluetoothStatus: status});
+    });
+
+    BluetoothState.initialize();
+  },
+
+  componentDidMount() {
+    // signal strength refresh
+    var interval = 2000;
+
+    var rssi_refresh = setInterval(function() {
+      this.rediscover();
+    }.bind(this), interval);
+
+    this.setState({rssi_refresh});
+  },
+
+  componentWillUpdate(nextProps, nextState) {
+    // console.log('nextProps');
+    // console.log(JSON.stringify(nextProps, null, 2));
+    this.numberOfItems = nextProps.installation.foundDevices.length;
+
+    return true;
+  },
+
+  async connect(device) {
+    // show spinner
+    this.setState({modalVisible: true});
+
+    // timeout interval
+    var timeout = 15000;
+
+    // timeout connection request and notify user of necessary action
+    var connection_alert = setTimeout(function() {
+      Alert.alert(
+        loc.login.connection_error,
+        loc.login.reset,
+        {text: 'OK', onPress: () => undefined}
+      );
+    }, timeout);
+
+    // connect device
+    var conn = new Connection();
+    var resp = await conn.connectDevice(device);
+
+    // stop timeout
+    clearTimeout(connection_alert);
+
+    if (true) {
+      // stop refreshing signals
+      clearInterval(this.state.rssi_refresh);
+
+      // stop spinner
+      this.setState({connected: true});
+    }
+    else
+      Alert.alert(
+        loc.carInstallation.connect,
+        loc.carInstallation.connectError,
+        [{text: 'OK', onPress: () => console.log("OK pressed.")},
+        {cancellable: false}]
+      );
+  },
+
+  popRoute() {
+    this.props.setPageIndex(0);
+    this.props.clearDevices();
+    this.props.onNavigateBack();
+  },
+
+  setPage(index) {
+    this.props.setPageIndex(index);
+    if (index == 4) {
+      // Start discovery of BLE devices
+      this.props.discover();
+
+      // notify user if bluetooth is off
+      if (this.state.bluetoothStatus == "off")
+        Alert.alert(
+          loc.login.connection_error,
+          'bluetooth off',
+          [{text: 'OK', onPress: () => undefined},
+          {cancellable: false}]
+        );
+      // notify user if no devices are found
+      else if (!this.props.installation.foundDevices.length) {
+        Alert.alert(
+          loc.login.connection_error,
+          loc.login.noneFound,
+          [{text: 'OK', onPress: () => this.setPage(0)},
+          {cancellable: false}]
+        );
+      }
+    }
+  },
+
+  rediscover() {
+    this.props.discover();
+  },
+
+  continue() {
+    this.setState({modalVisible: false});
+
+    // if norauto user skip CarStartInstallation
+    if (this.locationFrance())
+      this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
+    else
+      this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
+  },
+
+  locationFrance() {
+    if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+      return true;
+    else
+      return false;
   }
 });
 
@@ -265,11 +299,11 @@ const styles = StyleSheet.create({
     marginTop: 17,
     marginBottom: 8
   },
-  bottomContainer: {
+  spinnerContainer: {
     flex: 1,
-    marginTop: 17,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'black'
   },
   row: {
     height: 30,
@@ -282,6 +316,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20
+  },
+  bottomContainer: {
+    marginBottom: 80,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  button: {
+    alignSelf: 'center',
+    marginTop: 460
   }
 });
 

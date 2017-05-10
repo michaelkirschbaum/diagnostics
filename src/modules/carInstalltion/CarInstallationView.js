@@ -8,7 +8,8 @@ import {
   NativeModules,
   TouchableOpacity,
   ActivityIndicator,
-  TouchableHighlight
+  TouchableHighlight,
+  NativeEventEmitter
 } from 'react-native';
 import {
   Container,
@@ -23,132 +24,57 @@ import {
   H3,
   List,
   ListItem,
+  Picker
 } from 'native-base';
+
+// style
 import colors from '../../config/colors';
 import carfitTheme from '../../config/carfit-theme';
-import Swiper from 'react-native-swiper';
+import {responsiveWidth, responsiveHeight, responsiveFontSize} from 'react-native-responsive-dimensions';
+
+// reducers
 import * as NavigationState from '../navigation/NavigationState';
-import Vehicle from '../../carfit/vehicle';
+
+// components
 import PickerContainer from '../../components/PickerContainer';
+import Modal from 'react-native-simple-modal';
+import SimplePicker from 'react-native-simple-picker';
+import Swiper from 'react-native-swiper';
+
+// bridge
+import Vehicle from '../../carfit/vehicle';
+const {CarFitManager} = NativeModules;
+
+// languages
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
-if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+
+// regions
+import country_codes from '../../config/regions_cn';
+import state_codes from '../../config/regions_st';
+
+// set language
+if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
   var loc = en;
-import Modal from 'react-native-simple-modal';
 
-/**
- * Login view
- * Likely to be the main app view, but will only display login dialog when needed.
- * Otherwise pass by.
- */
 const CarInstallationStateView = React.createClass({
   getInitialState: function() {
     return {
       plate: '',
       vin: '',
-      year: '',
-      make: '',
-      model: '',
+      vehicle: '',
       modalVisible: false,
-      connecting: false
+      connecting: false,
+      failureModalVisible: false,
+      region: '',
+      returnDisabled: false
     };
   },
 
   propTypes: {
-    // dispatch: PropTypes.func.isRequired
     carInstallation: PropTypes.object.isRequired
-  },
-
-  async addVIN(vin) {
-    this.setState({connecting: true});
-
-    // add user vehicle
-    vehicle = new Vehicle();
-
-    if (!this.validVIN(vin))
-      console.log("Invalid VIN.");
-    else {
-      var response = await vehicle.addByVIN(vin);
-
-      // notify user whether vehicle has been added
-      if (response) {
-        this.props.addVehicle(response["vin"]);
-        this.setState({year: response["year"]});
-        this.setState({make: response["make"]});
-        this.setState({model: response["model"]});
-
-        // verify vehicle
-        this.setState({modalVisible: true});
-      }
-      else {
-        Alert.alert(
-          'Fail',
-          'Unable to add vehicle.',
-          [{text: 'OK', onPress: () => this.setState({connecting: false})}],
-          {cancellable: false}
-        );
-      }
-    }
-  },
-
-  async addPlate(plate, region) {
-    this.setState({connecting: true});
-
-    // add user vehicle
-    vehicle = new Vehicle();
-
-    if (!this.validPlate(plate))
-      console.log("Invalid plate.");
-    else {
-      var response = await vehicle.addByPlate(plate, region);
-
-      // notify user whether vehicle has been added
-      if (response) {
-        this.props.addVehicle(response["vin"]);
-        this.setState({year: response["year"]});
-        this.setState({make: response["make"]});
-        this.setState({model: response["model"]});
-
-        // verify vehicle
-        this.setState({modalVisible: true});
-      }
-      else {
-        Alert.alert(
-          'Fail',
-          'Unable to add vehicle.',
-          [{text: 'OK', onPress: () => this.setState({connecting: false})}],
-          {cancelable: false}
-        );
-      }
-    }
-  },
-
-  validVIN(vin) {
-    return true;
-  },
-
-  validPlate(plate) {
-    return true;
-  },
-
-  popRoute() {
-    this.props.setPageIndex(0);
-    this.props.onNavigateBack();
-  },
-
-  setPage(index) {
-    this.props.setPageIndex(index);
-  },
-
-  setMode(mode) {
-    this.props.setEnterMode(mode);
-  },
-
-  turnOffModal() {
-    this.setState({connecting: false});
-    this.setState({modalVisible: false});
   },
 
   render() {
@@ -156,6 +82,7 @@ const CarInstallationStateView = React.createClass({
     let windowWidth = Dimensions.get('window').width;
 
     let headerTitle = loc.carInstallation.inCarInstallation;
+
     switch (this.props.carInstallation.pageIndex) {
       case 0:
         headerTitle = loc.carInstallation.inCarInstallation;
@@ -172,6 +99,8 @@ const CarInstallationStateView = React.createClass({
 
     let finalView = this.props.carInstallation.enterMode
 
+    let regions = this.locationUS() ? Object.keys(state_codes) : Object.keys(country_codes);
+
     getFinalView = function () {
 
       if (finalView == 'vin') {
@@ -182,7 +111,6 @@ const CarInstallationStateView = React.createClass({
                 <Image source={require('../../../images/enter-plate.png')} style={styles.icon}/>
               </TouchableOpacity>
             </View> */}
-
             <Image source={require('../../../images/enter-vin.png')} style={styles.image}/>
             <InputGroup borderType='rounded' style={styles.textInput}>
               <Input
@@ -191,13 +119,14 @@ const CarInstallationStateView = React.createClass({
                 onChangeText = {(text) => this.setState({text})}
               />
             </InputGroup>
-            {/* <Text
-              style={{marginTop: 22, textAlign: "center", color: colors.primary, textDecorationLine: 'underline'}}
-              onPress={() => { this.setMode('license') }}>{loc.carInstallation.enterLicensePlate}</Text> */}
+            <Text
+              style={{marginTop: 22, textAlign: "center", color: colors.primary, textDecorationLine: 'underline', fontSize: responsiveFontSize(2.35)}}
+              onPress={() => { this.setMode('license') }}>{loc.carInstallation.enterLicensePlate}
+            </Text>
             <View style={styles.bottomContainer}>
               <Button rounded
                       style={{alignSelf: 'auto'}}
-                      textStyle={{color: colors.textPrimary, textDecorationLine: 'underline'}}
+                      textStyle={{color: colors.textPrimary}}
                       onPress={() => this.addVIN(this.state.text)}
               >{loc.general.continue}</Button>
             </View>
@@ -216,7 +145,6 @@ const CarInstallationStateView = React.createClass({
                 <Image source={require('../../../images/enter-vin.png')} style={styles.icon}/>
               </TouchableOpacity>
             </View> */}
-
             <Image source={require('../../../images/enter-plate.png')} style={styles.image}/>
              <InputGroup borderType='rounded' style={styles.textInput}>
               <Input
@@ -229,23 +157,34 @@ const CarInstallationStateView = React.createClass({
               <Input
                 ref='regionInput'
                 placeholder={loc.carInstallation.enterRegion}
-                onChangeText = {(text) => this.setState({region: text})}
+                onFocus = {() => this.refs.regionPicker.show()}
+                value={this.state.region}
               />
             </InputGroup>
-            {/* <Text
+            <Text
               style={{marginTop: 22, textAlign: "center", color: colors.primary, textDecorationLine: 'underline'}}
-              onPress={() => { this.setMode('vin') }}>{loc.carInstallation.enterByVin}</Text> */}
+              onPress={() => { this.setMode('vin') }}>{loc.carInstallation.enterByVin}
+            </Text>
             <View style={styles.bottomContainer}>
               <Button rounded
                       style={{alignSelf: 'auto'}}
-                      textStyle={{color: colors.textPrimary, textDecorationLine: 'underline'}}
+                      textStyle={{color: colors.textPrimary}}
                       onPress={() => this.addPlate(this.state.plate, this.state.region)}
               >{loc.general.continue}</Button>
             </View>
-            <ActivityIndicator
-              style={styles.spinner}
-              animating={this.state.connecting}
-              size='large'
+              <ActivityIndicator
+                style={styles.spinner}
+                animating={this.state.connecting}
+                size='large'
+              />
+            <SimplePicker
+              ref={'regionPicker'}
+              options={regions}
+              onSubmit={(option) => {
+                this.setState({
+                  region: this.locationUS() ? state_codes[option] : country_codes[option]
+                });
+              }}
             />
           </View>
         )
@@ -255,14 +194,14 @@ const CarInstallationStateView = React.createClass({
     return (
       <Container theme={carfitTheme}>
         <Header>
-          <Button transparent onPress={() => this.popRoute()}>
+          <Button transparent disabled={this.state.returnDisabled} onPress={() => this.popRoute()}>
             <Icon name="ios-arrow-back"/>
           </Button>
           <Title>{headerTitle}</Title>
         </Header>
         <View style={styles.headerLine}/>
         <Content
-          padder
+          padder={false}
           keyboardShouldPersistTaps="always"
           style={{backgroundColor: colors.backgroundPrimary}}
           ref={c => this._content = c}>
@@ -291,6 +230,7 @@ const CarInstallationStateView = React.createClass({
               {getFinalView()}
             </View>
           </Swiper>
+
           <Modal
             open={this.state.modalVisible}
             modalDidOpen={() => undefined}
@@ -304,19 +244,19 @@ const CarInstallationStateView = React.createClass({
             <View>
               <Image source={require('../../../images/icons/check.png')} style={styles.icon}/>
               <Text style={{color: 'black', alignSelf: 'center'}}>{loc.carInstallation.success}</Text>
-              <Text style={{color: 'black', textAlign: 'center'}}>{this.state.make}</Text>
-              <Text style={{color: 'black', textAlign: 'center'}}>{this.state.model}</Text>
-              <Text style={{color: 'black', textAlign: 'center'}}>{this.state.year}</Text>
-              <TouchableHighlight>
-                <Image
+              <Text style={{color: 'black', textAlign: 'center'}}>{this.state.vehicle["make"]}</Text>
+              <Text style={{color: 'black', textAlign: 'center'}}>{this.state.vehicle["model"]}</Text>
+              <Text style={{color: 'black', textAlign: 'center'}}>{this.state.vehicle["year"]}</Text>
+              {/* <TouchableHighlight onPress={() => this.props.pushRoute({key: 'CarPhoto', title: ''})} underlayColor={'#F4F3F4'}>
+                Image
                   source={require('../../../images/add-picture-car-identified.png')}
                   style={styles.image}
                 />
-              </TouchableHighlight>
+              </TouchableHighlight> */}
               <Button rounded
                     style={{alignSelf: 'center'}}
                     textStyle={{color: colors.textPrimary}}
-                    onPress={() => this.props.switchRoute(2)}
+                    onPress={() => this.verifyVehicle(this.state.vehicle)}
               >Continue</Button>
               <Button transparent
                     textStyle={{color: 'red', textDecorationLine: 'underline'}}
@@ -325,9 +265,171 @@ const CarInstallationStateView = React.createClass({
               >{loc.carInstallation.failure}</Button>
             </View>
           </Modal>
+
+          <Modal
+            open={this.state.failureModalVisible}
+            style={{alignItems: 'center'}}
+            closeOnTouchOutside={false}
+            modalStyle={{
+              borderRadius: 7
+            }}>
+            <View>
+              <Image source={require('../../../images/icons/exclamation-mark-icon@2x.png')} style={styles.icon}/>
+              <Text style={{color: 'black', alignSelf: 'center'}}>{loc.carInstallation.notFound}</Text>
+              <Button rounded
+                    style={{alignSelf: 'center'}}
+                    textStyle={{color: colors.textPrimary}}
+                    onPress={() => this.turnOffModal()}
+              >{loc.carInstallation.retry}</Button>
+              <Button transparent
+                    textStyle={{color: 'black', textDecorationLine: 'underline'}}
+                    style={{alignSelf: 'center'}}
+                    onPress={() => Alert.alert(
+                      loc.home.support,
+                      loc.home.call,
+                      {text: 'OK', onPress: () => console.log('OK pressed.')})
+                    }
+              >{loc.carInstallation.support}</Button>
+            </View>
+          </Modal>
         </Content>
       </Container>
     );
+  },
+
+  async addVIN(vin) {
+    this.setState({connecting: true});
+
+    // add user vehicle
+    vehicle = new Vehicle();
+
+    if (!this.validVIN(vin))
+      console.log("Invalid VIN.");
+    else {
+      var response = await vehicle.addByVIN(vin);
+
+      // notify user whether vehicle has been added
+      if (response) {
+        // store vehicle to be accessed in verification
+        this.setState({vehicle: response});
+
+        // store vehicle info
+        this.props.setVehicle(response["vin"]);
+        var distance = await vehicle.getMileage();
+        if (distance)
+          this.props.setOdometer(distance);
+        else {
+          this.props.setOdometer(0);
+        }
+
+        // disable back button before presenting modal
+        this.setState({returnDisabled: true});
+
+        // verify vehicle
+        this.setState({modalVisible: true});
+      }
+      else {
+        this.setState({failureModalVisible: true});
+      }
+    }
+  },
+
+  async addPlate(plate, region) {
+    this.setState({connecting: true});
+
+    // add user vehicle
+    vehicle = new Vehicle();
+
+    if (!this.validPlate(plate))
+      console.log("Invalid plate.");
+    else {
+      var response = await vehicle.addByPlate(plate, region);
+
+      // notify user whether vehicle has been added
+      if (response) {
+        // add license plate
+        response["plate"] = plate;
+
+        // store vehicle to be accessed in verification
+        this.setState({vehicle: response});
+
+        // store vehicle info
+        this.props.setVehicle(response["vin"]);
+        var meters = await vehicle.getMileage();
+        if (meters)
+          this.props.setOdometer(meters);
+        else {
+          this.props.setOdometer(0);
+        }
+
+        // disable back button before presenting modal
+        this.setState({returnDisabled: true});
+
+        // verify vehicle
+        this.setState({modalVisible: true});
+      }
+      else {
+        this.setState({failureModalVisible: true});
+      }
+    }
+  },
+
+  validVIN(vin) {
+    return true;
+  },
+
+  validPlate(plate) {
+    return true;
+  },
+
+  popRoute() {
+    this.props.setPageIndex(0);
+    this.props.onNavigateBack();
+  },
+
+  setPage(index) {
+    this.props.setPageIndex(index);
+  },
+
+  setMode(mode) {
+    this.props.setEnterMode(mode);
+  },
+
+  verifyVehicle(vehicle) {
+    // save vehicle
+    this.props.addVehicle(vehicle);
+
+    // show modal when going to homeview
+    this.props.setOdometerModal(true);
+
+    if (this.locationFrance())
+      this.props.pushRoute({key: 'Home', title: loc.settings.settings});
+    else
+      this.props.pushRoute({key: 'Overview', title: loc.overview.overview});
+  },
+
+  turnOffModal() {
+    // enable back button
+    this.setState({returnDisabled: false});
+
+    // disable modal
+    this.setState({connecting: false});
+    this.setState({modalVisible: false});
+    this.setState({failureModalVisible: false});
+  },
+
+  locationUS() {
+    if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("US"))
+      return true;
+    else
+      return false;
+  },
+
+  locationFrance() {
+    if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+      return true;
+    else
+      return false;
   }
 });
 
@@ -336,16 +438,10 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: colors.headerTextColor
   },
-  container: {
-    // flex: 1,
-    // height: 200,
-    // width: 100
-  },
   askMilesContainer: {
     marginTop: 22
   },
   textInput: {
-    // alignSelf: 'stretch',
     backgroundColor: colors.inputBackground,
     borderColor: colors.primary,
     borderWidth: 2.5,
@@ -358,19 +454,18 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   image: {
-    // flex: 1,
-    width: 200,
-    height: 200,
+    width: responsiveHeight(42),
+    height: responsiveHeight(42),
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 25,
+    marginTop: 10,
+    alignSelf: 'center'
   },
   titles: {
     marginTop: 17,
     marginBottom: 8
   },
   bottomContainer: {
-    // flex: 1,
     marginTop: 22,
     justifyContent: 'center',
     alignItems: 'center'
@@ -387,7 +482,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 55,
-    // backgroundColor: '#002200',
     marginBottom: 16,
   },
   spinner: {

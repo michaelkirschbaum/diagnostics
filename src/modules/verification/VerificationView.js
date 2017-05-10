@@ -9,7 +9,7 @@ import { Container, Header, Title, Content, InputGroup, Input, Button, Icon, Tex
 import colors from '../../config/colors';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
-if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
   var loc = en;
@@ -50,7 +50,7 @@ const VerificationView = React.createClass({
           </Header>
           <View style={styles.headerLine} />
           <Content
-            padder
+            padder={false}
             keyboardShouldPersistTaps="always"
             theme={carfitTheme}
             style={{backgroundColor: colors.backgroundPrimary}}

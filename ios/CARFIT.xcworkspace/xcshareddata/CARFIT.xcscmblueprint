@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "3203AF6E0AA8FF5C3E308460D50317D1897D675A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "3203AF6E0AA8FF5C3E308460D50317D1897D675A" : 9223372036854775807,
+    "706F6DDAAC3A9561B30EA4D7DF08EDD55AC07646" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "009D3B16-5443-4A40-8316-3115C8AC0DFF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "3203AF6E0AA8FF5C3E308460D50317D1897D675A" : "reactnative_carfit\/",
+    "706F6DDAAC3A9561B30EA4D7DF08EDD55AC07646" : "sdk.ios.car.fit\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CARFIT",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ios\/CARFIT.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ssh:\/\/bitbucket.org\/carfit_cloud\/reactnative_carfit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3203AF6E0AA8FF5C3E308460D50317D1897D675A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ssh:\/\/bitbucket.org\/carfit_platform\/sdk.ios.car.fit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "706F6DDAAC3A9561B30EA4D7DF08EDD55AC07646"
+    }
+  ]
+}

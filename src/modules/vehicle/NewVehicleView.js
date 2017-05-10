@@ -27,7 +27,7 @@ import {
 import carfitTheme from '../../config/carfit-theme';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
-if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
   var loc = en;
@@ -236,7 +236,7 @@ const NewVehicleView = React.createClass({
         </Header>
         <View style={styles.headerLine}/>
         <Content
-          padder
+          padder={false}
           keyboardShouldPersistTaps="always"
           style={{backgroundColor: colors.backgroundPrimary}}
           ref={c => this._content = c}>
@@ -257,7 +257,7 @@ const NewVehicleView = React.createClass({
             }}>
             <View>
               <Image source={require('../../../images/icons/check.png')} style={styles.icon}/>
-              <Text style={{color: 'black', alignSelf: 'center'}}>Car identified!</Text>
+              <Text style={{color: 'black', alignSelf: 'center'}}>loc.carInstallation.success</Text>
               <Text style={{color: 'black', textAlign: 'center'}}>{this.state.make}</Text>
               <Text style={{color: 'black', textAlign: 'center'}}>{this.state.model}</Text>
               <Text style={{color: 'black', textAlign: 'center'}}>{this.state.year}</Text>
@@ -276,7 +276,7 @@ const NewVehicleView = React.createClass({
                     textStyle={{color: 'black'}}
                     style={{alignSelf: 'center'}}
                     onPress={() => this.turnOffModal()}
-              >Not my car</Button>
+              >{loc.carInstallation.failure}</Button>
             </View>
           </Modal>
         </Content>

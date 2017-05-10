@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, {PropTypes, PixelRatio} from 'react';
 import {
   View,
   StyleSheet,
@@ -18,7 +18,9 @@ var Auth0Lock = require('react-native-lock');
 import Login from '../../carfit/login';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
-if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+import {responsiveWidth, responsiveHeight, responsiveFontSize} from 'react-native-responsive-dimensions';
+
+if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
   var loc = en;
@@ -47,7 +49,7 @@ const LoginView = React.createClass({
   continue() {
     var region = NativeModules.SettingsManager.settings.AppleLocale;
 
-    if (region == 'fr_FR' || region == 'en_FR') {
+    if (region.endsWith('FR')) {
       this.props.pushRoute({key: 'Norauto', title: ''})
     } else {
       var login = new Login()
@@ -80,94 +82,194 @@ const LoginView = React.createClass({
     return (
       <Container>
         {/*<Content*/}
-        {/*padder*/}
+        {/*padder={false}*/}
         {/*keyboardShouldPersistTaps="always"*/}
         {/*theme={carfitTheme}*/}
         {/*style={{backgroundColor: colors.backgroundPrimary, paddingLeft: 0}}*/}
         {/*ref={c => this._content = c}>*/}
         <View style={styles.scrollContainer}>
-          <Swiper
-            loop={false}
-            index={this.props.login.pageIndex}
-            dot={<View style={{backgroundColor:colors.inputBackground, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
-            activeDot={<View style={{backgroundColor:colors.primary, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
-            onMomentumScrollEnd={(e, state, context) => this.setPage(state.index)}
-          >
-            <View style={styles.instructionsContainer}>
-              <Image source={require('../../../images/intro-01.jpg')}
-                     style={{width: windowWidth, height: windowWidth * 1.2, marginBottom: 15}}/>
-              <Text style={styles.textTitle}>{loc.login.marketingTitle1a}</Text>
-              <Text style={styles.textTitle}>{loc.login.marketingTitle1b}</Text>
-              <Text style={styles.textBody}>{loc.login.marketingText1a}</Text>
-            </View>
-            <View style={styles.instructionsContainer}>
-              <Image source={require('../../../images/intro-02.jpg')}
-                     style={{width: windowWidth, height: windowWidth * 1.1, marginBottom: 15}}/>
-              <Text style={styles.textTitle}>{loc.login.marketingTitle2a}</Text>
-              <Text style={styles.textBody}>{loc.login.marketingText2a}</Text>
-              <Text style={styles.textBody}>{loc.login.marketingText2b}</Text>
-            </View>
-            <View style={styles.instructionsContainer}>
-              <Image source={require('../../../images/intro-03.jpg')}
-                     style={{width: windowWidth, height: windowWidth * 1.1, marginBottom: 15}}/>
-              <Text style={styles.textTitle}>{loc.login.marketingTitle3a}</Text>
-              <Text style={styles.textBody}>{loc.login.marketingText3a}</Text>
-              <Text style={styles.textBody}>{loc.login.marketingText3b}</Text>
-              <Footer theme={carfitTheme} style={styles.footer}>
-                <View style={styles.bottomContainer}>
-                  <Button rounded
-                          style={{alignSelf: 'auto'}}
-                          textStyle={{color: colors.textPrimary}}
-                          onPress={this.continue}
-                  >{loc.general.continue}</Button>
-                </View>
-              </Footer>
-            </View>
-
-            {/* <View style={{height: windowHeight, flex: 1, marginTop: 52}}>
-              <Content
-                padder
-                keyboardShouldPersistTaps="always"
-                theme={carfitTheme}
-                style={{backgroundColor: colors.backgroundPrimary, paddingLeft: 0}}
-                ref={c => this._content = c}>
-                <View style={styles.container}>
-                  <Image source={require('../../../images/carfit-logo-black-bg.png')} style={styles.logo}/>
-                </View>
-                <View style={styles.inputContainer}>
-                  <H3 style={styles.titles}>{loc.login.email}</H3>
-                  <InputGroup borderType='rounded' style={styles.textInput}>
-                    <Input
-                      placeholder='Email Address'
-                      onSubmitEditing={(event) => {
-                    this.refs.PasswordInput._textInput.focus();
-                  }}
-                      onChangeText = {(text) => this.setState({email: text})}/>
-                  </InputGroup>
-                  <H3 style={styles.titles}>{loc.login.password}</H3>
-                  <InputGroup borderType='rounded' style={styles.textInput}>
-                    <Input
-                      ref='PasswordInput'
-                      placeholder='Password'
-                      onChangeText = {(text) => this.setState({password: text})}/>
-                  </InputGroup>
-                  <View style={styles.bottomContainer}>
-                    <Text style={{marginBottom: 12}} onPress={this.onPasswordPress}>{loc.login.forgotPassword}</Text>
-                    <Button rounded
-                            style={{alignSelf: 'auto'}}
-                            textStyle={{color: colors.textPrimary}}
-                            onPress={() => this.onNextPress(this.state.email, this.state.password)}
-                    >{loc.general.continue}</Button>
-                  </View>
-                </View>
-              </Content>
-            </View> */}
-
-          </Swiper>
-          {/*</Content>*/}
+          {this.getScroll()}
         </View>
       </Container>
     );
+  },
+
+  locationFrance() {
+    if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+      return true;
+    else
+      return false;
+  },
+
+  getScroll() {
+    if (this.locationFrance()) {
+      return (
+        <Swiper
+          loop={false}
+          index={this.props.login.pageIndex}
+          dot={<View style={{backgroundColor:colors.inputBackground, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+          activeDot={<View style={{backgroundColor:colors.primary, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+          onMomentumScrollEnd={(e, state, context) => this.setPage(state.index)}
+        >
+          <View style={styles.instructionsContainer}>
+            <Image source={require('../../../images/norauto.png')} style={styles.logo}/>
+            <Text style={styles.textBody}>{loc.login.welcome1}</Text>
+            <Text style={styles.textBody}>{loc.login.welcome2}</Text>
+            <Text style={styles.textBody}>{loc.login.welcome3}</Text>
+            <Text style={styles.textBody}>{loc.login.attention}</Text>
+          </View>
+          <View style={styles.instructionsContainer}>
+            <Image source={require('../../../images/intro-01.jpg')}
+                   style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width * 1.1, marginBottom: 15}}/>
+            <Text style={styles.textTitle}>{loc.login.marketingTitle1a}</Text>
+            <Text style={styles.textTitle}>{loc.login.marketingTitle1b}</Text>
+            <Text style={styles.textBody}>{loc.login.marketingText1a}</Text>
+          </View>
+          <View style={styles.instructionsContainer}>
+            <Image source={require('../../../images/intro-02.jpg')}
+                   style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width * 1.1, marginBottom: 15}}/>
+            <Text style={styles.textTitle}>{loc.login.marketingTitle2a}</Text>
+            <Text style={styles.textBody}>{loc.login.marketingText2a}</Text>
+            <Text style={styles.textBody}>{loc.login.marketingText2b}</Text>
+          </View>
+          <View style={styles.instructionsContainer}>
+            <Image source={require('../../../images/intro-03.jpg')}
+                   style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width * 1.1, marginBottom: 15}}/>
+            <Text style={styles.textTitle}>{loc.login.marketingTitle3a}</Text>
+            <Text style={styles.textBody}>{loc.login.marketingText3a}</Text>
+            <Text style={styles.textBody}>{loc.login.marketingText3b}</Text>
+            <Footer theme={carfitTheme} style={styles.footer}>
+              <View style={styles.bottomContainer}>
+                <Button rounded
+                        style={{alignSelf: 'auto'}}
+                        textStyle={{color: colors.textPrimary}}
+                        onPress={this.continue}
+                >{loc.general.continue}</Button>
+              </View>
+            </Footer>
+          </View>
+
+          {/* <View style={{height: windowHeight, flex: 1, marginTop: 52}}>
+            <Content
+              padder={false}
+              keyboardShouldPersistTaps="always"
+              theme={carfitTheme}
+              style={{backgroundColor: colors.backgroundPrimary, paddingLeft: 0}}
+              ref={c => this._content = c}>
+              <View style={styles.container}>
+                <Image source={require('../../../images/carfit-logo-black-bg.png')} style={styles.logo}/>
+              </View>
+              <View style={styles.inputContainer}>
+                <H3 style={styles.titles}>{loc.login.email}</H3>
+                <InputGroup borderType='rounded' style={styles.textInput}>
+                  <Input
+                    placeholder='Email Address'
+                    onSubmitEditing={(event) => {
+                  this.refs.PasswordInput._textInput.focus();
+                }}
+                    onChangeText = {(text) => this.setState({email: text})}/>
+                </InputGroup>
+                <H3 style={styles.titles}>{loc.login.password}</H3>
+                <InputGroup borderType='rounded' style={styles.textInput}>
+                  <Input
+                    ref='PasswordInput'
+                    placeholder='Password'
+                    onChangeText = {(text) => this.setState({password: text})}/>
+                </InputGroup>
+                <View style={styles.bottomContainer}>
+                  <Text style={{marginBottom: 12}} onPress={this.onPasswordPress}>{loc.login.forgotPassword}</Text>
+                  <Button rounded
+                          style={{alignSelf: 'auto'}}
+                          textStyle={{color: colors.textPrimary}}
+                          onPress={() => this.onNextPress(this.state.email, this.state.password)}
+                  >{loc.general.continue}</Button>
+                </View>
+              </View>
+            </Content>
+          </View> */}
+        </Swiper>
+      );
+    } else {
+      return (
+        <Swiper
+          loop={false}
+          index={this.props.login.pageIndex}
+          dot={<View style={{backgroundColor:colors.inputBackground, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+          activeDot={<View style={{backgroundColor:colors.primary, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+          onMomentumScrollEnd={(e, state, context) => this.setPage(state.index)}
+        >
+          <View style={styles.instructionsContainer}>
+            <Image source={require('../../../images/intro-01.jpg')}
+                   style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width * 1.1, marginBottom: 15}}/>
+            <Text style={styles.textTitle}>{loc.login.marketingTitle1a}</Text>
+            <Text style={styles.textTitle}>{loc.login.marketingTitle1b}</Text>
+            <Text style={styles.textBody}>{loc.login.marketingText1a}</Text>
+          </View>
+          <View style={styles.instructionsContainer}>
+            <Image source={require('../../../images/intro-02.jpg')}
+                   style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width * 1.1, marginBottom: 15}}/>
+            <Text style={styles.textTitle}>{loc.login.marketingTitle2a}</Text>
+            <Text style={styles.textBody}>{loc.login.marketingText2a}</Text>
+            <Text style={styles.textBody}>{loc.login.marketingText2b}</Text>
+          </View>
+          <View style={styles.instructionsContainer}>
+            <Image source={require('../../../images/intro-03.jpg')}
+                   style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width * 1.1, marginBottom: 15}}/>
+            <Text style={styles.textTitle}>{loc.login.marketingTitle3a}</Text>
+            <Text style={styles.textBody}>{loc.login.marketingText3a}</Text>
+            <Text style={styles.textBody}>{loc.login.marketingText3b}</Text>
+            <Footer theme={carfitTheme} style={styles.footer}>
+              <View style={styles.bottomContainer}>
+                <Button rounded
+                        style={{alignSelf: 'auto'}}
+                        textStyle={{color: colors.textPrimary}}
+                        onPress={this.continue}
+                >{loc.general.continue}</Button>
+              </View>
+            </Footer>
+          </View>
+
+          {/* <View style={{height: windowHeight, flex: 1, marginTop: 52}}>
+            <Content
+              padder={false}
+              keyboardShouldPersistTaps="always"
+              theme={carfitTheme}
+              style={{backgroundColor: colors.backgroundPrimary, paddingLeft: 0}}
+              ref={c => this._content = c}>
+              <View style={styles.container}>
+                <Image source={require('../../../images/carfit-logo-black-bg.png')} style={styles.logo}/>
+              </View>
+              <View style={styles.inputContainer}>
+                <H3 style={styles.titles}>{loc.login.email}</H3>
+                <InputGroup borderType='rounded' style={styles.textInput}>
+                  <Input
+                    placeholder='Email Address'
+                    onSubmitEditing={(event) => {
+                  this.refs.PasswordInput._textInput.focus();
+                }}
+                    onChangeText = {(text) => this.setState({email: text})}/>
+                </InputGroup>
+                <H3 style={styles.titles}>{loc.login.password}</H3>
+                <InputGroup borderType='rounded' style={styles.textInput}>
+                  <Input
+                    ref='PasswordInput'
+                    placeholder='Password'
+                    onChangeText = {(text) => this.setState({password: text})}/>
+                </InputGroup>
+                <View style={styles.bottomContainer}>
+                  <Text style={{marginBottom: 12}} onPress={this.onPasswordPress}>{loc.login.forgotPassword}</Text>
+                  <Button rounded
+                          style={{alignSelf: 'auto'}}
+                          textStyle={{color: colors.textPrimary}}
+                          onPress={() => this.onNextPress(this.state.email, this.state.password)}
+                  >{loc.general.continue}</Button>
+                </View>
+              </View>
+            </Content>
+          </View> */}
+        </Swiper>
+      );
+    }
   }
 });
 
@@ -177,23 +279,25 @@ LoginView = reduxForm({
 
 const styles = StyleSheet.create({
   scrollContainer: {
-    backgroundColor: colors.backgroundPrimary
+    backgroundColor: colors.backgroundPrimary,
+    // flex: 1
   },
   textTitle: {
     color: colors.textPrimary,
     fontFamily: (Platform.OS === 'ios' ) ? 'HelveticaNeue' : 'Roboto',
-    fontSize: 18,
+    fontSize: responsiveFontSize(2.35),
     fontWeight: 'bold',
     marginTop: 5,
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: 16,
     marginRight: 16,
+    textAlign: 'center'
   },
   textBody: {
     color: colors.textPrimary,
     fontFamily: (Platform.OS === 'ios' ) ? 'HelveticaNeue' : 'Roboto',
-    fontSize: 18,
+    fontSize: responsiveFontSize(2.35),
     marginTop: 15,
     justifyContent: 'center',
     alignItems: 'center',
@@ -236,10 +340,10 @@ const styles = StyleSheet.create({
     bottom: 0
   },
   logo: {
-    width: 200,
-    height: 200,
-    justifyContent: 'center',
-    alignItems: 'center'
+    width: 300,
+    height: 300,
+    resizeMode: 'contain',
+    alignSelf: 'center'
   },
   titles: {
     marginTop: 17,
@@ -255,6 +359,14 @@ const styles = StyleSheet.create({
     height: 42,
     backgroundColor: colors.backgroundPrimary,
     borderColor: colors.backgroundPrimary
+  },
+  welcomeTitle: {
+    color: colors.textPrimary,
+    fontFamily: (Platform.OS === 'ios' ) ? 'HelveticaNeue' : 'Roboto',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginTop: 5,
+    alignSelf: 'center'
   }
 });
 

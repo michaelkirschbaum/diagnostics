@@ -14,6 +14,8 @@ export default class Vehicle {
     try {
       var response = await this.manager.onBoardVehicleWithVIN(vin);
 
+      this.vin = response["vin"];
+
       // check whether promise was resolved
       return response;
     } catch (e) {
@@ -24,6 +26,8 @@ export default class Vehicle {
   async addByPlate(plate, region) {
     try {
       var response = await this.manager.onBoardVehicleWithPlate(plate, region, null);
+
+      this.vin = response["vin"];
 
       return response;
     } catch (e) {
@@ -98,13 +102,25 @@ export default class Vehicle {
     }
   }
 
-  async getPhoto() {
+  async getPhoto(image) {
     try {
-      var vehicle = await this.manager.vehicleVinGet(this.vin);
-      var image_url = vehicle["user_image_url"];
+      var image_path = await this.manager.vehicleImageGet(image);
 
-      return image_url;
+      // get image
+      var image = null;
+
+      return image
     } catch (e) {
+      return null;
+    }
+  }
+
+  setPhoto(image, name) {
+    try {
+      var response = this.manager.vehicleImagePut(image, name);
+
+      return response;
+    } catch(e) {
       return null;
     }
   }

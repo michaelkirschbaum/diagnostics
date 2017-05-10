@@ -9,28 +9,15 @@ import { Container, Header, Title, Content, Footer, InputGroup, Input, Button, T
 import colors from '../../config/colors';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
-if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
   var loc = en;
 import carfitTheme from '../../config/carfit-theme';
-
 import * as NavigationState from '../navigation/NavigationState';
 
-/**
- * Welcome view
- */
 const CarInstallationStartView = React.createClass({
-  propTypes: {
-    // dispatch: PropTypes.func.isRequired
-  },
-
-  onNextPress() {
-    this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
-  },
-
   render() {
-
     return (
         <Container theme={carfitTheme}>
           <Header>
@@ -38,7 +25,7 @@ const CarInstallationStartView = React.createClass({
           </Header>
           <View style={styles.headerLine} />
           <Content
-            padder
+            padder={false}
             keyboardShouldPersistTaps="always"
             style={{backgroundColor: colors.backgroundPrimary}}
             ref={c => this._content = c}>
@@ -98,6 +85,10 @@ const CarInstallationStartView = React.createClass({
           </Footer>
         </Container>
     );
+  },
+
+  onNextPress() {
+    this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
   }
 });
 

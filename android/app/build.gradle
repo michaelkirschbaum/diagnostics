@@ -143,6 +143,9 @@ android {
 }
 
 dependencies {
+    compile project(':aws-sdk-react-native-lambda')
+    compile project(':aws-sdk-react-native-core')
+    compile project(':react-native-camera')
     compile project(':react-native-lock')
     compile project(':react-native-vector-icons')
     compile project(':react-native-code-push')

@@ -4,6 +4,9 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
+import com.amazonaws.reactnative.lambda.AWSRNLambdaPackage;
+import com.amazonaws.reactnative.core.AWSRNCorePackage;
+import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.auth0.lock.react.LockReactPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.microsoft.codepush.react.CodePush;
@@ -34,6 +37,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new AWSRNLambdaPackage(),
+            new AWSRNCorePackage(),
+            new RCTCameraPackage(),
             new LockReactPackage(),
             new VectorIconsPackage(),
             new CarFitPackage(),

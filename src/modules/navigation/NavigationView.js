@@ -4,7 +4,10 @@ import {
   NavigationExperimental,
   View,
   StatusBar,
-  StyleSheet
+  StyleSheet,
+  NativeEventEmitter,
+  NativeModules,
+  Alert
 } from 'react-native';
 const {
   CardStack: NavigationCardStack,
@@ -14,9 +17,14 @@ const {
 import AppRouter from '../AppRouter';
 import {Drawer, Content, Text, List, ListItem} from 'native-base';
 import NavigationDemoDrawer from './NavigationDemoDrawer';
-
+const {CarFitManager} = NativeModules;
 import stylesMain from '../../config/styles';
-
+import en from '../../config/localization.en';
+import fr from '../../config/localization.fr';
+if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
+  var loc = fr;
+else
+  var loc = en;
 // const styles = stylesMain;
 
 // Customize bottom tab bar height here if desired
@@ -110,6 +118,46 @@ const NavigationView = React.createClass({
     //     />
     //   </View>
     // );
+  },
+
+  componentWillMount() {
+    var connectionEmitter = new NativeEventEmitter(CarFitManager);
+
+    // set flag for start of trip
+    var trip_subscription = connectionEmitter.addListener(
+      'TripStartOfTravel',
+      (notification) => this.props.setDrive(true)
+    );
+
+    // set flag for end of trip
+    var trip_subscription = connectionEmitter.addListener(
+      'TripEndOfTravel',
+      (notification) => this.props.setDrive(false)
+    );
+
+    // flag bluetooth connection status
+    var connection_subscription = connectionEmitter.addListener(
+      'BLEDeviceConnectionStatus',
+      (message) => this.props.setConnection(message["status"])
+    );
+
+    if (this.locationFrance())
+      // listen for support click
+      var support_subscription = connectionEmitter.addListener(
+        'BLEButtonPress',
+        (reminder) => Alert.alert(
+          loc.home.support,
+          loc.home.call,
+          {text: 'OK', onPress: () => console.log('OK Pressed')}
+        )
+      );
+  },
+
+  locationFrance() {
+    if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+      return true;
+    else
+      return false;
   }
 });
 

@@ -27,7 +27,9 @@ class Signal extends Component {
 
 const styles = StyleSheet.create({
   icon: {
-    resizeMode: 'center',
+    // resizeMode: 'center',
+    height: 37,
+    width: 37
   }
 });
 

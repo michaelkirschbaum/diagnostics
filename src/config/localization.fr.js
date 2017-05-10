@@ -3,7 +3,7 @@
  */
 const fr = {
   general: {
-    continue: 'Continuez',
+    continue: 'Continuer',
   },
   login: {
     email: 'E-mail',
@@ -17,7 +17,19 @@ const fr = {
     marketingText2b: 'Le capteur se réveille automatiquement dès que vous entrez dans votre véhicule et se met en veille après chaque trajet pour économiser de l\'énergie. La batterie interne a deux ans d\'autonomie.',
     marketingTitle3a: 'L\'entretien de votre véhicule rendu plus simple',
     marketingText3a: 'L\'entretien de votre véhicule est à portée de main.',
-    marketingText3b: 'Le capteur CARFIT PULS vous prévient lorsqu\'une opération est à réaliser.'
+    marketingText3b: 'Le capteur CARFIT PULS vous prévient lorsqu\'une opération est à réaliser.',
+    connect: 'CONNECT',
+    welcome1: 'Promis, vous ne serez plus jamais seul en auto',
+    welcome2: '24h/24 et 7j/7',
+    welcome3: 'L\'utilisation que vous en ferez sera notre offre de demain !',
+    attention: 'ATTENTION: Prototype d\'application pour test. Munissez-vous de votre numéro d\'immatriculation pour finaliser l\'inscription',
+    connection_error: 'Connecter le capteur',
+    reset: 'Le capteur Puls doit être réinitialisé. Maintenez la touche du capteur appuyé pendant 10 secondes pour continuer.',
+    noneFound: 'Aucun périphérique trouvé. Allumez un périphérique en cliquant dessus.',
+    bluetooth: 'Bluetooth est éteint. Activez pour continuer.',
+    login: 'S\'identifier',
+    success: 'Vous êtes maintenant connecté.',
+    failure: 'Échec de la connexion. Réessayer.'
   },
   verification: { // is this still required with Auth0?
     verification: 'Vérification',
@@ -46,9 +58,9 @@ const fr = {
 //    welcomeParagraph4: 'Guide rapide:',
     step1: 'Se connecter ',
     step2: 'Installer ',
-    step3: 'Application ',
-    stepDescription1: ' votre capteur CARFIT PULS',
-    stepDescription2: ' synthèse',
+    step3: 'Vue d\'ensemble',
+    stepDescription1: ' à votre capteur CARFIT PULS',
+    stepDescription2: ' de l\'application'
   },
   instructions: {
     enableBattery: 'Activez la batterie.',
@@ -56,16 +68,16 @@ const fr = {
     activateBluetooth: 'Activer le Bluetooth.',
     turnOnBLE: 'Activez le Bluetooth de votre téléphone.',
     resetConnection: 'Réinitialiser la connexion.',
-    pressAndHold: 'Maintenez pressé le bouton situé sur le dessus du capteur  pendant 10 secondes pour le réinitialiser. Appuyez sur le bouton pour l\'allumer.',
-    blePairing: 'Activez la batterie.',
+    pressAndHold: 'Maintenez pressé le bouton situé sur le dessus du capteur pendant 10 secondes pour le réinitialiser.',
+    blePairing: 'Appuyez sur le bouton pour l\'allumer.',
     ensurePairing: 'S\'assurer que le capteur est en mode appairage, avec la LED centrale clignotante.',
-    selectBLE: 'Sélectionnez le  capteur CARFIT PULS dans la liste.',
+    selectBLE: 'Sélectionner le capteur CARFIT PULS dans la liste.',
   },
   carInstallation: {
     installation: 'Installation',
     // Page One
-    inCarInstallation: 'Installation dans la voiture.',
-    header1: 'Allez dans votre voiture.',
+    inCarInstallation: 'Installation dans la voiture',
+    header1: 'Allez dans votre voiture',
     message1: 'Installation du capteur CARFIT PULS dans votre voiture',
     header2: 'Préparez l\'adhésif',
     message2: 'Retirez la protection de l\'adhésif',
@@ -83,12 +95,17 @@ const fr = {
     // Page four
     registerCar: 'Enregistrez votre véhicule',
     enterLicensePlate: 'Entrez votre numéro d\'immatriculation',
-    enterRegion: 'Entrez votre pays',
+    enterRegion: 'Sélectionnez la région ici',
     enterByVin: 'S\'enregistrer par le VIN',
     enterVin: 'Entrez votre VIN',
     enterByLicensePlate: 'S\'enregistrer par le numéro d\'immatriculation',
     success: 'Voiture identifiée!',
-    failure: 'Pas ma voiture'
+    failure: 'Pas ma voiture',
+    notFound: 'La voiture n\'a pas pu être identifiée',
+    retry: 'Réessayez',
+    support: 'Contactez le support CARFIT',
+    connect: 'RELIER',
+    connectError: 'Le périphérique n\'a pas pu se connecter.'
   },
   vinLocations: {
     vinLocations: 'Trouvez votre VIN',
@@ -123,11 +140,21 @@ const fr = {
     lastTrip: 'Dernier trajet',
     trending: 'Tendance',
     comingSoon: 'A venir',
-    mileage: 'Entrez le kilométrage de votre véhicule ici.'
+    mileage: 'Entrez le kilométrage de votre véhicule ici.',
+    button: 'Plus Jamais Seul!',
+    click: 'J\'appuie sur le bouton ou ici:',
+    updateMi: 'Actualiser le kilométrage de la voiture',
+    updateKm: 'Actualiser le kilométrage de voiture',
+    noTrips: 'Vous n\'avez pas encore effectué de trajet.',
+    support: 'SOUTIEN',
+    call: 'Vous allez être rappelé très vite.',
+    supportError: 'Demande échoué. Réessayer.',
+    save: 'Sauvegarder les modifications',
+    cancel: 'Annuler'
   },
   settings: {
     settings: 'Paramètres',
-    myCars: 'Mes véhicules',
+    myCars: 'Mes voitures',
     sensors: 'Capteurs',
     myAccount: 'Mon compte',
     drive: 'Conduite',
@@ -138,11 +165,15 @@ const fr = {
   },
   myCars: {
     myCars: 'Mes véhicules',
-    active: 'Ma véhicule active',
-    changeMyCar: 'Changer mon véhicule',
+    active: 'Véhicule active',
+    changeMyCar: 'Changer de véhicule',
+    notAvailable: 'Non disponible',
+    connected:  'Connecté',
+    disconnected: 'Débranché',
   },
   details: {
-    displayInfo: 'Information de véhicule',
+    details: 'Détails',
+    displayInfo: 'Information du véhicule',
     name: 'Nom',
     mileage: 'Kilométrage',
     image: 'Photo',
@@ -157,7 +188,7 @@ const fr = {
     model: 'Modèle',
     mpgCity: 'Consommation urbaine (L/100km)',
     mpgHighway: 'Consommation autoroute (L/100km)',
-    license: 'Numéro d\'immatriculation',
+    license: 'Immatriculation',
     vin: 'VIN',
     drivenWheels: 'Roues motrices',
     trimLevel: 'Niveau de finition',
@@ -171,6 +202,7 @@ const fr = {
     identifier: 'Identifiant',
     password: 'Mot de passe',
     changePassword: 'Changer le mot de passe',
+    myAccount: 'Mon compte'
   },
   legal: {
     privacy: 'Politique de confidentialité',
@@ -179,9 +211,10 @@ const fr = {
   register: {
     signin: 'Se connecter',
     first: 'Prénom',
-    last: 'Nom de famille',
+    last: 'Nom',
     email: 'name@example.com',
-    phone: '+XX XX XX XX XX X'
+    phoneInput: '+XX XX XX XX XX X',
+    phone: 'Téléphone'
   }
 };
 export default fr;

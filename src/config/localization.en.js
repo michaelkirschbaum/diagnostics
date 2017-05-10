@@ -17,7 +17,19 @@ const en = {
     marketingText2b: 'The CARFIT PULS wakes automatically whenever you get into your car and goes to sleep after each drive to save power. The battery lasts for up to 2 years.',
     marketingTitle3a: 'Service made simple',
     marketingText3a: 'Scheduling service is just a button press away.',
-    marketingText3b: 'The CARFIT PULS notifies you when it is time to service car.'
+    marketingText3b: 'The CARFIT PULS notifies you when it is time to service car.',
+    connect: 'CONNECT',
+    welcome1: 'Guaranteed! You will never be alone in your car.',
+    welcome2: '24 hours a day, 7 days a week',
+    welcome3: 'The use you make of it will be our offer of tomorrow',
+    attention: 'CAUTION: Application prototype for test. Get your registration number to complete the registration',
+    connection_error: 'Connect Device',
+    reset: 'Puls device needs to be reset. Hold the device button for 10 seconds to continue.',
+    noneFound: 'No devices found. Turn on a device by clicking it.',
+    bluetooth: 'Bluetooth is off. Turn on to continue.',
+    login: 'Login',
+    success: 'You are now logged in.',
+    failure: 'Log in failed. Try again.'
   },
   verification: { // is this still required with Auth0?
     verification: 'Verification',
@@ -56,8 +68,8 @@ const en = {
     activateBluetooth: 'Activate Bluetooth',
     turnOnBLE: 'Turn your phone\'s Bluetooth on.',
     resetConnection: 'Reset connection',
-    pressAndHold: 'Press & hold the center of the CARFIT PULS sensor for 10s to reset the sensor. \nTap to turn it on.',
-    blePairing: 'Enable battery power',
+    pressAndHold: 'Press & hold the center of the CARFIT PULS sensor for 10s to reset the sensor.',
+    blePairing: 'Tap button to turn it on.',
     ensurePairing: 'Ensure the CARFIT PULS sensor in pairing mode with the center LED flashing.',
     selectBLE: 'Select your CARFIT PULS sensor from the list to connect.',
   },
@@ -83,12 +95,17 @@ const en = {
     // Page four
     registerCar: 'registerCar',
     enterLicensePlate: 'Enter by license plate',
-    enterRegion: 'Enter region here', // Need to turn this into a picker.
+    enterRegion: 'Select region here', // Need to turn this into a picker.
     enterByVin: 'Enter by VIN',
     enterVin: 'Enter VIN here',
     enterByLicensePlate: 'Enter by license plate',
     success: 'Car identified!',
-    failure: 'Not my car'
+    failure: 'Not my car',
+    notFound: 'Car could not be identified',
+    retry: 'Try again',
+    support: 'Contact CARFIT Support',
+    connect: 'CONNECT',
+    connectError: 'Device failed to connect.'
   },
   vinLocations: {
     vinLocations: 'VIN locations',
@@ -113,7 +130,7 @@ const en = {
     header6: 'Car details',
     message6: 'view and edit your car’s details',
     header7: 'Settings',
-    message7: 'your cars (car details), sensors, account, demo mode & more',
+    message7: 'your cars (car details), sensors, account, \ndemo mode & more',
   },
   home: {
     alert: 'ALERTS',
@@ -123,8 +140,18 @@ const en = {
     lastTrip: 'Last trip:',
     trending: 'Trending:',
     comingSoon: 'COMING SOON:',
-    mileage: 'Enter your vehicle\'s current mileage here.',
-    kilometrage: 'Enter your vehicle\'s current kilometrage here.'
+    mileage: 'Enter current mileage here',
+    kilometrage: 'Enter current kilometrage here',
+    button: 'NEVER ALONE!',
+    click: 'Push on the button or here:',
+    updateMi: 'UPDATE CAR MILEAGE',
+    updateKm: 'UPDATE CAR KILOMETRAGE',
+    noTrips: 'You haven\'t taken any trips yet.',
+    support: 'SUPPORT',
+    call: 'A representative will call you shortly.',
+    supportError: 'Request failed. Try again.',
+    save: 'Save changes',
+    cancel: 'Cancel'
   },
   settings: {
     settings: 'Settings',
@@ -141,17 +168,17 @@ const en = {
     myCars: 'My cars',
     active: 'Active',
     changeMyCar: 'Change my car',
+    notAvailable: 'Not available',
   },
   details: {
+    details: 'Details',
     displayInfo: 'DISPLAY INFO',
     name: 'Name',
     mileage: 'Mileage',
     image: 'Image',
-
     connectedSensors: 'CONNECTED SENSORS',
     carfit: 'CARFIT',
     phone: 'Phone',
-
     info: 'INFO',
     year: 'Year',
     make: 'Make',
@@ -172,6 +199,7 @@ const en = {
     identifier: 'User ID',
     password: 'Password',
     changePassword: 'Change Password',
+    myAccount: 'My account'
   },
   legal: {
     privacy: 'Privacy Policy',

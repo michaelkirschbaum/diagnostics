@@ -102,9 +102,7 @@ export default function InstallationStateReducer(state = initialState, action = 
       return state.set('in_drive', action.payload);
 
     case SET_CONNECTION:
-      return Object.assign({}, state, {
-        connected: action.payload
-      });
+      return state.set('connected', action.payload);
 
     default:
       return state;

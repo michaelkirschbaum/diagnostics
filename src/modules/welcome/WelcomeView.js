@@ -9,7 +9,7 @@ import { Container, Header, Title, Content, Footer, InputGroup, Input, Button, T
 import colors from '../../config/colors';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
-if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
   var loc = en;
@@ -25,10 +25,7 @@ const WelcomeView = React.createClass({
   },
 
   onNextPress() {
-    this.props.pushRoute({
-      key: 'Installation',
-      title: loc.welcome.welcome
-    });
+    this.props.pushRoute({key: 'Installation', title: loc.welcome.welcome});
   },
 
   render() {
@@ -40,7 +37,7 @@ const WelcomeView = React.createClass({
           </Header>
           <View style={styles.headerLine} />
           <Content
-            padder
+            padder={false}
             keyboardShouldPersistTaps="always"
             style={{backgroundColor: colors.backgroundPrimary}}
             ref={c => this._content = c}>

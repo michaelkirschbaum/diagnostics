@@ -20,12 +20,13 @@ import carfitTheme from '../../config/carfit-theme';
 import colors from '../../config/colors';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
-if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
   var loc = en;
 import store from '../../redux/store';
 import Login from '../../carfit/login';
+import Connection from '../../carfit/connection';
 
 const RegisterView = React.createClass({
   getInitialState() {
@@ -38,6 +39,10 @@ const RegisterView = React.createClass({
 
   async authenticate(first, last, phone, code) {
     var login = new Login();
+    var conn = new Connection();
+
+    // set phone number
+    // conn.addPhone(phone);
 
     // user information
     var demographics = {
@@ -49,15 +54,15 @@ const RegisterView = React.createClass({
     var response = await login.norauto(code, demographics);
     if (true) {
       Alert.alert(
-        'Login',
-        'You are now logged in.',
-        [{text: 'OK', onPress: () => this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome})}],
+        loc.login.login,
+        loc.login.success,
+        [{text: 'OK', onPress: () => this.props.pushRoute({key: 'Installation', title: loc.welcome.welcome})}],
         {cancellable: false}
       );
     } else {
       Alert.alert(
-        'Login',
-        'Log in failed. Try again.',
+        loc.login.login,
+        loc.login.failure,
         [{text: 'OK', onPress: () => console.log("Error: login failed")}]
       );
     }
@@ -69,44 +74,65 @@ const RegisterView = React.createClass({
     return (
       <Container theme={carfitTheme}>
         <Header>
-          <Button transparent onPress={() => this.props.onNavigateBack()}>
-            <Icon name="ios-arrow-back"/>
-          </Button>
           <Title>{headerTitle}</Title>
         </Header>
+
         <Content style={{backgroundColor: colors.backgroundPrimary}}>
-          <Text style={{textAlign: 'center'}}>First Name</Text>
-          <InputGroup borderType='rounded' style={styles.textInput}>
-            <Input
-              ref='firstInput'
-              placeholder={loc.register.first}
-              onChangeText={(text) => this.setState({first: text})}
-            />
-          </InputGroup>
-          <Text style={{textAlign: 'center'}}>Last Name</Text>
-          <InputGroup borderType='rounded' style={styles.textInput}>
-            <Input
-              ref='lastInput'
-              placeholder={loc.register.last}
-              onChangeText={(text) => this.setState({last: text})}
-            />
-          </InputGroup>
-          <Text style={{textAlign: 'center'}}>Phone number</Text>
-          <InputGroup borderType='rounded' style={styles.textInput}>
-            <Input
-              ref='phoneInput'
-              placeholder={loc.register.phone}
-              onChangeText={(text) => this.setState({phone: text})}
-            />
-          </InputGroup>
+          <View style={{
+            height: 1,
+            backgroundColor: colors.headerTextColor,
+            marginLeft: 5,
+            marginRight: 5,
+            marginTop: 5,
+            marginBottom: 5,
+            }}/>
+
+          <View style={styles.inputGroup}>
+            <Text style={{textAlign: 'center'}}>{loc.register.first}</Text>
+            <InputGroup borderType='rounded' style={styles.textInput}>
+              <Input
+                ref='firstInput'
+                placeholder={loc.register.first}
+                onChangeText={(text) => this.setState({first: text})}
+              />
+            </InputGroup>
+          </View>
+
+          <View style={styles.inputGroup}>
+            <Text style={{textAlign: 'center'}}>{loc.register.last}</Text>
+            <InputGroup borderType='rounded' style={styles.textInput}>
+              <Input
+                ref='lastInput'
+                placeholder={loc.register.last}
+                onChangeText={(text) => this.setState({last: text})}
+              />
+            </InputGroup>
+          </View>
+
+          <View style={styles.inputGroup}>
+            <Text style={{textAlign: 'center'}}>{loc.register.phone}</Text>
+            <InputGroup borderType='rounded' style={styles.textInput}>
+              <Input
+                ref='phoneInput'
+                placeholder={loc.register.phoneInput}
+                onChangeText={(text) => this.setState({phone: text})}
+              />
+            </InputGroup>
+          </View>
+
           <Button rounded
-            style={{alignSelf: 'center'}}
+            style={{alignSelf: 'center', marginTop: 10}}
+            textStyle={{color: colors.textPrimary}}
             onPress={() => this.authenticate(this.state.first, this.state.last, this.state.phone, store.getState().get("norauto").get("user_code"))}
           >{loc.general.continue}</Button>
         </Content>
       </Container>
     );
   },
+
+  componentWillMount() {
+
+  }
 });
 
 const styles = StyleSheet.create({
@@ -114,7 +140,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.inputBackground,
     borderColor: colors.primary,
     borderWidth: 2.5,
-    marginTop: 22
+    marginTop: 0,
+    marginLeft: 20,
+    marginRight: 20,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  inputGroup: {
+    marginTop: 20
   }
 });
 

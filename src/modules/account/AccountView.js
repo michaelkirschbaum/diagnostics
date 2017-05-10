@@ -27,7 +27,7 @@ import _ from 'lodash';
 import colors from '../../config/colors';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
-if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
   var loc = en;
@@ -48,32 +48,11 @@ const AccountView = React.createClass({
     };
   },
 
-  componentDidMount() {
-    this.getUserID().done();
-  },
-
-  onNextPress() {
-    // this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
-    // this.props.switchRoute('Overview');
-    // this.props.switchRoute(2);
-  },
-
-  popRoute() {
-    this.props.onNavigateBack();
-  },
-
-  async getUserID() {
-    var login = new Login();
-    var userID = await login.getUser();
-
-    this.setState({userID});
-  },
-
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
 
-    let headerTitle = loc.myCars.myCars;
+    let headerTitle = loc.account.myAccount;
 
     let name = "Sam's Car";
     let mileage = "10,345 km";
@@ -113,7 +92,7 @@ const AccountView = React.createClass({
         </Header>
         <View style={styles.headerLine}/>
         <Content
-          padder
+          padder={false}
           keyboardShouldPersistTaps="always"
           style={{flex: 1, backgroundColor: colors.backgroundPrimary, height: windowHeight}}
           ref={c => this._content = c}>
@@ -121,7 +100,7 @@ const AccountView = React.createClass({
           <View style={styles.layoutContainer}>
 
             {accountDetails}
-
+            {/*
             <View style={styles.sectionContainer}>
               <View style={styles.sectionDetails}>
                 <H3 style={styles.sectionTitle}>{loc.account.password}</H3>
@@ -131,12 +110,26 @@ const AccountView = React.createClass({
                 <Icon active name="ios-arrow-forward"></Icon>
               </View>
             </View>
-
+            */}
           </View>
 
         </Content>
       </Container>
     );
+  },
+
+  componentDidMount() {
+    this.getUserID().done();
+  },
+
+  popRoute() {
+    this.props.onNavigateBack();
+  },
+
+  async getUserID() {
+    var login = new Login();
+    var userID = await login.getUser();
+    this.setState({userID});
   }
 });
 
@@ -164,7 +157,8 @@ const styles = StyleSheet.create({
   },
   sectionDetails: {
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   sectionAction: {},
   sectionHeader: {
