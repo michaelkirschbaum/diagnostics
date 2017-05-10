@@ -13,5 +13,4 @@
 
 @interface CarFitManager : RCTEventEmitter <RCTBridgeModule>
 
-//@interface CarFitManager : NSObject <RCTBridgeModule>
 @end

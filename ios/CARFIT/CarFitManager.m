@@ -7,7 +7,7 @@
 //
 
 #import "CarFitManager.h"
-#import <React/RCTlog.h>
+#import <React/RCTLog.h>
 #import <AWSCore/AWSCore.h>
 
 #import "CFPAWSCarfitapivClient.h"
@@ -86,6 +86,24 @@
 - (void) buttonResponse:(AWSTask *) response {
   if (hasRCTListeners) {
     [self sendEventWithName:@"BLEButtonResponse" body:@{@"name": @"BLEButtonResponse", @"response" : response}];
+  }
+}
+
+- (void) startOAD {
+  if (hasRCTListeners) {
+    [self sendEventWithName:@"BLEOADNotification" body:@{@"name": @"BLEOADNotification", @"state" : @"start"}];
+  }
+}
+
+- (void) stopOAD:(BOOL) status {
+  if (hasRCTListeners) {
+    [self sendEventWithName:@"BLEOADNotification" body:@{@"name": @"BLEOADNotification", @"state" : @"stop", @"status" : status ? @"success" : @"failure" }];
+  }
+}
+
+- (void) percentCompleteOAD:(NSInteger) percent {
+  if (hasRCTListeners) {
+    [self sendEventWithName:@"BLEOADNotification" body:@{@"name": @"BLEOADNotification", @"percent" : [NSString stringWithFormat:@"%ld", percent] }];
   }
 }
 
@@ -321,6 +339,7 @@ RCT_REMAP_METHOD(clickButton,
            , @"TripEndOfTravel"
            , @"TripSteeringWheelAngle"
            , @"TripVehicleMetersPerSecond"
+           , @"BLEOADNotification"
            ];
 }
 
