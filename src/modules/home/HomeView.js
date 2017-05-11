@@ -404,7 +404,7 @@ const HomeView = React.createClass({
         trip = trip.toString() + (this.useMetric() ? ' km' : ' mi');
       }
       else
-        trip = 'Not available';
+        trip = loc.home.error;
 
       // set last trip
       this.setState({trips: trip});
@@ -416,7 +416,7 @@ const HomeView = React.createClass({
         console.warn(e);
       }
     } else {
-      this.setState({trips: 'Not available'});
+      this.setState({trips: loc.home.error});
 
       try {
         await AsyncStorage.setItem('trip', JSON.stringify([]));
@@ -487,7 +487,7 @@ const HomeView = React.createClass({
     var region = NativeModules.SettingsManager.settings.AppleLocale;
 
     // if in US or Britain use Miles, otherwise use Kilometers
-    if (region.endsWith('US') || region.endsWith('en_GB')) {
+    if (region.endsWith('US') || region.endsWith('GB')) {
       return Math.round(meters / 1609.344);
     } else {
       return Math.round(meters / 1000);
@@ -499,7 +499,7 @@ const HomeView = React.createClass({
     var region = NativeModules.SettingsManager.settings.AppleLocale;
 
     // if in US or Britain use Miles, otherwise use Kilometers
-    if (region.endsWith('US') || region.endsWith('en_GB')) {
+    if (region.endsWith('US') || region.endsWith('GB')) {
       return Math.round(distance * 1609.344);
     } else {
       return Math.round(distance * 1000);

@@ -150,7 +150,8 @@ const fr = {
     call: 'Vous allez être rappelé très vite.',
     supportError: 'Demande échoué. Réessayer.',
     save: 'Sauvegarder les modifications',
-    cancel: 'Annuler'
+    cancel: 'Annuler',
+    notAvailable: 'Non disponible'
   },
   settings: {
     settings: 'Paramètres',

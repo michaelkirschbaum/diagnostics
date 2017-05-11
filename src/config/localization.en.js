@@ -151,7 +151,8 @@ const en = {
     call: 'A representative will call you shortly.',
     supportError: 'Request failed. Try again.',
     save: 'Save changes',
-    cancel: 'Cancel'
+    cancel: 'Cancel',
+    error: 'Not available'
   },
   settings: {
     settings: 'Settings',

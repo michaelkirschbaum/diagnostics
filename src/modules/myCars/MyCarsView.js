@@ -119,7 +119,7 @@ const MyCarsView = React.createClass({
     if (title) {
       this.setState({title});
     } else {
-      this.setState({title: 'Not available'});
+      this.setState({title: loc.home.error});
     }
 
     // load description
@@ -127,7 +127,7 @@ const MyCarsView = React.createClass({
     if (description) {
       this.setState({description});
     } else {
-      this.setState({title: 'Not available'});
+      this.setState({title: loc.home.error});
     }
   },
 
