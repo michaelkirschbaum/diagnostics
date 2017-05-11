@@ -60,19 +60,19 @@ const UsageView = React.createClass({
           <View style={styles.last_trip}>
             <View style={styles.iconContainer}>
               <Image source={require('../../../images/icons/data-usage.png')} style={styles.icon} />
-              <Text>{new Date(this.lastTrip().start_timestamp).toDateString().slice(4, 15)}</Text>
+              <Text style={{textAlign: 'center'}}>{this.lastTrip().start_timestamp ? new Date(this.lastTrip().start_timestamp).toDateString().slice(4, 15) : "--"}</Text>
             </View>
             <View style={styles.iconContainer}>
               <Image source={require('../../../images/icons/time-usage.png')} style={styles.icon} />
-              <Text>{new Date(this.lastTrip().start_timestamp).toTimeString().split(" ").shift()}</Text>
+              <Text style={{textAlign: 'center'}}>{this.lastTrip().start_timestamp ? new Date(this.lastTrip().start_timestamp).toTimeString().split(" ").shift() : "--"}</Text>
             </View>
             <View style={styles.iconContainer}>
               <Image source={require('../../../images/icons/distance-usage.png')} style={styles.icon} />
-              <Text>{this.convertMeters(this.lastTrip().meters_travelled) + (this.useMetric() ? ' km' : ' mi')}</Text>
+              <Text style={{textAlign: 'center'}}>{this.lastTrip().meters_travelled ? this.convertMeters(this.lastTrip().meters_travelled) + (this.useMetric() ? ' km' : ' mi') : "--"}</Text>
             </View>
             <View style={styles.iconContainer}>
               <Image source={require('../../../images/icons/smoothness-usage.png')} style={styles.icon} />
-              <Text>N/A</Text>
+              <Text style={{textAlign: 'center'}}>--</Text>
             </View>
           </View>
 
@@ -158,7 +158,7 @@ const UsageView = React.createClass({
     // travel time
     var total = trip.secs_below_72kph + trip.secs_above_72kph + trip.secs_below_10kph;
     if (total == 0)
-      return {stop_and_go: '-%', city: '-%', highway: '-%'};
+      return {stop_and_go: '--', city: '--', highway: '--'};
 
     // percentage of trip in conditions
     var stop_and_go = Math.round(trip.secs_below_10kph / total * 100);
