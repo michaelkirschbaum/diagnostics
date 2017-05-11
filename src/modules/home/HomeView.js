@@ -209,24 +209,20 @@ const HomeView = React.createClass({
             containerStyle={{}}
             modalStyle={{
               borderRadius: 7,
-              height: 200
+              height: 160
             }}>
-            <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between'}}>
+            <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center'}}>
               <Text style={{color: 'black', alignSelf: 'center'}}>{this.useMetric() ? loc.home.updateKm : loc.home.updateMi}</Text>
-              <InputGroup>
-                <Input style={styles.textInput}
-                  ref='mileageInput'
-                  placeholder={this.useMetric() ? loc.home.kilometrage : loc.home.mileage}
-                  onChangeText={(text) => this.setState({new_meters: text})}
-                />
-              </InputGroup>
-
+              <Input style={styles.textInput}
+                ref='mileageInput'
+                placeholder={this.useMetric() ? loc.home.kilometrage : loc.home.mileage}
+                onChangeText={(text) => this.setState({new_meters: text})}
+              />
               <Button rounded
                     style={{alignSelf: 'center'}}
                     textStyle={{color: colors.textPrimary}}
                     onPress={() => this.setOdometer(this.state.new_meters)}
               >{loc.home.save}</Button>
-
               <Button transparent
                     textStyle={{color: 'black'}}
                     style={{alignSelf: 'center'}}
@@ -583,7 +579,6 @@ const styles = StyleSheet.create({
     borderWidth: 2.5,
     borderRadius: 20,
     width: 220,
-    alignSelf: 'center',
     textAlign: 'center'
   },
   image: {
