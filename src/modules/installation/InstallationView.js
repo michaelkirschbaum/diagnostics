@@ -69,9 +69,9 @@ const InstallationView = React.createClass({
     return (
         <Container theme={carfitTheme}>
           <Header>
-            <Button transparent onPress={() => this.popRoute()}>
+            {/* <Button transparent onPress={() => this.popRoute()}>
               <Icon name="ios-arrow-back" />
-            </Button>
+            </Button> */}
             <Title>{headerTitle}</Title>
           </Header>
           <View style={styles.headerLine} />

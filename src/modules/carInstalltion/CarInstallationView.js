@@ -194,9 +194,9 @@ const CarInstallationStateView = React.createClass({
     return (
       <Container theme={carfitTheme}>
         <Header>
-          <Button transparent disabled={this.state.returnDisabled} onPress={() => this.popRoute()}>
+          {/* <Button transparent disabled={this.state.returnDisabled} onPress={() => this.popRoute()}>
             <Icon name="ios-arrow-back"/>
-          </Button>
+          </Button> */}
           <Title>{headerTitle}</Title>
         </Header>
         <View style={styles.headerLine}/>
