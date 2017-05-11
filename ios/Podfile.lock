@@ -14,13 +14,13 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - AWSAPIGateway (2.5.5):
-    - AWSCore (= 2.5.5)
-  - AWSCognito (2.5.5):
-    - AWSCore (= 2.5.5)
-  - AWSCore (2.5.5)
-  - AWSS3 (2.5.5):
-    - AWSCore (= 2.5.5)
+  - AWSAPIGateway (2.5.6):
+    - AWSCore (= 2.5.6)
+  - AWSCognito (2.5.6):
+    - AWSCore (= 2.5.6)
+  - AWSCore (2.5.6)
+  - AWSS3 (2.5.6):
+    - AWSCore (= 2.5.6)
   - BuddyBuildSDK (1.0.15)
   - CarFitiOSSDK (0.0.69):
     - AWSAPIGateway
@@ -66,7 +66,7 @@ PODS:
 
 DEPENDENCIES:
   - BuddyBuildSDK
-  - CarFitiOSSDK (from `../../sdk.ios.car.fit`)
+  - CarFitiOSSDK (from `https://bitbucket.org/carfit_platform/sdk.ios.car.fit.git`, branch `oad`)
   - Crashlytics
   - Fabric
   - Lock (~> 1.26)
@@ -76,14 +76,20 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   CarFitiOSSDK:
-    :path: ../../sdk.ios.car.fit
+    :branch: oad
+    :git: https://bitbucket.org/carfit_platform/sdk.ios.car.fit.git
+
+CHECKOUT OPTIONS:
+  CarFitiOSSDK:
+    :commit: 3036a61bde7201b8d004a2144608ee93617916c6
+    :git: https://bitbucket.org/carfit_platform/sdk.ios.car.fit.git
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  AWSAPIGateway: e4da1a679ccffbfdb95533d0346436495f2115ce
-  AWSCognito: 5f1dddb8669682b1224c19c214270a942e438b06
-  AWSCore: 665371d51ccdfe62430c586e3cb8e57eff8ce09d
-  AWSS3: 7a910824991e5dc13971f7ae73230d354666880e
+  AWSAPIGateway: 63e309ef43c094bc4c695a4e6cc4c9c184389f97
+  AWSCognito: 18edcf80780d45229371dc954c77c825c617f9c4
+  AWSCore: 47109d026cdbc1272624caa73114fbdd2ba3ad66
+  AWSS3: 5ba117abcbf766c4ec405b255c51dbf8bbc588ce
   BuddyBuildSDK: b3038125612b1ad389c2aa89e4787dcb75cac89a
   CarFitiOSSDK: 891eb46d105b95d246069f6c6ed3795170037ba2
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
@@ -96,6 +102,6 @@ SPEC CHECKSUMS:
   TouchIDAuth: 0cf861f58a2cacfc1c12cb02de4850729d943c81
   Zip: e34513299ac38c0686d5b24504da7ce343799ab9
 
-PODFILE CHECKSUM: ec8213a14c1c6b5cddad69e928d2e2bbbb3672ad
+PODFILE CHECKSUM: 61a03ffc72753521d29fb44b86812dce25668740
 
 COCOAPODS: 1.2.0
