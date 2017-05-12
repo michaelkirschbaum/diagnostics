@@ -38,18 +38,6 @@ import * as NavigationState from '../navigation/NavigationState';
 
 
 const TermsView = React.createClass({
-  propTypes: {},
-
-  onNextPress() {
-    // this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
-    // this.props.switchRoute('Overview');
-    // this.props.switchRoute(2);
-  },
-
-  popRoute() {
-    this.props.onNavigateBack();
-  },
-
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
@@ -73,6 +61,10 @@ const TermsView = React.createClass({
         </Content>
       </Container>
     );
+  },
+
+  popRoute() {
+    this.props.onNavigateBack();
   }
 });
 
