@@ -585,8 +585,7 @@ const styles = StyleSheet.create({
     width: 75,
     height: 75,
     justifyContent: 'center',
-    alignItems: 'center',
-    // marginTop: 0,
+    alignItems: 'center'
   },
   icon: {
     width: 35,
