@@ -64,8 +64,8 @@ const SettingsView = React.createClass({
               {/* <H1 style={styles.menuText}>{loc.settings.useWiFi}</H1> */}
             </View>
             <View style={styles.settingsSubContainer}>
-              <H2 style={{marginBottom: 7}} onPress={this.onTermsPress}>{loc.settings.terms}</H2>
-              <H2 onPress={this.onPrivacyPress}>{loc.settings.privacy}</H2>
+              {/*<H2 style={{marginBottom: 7}} onPress={this.onTermsPress}>{loc.settings.terms}</H2>
+              <H2 onPress={this.onPrivacyPress}>{loc.settings.privacy}</H2> */}
               <Text style={{paddingTop: 20}}>{loc.settings.copyright}</Text>
             </View>
         </View>
