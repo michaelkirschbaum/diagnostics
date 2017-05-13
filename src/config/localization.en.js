@@ -73,6 +73,12 @@ const en = {
     ensurePairing: 'Ensure the CARFIT PULS sensor in pairing mode with the center LED flashing.',
     selectBLE: 'Select your CARFIT PULS sensor from the list to connect.',
   },
+  device: {
+    connect: 'CONNECT',
+    firmware: 'Please wait while device is updated.',
+    updateComplete: 'Device updated successfully',
+    percent: 'Progress'
+  },
   carInstallation: {
     installation: 'Installation',
     // Page One

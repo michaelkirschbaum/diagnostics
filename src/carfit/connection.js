@@ -1,7 +1,13 @@
-import { NativeEventEmitter, NativeModules } from 'react-native';
-const { CarFitManager } = NativeModules;
+import {
+  NativeEventEmitter,
+  NativeModules,
+  Alert
+} from 'react-native';
+
 var ReactNative = require('react-native');
 var { Alert } = ReactNative;
+
+const { CarFitManager } = NativeModules;
 
 export default class Connection {
   constructor() {
@@ -32,8 +38,37 @@ export default class Connection {
 
   async connectDevice(id) {
     try {
+      // update firmware
+      var update_firmware_subscription = connectionEmitter.addListener(
+        'BLEOADNotification',
+        (notification) => switch(notification.state) {
+            case "start":
+              Alert.alert(
+                loc.device.connect,
+                loc.device.firmware,
+                {text: 'OK', onPress: () => undefined}
+              );
+            case "stop":
+              Alert.alert(
+                loc.device.connect,
+                loc.device.updateComplete,
+                {text: 'OK', onPress: () => undefined}
+              );
+            default:
+              Alert.alert(
+                loc.device.connect,
+                loc.device.percent,
+                {text: 'OK', onPress: () => undefined}
+              );
+          }
+        }
+      );
+
       // connect given uuid
       var response = await this.manager.connectBLEDeviceAsync(id);
+
+      // cancel update listener
+      update_subscription_subscription.remove();
 
       return response;
     } catch (e) {
