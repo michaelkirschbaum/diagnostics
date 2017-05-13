@@ -88,7 +88,10 @@ const UsageView = React.createClass({
           <View style={styles.last_trip}>
             <View>
               <Text style={{textAlign: 'center'}}>
-                <Image source={require('../../../images/icons/highway.png')} style={styles.icon}/>
+                {this.locationFrance() ?
+                  <Image source={require('../../../images/icons/highway.png')} style={styles.icon}/> :
+                  <Image source={require('../../../images/icons/highway-france.png')} style={styles.icon}/>
+                }
                 {this.getReport(this.lastTrip()).highway}
               </Text>
             </View>
@@ -195,7 +198,14 @@ const UsageView = React.createClass({
       return false;
     else
       return true;
-  }
+  },
+
+  locationFrance() {
+    if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+      return true;
+    else
+      return false;
+  }\
 });
 
 const styles = StyleSheet.create({
