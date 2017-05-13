@@ -151,7 +151,7 @@ const fr = {
     supportError: 'Demande échoué. Réessayer.',
     save: 'Sauvegarder les modifications',
     cancel: 'Annuler',
-    notAvailable: 'Non disponible'
+    error: 'Non disponible'
   },
   settings: {
     settings: 'Paramètres',
