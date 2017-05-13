@@ -62,7 +62,7 @@ export function switchRoute(index) {
 
 export function openDrawer(): Action {
   return {
-    type: OPEN_DRAWER,
+    type: DRAWER_OPEN,
   };
 }
 
@@ -164,6 +164,7 @@ export default function NavigationReducer(state = initialState, action) {
     case DRAWER_OPEN: {
       return state.set('drawerOpen', true);
     }
+
     case DRAWER_CLOSE: {
       return state.set('drawerOpen', false);
     }
