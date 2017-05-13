@@ -5,8 +5,6 @@ import {
 } from 'react-native';
 
 var ReactNative = require('react-native');
-var { Alert } = ReactNative;
-
 const { CarFitManager } = NativeModules;
 
 export default class Connection {
@@ -41,7 +39,8 @@ export default class Connection {
       // update firmware
       var update_firmware_subscription = connectionEmitter.addListener(
         'BLEOADNotification',
-        (notification) => switch(notification.state) {
+        (notification) => function(notification) {
+          switch(notification.state) {
             case "start":
               Alert.alert(
                 loc.device.connect,
