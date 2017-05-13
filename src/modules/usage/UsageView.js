@@ -205,7 +205,7 @@ const UsageView = React.createClass({
       return true;
     else
       return false;
-  }\
+  }
 });
 
 const styles = StyleSheet.create({
