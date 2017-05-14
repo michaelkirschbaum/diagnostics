@@ -42,11 +42,23 @@ export default class Connection {
         (notification) => function(notification) {
           switch(notification.state) {
             case "start":
-              console.log("starting firmware update...");
+              Alert.alert(
+                loc.device.connect,
+                loc.device.firmware,
+                {text: 'OK', onPress: () => undefined}
+              );
             case "stop":
-              console.log("firmware update complete.");
+              Alert.alert(
+                loc.device.connect,
+                loc.device.updateComplete,
+                {text: 'OK', onPress: () => undefined}
+              );
             default:
-              console.log("updating firmware...");
+              Alert.alert(
+                loc.device.connect,
+                loc.device.percent,
+                {text: 'OK', onPress: () => undefined}
+              );
           }
         }
       );
