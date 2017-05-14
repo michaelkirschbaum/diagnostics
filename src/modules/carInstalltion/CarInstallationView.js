@@ -99,7 +99,7 @@ const CarInstallationStateView = React.createClass({
 
     let finalView = this.props.carInstallation.enterMode
 
-    let regions = this.locationUS() ? Object.keys(state_codes) : Object.keys(country_codes);
+    let regions = this.locationUS() ? Object.keys(state_codes) : this.getCountries(loc.countries);
 
     getFinalView = function () {
 
@@ -182,7 +182,7 @@ const CarInstallationStateView = React.createClass({
               options={regions}
               onSubmit={(option) => {
                 this.setState({
-                  region: this.locationUS() ? state_codes[option] : country_codes[option]
+                  region: this.locationUS() ? state_codes[option] : this.getCountryCode(option)
                 });
               }}
             />
@@ -430,6 +430,23 @@ const CarInstallationStateView = React.createClass({
       return true;
     else
       return false;
+  },
+
+  // parse country names from code dictionary
+  getCountries(codes) {
+    var countries = [];
+
+    for (var i in codes) {
+      countries.push(codes[i]);
+    }
+
+    return countries;
+  },
+
+  getCountryCode(country) {
+    for (var i in loc.countries)
+      if (loc.countries[i] == country)
+        return i.toUpperCase();
   }
 });
 

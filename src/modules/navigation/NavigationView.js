@@ -89,7 +89,7 @@ const NavigationView = React.createClass({
             shadowRadius: 3,
           },
         }}
-        tweenHandler={(ratio) => {  //eslint-disable-line
+        tweenHandler={(ratio) => {
           return {
             drawer: { shadowRadius: ratio < 0.2 ? ratio * 5 * 5 : 5 },
             main: {
