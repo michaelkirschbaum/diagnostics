@@ -15,12 +15,20 @@ const {
   PropTypes: NavigationPropTypes
 } = NavigationExperimental;
 import AppRouter from '../AppRouter';
-import {Drawer, Content, Text, List, ListItem} from 'native-base';
-import NavigationDemoDrawer from './NavigationDemoDrawer';
+import {
+  Content,
+  Text,
+  List,
+  ListItem
+} from 'native-base';
+import BluetoothMonitor from './BluetoothMonitor';
 const {CarFitManager} = NativeModules;
 import stylesMain from '../../config/styles';
+import Drawer from 'react-native-drawer';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
+
+// set language
 if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
@@ -65,14 +73,14 @@ const NavigationView = React.createClass({
     return (
       <Drawer
         open={this.props.navigationState.drawerOpen}
-        ref={(ref) => { this._drawer = ref; }}
+        ref={(ref) => { this._drawer = ref;}}
         type="overlay"
         tweenDuration={150}
-        content={<NavigationDemoDrawer/>}
+        content={<BluetoothMonitor />}
         tapToClose
         acceptPan={false}
         onClose={() => this.closeDrawer()}
-        openDrawerOffset={0.2}
+        openDrawerOffset={0.9}
         panCloseMask={0.2}
         styles={{
           drawer: {

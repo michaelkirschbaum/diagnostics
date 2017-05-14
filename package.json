@@ -41,6 +41,7 @@
     "react-native-camera": "^0.6.0",
     "react-native-code-push": "1.17.0-beta",
     "react-native-device": "^1.0.1",
+    "react-native-drawer": "^2.3.0",
     "react-native-easy-grid": "0.1.8",
     "react-native-highcharts": "^0.2.0",
     "react-native-htmlview": "^0.7.2",

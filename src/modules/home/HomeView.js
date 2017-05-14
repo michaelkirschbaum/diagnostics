@@ -395,7 +395,7 @@ const HomeView = React.createClass({
 
       // get last trip if exists
       if (trips.length) {
-        var trip = trips[trips.length - 1].meters_travelled;
+        var trip = trips[0].meters_travelled;
 
         // convert to miles
         var trip = this.convertToLocal(trip);

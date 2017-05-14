@@ -108,7 +108,7 @@ const initialState = fromJS({
       {key: 'Home', title: 'CARFIT'}
     ]
   },
-  drawerOpen: true
+  drawerOpen: false
 });
 
 export default function NavigationReducer(state = initialState, action) {
