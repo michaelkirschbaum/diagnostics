@@ -8,17 +8,13 @@ import carfitTheme from '../config/carfit-theme';
 export default class BluetoothMonitor extends Component {
   render() {
     return (
-      <Text>Bluetooth is off.</Text>
+      <Text style={styles.text}>Bluetooth is off.</Text>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  sidebar: {
-    flex: 1,
-    padding: 10,
-    paddingRight: 0,
-    paddingTop: 30,
-    backgroundColor: '#fff',
-  },
+  text: {
+    textAlign: 'center'
+  }
 });
