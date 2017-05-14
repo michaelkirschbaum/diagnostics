@@ -80,7 +80,7 @@ const NavigationView = React.createClass({
         tapToClose
         acceptPan={false}
         onClose={() => this.closeDrawer()}
-        openDrawerOffset={0.9}
+        openDrawerOffset={0.94}
         panCloseMask={0.2}
         styles={{
           drawer: {
@@ -112,21 +112,6 @@ const NavigationView = React.createClass({
         />
       </Drawer>
     );
-
-    // return (
-    //   <View style={styles.container}>
-    //     <StatusBar
-    //       barStyle={Platform.OS === 'ios' ? 'light-content' : 'light-content'}
-    //       backgroundColor='gray'
-    //     />
-    //     <NavigationCardStack
-    //       key={'stack_' + rootKey}
-    //       onNavigateBack={this.props.onNavigateBack}
-    //       navigationState={scenes}
-    //       renderScene={this.renderScene}
-    //     />
-    //   </View>
-    // );
   },
 
   componentWillMount() {

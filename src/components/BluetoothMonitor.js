@@ -7,7 +7,9 @@ import carfitTheme from '../config/carfit-theme';
 
 export default class BluetoothMonitor extends Component {
   render() {
-    return null;
+    return (
+      <Text>Bluetooth is off.</Text>
+    );
   }
 }
 
