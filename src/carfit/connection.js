@@ -4,7 +4,6 @@ import {
   Alert
 } from 'react-native';
 
-var ReactNative = require('react-native');
 const { CarFitManager } = NativeModules;
 
 export default class Connection {
