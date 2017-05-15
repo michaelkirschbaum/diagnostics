@@ -146,14 +146,6 @@ const InstallationView = React.createClass({
     );
   },
 
-  componentWillMount() {
-    BluetoothState.subscribe(status => {
-      this.setState({bluetoothStatus: status});
-    });
-
-    BluetoothState.initialize();
-  },
-
   componentDidMount() {
     // signal strength refresh
     var interval = 2000;
@@ -225,7 +217,7 @@ const InstallationView = React.createClass({
       this.props.discover();
 
       // notify user if bluetooth is off
-      if (this.state.bluetoothStatus == "off")
+      if (this.props.navigationState.drawerOpen == "true")
         Alert.alert(
           loc.login.connection_error,
           'bluetooth off',

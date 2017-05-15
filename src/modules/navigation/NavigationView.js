@@ -22,6 +22,8 @@ import {
   ListItem
 } from 'native-base';
 import BluetoothMonitor from '../../components/BluetoothMonitor';
+import NetworkMonitor from '../../components/NetworkMonitor';
+import BluetoothState from 'react-native-bluetooth-state';
 const {CarFitManager} = NativeModules;
 import stylesMain from '../../config/styles';
 import Drawer from 'react-native-drawer';
@@ -76,7 +78,7 @@ const NavigationView = React.createClass({
         ref={(ref) => { this._drawer = ref;}}
         type="overlay"
         tweenDuration={150}
-        content={<BluetoothMonitor />}
+        content={<NetworkMonitor />}
         tapToClose
         acceptPan={false}
         onClose={() => this.closeDrawer()}
@@ -145,6 +147,16 @@ const NavigationView = React.createClass({
           {text: 'OK', onPress: () => console.log('OK Pressed')}
         )
       );
+
+    // flag bluetooth status
+    BluetoothState.subscribe(status => {
+      if (status == "off")
+        this.props.openDrawer();
+      else
+        this.props.closeDrawer();
+    });
+
+    BluetoothState.initialize();
   },
 
   locationFrance() {
