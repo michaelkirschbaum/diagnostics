@@ -36,7 +36,7 @@ export default class Connection {
   async connectDevice(id) {
     try {
       // update firmware
-      var update_firmware_subscription = connectionEmitter.addListener(
+      var update_firmware_subscription = this.connectionEmitter.addListener(
         'BLEOADNotification',
         (notification) => function(notification) {
           switch(notification.state) {
