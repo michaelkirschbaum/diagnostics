@@ -37,10 +37,6 @@
   return [[CFPCore sharedInstance] VIN];
 }
 
-- (void) setPhone:(NSString *)phone {
-  [[CFPCore sharedInstance] setPhone:phone];
-}
-
 - (void) start {
   [[CFPCore sharedInstance] start];
 }
@@ -155,7 +151,7 @@ RCT_EXPORT_METHOD(setPhone:(NSString *) phone)
   [[CFPCore sharedInstance] setPhone:phone];
 }
 
-RCT_REMAP_METHOD(availableBLEDevicesAsync, 
+RCT_REMAP_METHOD(availableBLEDevicesAsync,
                  availableBLEDevicesResolver:(RCTPromiseResolveBlock)resolve
                  availableBLEDevicesRejecter:(RCTPromiseRejectBlock)reject)
 {
@@ -428,7 +424,7 @@ RCT_REMAP_METHOD(userGet,
 RCT_EXPORT_METHOD(vehicleImageGet:(NSString *) fileName
                   vehicleImageGetResolver:(RCTPromiseResolveBlock) resolve
                   vehicelImageGetReject:(RCTPromiseRejectBlock) reject) {
-  
+
   [[[CFPCore sharedInstance] vehicleImageGet:fileName] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
     if (task.error) {
       reject(@"vehicleImageGetError", task.error.localizedDescription, task.error);
@@ -442,7 +438,7 @@ RCT_EXPORT_METHOD(vehicleImageGet:(NSString *) fileName
 RCT_EXPORT_METHOD(vehicleImagePut:(NSString *) imagePath file:(NSString *) fileName
                   vehicleImagePutResolver:(RCTPromiseResolveBlock) resolve
                   vehicelImagePutReject:(RCTPromiseRejectBlock) reject) {
-  
+
   [[[CFPCore sharedInstance] vehicleImagePut:imagePath file:fileName] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
     if (task.error) {
       reject(@"vehicleImageGetError", task.error.localizedDescription, task.error);
