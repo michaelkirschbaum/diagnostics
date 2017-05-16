@@ -8,7 +8,16 @@ import {
   WebView,
   NativeModules
 } from 'react-native';
-import {Container, Content, InputGroup, Input, Button, Text, H3, Footer} from 'native-base';
+import {
+  Container,
+  Content,
+  InputGroup,
+  Input,
+  Button,
+  Text,
+  H3,
+  Footer
+} from 'native-base';
 import colors from '../../config/colors';
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
