@@ -25,11 +25,6 @@ if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
 else
   var loc = en;
 
-/**
- * Login view
- * Likely to be the main app view, but will only display login dialog when needed.
- * Otherwise pass by.
- */
 const LoginView = React.createClass({
   propTypes: {
     // dispatch: PropTypes.func.isRequired,
