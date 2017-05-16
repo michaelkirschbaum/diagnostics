@@ -38,7 +38,7 @@ export default class Connection {
       // update firmware
       var update_firmware_subscription = this.connectionEmitter.addListener(
         'BLEOADNotification',
-        (notification) => console.log("bluetooth updating")
+        (notification) => this.firmwareAlert(notification)
       );
 
       // connect given uuid
@@ -67,5 +67,28 @@ export default class Connection {
       'Your phone number has been added.',
       {text: 'OK', onPress: () => console.log('OK Pressed.')},
     ); */
+  }
+
+  firmwareAlert(notification) {
+    switch(notification.state) {
+      case "start":
+        Alert.alert(
+          loc.device.connect,
+          loc.device.firmware,
+          {text: 'OK', onPress: () => undefined}
+        );
+      case "stop":
+        Alert.alert(
+          loc.device.connect,
+          loc.device.updateComplete,
+          {text: 'OK', onPress: () => undefined}
+        );
+      default:
+        Alert.alert(
+          loc.device.connect,
+          loc.device.percent,
+          {text: 'OK', onPress: () => undefined}
+        );
+    }
   }
 }
