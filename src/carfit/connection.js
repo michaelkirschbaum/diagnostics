@@ -45,9 +45,6 @@ export default class Connection {
       // connect given uuid
       var response = await this.manager.connectBLEDeviceAsync(id);
 
-      // cancel update listener
-      update_firmware_subscription.remove();
-
       return response;
     } catch (e) {
       return null;
