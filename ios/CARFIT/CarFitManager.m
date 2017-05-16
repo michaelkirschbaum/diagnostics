@@ -37,9 +37,9 @@
   return [[CFPCore sharedInstance] VIN];
 }
 
-//- (void) setPhone:(NSString *)phone {
-//  [[CFPCore sharedInstance] setPhone:phone];
-//}
+- (void) setPhone:(NSString *)phone {
+  [[CFPCore sharedInstance] setPhone:phone];
+}
 
 - (void) start {
   [[CFPCore sharedInstance] start];
@@ -101,7 +101,7 @@
   }
 }
 
-- (void) percentCompleteOAD:(NSInteger) percent {
+- (void) percentCompleteOAD:(NSUInteger) percent {
   if (hasRCTListeners) {
     [self sendEventWithName:@"BLEOADNotification" body:@{@"name": @"BLEOADNotification", @"percent" : [NSString stringWithFormat:@"%ld", percent] }];
   }
