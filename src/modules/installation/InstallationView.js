@@ -196,20 +196,20 @@ const InstallationView = React.createClass({
     // stop timeout
     clearTimeout(connection_alert);
 
-    if (true) {
+    if (resp == 1) {
       // stop refreshing signals
       clearInterval(this.state.rssi_refresh);
 
       // stop spinner
       this.setState({connected: true});
     }
-    else
+    else {
       Alert.alert(
         loc.carInstallation.connect,
         loc.carInstallation.connectError,
-        [{text: 'OK', onPress: () => console.log("OK pressed.")},
-        {cancellable: false}]
+        [{text: 'OK', onPress: () => console.log("OK pressed.")}]
       );
+    }
   },
 
   popRoute() {
