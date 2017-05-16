@@ -291,21 +291,17 @@ const InstallationView = React.createClass({
   setFirmware(notification) {
     switch(notification.state) {
       case "start":
-        Alert.alert(
-          loc.device.connect,
-          loc.device.firmware,
-          [{text: 'OK', onPress: () => undefined}]
-        );
+        // enable progress indicator
+        this.setState({updating: true});
         break;
       case "stop":
-        Alert.alert(
-          loc.device.connect,
-          loc.device.updateComplete,
-          [{text: 'OK', onPress: () => undefined}]
-        );
+        // check whether update successful
+        if (notification.status == "failure")
+          pass;
         break;
       default:
-        console.log("bluetooth updating");
+        // update progress
+        this.setState({updateProgress: notification.percent})
         break;
     }
   }
