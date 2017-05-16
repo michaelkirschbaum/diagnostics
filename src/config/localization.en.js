@@ -10,7 +10,7 @@ const en = {
     password: 'Password',
     forgotPassword: 'Forgot Password?',
     marketingTitle1a: 'CARFIT PULS',
-    marketingTitle1b: 'THE VIBRATION SENSOR',
+    marketingTitle1b: 'The vibration sensor',
     marketingText1a: 'CARFIT monitors your car\'s vibrations at the steering wheel, like a doctor monitors your pulse.',
     marketingTitle2a: 'Works with any car',
     marketingText2a: 'The CARFIT PULS is easily installed on any steering wheel.',
