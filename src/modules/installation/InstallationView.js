@@ -53,7 +53,7 @@ const InstallationView = React.createClass({
       connected: false,
       modalVisible: false,
       bluetoothStatus: 'unknown',
-      update: '',
+      updateProgress: '',
       update_firmware_subscription: ''
     };
   },
@@ -134,6 +134,7 @@ const InstallationView = React.createClass({
               visible={this.state.modalVisible}>
               <View style={styles.spinnerContainer}>
                 <ConnectionSpinner loading={this.state.connected}/>
+                <Text>{this.state.updateProgress}</Text>
                 {this.state.connected &&
                   <Button rounded
                     style={styles.button}
