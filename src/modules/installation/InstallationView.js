@@ -135,7 +135,9 @@ const InstallationView = React.createClass({
               visible={this.state.modalVisible}>
               <View style={styles.spinnerContainer}>
                 <ConnectionSpinner loading={this.state.connected}/>
-                <Text style={styles.firmware}>{this.state.updateProgress}</Text>
+                  <Text style={styles.firmware}>
+                    Device updating: {this.state.updateProgress}
+                  </Text>
                 {this.state.connected &&
                   <Button rounded
                     style={styles.button}
@@ -164,7 +166,7 @@ const InstallationView = React.createClass({
     // update firmware
     var update_firmware_subscription = connectionEmitter.addListener(
       'BLEOADNotification',
-      (notification) => this.firmwareAlert(notification)
+      (notification) => this.setFirmware(notification)
     );
 
     // store listener
@@ -283,7 +285,7 @@ const InstallationView = React.createClass({
       return false;
   },
 
-  firmwareAlert(notification) {
+  setFirmware(notification) {
     switch(notification.state) {
       case "start":
         Alert.alert(
@@ -364,7 +366,7 @@ const styles = StyleSheet.create({
   },
   firmware: {
     textAlign: 'center',
-    marginTop: 100
+    marginTop: 150
   },
   button: {
     alignSelf: 'center',

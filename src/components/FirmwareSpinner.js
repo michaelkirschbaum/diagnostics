@@ -12,7 +12,8 @@ const FirmwareSpinner = React.createClass({
 
 const styles = StyleSheet.create({
   text: {
-    textAlign: 'center'
+    textAlign: 'center',
+    marginTop: 100
   }
 });
 
