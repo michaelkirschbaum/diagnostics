@@ -3,8 +3,8 @@ import {
   NativeModules,
   Alert
 } from 'react-native';
-import en from '../../config/localization.en';
-import fr from '../../config/localization.fr';
+import en from '../config/localization.en';
+import fr from '../config/localization.fr';
 const { CarFitManager } = NativeModules;
 
 // set language
