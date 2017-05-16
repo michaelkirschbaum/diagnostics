@@ -1,7 +1,17 @@
-import { NativeEventEmitter, NativeModules } from 'react-native';
+import {
+  NativeEventEmitter,
+  NativeModules,
+  Alert
+} from 'react-native';
+import en from '../config/localization.en';
+import fr from '../config/localization.fr';
 const { CarFitManager } = NativeModules;
-var ReactNative = require('react-native');
-var { Alert } = ReactNative;
+
+// set language
+if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
+  var loc = fr;
+else
+  var loc = en;
 
 export default class Connection {
   constructor() {
@@ -39,10 +49,6 @@ export default class Connection {
     } catch (e) {
       return null;
     }
-  }
-
-  setConnectionStatus() {
-    // flag bluetooth status
   }
 
   addPhone(number) {

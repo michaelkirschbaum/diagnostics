@@ -38,6 +38,7 @@ import Signal from '../../components/Signal';
 import TimerMixin from 'react-native-timer-mixin';
 import ConnectionSpinner from '../../components/ConnectionSpinner';
 import BluetoothState from 'react-native-bluetooth-state';
+import FirmwareSpinner from '../../components/FirmwareSpinner';
 const {CarFitManager} = NativeModules;
 
 // set language
@@ -52,7 +53,10 @@ const InstallationView = React.createClass({
       rssi_refresh: '',
       connected: false,
       modalVisible: false,
-      bluetoothStatus: 'unknown'
+      bluetoothStatus: 'unknown',
+      updateProgress: '',
+      update_firmware_subscription: '',
+      updating: false
     };
   },
 
@@ -132,6 +136,11 @@ const InstallationView = React.createClass({
               visible={this.state.modalVisible}>
               <View style={styles.spinnerContainer}>
                 <ConnectionSpinner loading={this.state.connected}/>
+                {this.state.updating &&
+                  <Text style={styles.firmware}>
+                    Device updating: {this.state.updateProgress}
+                  </Text>
+                }
                 {this.state.connected &&
                   <Button rounded
                     style={styles.button}
@@ -147,14 +156,16 @@ const InstallationView = React.createClass({
   },
 
   componentDidMount() {
-    // signal strength refresh
-    var interval = 2000;
+    var connectionEmitter = new NativeEventEmitter(CarFitManager);
 
-    var rssi_refresh = setInterval(function() {
-      this.rediscover();
-    }.bind(this), interval);
+    // update firmware
+    var update_firmware_subscription = connectionEmitter.addListener(
+      'BLEOADNotification',
+      (notification) => this.setFirmware(notification)
+    );
 
-    this.setState({rssi_refresh});
+    // store listener
+    this.setState({update_firmware_subscription});
   },
 
   componentWillUpdate(nextProps, nextState) {
@@ -181,6 +192,10 @@ const InstallationView = React.createClass({
       );
     }, timeout);
 
+    // if firmware needs updating, suppress reset instructions
+    if (this.state.updating)
+      clearTimeout(connection_alert);
+
     // connect device
     var conn = new Connection();
     var resp = await conn.connectDevice(device);
@@ -188,20 +203,23 @@ const InstallationView = React.createClass({
     // stop timeout
     clearTimeout(connection_alert);
 
-    if (true) {
+    if (resp) {
       // stop refreshing signals
       clearInterval(this.state.rssi_refresh);
 
       // stop spinner
       this.setState({connected: true});
+
+      // stop update listener
+      this.state.update_firmware_subscription.remove();
     }
-    else
+    else {
       Alert.alert(
         loc.carInstallation.connect,
         loc.carInstallation.connectError,
-        [{text: 'OK', onPress: () => console.log("OK pressed.")},
-        {cancellable: false}]
+        [{text: 'OK', onPress: () => console.log("OK pressed.")}]
       );
+    }
   },
 
   popRoute() {
@@ -216,6 +234,15 @@ const InstallationView = React.createClass({
       // Start discovery of BLE devices
       this.props.discover();
 
+      var interval = 2000;
+
+      // refresh BLE device list
+      var rssi_refresh = setInterval(function() {
+        this.rediscover();
+      }.bind(this), interval);
+
+      this.setState({rssi_refresh});
+
       // notify user if bluetooth is off
       if (this.props.navigationState.drawerOpen == "true")
         Alert.alert(
@@ -228,7 +255,7 @@ const InstallationView = React.createClass({
       else if (!this.props.installation.foundDevices.length) {
         Alert.alert(
           loc.login.connection_error,
-          loc.login.noneFound,
+          loc.login.noneFound
           [{text: 'OK', onPress: () => this.setPage(0)},
           {cancellable: false}]
         );
@@ -255,6 +282,26 @@ const InstallationView = React.createClass({
       return true;
     else
       return false;
+  },
+
+  setFirmware(notification) {
+    switch(notification.state) {
+      case "start":
+        // enable progress indicator
+        this.setState({updating: true});
+        break;
+      case "stop":
+        // check whether update successful
+        if (notification.status == "success")
+          this.setState({updating: false});
+        else
+          pass;
+        break;
+      default:
+        // update progress
+        this.setState({updateProgress: notification.percent})
+        break;
+    }
   }
 });
 
@@ -313,6 +360,10 @@ const styles = StyleSheet.create({
     marginBottom: 80,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  firmware: {
+    textAlign: 'center',
+    marginTop: 150
   },
   button: {
     alignSelf: 'center',

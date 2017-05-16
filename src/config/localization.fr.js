@@ -73,6 +73,12 @@ const fr = {
     ensurePairing: 'S\'assurer que le capteur est en mode appairage, avec la LED centrale clignotante.',
     selectBLE: 'Sélectionner le capteur CARFIT PULS dans la liste.',
   },
+  device: {
+    connect: '',
+    firmware: '',
+    updateComplete: '',
+    percent: ''
+  },
   carInstallation: {
     installation: 'Installation',
     // Page One

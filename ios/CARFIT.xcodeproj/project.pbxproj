@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -12,6 +13,7 @@
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* CARFITTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* CARFITTests.m */; };
+		08649353665C7B53536505A3 /* Pods_CARFITTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A890589BF3DBCC1A251828 /* Pods_CARFITTests.framework */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -21,14 +23,13 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
-		1CE7ACABFA9FD966F709A4CA /* libPods-CARFIT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 894D1FE89A03778149D6AF67 /* libPods-CARFIT.a */; };
 		20B85DB05EF54D0DBADD8F70 /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF09EE70C0D4727BAE28C89 /* SF-UI-Text-Regular.otf */; };
 		21DA626352C741DE885D0A01 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77E5679401214D25A6287185 /* EvilIcons.ttf */; };
 		21DBBEBB75E746029624CF94 /* poppins_light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DECE0310BE084A0E8B6D7002 /* poppins_light.ttf */; };
 		26D5C096AC544E4D8B0F91BB /* Skia.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D87DF246B134C4CBB2AF910 /* Skia.ttf */; };
+		2A65255FF755CAA3ED12CBC3 /* Pods_CARFIT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA428DF4A1E666ED6CEF8F0 /* Pods_CARFIT.framework */; };
 		3C1640EED42844D688E0148F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ACF115B72824245B7C41DEE /* libz.tbd */; };
 		3E2C365253324A10B3F3615D /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 33A98F90F1994C4285AC3387 /* MaterialIcons.ttf */; };
-		4081BD790380130413941CBF /* libPods-CARFITTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AEDC144F00009D13570A80B /* libPods-CARFITTests.a */; };
 		481FAA4410214872B74B5A2F /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E10D714E4A35405A9322FBF4 /* Ionicons.ttf */; };
 		4A28CA4B1EBB010900156904 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A28CA4D1EBB010900156904 /* InfoPlist.strings */; };
 		4A28CA811EBB092200156904 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A28CA801EBB092200156904 /* Info.plist */; };
@@ -52,6 +53,7 @@
 		922179CA44844297AD269164 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4F8E97B52E354391A9665741 /* Entypo.ttf */; };
 		925B74FCACBE4AF2ADE08FEC /* poppins_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8093B9AA1712475A9E88647F /* poppins_medium.ttf */; };
 		95B482BCB2D242988A2310A3 /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5047B273B79149BF810717CD /* libRCTCamera.a */; };
+		9B05646C1ECB956100CEAA28 /* carfit_release_ota_v14.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9B05646B1ECB956100CEAA28 /* carfit_release_ota_v14.zip */; };
 		9B0CA1921E52DFE000BA3786 /* CarFitManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CA1911E52DFE000BA3786 /* CarFitManager.m */; };
 		9EC3AE9BEB384C189703DC50 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC164155803741F2BD31A5CB /* libRNVectorIcons.a */; };
 		A1270C991EBD4061005BC106 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1270C7A1EBD4023005BC106 /* libART.a */; };
@@ -332,6 +334,7 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = CARFIT/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = CARFIT/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		25A890589BF3DBCC1A251828 /* Pods_CARFITTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CARFITTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ACF115B72824245B7C41DEE /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		31D49D9D7DB94B3B8597538F /* Comic Sans MS.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Comic Sans MS.ttf"; path = "../node_modules/native-base/Fonts/Comic Sans MS.ttf"; sourceTree = "<group>"; };
 		33A98F90F1994C4285AC3387 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
@@ -348,6 +351,7 @@
 		4D87DF246B134C4CBB2AF910 /* Skia.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Skia.ttf; path = "../node_modules/native-base/Fonts/Skia.ttf"; sourceTree = "<group>"; };
 		4F06DB6BFC014D8D9DF8D5DB /* CodePush.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
 		4F8E97B52E354391A9665741 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		4FA428DF4A1E666ED6CEF8F0 /* Pods_CARFIT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CARFIT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5047B273B79149BF810717CD /* libRCTCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTCamera.a; sourceTree = "<group>"; };
 		58815678E2254306B5EAD0E5 /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
 		5C6E9C397373C45A58E90E4A /* Pods-CARFITTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CARFITTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CARFITTests/Pods-CARFITTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -356,15 +360,14 @@
 		651B7FB31A2AEABEDBA0EE25 /* Pods-CARFIT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CARFIT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CARFIT/Pods-CARFIT.debug.xcconfig"; sourceTree = "<group>"; };
 		65EAB818CFDF86388B2D2BA1 /* Pods-CARFITTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CARFITTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CARFITTests/Pods-CARFITTests.release.xcconfig"; sourceTree = "<group>"; };
 		6A53356770F44F89896D5E1C /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
-		6AEDC144F00009D13570A80B /* libPods-CARFITTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CARFITTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77E5679401214D25A6287185 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		782FF925883E4180953A8186 /* Andale Mono.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Andale Mono.ttf"; path = "../node_modules/native-base/Fonts/Andale Mono.ttf"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7B8A1E1473824221B0B3CF31 /* Microsoft Sans Serif.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Microsoft Sans Serif.ttf"; path = "../node_modules/native-base/Fonts/Microsoft Sans Serif.ttf"; sourceTree = "<group>"; };
 		8093B9AA1712475A9E88647F /* poppins_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = poppins_medium.ttf; path = ../fonts/poppins_medium.ttf; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		894D1FE89A03778149D6AF67 /* libPods-CARFIT.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CARFIT.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B08E72A410425FB817D9F5 /* libA0RNLock.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libA0RNLock.a; sourceTree = "<group>"; };
+		9B05646B1ECB956100CEAA28 /* carfit_release_ota_v14.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = carfit_release_ota_v14.zip; sourceTree = "<group>"; };
 		9B0CA1901E52DFE000BA3786 /* CarFitManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CarFitManager.h; path = CARFIT/CarFitManager.h; sourceTree = "<group>"; };
 		9B0CA1911E52DFE000BA3786 /* CarFitManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CarFitManager.m; path = CARFIT/CarFitManager.m; sourceTree = "<group>"; };
 		A1270C741EBD4023005BC106 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
@@ -394,7 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
-				4081BD790380130413941CBF /* libPods-CARFITTests.a in Frameworks */,
+				08649353665C7B53536505A3 /* Pods_CARFITTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,8 +423,8 @@
 				3C1640EED42844D688E0148F /* libz.tbd in Frameworks */,
 				9EC3AE9BEB384C189703DC50 /* libRNVectorIcons.a in Frameworks */,
 				86C3589A1F3C452CB845615F /* libA0RNLock.a in Frameworks */,
-				1CE7ACABFA9FD966F709A4CA /* libPods-CARFIT.a in Frameworks */,
 				95B482BCB2D242988A2310A3 /* libRCTCamera.a in Frameworks */,
+				2A65255FF755CAA3ED12CBC3 /* Pods_CARFIT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +545,7 @@
 		13B07FAE1A68108700A75B9A /* CARFIT */ = {
 			isa = PBXGroup;
 			children = (
+				9B05646B1ECB956100CEAA28 /* carfit_release_ota_v14.zip */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				9B0CA1901E52DFE000BA3786 /* CarFitManager.h */,
 				9B0CA1911E52DFE000BA3786 /* CarFitManager.m */,
@@ -587,8 +591,8 @@
 			children = (
 				A1B84E0C1EBD7DD000ABDCB7 /* CoreBluetooth.framework */,
 				2ACF115B72824245B7C41DEE /* libz.tbd */,
-				894D1FE89A03778149D6AF67 /* libPods-CARFIT.a */,
-				6AEDC144F00009D13570A80B /* libPods-CARFITTests.a */,
+				4FA428DF4A1E666ED6CEF8F0 /* Pods_CARFIT.framework */,
+				25A890589BF3DBCC1A251828 /* Pods_CARFITTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1174,6 +1178,7 @@
 				6606E3AAAFF04207BF7F06C7 /* Roboto.ttf in Resources */,
 				20B85DB05EF54D0DBADD8F70 /* SF-UI-Text-Regular.otf in Resources */,
 				26D5C096AC544E4D8B0F91BB /* Skia.ttf in Resources */,
+				9B05646C1ECB956100CEAA28 /* carfit_release_ota_v14.zip in Resources */,
 				E24064050EB446229A970063 /* Times New Roman.ttf in Resources */,
 				922179CA44844297AD269164 /* Entypo.ttf in Resources */,
 				4A37239F1EA0382600357A8D /* Drive1.gpx in Resources */,
