@@ -52,7 +52,9 @@ const InstallationView = React.createClass({
       rssi_refresh: '',
       connected: false,
       modalVisible: false,
-      bluetoothStatus: 'unknown'
+      bluetoothStatus: 'unknown',
+      update: 0,
+      update_firmware_subscription: ''
     };
   },
 
@@ -155,14 +157,14 @@ const InstallationView = React.createClass({
   },
 
   componentDidMount() {
-    // signal strength refresh
-    var interval = 2000;
+    // update firmware
+    var update_firmware_subscription = this.connectionEmitter.addListener(
+      'BLEOADNotification',
+      (notification) => this.firmwareAlert(notification)
+    );
 
-    var rssi_refresh = setInterval(function() {
-      this.rediscover();
-    }.bind(this), interval);
-
-    this.setState({rssi_refresh});
+    // store listener
+    this.setState({update_firmware_subscription});
   },
 
   componentWillUpdate(nextProps, nextState) {
@@ -202,6 +204,9 @@ const InstallationView = React.createClass({
 
       // stop spinner
       this.setState({connected: true});
+
+      // stop update listener
+      this.state.update_firmware_subscription.remove();
     }
     else {
       Alert.alert(
@@ -223,6 +228,15 @@ const InstallationView = React.createClass({
     if (index == 4) {
       // Start discovery of BLE devices
       this.props.discover();
+
+      // signal strength refresh
+      var interval = 2000;
+
+      var rssi_refresh = setInterval(function() {
+        this.rediscover();
+      }.bind(this), interval);
+
+      this.setState({rssi_refresh});
 
       // notify user if bluetooth is off
       if (this.state.bluetoothStatus == "off")
@@ -263,6 +277,28 @@ const InstallationView = React.createClass({
       return true;
     else
       return false;
+  },
+
+  firmwareAlert(notification) {
+    switch(notification.state) {
+      case "start":
+        Alert.alert(
+          loc.device.connect,
+          loc.device.firmware,
+          [{text: 'OK', onPress: () => undefined}]
+        );
+        break;
+      case "stop":
+        Alert.alert(
+          loc.device.connect,
+          loc.device.updateComplete,
+          [{text: 'OK', onPress: () => undefined}]
+        );
+        break;
+      default:
+        console.log("bluetooth updating");
+        break;
+    }
   }
 });
 

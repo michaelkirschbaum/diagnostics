@@ -42,12 +42,6 @@ export default class Connection {
 
   async connectDevice(id) {
     try {
-      // update firmware
-      var update_firmware_subscription = this.connectionEmitter.addListener(
-        'BLEOADNotification',
-        (notification) => this.firmwareAlert(notification)
-      );
-
       // connect given uuid
       var response = await this.manager.connectBLEDeviceAsync(id);
 
@@ -56,14 +50,8 @@ export default class Connection {
 
       return response;
     } catch (e) {
-      var temp = e;
-
       return null;
     }
-  }
-
-  setConnectionStatus() {
-    // flag bluetooth status
   }
 
   addPhone(number) {
@@ -74,27 +62,5 @@ export default class Connection {
       'Your phone number has been added.',
       {text: 'OK', onPress: () => console.log('OK Pressed.')},
     ); */
-  }
-
-  firmwareAlert(notification) {
-    switch(notification.state) {
-      case "start":
-        Alert.alert(
-          loc.device.connect,
-          loc.device.firmware,
-          [{text: 'OK', onPress: () => undefined}]
-        );
-        break;
-      case "stop":
-        Alert.alert(
-          loc.device.connect,
-          loc.device.updateComplete,
-          [{text: 'OK', onPress: () => undefined}]
-        );
-        break;
-      default:
-        console.log("bluetooth updating");
-        break;
-    }
   }
 }
