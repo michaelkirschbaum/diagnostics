@@ -3,8 +3,15 @@ import {
   NativeModules,
   Alert
 } from 'react-native';
-
+import en from '../config/localization.en';
+import fr from '../config/localization.fr';
 const { CarFitManager } = NativeModules;
+
+// set language
+if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
+  var loc = fr;
+else
+  var loc = en;
 
 export default class Connection {
   constructor() {
@@ -36,40 +43,21 @@ export default class Connection {
   async connectDevice(id) {
     try {
       // update firmware
-      var update_firmware_subscription = connectionEmitter.addListener(
+      var update_firmware_subscription = this.connectionEmitter.addListener(
         'BLEOADNotification',
-        (notification) => function(notification) {
-          switch(notification.state) {
-            case "start":
-              Alert.alert(
-                loc.device.connect,
-                loc.device.firmware,
-                {text: 'OK', onPress: () => undefined}
-              );
-            case "stop":
-              Alert.alert(
-                loc.device.connect,
-                loc.device.updateComplete,
-                {text: 'OK', onPress: () => undefined}
-              );
-            default:
-              Alert.alert(
-                loc.device.connect,
-                loc.device.percent,
-                {text: 'OK', onPress: () => undefined}
-              );
-          }
-        }
+        (notification) => this.firmwareAlert(notification)
       );
 
       // connect given uuid
       var response = await this.manager.connectBLEDeviceAsync(id);
 
       // cancel update listener
-      update_subscription_subscription.remove();
+      update_firmware_subscription.remove();
 
       return response;
     } catch (e) {
+      var temp = e;
+
       return null;
     }
   }
@@ -86,5 +74,28 @@ export default class Connection {
       'Your phone number has been added.',
       {text: 'OK', onPress: () => console.log('OK Pressed.')},
     ); */
+  }
+
+  firmwareAlert(notification) {
+    switch(notification.state) {
+      case "start":
+        Alert.alert(
+          loc.device.connect,
+          loc.device.firmware,
+          {text: 'OK', onPress: () => undefined}
+        );
+      case "stop":
+        Alert.alert(
+          loc.device.connect,
+          loc.device.updateComplete,
+          {text: 'OK', onPress: () => undefined}
+        );
+      default:
+        Alert.alert(
+          loc.device.connect,
+          loc.device.percent,
+          {text: 'OK', onPress: () => undefined}
+        );
+    }
   }
 }

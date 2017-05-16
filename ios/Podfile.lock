@@ -22,7 +22,7 @@ PODS:
   - AWSS3 (2.5.6):
     - AWSCore (= 2.5.6)
   - BuddyBuildSDK (1.0.15)
-  - CarFitiOSSDK (0.0.69):
+  - CarFitiOSSDK (0.0.70):
     - AWSAPIGateway
     - AWSCognito
     - AWSCore
@@ -81,7 +81,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CarFitiOSSDK:
-    :commit: 3036a61bde7201b8d004a2144608ee93617916c6
+    :commit: c1eeb9326f8f5014c2580fa2551d54d0f3b6ec61
     :git: https://bitbucket.org/carfit_platform/sdk.ios.car.fit.git
 
 SPEC CHECKSUMS:
@@ -91,7 +91,7 @@ SPEC CHECKSUMS:
   AWSCore: 47109d026cdbc1272624caa73114fbdd2ba3ad66
   AWSS3: 5ba117abcbf766c4ec405b255c51dbf8bbc588ce
   BuddyBuildSDK: b3038125612b1ad389c2aa89e4787dcb75cac89a
-  CarFitiOSSDK: 891eb46d105b95d246069f6c6ed3795170037ba2
+  CarFitiOSSDK: 4f345b993f2c2d7e2d3977216c0739eb81102520
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   iOSDFULibrary: 3b8a3014e3e4d1bec99b634b2f79fa856e28e556

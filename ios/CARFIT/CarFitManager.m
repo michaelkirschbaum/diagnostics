@@ -56,7 +56,7 @@
 
 - (void) didConnectDevice {
   if (self.connectBLEDeviceAsyncResolveBlock) {
-    self.connectBLEDeviceAsyncResolveBlock(nil);
+    self.connectBLEDeviceAsyncResolveBlock(@1);
     self.connectBLEDeviceAsyncResolveBlock = nil;
   }
   if (hasRCTListeners) {
