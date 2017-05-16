@@ -84,14 +84,17 @@ export default class Connection {
           loc.device.firmware,
           [{text: 'OK', onPress: () => undefined}]
         );
+        break;
       case "stop":
         Alert.alert(
           loc.device.connect,
           loc.device.updateComplete,
           [{text: 'OK', onPress: () => undefined}]
         );
+        break;
       default:
         console.log("bluetooth updating");
+        break;
     }
   }
 }
