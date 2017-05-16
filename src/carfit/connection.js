@@ -38,38 +38,19 @@ export default class Connection {
       // update firmware
       var update_firmware_subscription = this.connectionEmitter.addListener(
         'BLEOADNotification',
-        (notification) => function(notification) {
-          switch(notification.state) {
-            case "start":
-              Alert.alert(
-                loc.device.connect,
-                loc.device.firmware,
-                {text: 'OK', onPress: () => undefined}
-              );
-            case "stop":
-              Alert.alert(
-                loc.device.connect,
-                loc.device.updateComplete,
-                {text: 'OK', onPress: () => undefined}
-              );
-            default:
-              Alert.alert(
-                loc.device.connect,
-                loc.device.percent,
-                {text: 'OK', onPress: () => undefined}
-              );
-          }
-        }
+        (notification) => console.log("bluetooth updating")
       );
 
       // connect given uuid
       var response = await this.manager.connectBLEDeviceAsync(id);
 
       // cancel update listener
-      update_subscription_subscription.remove();
+      update_firmware_subscription.remove();
 
       return response;
     } catch (e) {
+      var temp = e;
+
       return null;
     }
   }
