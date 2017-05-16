@@ -196,7 +196,7 @@ const InstallationView = React.createClass({
     // stop timeout
     clearTimeout(connection_alert);
 
-    if (resp == 1) {
+    if (resp) {
       // stop refreshing signals
       clearInterval(this.state.rssi_refresh);
 

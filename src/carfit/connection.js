@@ -3,8 +3,15 @@ import {
   NativeModules,
   Alert
 } from 'react-native';
-
+import en from '../../config/localization.en';
+import fr from '../../config/localization.fr';
 const { CarFitManager } = NativeModules;
+
+// set language
+if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
+  var loc = fr;
+else
+  var loc = en;
 
 export default class Connection {
   constructor() {
