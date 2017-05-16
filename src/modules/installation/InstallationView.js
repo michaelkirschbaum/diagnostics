@@ -157,8 +157,10 @@ const InstallationView = React.createClass({
   },
 
   componentDidMount() {
+    var connectionEmitter = new NativeEventEmitter(CarFitManager);
+
     // update firmware
-    var update_firmware_subscription = this.connectionEmitter.addListener(
+    var update_firmware_subscription = connectionEmitter.addListener(
       'BLEOADNotification',
       (notification) => this.firmwareAlert(notification)
     );
@@ -229,9 +231,9 @@ const InstallationView = React.createClass({
       // Start discovery of BLE devices
       this.props.discover();
 
-      // signal strength refresh
       var interval = 2000;
 
+      // refresh BLE device list
       var rssi_refresh = setInterval(function() {
         this.rediscover();
       }.bind(this), interval);
