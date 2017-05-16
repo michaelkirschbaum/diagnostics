@@ -53,7 +53,7 @@ const InstallationView = React.createClass({
       connected: false,
       modalVisible: false,
       bluetoothStatus: 'unknown',
-      update: 0,
+      update: '',
       update_firmware_subscription: ''
     };
   },
