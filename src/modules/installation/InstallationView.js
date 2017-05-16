@@ -200,6 +200,10 @@ const InstallationView = React.createClass({
       );
     }, timeout);
 
+    // if firmware needs updating, suppress reset instructions
+    if (this.state.updating)
+      clearTimeout(connection_alert);
+
     // connect device
     var conn = new Connection();
     var resp = await conn.connectDevice(device);
