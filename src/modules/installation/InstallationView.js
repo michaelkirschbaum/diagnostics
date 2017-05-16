@@ -38,6 +38,7 @@ import Signal from '../../components/Signal';
 import TimerMixin from 'react-native-timer-mixin';
 import ConnectionSpinner from '../../components/ConnectionSpinner';
 import BluetoothState from 'react-native-bluetooth-state';
+import FirmwareSpinner from '../../components/FirmwareSpinner';
 const {CarFitManager} = NativeModules;
 
 // set language
@@ -134,7 +135,7 @@ const InstallationView = React.createClass({
               visible={this.state.modalVisible}>
               <View style={styles.spinnerContainer}>
                 <ConnectionSpinner loading={this.state.connected}/>
-                <Text>{this.state.updateProgress}</Text>
+                <Text style={styles.firmware}>{this.state.updateProgress}</Text>
                 {this.state.connected &&
                   <Button rounded
                     style={styles.button}
@@ -253,7 +254,7 @@ const InstallationView = React.createClass({
       else if (!this.props.installation.foundDevices.length) {
         Alert.alert(
           loc.login.connection_error,
-          loc.login.noneFound,
+          loc.login.noneFound
           [{text: 'OK', onPress: () => this.setPage(0)},
           {cancellable: false}]
         );
@@ -360,6 +361,10 @@ const styles = StyleSheet.create({
     marginBottom: 80,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  firmware: {
+    textAlign: 'center',
+    marginTop: 100
   },
   button: {
     alignSelf: 'center',
