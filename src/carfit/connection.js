@@ -92,7 +92,6 @@ export default class Connection {
         );
       default:
         console.log("bluetooth updating");
-        );
     }
   }
 }
