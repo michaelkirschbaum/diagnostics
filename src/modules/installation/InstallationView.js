@@ -296,7 +296,9 @@ const InstallationView = React.createClass({
         break;
       case "stop":
         // check whether update successful
-        if (notification.status == "failure")
+        if (notification.status == "success")
+          this.setState({updating: false});
+        else
           pass;
         break;
       default:
