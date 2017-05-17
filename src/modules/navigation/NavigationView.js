@@ -19,13 +19,13 @@ import {
   Content,
   Text,
   List,
-  ListItem
+  ListItem,
+  Drawer
 } from 'native-base';
 import BluetoothMonitor from '../../components/BluetoothMonitor';
 import NetworkMonitor from '../../components/NetworkMonitor';
 const {CarFitManager} = NativeModules;
 import stylesMain from '../../config/styles';
-import Drawer from 'react-native-drawer';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
 
@@ -99,7 +99,6 @@ const NavigationView = React.createClass({
           };
         }}
         negotiatePan
-        side="top"
       >
         <StatusBar
           barStyle={Platform.OS === 'ios' ? 'light-content' : 'light-content'}
