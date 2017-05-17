@@ -48,12 +48,12 @@ export default function AppRouter(props) {
   if (key === 'Verification') {
     return <VerificationViewContainer />;
   }
-  // if (key === 'ResetPasswordCode') {
-  //   return <ResetPasswordCodeViewContainer />;
-  // }
-  // if (key === 'ResetPassword') {
-  //   return <ResetPasswordViewContainer />;
-  // }
+  /* if (key === 'ResetPasswordCode') {
+    return <ResetPasswordCodeViewContainer />;
+  }
+  if (key === 'ResetPassword') {
+    return <ResetPasswordViewContainer />;
+  } */
   if (key === 'Welcome') {
     return <WelcomeViewContainer />;
   }
