@@ -38,7 +38,7 @@ import ConnectionSpinner from '../../components/ConnectionSpinner';
 import FirmwareSpinner from '../../components/FirmwareSpinner';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
-import {responsiveFontSize} from 'react-native-responsive-dimensions';
+import {responsiveWidth, responseiveHeight, responsiveFontSize} from 'react-native-responsive-dimensions';
 const {CarFitManager} = NativeModules;
 
 // set language
@@ -312,7 +312,7 @@ const styles = StyleSheet.create({
     height: 300,
   },
   image: {
-    width: Dimensions.get('window').width * .85,
+    width: Dimensions.get('window').width * .80,
     height: Dimensions.get('window').width * .85,
     justifyContent: 'center',
     alignItems: 'center',

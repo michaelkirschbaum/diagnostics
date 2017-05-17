@@ -115,12 +115,12 @@ const CarInstallationStateView = React.createClass({
               />
             </InputGroup>
             <Text
-              style={{marginTop: 22, textAlign: "center", color: colors.primary, textDecorationLine: 'underline', fontSize: responsiveFontSize(2.35)}}
+              style={styles.link}
               onPress={() => { this.setMode('license') }}>{loc.carInstallation.enterLicensePlate}
             </Text>
             <View style={styles.bottomContainer}>
               <Button rounded
-                      style={{alignSelf: 'auto'}}
+                      style={styles.button}
                       textStyle={{color: colors.textPrimary}}
                       onPress={() => this.addVIN(this.state.text)}
               >{loc.general.continue}</Button>
@@ -152,12 +152,12 @@ const CarInstallationStateView = React.createClass({
               />
             </InputGroup>
             <Text
-              style={{marginTop: 22, textAlign: "center", color: colors.primary, textDecorationLine: 'underline', fontSize: responsiveFontSize(2.35)}}
+              style={styles.link}
               onPress={() => { this.setMode('vin') }}>{loc.carInstallation.enterByVin}
             </Text>
             <View style={styles.bottomContainer}>
               <Button rounded
-                      style={{alignSelf: 'auto'}}
+                      style={styles.button}
                       textStyle={{color: colors.textPrimary}}
                       onPress={() => this.addPlate(this.state.plate, this.state.region)}
               >{loc.general.continue}</Button>
@@ -196,10 +196,10 @@ const CarInstallationStateView = React.createClass({
           <Swiper
             loop={false}
             index={this.props.carInstallation.pageIndex}
-            height={windowHeight - 100}
+            height={windowHeight - responsiveHeight(10)}
             style={styles.container}
-            dot={<View style={{backgroundColor:colors.inputBackground, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
-            activeDot={<View style={{backgroundColor:colors.primary, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+            dot={<View style={{backgroundColor:colors.inputBackground, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
+            activeDot={<View style={{backgroundColor:colors.primary, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
             onMomentumScrollEnd={(e, state, context) => this.setPage(state.index)}
           >
             <View style={styles.instructionsContainer}>
@@ -440,9 +440,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.inputBackground,
     borderColor: colors.primary,
     borderWidth: 2.5,
-    marginTop: 22,
     height: responsiveHeight(7),
-    alignSelf: 'center'
+    width: responsiveWidth(70),
+    alignSelf: 'center',
+    marginTop: responsiveHeight(2)
   },
   instructionsContainer: {
     marginLeft: 20,
@@ -451,16 +452,17 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   image: {
-    width: Dimensions.get('window').width * .85,
-    height: Dimensions.get('window').width * .85,
+    width: responsiveWidth(80),
+    height: responsiveWidth(80),
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 25,
+    alignSelf: 'center'
   },
   bottomContainer: {
-    marginTop: 22,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: responsiveHeight(2)
   },
   icon: {
     width: 35,
@@ -477,17 +479,29 @@ const styles = StyleSheet.create({
   header: {
     fontWeight: "bold",
     textAlign: "center",
-    marginTop: 25,
+    marginTop: responsiveHeight(3),
     fontSize: responsiveFontSize(2.35)
   },
   text: {
-    marginTop: 17,
+    marginTop: responsiveHeight(2),
     textAlign: "center",
     fontSize: responsiveFontSize(2.35)
   },
   container: {
     height: 300,
   },
+  link: {
+    textAlign: "center",
+    color: colors.primary,
+    textDecorationLine: 'underline',
+    fontSize: responsiveFontSize(2.35),
+    marginTop: responsiveHeight(2)
+  },
+  button: {
+    alignSelf: 'auto',
+    height: responsiveHeight(6),
+    width: responsiveWidth(28)
+  }
 });
 
 export default CarInstallationStateView;

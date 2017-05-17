@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import {
   View,
   StyleSheet,
@@ -9,28 +9,18 @@ import { Container, Header, Title, Content, Footer, InputGroup, Input, Button, T
 import colors from '../../config/colors';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
+import carfitTheme from '../../config/carfit-theme';
+import {responsiveWidth, responsiveHeight, responsiveFontSize} from 'react-native-responsive-dimensions';
+import * as NavigationState from '../navigation/NavigationState';
+
+// set language
 if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
   var loc = en;
-import carfitTheme from '../../config/carfit-theme';
 
-import * as NavigationState from '../navigation/NavigationState';
-
-/**
- * Welcome view
- */
 const OverviewView = React.createClass({
-  propTypes: {
-    // dispatch: PropTypes.func.isRequired
-  },
-
-  onNextPress() {
-    this.props.pushRoute({key: 'Home', title: loc.settings.settings});
-  },
-
   render() {
-
     return (
         <Container theme={carfitTheme}>
           <Header>
@@ -115,6 +105,10 @@ const OverviewView = React.createClass({
           </Footer>
         </Container>
     );
+  },
+
+  onNextPress() {
+    this.props.pushRoute({key: 'Home', title: loc.settings.settings});
   }
 });
 
@@ -123,12 +117,15 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: colors.headerTextColor
   },
-  header: {fontWeight: "bold", marginTop: 0},
-  message: {marginTop: 2},
+  header: {
+    fontWeight: "bold",
+    fontSize: responsiveFontSize(2.35)
+  },
+  message: {
+    fontSize: responsiveFontSize(2.35)
+  },
   container: {
     flex: 1,
-    // justifyContent: 'left',
-    // alignItems: 'left',
     marginTop: 8,
     marginBottom: 8,
     marginLeft: 20,
@@ -137,36 +134,17 @@ const styles = StyleSheet.create({
   subContainer: {
     flex: 1,
     flexDirection: 'row',
-    marginTop: 0,
-    marginBottom: 25
-  },
-  inputContainer: {
-    marginLeft: 20,
-    marginRight: 20,
-  },
-  textInput: {
-    backgroundColor: colors.inputBackground,
-    borderColor: colors.primary,
-    borderWidth: 2.5
+    marginBottom: responsiveWidth(4.5)
   },
   icon: {
-    width: 35,
-    height: 35,
+    width: responsiveHeight(5),
+    height: responsiveHeight(5),
     marginRight: 20,
     justifyContent: 'center',
     alignItems: 'center'
   },
-  logo: {
-    width: 200,
-    height: 200,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  titles: {
-
-  },
   footer: {
-    height: 100,
+    height: responsiveHeight(12),
     backgroundColor: colors.backgroundPrimary,
     borderColor: colors.backgroundPrimary
   },
@@ -174,6 +152,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  button: {
+    alignSelf: 'auto',
+    height: responsiveHeight(6),
+    width: responsiveWidth(28)
   }
 });
 
