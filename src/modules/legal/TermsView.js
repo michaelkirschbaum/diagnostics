@@ -27,15 +27,15 @@ import _ from 'lodash';
 import colors from '../../config/colors';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
+import carfitTheme from '../../config/carfit-theme';
+import Swiper from 'react-native-swiper';
+import * as NavigationState from '../navigation/NavigationState';
+
+// set langauge
 if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
   var loc = en;
-import carfitTheme from '../../config/carfit-theme';
-import Swiper from 'react-native-swiper';
-
-import * as NavigationState from '../navigation/NavigationState';
-
 
 const TermsView = React.createClass({
   render() {
