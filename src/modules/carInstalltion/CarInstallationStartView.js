@@ -9,12 +9,15 @@ import { Container, Header, Title, Content, Footer, InputGroup, Input, Button, T
 import colors from '../../config/colors';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
+import carfitTheme from '../../config/carfit-theme';
+import * as NavigationState from '../navigation/NavigationState';
+import {responsiveFontSize} from 'react-native-responsive-dimensions';
+
+// set language
 if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
   var loc = en;
-import carfitTheme from '../../config/carfit-theme';
-import * as NavigationState from '../navigation/NavigationState';
 
 const CarInstallationStartView = React.createClass({
   render() {
@@ -98,11 +101,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.headerTextColor
   },
   header: {fontWeight: "bold", marginTop: 0},
-  message: {marginTop: 2},
+  message: {marginTop: 2, fontSize: responsiveFontSize(2.35)},
   container: {
     flex: 1,
-    // justifyContent: 'left',
-    // alignItems: 'left',
     marginTop: 20,
     marginBottom: 20,
     marginLeft: 20,
@@ -114,30 +115,12 @@ const styles = StyleSheet.create({
     marginTop: 25,
     marginBottom: 8
   },
-  inputContainer: {
-    marginLeft: 20,
-    marginRight: 20,
-  },
-  textInput: {
-    backgroundColor: colors.inputBackground,
-    borderColor: colors.primary,
-    borderWidth: 2.5
-  },
   icon: {
     width: 35,
     height: 35,
     marginRight: 20,
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  logo: {
-    width: 200,
-    height: 200,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  titles: {
-
   },
   footer: {
     height: 150,

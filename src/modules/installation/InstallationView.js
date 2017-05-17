@@ -39,6 +39,7 @@ import BluetoothState from 'react-native-bluetooth-state';
 import FirmwareSpinner from '../../components/FirmwareSpinner';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
+import {responsiveFontSize} from 'react-native-responsive-dimensions';
 const {CarFitManager} = NativeModules;
 
 // set language
