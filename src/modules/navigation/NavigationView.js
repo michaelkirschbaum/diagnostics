@@ -27,6 +27,7 @@ import BluetoothState from 'react-native-bluetooth-state';
 const {CarFitManager} = NativeModules;
 import stylesMain from '../../config/styles';
 import Drawer from 'react-native-drawer';
+import LayoutTester from 'react-native-layout-tester';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
 
