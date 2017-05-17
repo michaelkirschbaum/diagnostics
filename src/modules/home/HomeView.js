@@ -40,12 +40,12 @@ import ConnectionMonitor from '../../components/ConnectionMonitor';
 import Swiper from 'react-native-swiper';
 import Connection from '../../carfit/connection';
 import Vehicle from '../../carfit/vehicle';
-const {CarFitManager} = NativeModules;
 import colors from '../../config/colors';
 import carfitTheme from '../../config/carfit-theme';
 import {responsiveWidth, responsiveHeight, responsiveFontSize} from 'react-native-responsive-dimensions';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
+const {CarFitManager} = NativeModules;
 
 // set language
 if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
@@ -106,23 +106,16 @@ const HomeView = React.createClass({
               </TouchableOpacity>
             </View>
             <View style={styles.profileHeaderContainer}>
-              <H1>{this.state.title}</H1>
-              <H2 style={{marginTop: 5}}>{this.state.description}</H2>
+              <H1 style={styles.title}>{this.state.title}</H1>
+              <H2 style={styles.description}>{this.state.description}</H2>
               <Button rounded
                       style={styles.milesButton}
-                      textStyle={{color: colors.textPrimary, fontSize: responsiveFontSize(2.35)}}
+                      textStyle={styles.button}
                       onPress={() => this.props.setModal(true)}
               >{this.state.meters}</Button>
             </View>
 
-            <View style={{
-              height: 1,
-              backgroundColor: colors.headerTextColor,
-              marginLeft: 5,
-              marginRight: 5,
-              marginTop: 5,
-              marginBottom: 5,
-              }}/>
+            <View style={styles.divider}/>
 
             {this.locationFrance() &&
               <View style={{flexDirection: 'column'}}>
@@ -193,9 +186,6 @@ const HomeView = React.createClass({
                   <H3 style={{color: colors.headerTextColor, fontSize: responsiveFontSize(2.35)}}>{valueAction}</H3>
                   <Text style={{color: colors.headerTextColor, fontSize: responsiveFontSize(2.35)}}>{valueDescription}</Text>
                 </View>
-                {/* <View style={styles.dataAction}>
-                  <Icon active name="ios-arrow-forward"></Icon>
-                </View> */}
               </View>
             }
           </View>
@@ -588,8 +578,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   icon: {
-    width: 35,
-    height: 35,
+    width: responsiveHeight(5),
+    height: responsiveHeight(5),
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -609,6 +599,22 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: responsiveFontSize(2.35)
+  },
+  button: {
+    color: colors.textPrimary,
+    fontSize: responsiveFontSize(2.35)
+  },
+  divider: {
+    height: 1,
+    backgroundColor: colors.headerTextColor,
+    marginLeft: 5,
+    marginRight: 5,
+    marginTop: 5,
+    marginBottom: 5,
+  },
+  title: {},
+  description: {
+    marginTop: 5
   }
 });
 
