@@ -217,14 +217,14 @@ const CarInstallationStateView = React.createClass({
           >
             <View style={styles.instructionsContainer}>
               <Image source={require('../../../images/peel-adhesive.png')} style={styles.image}/>
-              <H3 style={{fontWeight: "bold", textAlign: "center", marginTop: 25}}>{loc.carInstallation.header2}</H3>
-              <Text style={{marginTop: 17, textAlign: "center"}}>{loc.carInstallation.detail2a}</Text>
+              <H3 style={styles.header}>{loc.carInstallation.header2}</H3>
+              <Text style={styles.text}>{loc.carInstallation.detail2a}</Text>
             </View>
             <View style={styles.instructionsContainer}>
               <Image source={require('../../../images/place-02.png')} style={styles.image}/>
-              <H3 style={{fontWeight: "bold", textAlign: "center", marginTop: 25}}>{loc.carInstallation.header3}</H3>
-              <Text style={{marginTop: 17, textAlign: "center"}}>{loc.carInstallation.detail3a}</Text>
-              <Text style={{marginTop: 17, textAlign: "center"}}>{loc.carInstallation.detail3b}</Text>
+              <H3 style={styles.header}>{loc.carInstallation.header3}</H3>
+              <Text style={styles.text}>{loc.carInstallation.detail3a}</Text>
+              <Text style={styles.text}>{loc.carInstallation.detail3b}</Text>
             </View>
             <View style={styles.instructionsContainer}>
               {getFinalView()}

@@ -28,8 +28,6 @@ import {
   Footer
 } from 'native-base';
 import colors from '../../config/colors';
-import en from '../../config/localization.en';
-import fr from '../../config/localization.fr';
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
@@ -39,6 +37,8 @@ import TimerMixin from 'react-native-timer-mixin';
 import ConnectionSpinner from '../../components/ConnectionSpinner';
 import BluetoothState from 'react-native-bluetooth-state';
 import FirmwareSpinner from '../../components/FirmwareSpinner';
+import en from '../../config/localization.en';
+import fr from '../../config/localization.fr';
 const {CarFitManager} = NativeModules;
 
 // set language
@@ -67,15 +67,14 @@ const InstallationView = React.createClass({
   render() {
     let windowHeight = Dimensions.get('window').height;
     let windowWidth = Dimensions.get('window').width;
-    let items = this.props.installation.foundDevices;
+
     let headerTitle = loc.welcome.connect;
+
+    let items = this.props.installation.foundDevices;
 
     return (
         <Container theme={carfitTheme}>
           <Header>
-            {/* <Button transparent onPress={() => this.popRoute()}>
-              <Icon name="ios-arrow-back" />
-            </Button> */}
             <Title>{headerTitle}</Title>
           </Header>
           <View style={styles.headerLine} />
@@ -95,24 +94,24 @@ const InstallationView = React.createClass({
               onMomentumScrollEnd={(e, state, context) => this.setPage(state.index)}
             >
               <View style={styles.instructionsContainer}>
-                <Image source={require('../../../images/pull-tab-02.png')} style={styles.image}/>
-                <H3 style={{fontWeight: "bold", textAlign: "center", marginTop: 25}}>{loc.instructions.enableBattery}</H3>
-                <Text style={{marginTop: 17, textAlign: "center"}}>{loc.instructions.pullTab}</Text>
+                <Image source={require('../../../images/pull-tab-02.png')} style={styles.image} />
+                <H3 style={styles.header}>{loc.instructions.enableBattery}</H3>
+                <Text style={styles.text}>{loc.instructions.pullTab}</Text>
               </View>
               <View style={styles.instructionsContainer}>
-                <Image source={require('../../../images/activate-ble-02.png')} style={styles.image}/>
-                <H3 style={{fontWeight: "bold", textAlign: "center", marginTop: 25}}>{loc.instructions.activateBluetooth}</H3>
-                <Text style={{marginTop: 17, textAlign: "center"}}>{loc.instructions.turnOnBLE}</Text>
+                <Image source={require('../../../images/activate-ble-02.png')} style={styles.image} />
+                <H3 style={styles.header}>{loc.instructions.activateBluetooth}</H3>
+                <Text style={styles.text}>{loc.instructions.turnOnBLE}</Text>
               </View>
               <View style={styles.instructionsContainer}>
-                <Image source={require('../../../images/reset-connection-01.png')} style={styles.image}/>
-                <H3 style={{fontWeight: "bold", textAlign: "center", marginTop: 25}}>{loc.instructions.resetConnection}</H3>
-                <Text style={{marginTop: 17, textAlign: "center"}}>{loc.instructions.pressAndHold}</Text>
+                <Image source={require('../../../images/reset-connection-01.png')} style={styles.image} />
+                <H3 style={styles.header}>{loc.instructions.resetConnection}</H3>
+                <Text style={styles.text}>{loc.instructions.pressAndHold}</Text>
               </View>
               <View style={styles.instructionsContainer}>
-                <Image source={require('../../../images/ble-pairing-02.png')} style={styles.image}/>
-                <H3 style={{fontWeight: "bold", textAlign: "center", marginTop: 25}}>{loc.instructions.blePairing}</H3>
-                <Text style={{marginTop: 17, textAlign: "center"}}>{loc.instructions.ensurePairing}</Text>
+                <Image source={require('../../../images/ble-pairing-02.png')} style={styles.image} />
+                <H3 style={styles.header}>{loc.instructions.blePairing}</H3>
+                <Text style={styles.text}>{loc.instructions.ensurePairing}</Text>
               </View>
               <View style={styles.instructionsContainer}>
                 <Text style={{marginTop: 17, textAlign: "left"}}>{loc.instructions.selectBLE}</Text>
@@ -129,6 +128,7 @@ const InstallationView = React.createClass({
                 </List>
               </View>
             </Swiper>
+
             <Modal
               animationType={'none'}
               transparent={false}
@@ -169,8 +169,6 @@ const InstallationView = React.createClass({
   },
 
   componentWillUpdate(nextProps, nextState) {
-    // console.log('nextProps');
-    // console.log(JSON.stringify(nextProps, null, 2));
     this.numberOfItems = nextProps.installation.foundDevices.length;
 
     return true;
@@ -277,13 +275,6 @@ const InstallationView = React.createClass({
       this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
   },
 
-  locationFrance() {
-    if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
-      return true;
-    else
-      return false;
-  },
-
   setFirmware(notification) {
     switch(notification.state) {
       case "start":
@@ -302,6 +293,13 @@ const InstallationView = React.createClass({
         this.setState({updateProgress: notification.percent})
         break;
     }
+  },
+
+  locationFrance() {
+    if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
+      return true;
+    else
+      return false;
   }
 });
 
@@ -313,30 +311,18 @@ const styles = StyleSheet.create({
   container: {
     height: 300,
   },
-  askMilesContainer: {
-    marginTop: 22
-  },
-  textInput: {
-    backgroundColor: colors.inputBackground,
-    borderColor: colors.primary,
-    borderWidth: 2.5
+  image: {
+    width: Dimensions.get('window').width * .85,
+    height: Dimensions.get('window').width * .85,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 25
   },
   instructionsContainer: {
     marginLeft: 20,
     marginRight: 20,
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  image: {
-    width: 300,
-    height: 300,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 25,
-  },
-  titles: {
-    marginTop: 17,
-    marginBottom: 8
   },
   spinnerContainer: {
     flex: 1,
@@ -351,16 +337,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  spinner: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20
-  },
-  bottomContainer: {
-    marginBottom: 80,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
   firmware: {
     textAlign: 'center',
     marginTop: 150
@@ -368,6 +344,15 @@ const styles = StyleSheet.create({
   button: {
     alignSelf: 'center',
     marginTop: 460
+  },
+  header: {
+    fontWeight: "bold",
+    textAlign: "center",
+    marginTop: 25
+  },
+  text: {
+    marginTop: 17,
+    textAlign: "center"
   }
 });
 

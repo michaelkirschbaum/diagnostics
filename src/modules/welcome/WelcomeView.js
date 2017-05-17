@@ -15,6 +15,7 @@ else
   var loc = en;
 import carfitTheme from '../../config/carfit-theme';
 import * as NavigationState from '../navigation/NavigationState';
+import {responsiveFontSize} from 'react-native-responsive-dimensions';
 
 /**
  * Welcome view
@@ -43,27 +44,26 @@ const WelcomeView = React.createClass({
             ref={c => this._content = c}>
 
             <View style={styles.container}>
-              <Text>{loc.welcome.welcomeToCarfit}</Text>
-              <Text style={{marginTop: 12}}>{loc.welcome.helloMiles}</Text>
-              <Text style={{marginTop: 12}}>{loc.welcome.welcomeParagraph1}</Text>
-              <Text style={{marginTop: 12}}>{loc.welcome.welcomeParagraph2}</Text>
-              <Text style={{marginTop: 12}}>{loc.welcome.welcomeParagraph3}</Text>
-              <Text style={{marginTop: 12}}>{loc.welcome.welcomeParagraph4}</Text>
+              <Text style={{fontSize: responsiveFontSize(2.35)}}>{loc.welcome.welcomeToCarfit}</Text>
+              <Text style={styles.textBody}>{loc.welcome.helloMiles}</Text>
+              <Text style={styles.textBody}>{loc.welcome.welcomeParagraph1}</Text>
+              <Text style={styles.textBody}>{loc.welcome.welcomeParagraph2}</Text>
+              <Text style={styles.textBody}>{loc.welcome.welcomeParagraph3}</Text>
+              <Text style={styles.textBody}>{loc.welcome.welcomeParagraph4}</Text>
 
-              <Text style={{marginTop: 12}}>
-                <Text style={{fontWeight: "bold"}}>1. {loc.welcome.step1}</Text>
-                <Text>{loc.welcome.stepDescription1}</Text>
+              <Text style={styles.textBody}>
+                <Text style={styles.textBold}>1. {loc.welcome.step1}</Text>
+                <Text style={{fontSize: responsiveFontSize(2.35)}}>{loc.welcome.stepDescription1}</Text>
               </Text>
-              <Text style={{marginTop: 3}}>
-                <Text style={{fontWeight: "bold"}}>2. {loc.welcome.step2}</Text>
-                <Text>{loc.welcome.stepDescription1}</Text>
+              <Text style={{marginTop: 3, fontSize: responsiveFontSize(2.35)}}>
+                <Text style={styles.textBold}>2. {loc.welcome.step2}</Text>
+                <Text style={{fontSize: responsiveFontSize(2.35)}}>{loc.welcome.stepDescription1}</Text>
               </Text>
-              <Text style={{marginTop: 3}}>
-                <Text style={{fontWeight: "bold"}}>3. {loc.welcome.step3}</Text>
-                <Text>{loc.welcome.stepDescription2}</Text>
+              <Text style={{marginTop: 3, fontSize: responsiveFontSize(2.35)}}>
+                <Text style={styles.textBold}>3. {loc.welcome.step3}</Text>
+                <Text style={{fontSize: responsiveFontSize(2.35)}}>{loc.welcome.stepDescription2}</Text>
               </Text>
             </View>
-
           </Content>
           <Footer theme={carfitTheme} style={styles.footer}>
             <View style={styles.bottomContainer}>
@@ -86,8 +86,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    // justifyContent: 'left',
-    // alignItems: 'left',
     marginTop: 20,
     marginBottom: 20,
     marginLeft: 20,
@@ -113,7 +111,7 @@ const styles = StyleSheet.create({
     marginBottom: 8
   },
   footer: {
-    height: 150,
+    height: 100,
     backgroundColor: colors.backgroundPrimary,
     borderColor: colors.backgroundPrimary
   },
@@ -121,6 +119,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  textBody: {
+    marginTop: 12,
+    fontSize: responsiveFontSize(2.35)
+  },
+  textBold: {
+    fontWeight: "bold",
+    fontSize: responsiveFontSize(2.35)
   }
 });
 
