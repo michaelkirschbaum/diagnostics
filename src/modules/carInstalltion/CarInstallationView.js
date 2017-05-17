@@ -455,8 +455,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').width * .85,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10,
-    alignSelf: 'center'
+    marginTop: 25,
   },
   bottomContainer: {
     marginTop: 22,
@@ -474,7 +473,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20
-  }
+  },
+  header: {
+    fontWeight: "bold",
+    textAlign: "center",
+    marginTop: 25,
+    fontSize: responsiveFontSize(2.35)
+  },
+  text: {
+    marginTop: 17,
+    textAlign: "center",
+    fontSize: responsiveFontSize(2.35)
+  },
+  container: {
+    height: 300,
+  },
 });
 
 export default CarInstallationStateView;
