@@ -451,8 +451,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   image: {
-    width: responsiveHeight(42),
-    height: responsiveHeight(42),
+    width: Dimensions.get('window').width * .85,
+    height: Dimensions.get('window').width * .85,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10,

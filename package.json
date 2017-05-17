@@ -18,6 +18,7 @@
     "auth0-react-native": "0.0.4",
     "bluebird": "^3.4.6",
     "cli-cursor": "^2.1.0",
+    "cli-width": "^2.1.0",
     "color": "^1.0.3",
     "d3": "^4.8.0",
     "d3-shape": "^1.0.6",
