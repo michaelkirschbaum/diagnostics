@@ -35,7 +35,6 @@ import Connection from '../../carfit/connection';
 import Signal from '../../components/Signal';
 import TimerMixin from 'react-native-timer-mixin';
 import ConnectionSpinner from '../../components/ConnectionSpinner';
-import BluetoothState from 'react-native-bluetooth-state';
 import FirmwareSpinner from '../../components/FirmwareSpinner';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';

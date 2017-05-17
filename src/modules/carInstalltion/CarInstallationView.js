@@ -106,11 +106,6 @@ const CarInstallationStateView = React.createClass({
       if (finalView == 'vin') {
         return (
           <View>
-            {/* <View style={styles.profilesContainer}>
-              <TouchableOpacity onPress={this.setMode('license')}>
-                <Image source={require('../../../images/enter-plate.png')} style={styles.icon}/>
-              </TouchableOpacity>
-            </View> */}
             <Image source={require('../../../images/enter-vin.png')} style={styles.image}/>
             <InputGroup borderType='rounded' style={styles.textInput}>
               <Input
@@ -157,7 +152,7 @@ const CarInstallationStateView = React.createClass({
               />
             </InputGroup>
             <Text
-              style={{marginTop: 22, textAlign: "center", color: colors.primary, textDecorationLine: 'underline'}}
+              style={{marginTop: 22, textAlign: "center", color: colors.primary, textDecorationLine: 'underline', fontSize: responsiveFontSize(2.35)}}
               onPress={() => { this.setMode('vin') }}>{loc.carInstallation.enterByVin}
             </Text>
             <View style={styles.bottomContainer}>
@@ -446,6 +441,8 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
     borderWidth: 2.5,
     marginTop: 22,
+    height: responsiveHeight(7),
+    alignSelf: 'center'
   },
   instructionsContainer: {
     marginLeft: 20,
