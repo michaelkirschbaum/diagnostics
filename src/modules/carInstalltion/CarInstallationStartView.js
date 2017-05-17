@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   footer: {
-    height: 150,
+    height: 100,
     backgroundColor: colors.backgroundPrimary,
     borderColor: colors.backgroundPrimary
   },
