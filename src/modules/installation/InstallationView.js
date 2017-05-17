@@ -349,11 +349,13 @@ const styles = StyleSheet.create({
   header: {
     fontWeight: "bold",
     textAlign: "center",
-    marginTop: 25
+    marginTop: 25,
+    fontSize: responsiveFontSize(2.35)
   },
   text: {
     marginTop: 17,
-    textAlign: "center"
+    textAlign: "center",
+    fontSize: responsiveFontSize(2.35)
   }
 });
 
