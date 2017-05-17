@@ -273,14 +273,7 @@ const en = {
   terms: {
     header: "CARFIT CORP. Terms of Service",
     terms: "1. Terms",
-    termsBody: "By accessing the CARFIT app or any CARFIT websites including\
-                      but not limited to the website at http:\/\/www.car.fit, you\
-                      are agreeing to be bound by these terms of service, all applicable\
-                      laws and regulations, and agree that you are responsible for\
-                      compliance with any applicable local laws. If you do not agree\
-                      with any of these terms, you are prohibited from using or\
-                      accessing this site. The materials contained in this website\
-                      are protected by applicable copyright and trademark law.",
+    termsBody: "By accessing the CARFIT app or any CARFIT websites including but not limited to the website at http://www.car.fit, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this site. The materials contained in this website are protected by applicable copyright and trademark law.",
     license: "2. Use License",
     licenseBody: "Permission is granted to temporarily download one copy of the materials (information or software) on CARFIT CORP.s websites or from any of the approved download locations for said materials including the App Store and Play Store for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:\
                         modify or copy the materials;\
