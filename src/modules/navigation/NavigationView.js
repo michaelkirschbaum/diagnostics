@@ -78,7 +78,7 @@ const NavigationView = React.createClass({
         ref={(ref) => { this._drawer = ref;}}
         type="overlay"
         tweenDuration={150}
-        content={<NetworkMonitor />}
+        content={<BluetoothMonitor />}
         tapToClose
         acceptPan={false}
         onClose={() => this.closeDrawer()}

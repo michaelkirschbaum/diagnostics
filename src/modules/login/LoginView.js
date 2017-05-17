@@ -29,6 +29,7 @@ import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
 import {responsiveWidth, responsiveHeight, responsiveFontSize} from 'react-native-responsive-dimensions';
 
+// set language
 if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
   var loc = fr;
 else
