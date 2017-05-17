@@ -140,11 +140,6 @@ const CarInstallationStateView = React.createClass({
       } else {
         return (
           <View>
-            {/* <View style={styles.profilesContainer}>
-              <TouchableOpacity onPress={this.setMode('vin')}>
-                <Image source={require('../../../images/enter-vin.png')} style={styles.icon}/>
-              </TouchableOpacity>
-            </View> */}
             <Image source={require('../../../images/enter-plate.png')} style={styles.image}/>
              <InputGroup borderType='rounded' style={styles.textInput}>
               <Input
@@ -194,9 +189,6 @@ const CarInstallationStateView = React.createClass({
     return (
       <Container theme={carfitTheme}>
         <Header>
-          {/* <Button transparent disabled={this.state.returnDisabled} onPress={() => this.popRoute()}>
-            <Icon name="ios-arrow-back"/>
-          </Button> */}
           <Title>{headerTitle}</Title>
         </Header>
         <View style={styles.headerLine}/>
@@ -247,12 +239,6 @@ const CarInstallationStateView = React.createClass({
               <Text style={{color: 'black', textAlign: 'center'}}>{this.state.vehicle["make"]}</Text>
               <Text style={{color: 'black', textAlign: 'center'}}>{this.state.vehicle["model"]}</Text>
               <Text style={{color: 'black', textAlign: 'center'}}>{this.state.vehicle["year"]}</Text>
-              {/* <TouchableHighlight onPress={() => this.props.pushRoute({key: 'CarPhoto', title: ''})} underlayColor={'#F4F3F4'}>
-                Image
-                  source={require('../../../images/add-picture-car-identified.png')}
-                  style={styles.image}
-                />
-              </TouchableHighlight> */}
               <Button rounded
                     style={{alignSelf: 'center'}}
                     textStyle={{color: colors.textPrimary}}
@@ -455,9 +441,6 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: colors.headerTextColor
   },
-  askMilesContainer: {
-    marginTop: 22
-  },
   textInput: {
     backgroundColor: colors.inputBackground,
     borderColor: colors.primary,
@@ -478,10 +461,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: 'center'
   },
-  titles: {
-    marginTop: 17,
-    marginBottom: 8
-  },
   bottomContainer: {
     marginTop: 22,
     justifyContent: 'center',
@@ -493,13 +472,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center'
-  },
-  profileContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 55,
-    marginBottom: 16,
   },
   spinner: {
     alignItems: 'center',
