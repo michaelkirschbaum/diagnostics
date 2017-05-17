@@ -125,21 +125,21 @@ const LoginView = React.createClass({
           </View>
           <View style={styles.instructionsContainer}>
             <Image source={require('../../../images/intro-01.jpg')}
-                   style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width * 1.1, marginBottom: 15}}/>
+                   style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width, marginBottom: 15}}/>
             <Text style={styles.textTitle}>{loc.login.marketingTitle1a}</Text>
             <Text style={styles.textTitle}>{loc.login.marketingTitle1b}</Text>
             <Text style={styles.textBody}>{loc.login.marketingText1a}</Text>
           </View>
           <View style={styles.instructionsContainer}>
             <Image source={require('../../../images/intro-02.jpg')}
-                   style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width * 1.1, marginBottom: 15}}/>
+                   style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width, marginBottom: 15}}/>
             <Text style={styles.textTitle}>{loc.login.marketingTitle2a}</Text>
             <Text style={styles.textBody}>{loc.login.marketingText2a}</Text>
             <Text style={styles.textBody}>{loc.login.marketingText2b}</Text>
           </View>
           <View style={styles.instructionsContainer}>
             <Image source={require('../../../images/intro-03.jpg')}
-                   style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width * 1.1, marginBottom: 15}}/>
+                   style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width, marginBottom: 15}}/>
             <Text style={styles.textTitle}>{loc.login.marketingTitle3a}</Text>
             <Text style={styles.textBody}>{loc.login.marketingText3a}</Text>
             <Text style={styles.textBody}>{loc.login.marketingText3b}</Text>
