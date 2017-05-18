@@ -234,11 +234,12 @@ const InstallationView = React.createClass({
       var interval = 2000;
       this.props.discover();
       var rssi_refresh = setInterval(function() {
-        this.rediscover();
+        this.props.discover();
       }.bind(this), interval);
       this.setState({rssi_refresh});
     }
 
+    // notify user of errors
     var interval2 = 5000;
     var discovery_timer = setTimeout(function() {
       // notify user if bluetooth is off
@@ -253,15 +254,10 @@ const InstallationView = React.createClass({
       else if (!this.props.items)
         Alert.alert(
           loc.login.connection_error,
-          loc.login.noneFound
-          [{text: 'OK', onPress: () => this.setPage(0)},
-          {cancellable: false}]
+          loc.login.noneFound,
+          [{text: 'OK', onPress: () => this.setPage(0)}]
         );
     }.bind(this), interval2);
-  },
-
-  rediscover() {
-    this.props.discover();
   },
 
   continue() {
