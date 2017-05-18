@@ -78,8 +78,8 @@ const TermsView = React.createClass({
             <H2 style={styles.header2}>{loc.terms.accuracy}</H2>
               <Text>{loc.terms.accuracyBody}</Text>
 
-            <H2 style={styles.header2}>{loc.terms.link}</H2>
-              <Text>{loc.terms.linkBody}</Text>
+            <H2 style={styles.header2}>{loc.terms.links}</H2>
+              <Text>{loc.terms.linksBody}</Text>
 
             <H2 style={styles.header2}>{loc.terms.modifications}</H2>
               <Text>{loc.terms.modificationsBody}</Text>
@@ -126,7 +126,8 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(2.35)
   },
   copyright: {
-    fontSize: responsiveFontSize(3)
+    fontSize: responsiveFontSize(2.5),
+    marginTop: 15
   }
 });
 

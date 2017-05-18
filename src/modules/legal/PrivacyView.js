@@ -121,7 +121,8 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(2.35)
   },
   copyright: {
-    fontSize: responsiveFontSize(3)
+    fontSize: responsiveFontSize(2.5),
+    marginTop: 15
   }
 });
 
