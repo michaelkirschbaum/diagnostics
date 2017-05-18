@@ -312,7 +312,7 @@ const styles = StyleSheet.create({
     height: 300,
   },
   image: {
-    width: Dimensions.get('window').width * .80,
+    width: Dimensions.get('window').width * .85,
     height: Dimensions.get('window').width * .85,
     justifyContent: 'center',
     alignItems: 'center',
