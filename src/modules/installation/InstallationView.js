@@ -230,34 +230,37 @@ const InstallationView = React.createClass({
   setPage(index) {
     this.props.setPageIndex(index);
     if (index == 4) {
-      // Start discovery of devices
       var interval = 2000;
+      var counter = 0;
+      const stop_count = 2;
+
+      // Start discovery of devices
       this.props.discover();
+
       var rssi_refresh = setInterval(function() {
+        if (counter == stop_count)
+          // notify user if bluetooth is off
+          if (this.props.navigationState.drawerOpen == "true")
+            Alert.alert(
+              loc.login.connection_error,
+              loc.login.bluetooth,
+              [{text: 'OK', onPress: () => undefined}]
+            );
+          // notify user if no devices are found
+          else if (!this.props.installation.foundDevices.length)
+            Alert.alert(
+              loc.login.connection_error,
+              loc.login.noneFound,
+              [{text: 'OK', onPress: () => this.setPage(0)}]
+            );
+
+        // refresh device list
         this.props.discover();
+        if (counter <= stop_count)
+          ++counter;
       }.bind(this), interval);
       this.setState({rssi_refresh});
     }
-
-    // notify user of errors
-    var interval2 = 5000;
-    var discovery_timer = setTimeout(function() {
-      // notify user if bluetooth is off
-      if (this.props.navigationState.drawerOpen == "true")
-        Alert.alert(
-          loc.login.connection_error,
-          loc.login.bluetooth,
-          [{text: 'OK', onPress: () => undefined},
-          {cancellable: false}]
-        );
-      // notify user if no devices are found
-      else if (!this.props.items)
-        Alert.alert(
-          loc.login.connection_error,
-          loc.login.noneFound,
-          [{text: 'OK', onPress: () => this.setPage(0)}]
-        );
-    }.bind(this), interval2);
   },
 
   continue() {
