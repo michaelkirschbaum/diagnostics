@@ -7,5 +7,4 @@ brew update
 brew install watchman
 watchman watch-del-all
 rm -rf node_modules && npm install
-npm start -- --reset-cache
-
+rm -fr $TMPDIR/react-*
