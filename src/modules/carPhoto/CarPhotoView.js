@@ -31,7 +31,7 @@ else
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
-import Camera from 'react-native-camera';
+// import Camera from 'react-native-camera';
 import Vehicle from '../../carfit/vehicle';
 
 const CarPhotoView = React.createClass({
@@ -64,14 +64,14 @@ const CarPhotoView = React.createClass({
           <Title>{headerTitle}</Title>
         </Header>
         <View style={styles.container}>
-          <Camera
+          {/* <Camera
             ref={(cam) => {
               this.camera = cam;
             }}
             style={styles.preview}
             aspect={Camera.constants.Aspect.fill}>
             <Text style={styles.capture} onPress={this.takePicture}>Capture</Text>
-          </Camera>
+          </Camera> */}
         </View>
       </Container>
     );

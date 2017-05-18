@@ -34,7 +34,6 @@ const OverviewView = React.createClass({
             ref={c => this._content = c}>
 
             <View style={styles.container}>
-
               <View style={styles.subContainer}>
                 <Image source={require('../../../images/icons/device.png')} style={styles.icon}/>
                 <View>
@@ -42,7 +41,6 @@ const OverviewView = React.createClass({
               <Text style={styles.message}>{loc.overview.message1}</Text>
                 </View>
               </View>
-
               <View style={styles.subContainer}>
                 <Image source={require('../../../images/icons/phone.png')} style={styles.icon}/>
                 <View>
@@ -50,7 +48,6 @@ const OverviewView = React.createClass({
               <Text style={styles.message}>{loc.overview.message2}</Text>
                 </View>
               </View>
-
               <View style={styles.subContainer}>
                 <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
                 <View>
@@ -58,7 +55,6 @@ const OverviewView = React.createClass({
               <Text style={styles.message}>{loc.overview.message3}</Text>
                 </View>
               </View>
-
               <View style={styles.subContainer}>
                 <Image source={require('../../../images/icons/usage.png')} style={styles.icon}/>
                 <View>
@@ -66,7 +62,6 @@ const OverviewView = React.createClass({
               <Text style={styles.message}>{loc.overview.message4}</Text>
                 </View>
               </View>
-
               <View style={styles.subContainer}>
                 <Image source={require('../../../images/icons/service.png')} style={styles.icon}/>
                 <View>
@@ -74,7 +69,6 @@ const OverviewView = React.createClass({
               <Text style={styles.message}>{loc.overview.message5}</Text>
                 </View>
               </View>
-
               <View style={styles.subContainer}>
                 <Image source={require('../../../images/icons/car_details.png')} style={styles.icon}/>
                 <View>
@@ -82,7 +76,6 @@ const OverviewView = React.createClass({
               <Text style={styles.message}>{loc.overview.message6}</Text>
                 </View>
               </View>
-
               <View style={styles.subContainer}>
                 <Image source={require('../../../images/icons/settings.png')} style={styles.icon}/>
                 <View>
@@ -90,14 +83,12 @@ const OverviewView = React.createClass({
               <Text style={styles.message}>{loc.overview.message7}</Text>
                 </View>
               </View>
-
             </View>
-
           </Content>
           <Footer theme={carfitTheme} style={styles.footer}>
             <View style={styles.bottomContainer}>
               <Button rounded
-                      style={{alignSelf: 'auto'}}
+                      style={styles.button}
                       textStyle={{color: colors.textPrimary}}
                       onPress={this.onNextPress}
               >{loc.general.continue}</Button>
@@ -139,7 +130,7 @@ const styles = StyleSheet.create({
   icon: {
     width: responsiveHeight(5),
     height: responsiveHeight(5),
-    marginRight: 20,
+    marginRight: responsiveWidth(6),
     justifyContent: 'center',
     alignItems: 'center'
   },

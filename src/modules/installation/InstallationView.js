@@ -212,6 +212,7 @@ const InstallationView = React.createClass({
       this.state.update_firmware_subscription.remove();
     }
     else {
+      // connection failed
       Alert.alert(
         loc.carInstallation.connect,
         loc.carInstallation.connectError,
@@ -229,46 +230,43 @@ const InstallationView = React.createClass({
   setPage(index) {
     this.props.setPageIndex(index);
     if (index == 4) {
-      // Start discovery of BLE devices
+      var interval = 2000;
+      var counter = 0;
+      const stop_count = 2;
+
+      // Start discovery of devices
       this.props.discover();
 
-      var interval = 2000;
-
-      // refresh BLE device list
       var rssi_refresh = setInterval(function() {
-        this.rediscover();
+        if (counter == stop_count)
+          // notify user if bluetooth is off
+          if (this.props.navigationState.drawerOpen == "true")
+            Alert.alert(
+              loc.login.connection_error,
+              loc.login.bluetooth,
+              [{text: 'OK', onPress: () => undefined}]
+            );
+          // notify user if no devices are found
+          else if (!this.props.installation.foundDevices.length)
+            Alert.alert(
+              loc.login.connection_error,
+              loc.login.noneFound,
+              [{text: 'OK', onPress: () => this.setPage(0)}]
+            );
+
+        // refresh device list
+        this.props.discover();
+        if (counter <= stop_count)
+          ++counter;
       }.bind(this), interval);
-
       this.setState({rssi_refresh});
-
-      // notify user if bluetooth is off
-      if (this.props.navigationState.drawerOpen == "true")
-        Alert.alert(
-          loc.login.connection_error,
-          'bluetooth off',
-          [{text: 'OK', onPress: () => undefined},
-          {cancellable: false}]
-        );
-      // notify user if no devices are found
-      else if (!this.props.installation.foundDevices.length) {
-        Alert.alert(
-          loc.login.connection_error,
-          loc.login.noneFound
-          [{text: 'OK', onPress: () => this.setPage(0)},
-          {cancellable: false}]
-        );
-      }
     }
-  },
-
-  rediscover() {
-    this.props.discover();
   },
 
   continue() {
     this.setState({modalVisible: false});
 
-    // if norauto user skip CarStartInstallation
+    // if norauto user skip carstartinstallationview
     if (this.locationFrance())
       this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
     else
@@ -312,7 +310,7 @@ const styles = StyleSheet.create({
     height: 300,
   },
   image: {
-    width: Dimensions.get('window').width * .80,
+    width: Dimensions.get('window').width * .85,
     height: Dimensions.get('window').width * .85,
     justifyContent: 'center',
     alignItems: 'center',
