@@ -60,25 +60,36 @@ const PrivacyView = React.createClass({
           style={{flex: 1, backgroundColor: colors.backgroundPrimary, height: windowHeight}}
           ref={c => this._content = c}>
 
-          <H1 style={styles.header}>{loc.privacy.privacy}</H1>
-            <Text style={styles.body}>{loc.privacy.privacyBody}</Text>
-          <H1 style={styles.header}>{loc.privacy.collection}</H1>
-            <Text style={styles.body}>{loc.privacy.collectionBody}</Text>
-          <H1 style={styles.header}>{loc.privacy.cookies}</H1>
-            <Text style={styles.body}>{loc.privacy.cookiesBody}</Text>
-          <H1 style={styles.header}>{loc.privacy.information}</H1>
-            <Text style={styles.body}>{loc.privacy.informationBody}</Text>
-          <H1 style={styles.header}>{loc.privacy.data}</H1>
-            <Text style={styles.body}>{loc.privacy.dataBody}</Text>
-          <H1 style={styles.header}>{loc.privacy.disclosure}</H1>
-            <Text style={styles.body}>{loc.privacy.disclosureBody}</Text>
-          <H1 style={styles.header}>{loc.privacy.links}</H1>
-            <Text style={styles.body}>{loc.privacy.linksBody}</Text>
-          <H1 style={styles.header}>{loc.privacy.access}</H1>
-            <Text style={styles.body}>{loc.privacy.accessBody}</Text>
-          <H1 style={styles.header}>{loc.privacy.contact}</H1>
-            <Text style={styles.body}>{loc.privacy.contactBody}</Text>
-          <H1 style={styles.copyright}>loc.privacy.copyright</H1>
+          <View style={styles.container}>
+            <H1 style={styles.header}>{loc.privacy.privacy}</H1>
+              <Text style={styles.body}>{loc.privacy.privacyBody}</Text>
+
+            <H1 style={styles.header}>{loc.privacy.collection}</H1>
+              <Text style={styles.body}>{loc.privacy.collectionBody}</Text>
+
+            <H1 style={styles.header}>{loc.privacy.cookies}</H1>
+              <Text style={styles.body}>{loc.privacy.cookiesBody}</Text>
+
+            <H1 style={styles.header}>{loc.privacy.information}</H1>
+              <Text style={styles.body}>{loc.privacy.informationBody}</Text>
+
+            <H1 style={styles.header}>{loc.privacy.data}</H1>
+              <Text style={styles.body}>{loc.privacy.dataBody}</Text>
+
+            <H1 style={styles.header}>{loc.privacy.disclosure}</H1>
+              <Text style={styles.body}>{loc.privacy.disclosureBody}</Text>
+
+            <H1 style={styles.header}>{loc.privacy.links}</H1>
+              <Text style={styles.body}>{loc.privacy.linksBody}</Text>
+
+            <H1 style={styles.header}>{loc.privacy.access}</H1>
+              <Text style={styles.body}>{loc.privacy.accessBody}</Text>
+
+            <H1 style={styles.header}>{loc.privacy.contact}</H1>
+              <Text style={styles.body}>{loc.privacy.contactBody}</Text>
+
+            <H1 style={styles.copyright}>{loc.privacy.copyright}</H1>
+          </View>
         </Content>
       </Container>
     );
@@ -96,74 +107,21 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: colors.backgroundPrimary
-  },
-  layoutContainer: {
-    flex: 1,
-    flexDirection: 'column',
-    marginTop: 4
-  },
-
-  sectionContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginLeft: 20,
-    marginRight: 20,
-  },
-  sectionDetails: {
-    flex: 1,
-    flexDirection: 'column',
-  },
-  sectionAction: {},
-  sectionHeader: {
-    fontWeight: 'bold'
-  },
-  sectionTitle: {
-    fontWeight: 'bold'
-  },
-
-
-  textInput: {
-    backgroundColor: colors.inputBackground,
-    borderColor: colors.primary,
-    borderWidth: 2.5,
-    marginTop: 22
-  },
-
-  menuText: {
-    marginBottom: 24,
-    fontWeight: "bold"
-  },
-
-  image: {
-    width: 300,
-    height: 300,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 25,
-  },
-  titles: {
-    marginTop: 17,
-    marginBottom: 8
-  },
-  footer: {
-    height: 200,
-    // backgroundColor: colors.backgroundPrimary,
-    backgroundColor: '#550000',
-    borderColor: colors.backgroundPrimary,
-    alignItems: 'flex-start',
-    alignSelf: 'flex-start',
-    justifyContent: 'flex-start',
+    marginTop: 8,
+    marginBottom: 8,
+    marginLeft: 10,
+    marginRight: 10
   },
   header: {
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize: responsiveFontSize(3),
+    marginTop: 15
   },
   body: {
     fontSize: responsiveFontSize(2.35)
   },
   copyright: {
-
+    fontSize: responsiveFontSize(3)
   }
 });
 

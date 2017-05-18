@@ -320,7 +320,7 @@ const en = {
                   All computers have the ability to decline cookies. This can be done by activating the setting on your browser which enables you to decline the cookies. Please note that should you choose to decline cookies, you may be unable to access particular parts of our website.\
                   Our advertisers may also use cookies, over which we have no control. Such cookies (if used) would be downloaded once you click on advertisements on our website.",
     information: "Use of Your Information",
-    informatioanaBody: "              The information that we collect and store relating to you is primarily used to enable us to provide our services to you, and to improve your customer experience through enhancements to our website, services, apps, bot, and devices. In addition, we may use the information for the following purposes:\
+    informationBody: "              The information that we collect and store relating to you is primarily used to enable us to provide our services to you, and to improve your customer experience through enhancements to our website, services, apps, bot, and devices. In addition, we may use the information for the following purposes:\
                     To provide you with information requested from us, relating to our products or services. To provide information on other products which we feel may be of interest to you, where you have consented to receive such information.\
                     To meet our contractual commitments to you.\
                     To notify you about issues pertianing to your car, your usage, your car's upcoming service requirements, your car's current and project resale value, or any other information pertaining to your car that may be relevant to you.\
