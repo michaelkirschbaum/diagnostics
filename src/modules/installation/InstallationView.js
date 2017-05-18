@@ -212,6 +212,7 @@ const InstallationView = React.createClass({
       this.state.update_firmware_subscription.remove();
     }
     else {
+      // connection failed
       Alert.alert(
         loc.carInstallation.connect,
         loc.carInstallation.connectError,
@@ -229,36 +230,34 @@ const InstallationView = React.createClass({
   setPage(index) {
     this.props.setPageIndex(index);
     if (index == 4) {
-      // Start discovery of BLE devices
-      this.props.discover();
-
+      // Start discovery of devices
       var interval = 2000;
-
-      // refresh BLE device list
+      this.props.discover();
       var rssi_refresh = setInterval(function() {
         this.rediscover();
       }.bind(this), interval);
-
       this.setState({rssi_refresh});
+    }
 
+    var interval2 = 5000;
+    var discovery_timer = setTimeout(function() {
       // notify user if bluetooth is off
       if (this.props.navigationState.drawerOpen == "true")
         Alert.alert(
           loc.login.connection_error,
-          'bluetooth off',
+          loc.login.bluetooth,
           [{text: 'OK', onPress: () => undefined},
           {cancellable: false}]
         );
       // notify user if no devices are found
-      else if (!this.props.installation.foundDevices.length) {
+      else if (!this.props.items)
         Alert.alert(
           loc.login.connection_error,
           loc.login.noneFound
           [{text: 'OK', onPress: () => this.setPage(0)},
           {cancellable: false}]
         );
-      }
-    }
+    }.bind(this), interval2);
   },
 
   rediscover() {
@@ -268,7 +267,7 @@ const InstallationView = React.createClass({
   continue() {
     this.setState({modalVisible: false});
 
-    // if norauto user skip CarStartInstallation
+    // if norauto user skip carstartinstallationview
     if (this.locationFrance())
       this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
     else
