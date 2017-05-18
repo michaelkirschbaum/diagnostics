@@ -305,8 +305,8 @@ const HomeView = React.createClass({
     const vin = this.props.vehicle.vin;
     var vehicle = new Vehicle(vin);
 
-    if (isNaN(distance))
-      this.setState({modalVisible: false});
+    if (isNaN(distance) || distance == '')
+      this.props.setModal(false);
     else {
       // set local
       this.setState({meters: distance + (this.useMetric() ? ' km' : ' mi')});
