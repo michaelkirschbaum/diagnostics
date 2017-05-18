@@ -267,8 +267,7 @@ const en = {
     ch: "Switzerland",
     ua: "Ukraine",
     gb: "United Kingdom",
-    va: "Vatican City",
-    rs: "Yugoslavia"
+    va: "Vatican City"
   },
   terms: {
     header: "CARFIT CORP. Terms of Service",

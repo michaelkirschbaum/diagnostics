@@ -271,8 +271,7 @@ const fr = {
     ch: "la Suisse ",
     ua: "l'Ukraine",
     gb: "le Royaume-Uni",
-    va: "le Vatican",
-    rs: "la Yougoslavie"
+    va: "le Vatican"
   },
   terms: {
     header: "",
