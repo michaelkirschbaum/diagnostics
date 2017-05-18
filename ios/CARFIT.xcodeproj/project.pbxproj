@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -52,8 +53,8 @@
 		922179CA44844297AD269164 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4F8E97B52E354391A9665741 /* Entypo.ttf */; };
 		925B74FCACBE4AF2ADE08FEC /* poppins_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8093B9AA1712475A9E88647F /* poppins_medium.ttf */; };
 		95B482BCB2D242988A2310A3 /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5047B273B79149BF810717CD /* libRCTCamera.a */; };
-		9B05646C1ECB956100CEAA28 /* carfit_release_ota_v14.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9B05646B1ECB956100CEAA28 /* carfit_release_ota_v14.zip */; };
 		9B0CA1921E52DFE000BA3786 /* CarFitManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CA1911E52DFE000BA3786 /* CarFitManager.m */; };
+		9B7A080D1ECE3E65001FBA9D /* carfit_release_ota_bddfbbd.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9B7A080C1ECE3E65001FBA9D /* carfit_release_ota_bddfbbd.zip */; };
 		9EC3AE9BEB384C189703DC50 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC164155803741F2BD31A5CB /* libRNVectorIcons.a */; };
 		A1270C991EBD4061005BC106 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1270C7A1EBD4023005BC106 /* libART.a */; };
 		A1B84E0D1EBD7DD000ABDCB7 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1B84E0C1EBD7DD000ABDCB7 /* CoreBluetooth.framework */; };
@@ -358,9 +359,9 @@
 		8093B9AA1712475A9E88647F /* poppins_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = poppins_medium.ttf; path = ../fonts/poppins_medium.ttf; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		95B08E72A410425FB817D9F5 /* libA0RNLock.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libA0RNLock.a; sourceTree = "<group>"; };
-		9B05646B1ECB956100CEAA28 /* carfit_release_ota_v14.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = carfit_release_ota_v14.zip; sourceTree = "<group>"; };
 		9B0CA1901E52DFE000BA3786 /* CarFitManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CarFitManager.h; path = CARFIT/CarFitManager.h; sourceTree = "<group>"; };
 		9B0CA1911E52DFE000BA3786 /* CarFitManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CarFitManager.m; path = CARFIT/CarFitManager.m; sourceTree = "<group>"; };
+		9B7A080C1ECE3E65001FBA9D /* carfit_release_ota_bddfbbd.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = carfit_release_ota_bddfbbd.zip; sourceTree = "<group>"; };
 		A1270C741EBD4023005BC106 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		A1B84E0C1EBD7DD000ABDCB7 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		A564B9601A734B6E86399B54 /* Core.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = Core.xcodeproj; path = "../node_modules/aws-sdk-react-native-core/ios/Core.xcodeproj"; sourceTree = "<group>"; };
@@ -534,7 +535,7 @@
 		13B07FAE1A68108700A75B9A /* CARFIT */ = {
 			isa = PBXGroup;
 			children = (
-				9B05646B1ECB956100CEAA28 /* carfit_release_ota_v14.zip */,
+				9B7A080C1ECE3E65001FBA9D /* carfit_release_ota_bddfbbd.zip */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				9B0CA1901E52DFE000BA3786 /* CarFitManager.h */,
 				9B0CA1911E52DFE000BA3786 /* CarFitManager.m */,
@@ -1147,10 +1148,10 @@
 				6606E3AAAFF04207BF7F06C7 /* Roboto.ttf in Resources */,
 				20B85DB05EF54D0DBADD8F70 /* SF-UI-Text-Regular.otf in Resources */,
 				26D5C096AC544E4D8B0F91BB /* Skia.ttf in Resources */,
-				9B05646C1ECB956100CEAA28 /* carfit_release_ota_v14.zip in Resources */,
 				E24064050EB446229A970063 /* Times New Roman.ttf in Resources */,
 				922179CA44844297AD269164 /* Entypo.ttf in Resources */,
 				4A37239F1EA0382600357A8D /* Drive1.gpx in Resources */,
+				9B7A080D1ECE3E65001FBA9D /* carfit_release_ota_bddfbbd.zip in Resources */,
 				21DA626352C741DE885D0A01 /* EvilIcons.ttf in Resources */,
 				4AEA7A57FCF149B6B6E4CE47 /* FontAwesome.ttf in Resources */,
 				B85BF351658549D998E964B3 /* Foundation.ttf in Resources */,
