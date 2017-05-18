@@ -66,13 +66,23 @@ PODS:
 
 DEPENDENCIES:
   - BuddyBuildSDK
-  - CarFitiOSSDK
+  - CarFitiOSSDK (from `https://bitbucket.org/carfit_platform/sdk.ios.car.fit.git`, branch `oad`)
   - Crashlytics
   - Fabric
   - Lock (~> 1.26)
   - Lock/Email
   - Lock/SMS
   - Lock/TouchID
+
+EXTERNAL SOURCES:
+  CarFitiOSSDK:
+    :branch: oad
+    :git: https://bitbucket.org/carfit_platform/sdk.ios.car.fit.git
+
+CHECKOUT OPTIONS:
+  CarFitiOSSDK:
+    :commit: 0270db67475db89cd1c081e52eb7e6df7c6be615
+    :git: https://bitbucket.org/carfit_platform/sdk.ios.car.fit.git
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -81,7 +91,7 @@ SPEC CHECKSUMS:
   AWSCore: 47109d026cdbc1272624caa73114fbdd2ba3ad66
   AWSS3: 5ba117abcbf766c4ec405b255c51dbf8bbc588ce
   BuddyBuildSDK: b3038125612b1ad389c2aa89e4787dcb75cac89a
-  CarFitiOSSDK: 767e504c8434506d9a5891ad977f34e34e689c07
+  CarFitiOSSDK: cd4347124476e4840905b12eb2d4eb92754186a2
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   iOSDFULibrary: 3b8a3014e3e4d1bec99b634b2f79fa856e28e556
@@ -92,6 +102,6 @@ SPEC CHECKSUMS:
   TouchIDAuth: 0cf861f58a2cacfc1c12cb02de4850729d943c81
   Zip: e34513299ac38c0686d5b24504da7ce343799ab9
 
-PODFILE CHECKSUM: aaa73b187fbf7948180b83c6382d9518d145b924
+PODFILE CHECKSUM: 61a03ffc72753521d29fb44b86812dce25668740
 
 COCOAPODS: 1.2.0
