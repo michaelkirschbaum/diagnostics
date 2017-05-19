@@ -24,6 +24,7 @@ import {
 import BluetoothMonitor from '../../components/BluetoothMonitor';
 import NetworkMonitor from '../../components/NetworkMonitor';
 import FirmwareNotification from '../../components/FirmwareNotification';
+import Drawer from 'react-native-drawer';
 const {CarFitManager} = NativeModules;
 import stylesMain from '../../config/styles';
 import en from '../../config/localization.en';
