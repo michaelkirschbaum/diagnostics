@@ -74,8 +74,8 @@ const NavigationView = React.createClass({
 
     return (
       <Drawer
-        // open={this.props.navigationState.firmwareUpdating}
-        open={true}
+        open={this.props.navigationState.firmwareUpdating}
+        // open={true}
         ref={(ref) => { this._drawer = ref;}}
         type="overlay"
         tweenDuration={150}
@@ -83,7 +83,7 @@ const NavigationView = React.createClass({
         tapToClose
         acceptPan={false}
         onClose={() => this.closeDrawer()}
-        openDrawerOffset={0.7}
+        openDrawerOffset={0.6}
         panCloseMask={0.2}
         styles={{
           drawer: {
