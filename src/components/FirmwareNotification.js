@@ -5,7 +5,7 @@ import {Text} from 'native-base';
 export default class FirmwareNotification extends Component {
   render() {
     return {
-      <Text style={styles.text}>Network is off.</Text>
+      <Text style={styles.text}>Firmware is updating</Text>
     };
   }
 }
