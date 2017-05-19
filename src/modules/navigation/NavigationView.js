@@ -75,6 +75,7 @@ const NavigationView = React.createClass({
     return (
       <Drawer
         open={this.props.navigationState.firmwareUpdating}
+        // open={true}
         ref={(ref) => { this._drawer = ref;}}
         type="overlay"
         tweenDuration={150}
@@ -169,7 +170,7 @@ const NavigationView = React.createClass({
           pass;
         break;
       default:
-        this.updateFirmware(notification.percent);
+        this.props.updateFirmware(notification.percent);
         break;
     }
   },
