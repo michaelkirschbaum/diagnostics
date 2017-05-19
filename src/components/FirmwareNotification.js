@@ -4,8 +4,14 @@ import {Text} from 'native-base';
 
 export default class FirmwareNotification extends Component {
   render() {
-    return null;
+    return (
+      <Text style={styles.text}>Device update: {this.props.percent}</Text>
+    );
   }
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  text: {
+    textAlign: 'center'
+  }
+});

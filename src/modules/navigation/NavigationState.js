@@ -19,8 +19,8 @@ const SWITCH_ROUTE = 'NavigationState/SWITCH_ROUTE';
 const DRAWER_OPEN = 'NavigationState/DRAWER_OPEN';
 const DRAWER_CLOSE = 'NavigationState/DRAWER_CLOSE';
 const NEW_VEHICLE = 'NavigationState/NEW_VEHICLE';
-const SET_FIRMWARE = 'NavigationState/SET_FIRMWARE_UPDATE';
-const UPDATE_FIRMWARE = 'NavigationState/SET_UPDATE_PROGRESS';
+const SET_FIRMWARE = 'NavigationState/SET_FIRMWARE';
+const UPDATE_FIRMWARE = 'NavigationState/UPDATE_PROGRESS';
 
 // Action creators
 export function pushRoute(route) {

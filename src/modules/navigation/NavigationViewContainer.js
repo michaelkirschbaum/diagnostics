@@ -38,7 +38,7 @@ export default connect(
       dispatch(setConnection(status));
     },
     setFirmware(status) {
-      dispatch(setFirmare(status));
+      dispatch(setFirmware(status));
     },
     updateProgress(percent) {
       dispatch(updateProgress(percent));
