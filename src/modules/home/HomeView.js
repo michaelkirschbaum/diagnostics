@@ -178,7 +178,7 @@ const HomeView = React.createClass({
             {!this.locationFrance() &&
               <View style={styles.dataBlockContainer}>
                 <View style={styles.dataIcon}>
-                  <Image source={require('../../../images/icons/usage.png')} style={styles.icon}/>
+                  <Image source={require('../../../images/icons/value.png')} style={styles.icon}/>
                 </View>
                 <View style={styles.dataBlock}>
                   <H3 style={{fontWeight: "bold", color: colors.headerTextColor, fontSize: responsiveFontSize(2.35)}}>{loc.home.value}</H3>
@@ -305,8 +305,8 @@ const HomeView = React.createClass({
     const vin = this.props.vehicle.vin;
     var vehicle = new Vehicle(vin);
 
-    if (isNaN(distance))
-      this.setState({modalVisible: false});
+    if (isNaN(distance) || distance == '')
+      this.props.setModal(false);
     else {
       // set local
       this.setState({meters: distance + (this.useMetric() ? ' km' : ' mi')});
