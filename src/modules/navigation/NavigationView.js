@@ -25,10 +25,10 @@ import BluetoothMonitor from '../../components/BluetoothMonitor';
 import NetworkMonitor from '../../components/NetworkMonitor';
 import FirmwareNotification from '../../components/FirmwareNotification';
 import Drawer from 'react-native-drawer';
-const {CarFitManager} = NativeModules;
 import stylesMain from '../../config/styles';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
+const {CarFitManager} = NativeModules;
 
 // set language
 if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
@@ -159,12 +159,12 @@ const NavigationView = React.createClass({
     switch(notification.state) {
       case "start":
         // enable progress indicator
-        this.setFirmare(true);
+        this.props.setFirmare(true);
         break;
       case "stop":
         // check whether update successful
         if (notification.status == "success")
-          this.setFirmware(false);
+          this.props.setFirmware(false);
         else
           pass;
         break;
