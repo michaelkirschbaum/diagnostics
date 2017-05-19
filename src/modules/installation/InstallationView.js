@@ -155,19 +155,6 @@ const InstallationView = React.createClass({
     );
   },
 
-  componentDidMount() {
-    var connectionEmitter = new NativeEventEmitter(CarFitManager);
-
-    // update firmware
-    var update_firmware_subscription = connectionEmitter.addListener(
-      'BLEOADNotification',
-      (notification) => this.setFirmware(notification)
-    );
-
-    // store listener
-    this.setState({update_firmware_subscription});
-  },
-
   componentWillUpdate(nextProps, nextState) {
     this.numberOfItems = nextProps.installation.foundDevices.length;
 
@@ -271,26 +258,6 @@ const InstallationView = React.createClass({
       this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
     else
       this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
-  },
-
-  setFirmware(notification) {
-    switch(notification.state) {
-      case "start":
-        // enable progress indicator
-        this.setState({updating: true});
-        break;
-      case "stop":
-        // check whether update successful
-        if (notification.status == "success")
-          this.setState({updating: false});
-        else
-          pass;
-        break;
-      default:
-        // update progress
-        this.setState({updateProgress: notification.percent})
-        break;
-    }
   },
 
   locationFrance() {

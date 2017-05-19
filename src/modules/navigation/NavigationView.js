@@ -145,8 +145,34 @@ const NavigationView = React.createClass({
           {text: 'OK', onPress: () => console.log('OK Pressed')}
         )
       );
-  },
 
+    // update firmware
+    var update_firmware_subscription = connectionEmitter.addListener(
+      'BLEOADNotification',
+      (notification) => this.setFirmware(notification)
+    );
+  },
+/*
+  setFirmware(notification) {
+    switch(notification.state) {
+      case "start":
+        // enable progress indicator
+        this.setState({updating: true});
+        break;
+      case "stop":
+        // check whether update successful
+        if (notification.status == "success")
+          this.setState({updating: false});
+        else
+          pass;
+        break;
+      default:
+        // update progress
+        this.setState({updateProgress: notification.percent})
+        break;
+    }
+  },
+*/
   locationFrance() {
     if (NativeModules.SettingsManager.settings.AppleLocale.endsWith("FR"))
       return true;
