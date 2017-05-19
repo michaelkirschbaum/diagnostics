@@ -23,6 +23,7 @@ import {
 } from 'native-base';
 import BluetoothMonitor from '../../components/BluetoothMonitor';
 import NetworkMonitor from '../../components/NetworkMonitor';
+import FirmwareNotification from '../../component/FirmwareNotification';
 const {CarFitManager} = NativeModules;
 import stylesMain from '../../config/styles';
 import en from '../../config/localization.en';
@@ -76,7 +77,7 @@ const NavigationView = React.createClass({
         ref={(ref) => { this._drawer = ref;}}
         type="overlay"
         tweenDuration={150}
-        content={<BluetoothMonitor />}
+        content={<FirmwareNotification />}
         tapToClose
         acceptPan={false}
         onClose={() => this.closeDrawer()}
