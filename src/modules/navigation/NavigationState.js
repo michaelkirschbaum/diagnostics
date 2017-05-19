@@ -80,14 +80,14 @@ export function newVehicle() {
   };
 }
 
-export function setFirmwareUpdate(status) {
+export function setFirmware(status) {
   return {
     type: SET_FIRMWARE,
     payload: status
   }
 }
 
-export function updateProgress(percent) {
+export function updateFirmware(percent) {
   return {
     type: UPDATE_FIRMWARE,
     payload: percent

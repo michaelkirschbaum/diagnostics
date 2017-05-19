@@ -19,8 +19,7 @@ import {
   Content,
   Text,
   List,
-  ListItem,
-  Drawer
+  ListItem
 } from 'native-base';
 import BluetoothMonitor from '../../components/BluetoothMonitor';
 import NetworkMonitor from '../../components/NetworkMonitor';
@@ -73,7 +72,7 @@ const NavigationView = React.createClass({
 
     return (
       <Drawer
-        open={this.props.navigationState.drawerOpen}
+        open={this.props.navigationState.firmwareUpdating}
         ref={(ref) => { this._drawer = ref;}}
         type="overlay"
         tweenDuration={150}
@@ -99,6 +98,7 @@ const NavigationView = React.createClass({
           };
         }}
         negotiatePan
+        side="bottom"
       >
         <StatusBar
           barStyle={Platform.OS === 'ios' ? 'light-content' : 'light-content'}
@@ -157,12 +157,17 @@ const NavigationView = React.createClass({
     switch(notification.state) {
       case "start":
         // enable progress indicator
+        this.setFirmare(true);
         break;
       case "stop":
         // check whether update successful
+        if (notification.status == "success")
+          this.setFirmware(false);
+        else
+          pass;
         break;
       default:
-        // update progress
+        this.updateFirmware(notification.percent);
         break;
     }
   },

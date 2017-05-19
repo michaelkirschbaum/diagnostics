@@ -41,6 +41,7 @@
     "react-native": "0.40.0",
     "react-native-code-push": "1.17.0-beta",
     "react-native-device": "^1.0.1",
+    "react-native-drawer": "https://github.com/michaelkirschbaum/react-native-drawer/tarball/16a34783eedaec2ec04b7962cb2efa8668f26d9d",
     "react-native-easy-grid": "0.1.8",
     "react-native-highcharts": "^0.2.0",
     "react-native-htmlview": "^0.7.2",
