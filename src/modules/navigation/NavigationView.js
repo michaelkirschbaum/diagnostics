@@ -23,7 +23,7 @@ import {
 } from 'native-base';
 import BluetoothMonitor from '../../components/BluetoothMonitor';
 import NetworkMonitor from '../../components/NetworkMonitor';
-import FirmwareNotification from '../../component/FirmwareNotification';
+import FirmwareNotification from '../../components/FirmwareNotification';
 const {CarFitManager} = NativeModules;
 import stylesMain from '../../config/styles';
 import en from '../../config/localization.en';
