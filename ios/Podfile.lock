@@ -14,13 +14,13 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - AWSAPIGateway (2.5.6):
-    - AWSCore (= 2.5.6)
-  - AWSCognito (2.5.6):
-    - AWSCore (= 2.5.6)
-  - AWSCore (2.5.6)
-  - AWSS3 (2.5.6):
-    - AWSCore (= 2.5.6)
+  - AWSAPIGateway (2.5.7):
+    - AWSCore (= 2.5.7)
+  - AWSCognito (2.5.7):
+    - AWSCore (= 2.5.7)
+  - AWSCore (2.5.7)
+  - AWSS3 (2.5.7):
+    - AWSCore (= 2.5.7)
   - BuddyBuildSDK (1.0.15)
   - CarFitiOSSDK (0.0.72):
     - AWSAPIGateway
@@ -80,10 +80,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  AWSAPIGateway: 63e309ef43c094bc4c695a4e6cc4c9c184389f97
-  AWSCognito: 18edcf80780d45229371dc954c77c825c617f9c4
-  AWSCore: 47109d026cdbc1272624caa73114fbdd2ba3ad66
-  AWSS3: 5ba117abcbf766c4ec405b255c51dbf8bbc588ce
+  AWSAPIGateway: 7f348ed004998ccdafb6765e85d0b6e8284f72fe
+  AWSCognito: 833e56f35762648f551ca77f60240a5d7c615e13
+  AWSCore: 716d787cde0239b3e92f9b4151c052f55a117703
+  AWSS3: a534d4f617fa1c3bd8f94a8b3bf12d7099536bd9
   BuddyBuildSDK: b3038125612b1ad389c2aa89e4787dcb75cac89a
   CarFitiOSSDK: cd4347124476e4840905b12eb2d4eb92754186a2
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a

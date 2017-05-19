@@ -53,10 +53,7 @@ const InstallationView = React.createClass({
       rssi_refresh: '',
       connected: false,
       modalVisible: false,
-      bluetoothStatus: 'unknown',
-      updateProgress: '',
-      update_firmware_subscription: '',
-      updating: false
+      bluetoothStatus: 'unknown'
     };
   },
 
@@ -136,11 +133,6 @@ const InstallationView = React.createClass({
               visible={this.state.modalVisible}>
               <View style={styles.spinnerContainer}>
                 <ConnectionSpinner loading={this.state.connected}/>
-                {this.state.updating &&
-                  <Text style={styles.firmware}>
-                    Device updating: {this.state.updateProgress}
-                  </Text>
-                }
                 {this.state.connected &&
                   <Button rounded
                     style={styles.button}
@@ -194,9 +186,6 @@ const InstallationView = React.createClass({
 
       // stop spinner
       this.setState({connected: true});
-
-      // stop update listener
-      this.state.update_firmware_subscription.remove();
     }
     else {
       // connection failed
