@@ -50,11 +50,13 @@ const NavigationView = React.createClass({
     closeDrawer: PropTypes.func.isRequired,
     openDrawer: PropTypes.func.isRequired,
   },
+
   closeDrawer() {
     if (this.props.navigationState.drawerOpen === true) {
       this.props.closeDrawer();
     }
   },
+
   renderScene(sceneProps) {
     // render scene and apply padding to cover
     // for app bar and navigation bar
@@ -64,6 +66,7 @@ const NavigationView = React.createClass({
       </View>
     );
   },
+
   render() {
     // Pulls out the roots
     const {roots} = this.props.navigationState;
@@ -163,10 +166,7 @@ const NavigationView = React.createClass({
         break;
       case "stop":
         // check whether update successful
-        if (notification.status == "success")
-          this.props.setFirmware(false);
-        else
-          pass;
+        this.props.setFirmware(false);
         break;
       default:
         this.props.updateFirmware(notification.percent);
