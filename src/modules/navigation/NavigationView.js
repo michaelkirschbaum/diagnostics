@@ -77,8 +77,7 @@ const NavigationView = React.createClass({
 
     return (
       <Drawer
-        // open={this.props.navigationState.firmwareUpdating}
-        open={false}
+        open={this.props.navigationState.firmwareUpdating}
         ref={(ref) => { this._drawer = ref;}}
         type="overlay"
         tweenDuration={150}
@@ -155,7 +154,7 @@ const NavigationView = React.createClass({
     // update firmware
     var update_firmware_subscription = connectionEmitter.addListener(
       'BLEOADNotification',
-      (notification) => this.props.setFirmware(notification)
+      (notification) => this.setFirmware(notification)
     );
   },
 
