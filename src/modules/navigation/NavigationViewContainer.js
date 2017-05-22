@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted, setFirmware, updateProgress} from './NavigationState';
+import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted, setFirmware, updateFirmware} from './NavigationState';
 import NavigationView from './NavigationView';
 import {setDrive, setConnection} from '../installation/InstallationState';
 
@@ -40,8 +40,8 @@ export default connect(
     setFirmware(status) {
       dispatch(setFirmware(status));
     },
-    updateProgress(percent) {
-      dispatch(updateProgress(percent));
+    updateFirmware(percent) {
+      dispatch(updateFirmware(percent));
     }
   })
 )(NavigationView);
