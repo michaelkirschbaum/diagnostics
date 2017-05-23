@@ -10,7 +10,8 @@ And the the dispatch methods from NavigationState.
  */
 export default connect(
   state => ({
-    navigationState: state.get('navigationState').toJS()
+    navigationState: state.get('navigationState').toJS(),
+    installation: state.get('installation').toJS()
   }),
   dispatch => ({
     switchRoute(index) {
