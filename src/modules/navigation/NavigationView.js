@@ -80,29 +80,8 @@ const NavigationView = React.createClass({
         open={this.props.navigationState.drawerOpen}
         ref={(ref) => { this._drawer = ref;}}
         type="overlay"
-        tweenDuration={150}
         content={<FirmwareNotification percent={this.props.navigationState.updateProgress}/>}
-        tapToClose
-        acceptPan={false}
-        onClose={() => this.closeDrawer()}
         openDrawerOffset={0.94}
-        panCloseMask={0.2}
-        styles={{
-          drawer: {
-            shadowColor: '#000000',
-            shadowOpacity: 0.8,
-            shadowRadius: 3,
-          },
-        }}
-        tweenHandler={(ratio) => {
-          return {
-            drawer: { shadowRadius: ratio < 0.2 ? ratio * 5 * 5 : 5 },
-            main: {
-              opacity: (2 - ratio) / 2,
-            },
-          };
-        }}
-        negotiatePan
         side="bottom"
       >
         <StatusBar

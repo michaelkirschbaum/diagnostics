@@ -128,7 +128,7 @@ const InstallationView = React.createClass({
 
             <Modal
               animationType={'none'}
-              transparent={false}
+              transparent={true}
               closeOnTouchOutside={true}
               visible={this.state.modalVisible}>
               <View style={styles.spinnerContainer}>
@@ -282,7 +282,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black'
+    // backgroundColor: 'black'
   },
   row: {
     height: 30,
