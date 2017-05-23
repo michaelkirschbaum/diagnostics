@@ -77,7 +77,7 @@ const NavigationView = React.createClass({
 
     return (
       <Drawer
-        // open={this.props.navigationState.firmwareUpdating}
+        open={this.props.navigationState.drawerOpen}
         ref={(ref) => { this._drawer = ref;}}
         type="overlay"
         tweenDuration={150}
@@ -162,13 +162,11 @@ const NavigationView = React.createClass({
     switch(notification.state) {
       case "start":
         // enable progress indicator
-        //this.props.setFirmware(true);
-        this._drawer.open();
+        this.props.openDrawer()
         break;
       case "stop":
         // check whether update successful
-        // this.props.setFirmware(false);
-        this._drawer.close();
+        this.props.closeDrawer();
         break;
       default:
         this.props.updateFirmware(notification.percent);
