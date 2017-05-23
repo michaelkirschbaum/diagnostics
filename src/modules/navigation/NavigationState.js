@@ -19,7 +19,6 @@ const SWITCH_ROUTE = 'NavigationState/SWITCH_ROUTE';
 const DRAWER_OPEN = 'NavigationState/DRAWER_OPEN';
 const DRAWER_CLOSE = 'NavigationState/DRAWER_CLOSE';
 const NEW_VEHICLE = 'NavigationState/NEW_VEHICLE';
-const SET_FIRMWARE = 'NavigationState/SET_FIRMWARE';
 const UPDATE_FIRMWARE = 'NavigationState/UPDATE_PROGRESS';
 
 // Action creators
@@ -80,13 +79,6 @@ export function newVehicle() {
   };
 }
 
-export function setFirmware(status) {
-  return {
-    type: SET_FIRMWARE,
-    payload: status
-  }
-}
-
 export function updateFirmware(percent) {
   return {
     type: UPDATE_FIRMWARE,
@@ -125,7 +117,6 @@ const initialState = fromJS({
     ]
   },
   drawerOpen: false,
-  firmwareUpdating: false,
   updateProgress: ''
 });
 
@@ -189,10 +180,6 @@ export default function NavigationReducer(state = initialState, action) {
 
     case NEW_VEHICLE: {
       return initialState.set('roots', initialState.get('roots').set('index', 1));
-    }
-
-    case SET_FIRMWARE: {
-      return state.set('firmwareUpdating', action.payload);
     }
 
     case UPDATE_FIRMWARE: {
