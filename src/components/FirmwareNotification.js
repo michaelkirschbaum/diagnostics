@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, NativeModules} from 'react-native';
 import {Text, Content} from 'native-base';
 import colors from '../config/colors';
 import en from '../config/localization.en';

@@ -19,7 +19,8 @@ const initialState = Map({
   in_drive: false,
   connected: 0,
   paired: false,
-  modalVisible: false
+  modalVisible: false,
+  firstPairing: true
 });
 
 // Actions
@@ -32,6 +33,7 @@ const SET_DRIVE = 'SET_DRIVE';
 const SET_CONNECTION = 'SET_CONNECTION';
 const SET_SPINNER = 'InstallationState/SET_SPINNER';
 const SET_MODAL_VISIBLE = 'InstallationState/SET_MODAL_VISIBLE';
+const SET_FIRST_PAIRING = 'InstallationState/SET_FIRST_PAIRING';
 
 // Action Creaters
 export function setPageIndex(value) {
@@ -87,6 +89,13 @@ export function setModalVisible(state) {
   }
 }
 
+export function setFirstPairing(state) {
+  return {
+    type: SET_FIRST_PAIRING,
+    payload: state
+  }
+}
+
 // Reducer
 export default function InstallationStateReducer(state = initialState, action = {}) {
   switch (action.type) {
@@ -127,6 +136,9 @@ export default function InstallationStateReducer(state = initialState, action = 
 
     case SET_MODAL_VISIBLE:
       return state.set('modalVisible', action.payload);
+
+    case SET_FIRST_PAIRING:
+      return state.set('firstPairing', action.payload);
 
     default:
       return state;
