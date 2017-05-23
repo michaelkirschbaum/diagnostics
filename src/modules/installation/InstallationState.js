@@ -17,7 +17,9 @@ const initialState = Map({
   paring: PAIRING_IDLE,
   foundDevices: [],
   in_drive: false,
-  connected: 0
+  connected: 0,
+  paired: false,
+  modalVisible: false
 });
 
 // Actions
@@ -28,6 +30,8 @@ const START_PAIRING = 'InstallationState/START_PAIRING';
 const CLEAR_DEVICES = 'InstallationState/CLEAR_DEVICES';
 const SET_DRIVE = 'SET_DRIVE';
 const SET_CONNECTION = 'SET_CONNECTION';
+const SET_SPINNER = 'InstallationState/SET_SPINNER';
+const SET_MODAL_VISIBLE = 'InstallationState/SET_MODAL_VISIBLE';
 
 // Action Creaters
 export function setPageIndex(value) {
@@ -69,6 +73,20 @@ export function setConnection(status) {
   }
 }
 
+export function setSpinner(state) {
+  return {
+    type: SET_SPINNER,
+    payload :state
+  }
+}
+
+export function setModalVisible(state) {
+  return {
+    type: SET_MODAL_VISIBLE,
+    payload: state
+  }
+}
+
 // Reducer
 export default function InstallationStateReducer(state = initialState, action = {}) {
   switch (action.type) {
@@ -103,6 +121,12 @@ export default function InstallationStateReducer(state = initialState, action = 
 
     case SET_CONNECTION:
       return state.set('connected', action.payload);
+
+    case SET_SPINNER:
+      return state.set('paired', action.payload);
+
+    case SET_MODAL_VISIBLE:
+      return state.set('modalVisible', action.payload);
 
     default:
       return state;

@@ -148,7 +148,12 @@ const NavigationView = React.createClass({
         if (notification.status == "success")
           this.props.closeDrawer();
         else {
-          pass;
+          // disable modal if in selection view
+          if (this.props.installation.modalVisible)
+            this.props.installation.setModalVisible(false);
+          // otherwise redirect to selection view
+          else
+            pass;
         }
 
         // reset progress indicator

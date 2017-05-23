@@ -51,8 +51,6 @@ const InstallationView = React.createClass({
   getInitialState() {
     return {
       rssi_refresh: '',
-      connected: false,
-      modalVisible: false,
       bluetoothStatus: 'unknown'
     };
   },
@@ -130,10 +128,10 @@ const InstallationView = React.createClass({
               animationType={'none'}
               transparent={true}
               closeOnTouchOutside={true}
-              visible={this.state.modalVisible}>
+              visible={this.props.installation.modalVisible}>
               <View style={styles.spinnerContainer}>
-                <ConnectionSpinner loading={this.state.connected}/>
-                {this.state.connected &&
+                <ConnectionSpinner loading={this.props.installation.paired}/>
+                {this.props.installation.paired &&
                   <Button rounded
                     style={styles.button}
                     textStyle={{color: colors.textPrimary}}
@@ -155,7 +153,7 @@ const InstallationView = React.createClass({
 
   async connect(device) {
     // show spinner
-    this.setState({modalVisible: true});
+    this.props.setModalVisible(true);
 
     // timeout interval
     var timeout = 15000;
@@ -185,7 +183,7 @@ const InstallationView = React.createClass({
       clearInterval(this.state.rssi_refresh);
 
       // stop spinner
-      this.setState({connected: true});
+      this.props.setSpinner(true);
     }
     else {
       // connection failed
@@ -240,7 +238,11 @@ const InstallationView = React.createClass({
   },
 
   continue() {
-    this.setState({modalVisible: false});
+    // disable modal
+    this.props.setModalVisible(false);
+
+    // reset spinner
+    this.props.setSpinner(false);
 
     // if norauto user skip carstartinstallationview
     if (this.locationFrance())

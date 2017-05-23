@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted, updateFirmware} from './NavigationState';
 import NavigationView from './NavigationView';
-import {setDrive, setConnection} from '../installation/InstallationState';
+import {setDrive, setConnection, setModalVisible} from '../installation/InstallationState';
 
 /*
 connect pulls in the state values and pipes them into the view.
@@ -39,6 +39,9 @@ export default connect(
     },
     updateFirmware(percent) {
       dispatch(updateFirmware(percent));
+    }
+    setInstallationModal(state) {
+      setModalVisibile(state);
     }
   })
 )(NavigationView);
