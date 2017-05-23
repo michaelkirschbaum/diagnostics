@@ -27,7 +27,6 @@ else
 import store from '../../redux/store';
 import Login from '../../carfit/login';
 import Connection from '../../carfit/connection';
-import Phone from 'react-phone-number-input';
 
 const RegisterView = React.createClass({
   getInitialState() {
