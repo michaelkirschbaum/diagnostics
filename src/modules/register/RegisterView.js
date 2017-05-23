@@ -27,6 +27,7 @@ else
 import store from '../../redux/store';
 import Login from '../../carfit/login';
 import Connection from '../../carfit/connection';
+import Phone from 'react-phone-number-input';
 
 const RegisterView = React.createClass({
   getInitialState() {
@@ -35,37 +36,6 @@ const RegisterView = React.createClass({
       last: '',
       phone: ''
     };
-  },
-
-  async authenticate(first, last, phone, code) {
-    var login = new Login();
-    var conn = new Connection();
-
-    // set phone number
-    // conn.addPhone(phone);
-
-    // user information
-    var demographics = {
-      firstName: first,
-      lastName: last,
-      phoneNumber: phone
-    };
-
-    var response = await login.norauto(code, demographics);
-    if (true) {
-      Alert.alert(
-        loc.login.login,
-        loc.login.success,
-        [{text: 'OK', onPress: () => this.props.pushRoute({key: 'Installation', title: loc.welcome.welcome})}],
-        {cancellable: false}
-      );
-    } else {
-      Alert.alert(
-        loc.login.login,
-        loc.login.failure,
-        [{text: 'OK', onPress: () => console.log("Error: login failed")}]
-      );
-    }
   },
 
   render() {
@@ -111,14 +81,7 @@ const RegisterView = React.createClass({
 
           <View style={styles.inputGroup}>
             <Text style={{textAlign: 'center'}}>{loc.register.phone}</Text>
-            <InputGroup borderType='rounded' style={styles.textInput}>
-              <Input
-                ref='phoneInput'
-                placeholder={loc.register.phoneInput}
-                onChangeText={(text) => this.setState({phone: text})}
-              />
-            </InputGroup>
-            {/*} <Phone
+            {/* <Phone
               placeholder="Enter phone number"
               value={this.state.phone}
               onChange={phone => this.setState({phone})}
@@ -135,8 +98,35 @@ const RegisterView = React.createClass({
     );
   },
 
-  componentWillMount() {
+  async authenticate(first, last, phone, code) {
+    var login = new Login();
+    var conn = new Connection();
 
+    // set phone number
+    // conn.addPhone(phone);
+
+    // user information
+    var demographics = {
+      firstName: first,
+      lastName: last,
+      phoneNumber: phone
+    };
+
+    var response = await login.norauto(code, demographics);
+    if (true) {
+      Alert.alert(
+        loc.login.login,
+        loc.login.success,
+        [{text: 'OK', onPress: () => this.props.pushRoute({key: 'Installation', title: loc.welcome.welcome})}],
+        {cancellable: false}
+      );
+    } else {
+      Alert.alert(
+        loc.login.login,
+        loc.login.failure,
+        [{text: 'OK', onPress: () => console.log("Error: login failed")}]
+      );
+    }
   }
 });
 
