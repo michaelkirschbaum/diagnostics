@@ -39,7 +39,7 @@ export default connect(
     },
     updateFirmware(percent) {
       dispatch(updateFirmware(percent));
-    }
+    },
     setInstallationModal(state) {
       setModalVisibile(state);
     }
