@@ -57,7 +57,7 @@
     "react-native-swiper": "^1.5.4",
     "react-native-timer-mixin": "^0.11.0",
     "react-native-vector-icons": "^4.0.1",
-    "react-phone-number-input": "^0.10.0",
+    "react-phone-number-input": "^0.10.4",
     "react-redux": "^5.0.1",
     "react-redux-spinner": "^0.5.0",
     "redux": "^3.6.0",

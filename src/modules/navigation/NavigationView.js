@@ -146,6 +146,9 @@ const NavigationView = React.createClass({
       case "stop":
         // check whether update successful
         this.props.closeDrawer();
+
+        // reset progress indicator
+        this.props.updateFirmware('');
         break;
       default:
         this.props.updateFirmware(notification.percent);
