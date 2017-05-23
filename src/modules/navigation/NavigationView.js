@@ -151,7 +151,7 @@ const NavigationView = React.createClass({
           // disable modal if in selection view
           if (this.props.installation.modalVisible)
             this.props.installation.setModalVisible(false);
-          // otherwise redirect to selection view
+          // otherwise redirect to selectionview
           else
             pass;
         }

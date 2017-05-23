@@ -75,9 +75,7 @@ const fr = {
   },
   device: {
     connect: '',
-    firmware: '',
-    updateComplete: '',
-    percent: ''
+    update: 'Puls mise à jour du capteur'
   },
   carInstallation: {
     installation: 'Installation',

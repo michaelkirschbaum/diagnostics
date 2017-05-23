@@ -75,9 +75,7 @@ const en = {
   },
   device: {
     connect: 'CONNECT',
-    firmware: 'Please wait while device is updated.',
-    updateComplete: 'Device updated successfully',
-    percent: 'Progress'
+    update: 'Puls sensor update:'
   },
   carInstallation: {
     installation: 'Installation',
