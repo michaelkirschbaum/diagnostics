@@ -190,7 +190,7 @@ const InstallationView = React.createClass({
       Alert.alert(
         loc.carInstallation.connect,
         loc.carInstallation.connectError,
-        [{text: 'OK', onPress: () => console.log("OK pressed.")}]
+        [{text: 'OK', onPress: () => this.props.setModalVisible(false)}]
       );
     }
   },
