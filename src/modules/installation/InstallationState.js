@@ -10,6 +10,7 @@ const PAIRING_ATTEMPTING = 'PAIRING_ATTEMPTING';
 const PAIRING_RESPONSE = 'PAIRING_RESPONSE';
 const PAIRING_FAILURE = 'PAIRING_FAILURE';
 const PAIRING_SUCCESS = 'PAIRING_SUCCESS';
+const SET_ONBOARDING = 'InstallationState/SET_ONBOARDING';
 
 // Initial state
 const initialState = Map({
@@ -20,7 +21,7 @@ const initialState = Map({
   connected: 0,
   paired: false,
   modalVisible: false,
-  firstPairing: true
+  onboarding: true
 });
 
 // Actions
@@ -33,7 +34,6 @@ const SET_DRIVE = 'SET_DRIVE';
 const SET_CONNECTION = 'SET_CONNECTION';
 const SET_SPINNER = 'InstallationState/SET_SPINNER';
 const SET_MODAL_VISIBLE = 'InstallationState/SET_MODAL_VISIBLE';
-const SET_FIRST_PAIRING = 'InstallationState/SET_FIRST_PAIRING';
 
 // Action Creaters
 export function setPageIndex(value) {
@@ -89,9 +89,9 @@ export function setModalVisible(state) {
   }
 }
 
-export function setFirstPairing(state) {
+export function setOnboarding(state) {
   return {
-    type: SET_FIRST_PAIRING,
+    type: SET_ONBOARDING,
     payload: state
   }
 }
@@ -137,8 +137,8 @@ export default function InstallationStateReducer(state = initialState, action = 
     case SET_MODAL_VISIBLE:
       return state.set('modalVisible', action.payload);
 
-    case SET_FIRST_PAIRING:
-      return state.set('firstPairing', action.payload);
+    case SET_ONBOARDING:
+      return state.set('onboarding', action.payload);
 
     default:
       return state;
