@@ -67,6 +67,73 @@ const InstallationView = React.createClass({
 
     let items = this.props.installation.foundDevices;
 
+    getOnboardingView = function() {
+      if (this.props.installation.onboarding)
+        return (
+          <Swiper
+            loop={false}
+            index={this.props.installation.pageIndex}
+            height={windowHeight - 100}
+            style={styles.container}
+            dot={<View style={{backgroundColor:colors.inputBackground, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+            activeDot={<View style={{backgroundColor:colors.primary, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+            onMomentumScrollEnd={(e, state, context) => this.setPage(state.index)}
+          >
+            <View style={styles.instructionsContainer}>
+              <Image source={require('../../../images/pull-tab-02.png')} style={styles.image} />
+              <H3 style={styles.header}>{loc.instructions.enableBattery}</H3>
+              <Text style={styles.text}>{loc.instructions.pullTab}</Text>
+            </View>
+            <View style={styles.instructionsContainer}>
+              <Image source={require('../../../images/activate-ble-02.png')} style={styles.image} />
+              <H3 style={styles.header}>{loc.instructions.activateBluetooth}</H3>
+              <Text style={styles.text}>{loc.instructions.turnOnBLE}</Text>
+            </View>
+            <View style={styles.instructionsContainer}>
+              <Image source={require('../../../images/reset-connection-01.png')} style={styles.image} />
+              <H3 style={styles.header}>{loc.instructions.resetConnection}</H3>
+              <Text style={styles.text}>{loc.instructions.pressAndHold}</Text>
+            </View>
+            <View style={styles.instructionsContainer}>
+              <Image source={require('../../../images/ble-pairing-02.png')} style={styles.image} />
+              <H3 style={styles.header}>{loc.instructions.blePairing}</H3>
+              <Text style={styles.text}>{loc.instructions.ensurePairing}</Text>
+            </View>
+            <View style={styles.instructionsContainer}>
+              <Text style={{marginTop: 17, textAlign: "left"}}>{loc.instructions.selectBLE}</Text>
+              <List dataArray={items}
+                    style={{width: windowWidth - 40, marginTop: 10}}
+                    renderRow={(item) =>
+                          <ListItem>
+                            <View style={styles.row}>
+                              <Text onPress={() => this.connect(item.identifier)}>{item.name}</Text>
+                              <Signal strength={item.signal}/>
+                            </View>
+                          </ListItem>
+                      }>
+              </List>
+            </View>
+          </Swiper>
+        )
+      else
+        return (
+          <View style={styles.instructionsContainer}>
+            <Text style={{marginTop: 17, textAlign: "left"}}>{loc.instructions.selectBLE}</Text>
+            <List dataArray={items}
+                  style={{width: windowWidth - 40, marginTop: 10}}
+                  renderRow={(item) =>
+                        <ListItem>
+                          <View style={styles.row}>
+                            <Text onPress={() => this.connect(item.identifier)}>{item.name}</Text>
+                            <Signal strength={item.signal}/>
+                          </View>
+                        </ListItem>
+                    }>
+            </List>
+          </View>
+        )
+    }.bind(this);
+
     return (
         <Container theme={carfitTheme}>
           <Header>
@@ -79,51 +146,7 @@ const InstallationView = React.createClass({
             style={{backgroundColor: colors.backgroundPrimary}}
             ref={c => this._content = c}>
 
-            <Swiper
-              loop={false}
-              index={this.props.installation.pageIndex}
-              height={windowHeight - 100}
-              style={styles.container}
-              dot={<View style={{backgroundColor:colors.inputBackground, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
-              activeDot={<View style={{backgroundColor:colors.primary, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
-              onMomentumScrollEnd={(e, state, context) => this.setPage(state.index)}
-            >
-              <View style={styles.instructionsContainer}>
-                <Image source={require('../../../images/pull-tab-02.png')} style={styles.image} />
-                <H3 style={styles.header}>{loc.instructions.enableBattery}</H3>
-                <Text style={styles.text}>{loc.instructions.pullTab}</Text>
-              </View>
-              <View style={styles.instructionsContainer}>
-                <Image source={require('../../../images/activate-ble-02.png')} style={styles.image} />
-                <H3 style={styles.header}>{loc.instructions.activateBluetooth}</H3>
-                <Text style={styles.text}>{loc.instructions.turnOnBLE}</Text>
-              </View>
-              <View style={styles.instructionsContainer}>
-                <Image source={require('../../../images/reset-connection-01.png')} style={styles.image} />
-                <H3 style={styles.header}>{loc.instructions.resetConnection}</H3>
-                <Text style={styles.text}>{loc.instructions.pressAndHold}</Text>
-              </View>
-              <View style={styles.instructionsContainer}>
-                <Image source={require('../../../images/ble-pairing-02.png')} style={styles.image} />
-                <H3 style={styles.header}>{loc.instructions.blePairing}</H3>
-                <Text style={styles.text}>{loc.instructions.ensurePairing}</Text>
-              </View>
-              <View style={styles.instructionsContainer}>
-                <Text style={{marginTop: 17, textAlign: "left"}}>{loc.instructions.selectBLE}</Text>
-                <List dataArray={items}
-                      style={{width: windowWidth - 40, marginTop: 10}}
-                      renderRow={(item) =>
-                            <ListItem>
-                              <View style={styles.row}>
-                                <Text onPress={() => this.connect(item.identifier)}>{item.name}</Text>
-                                <Signal strength={item.signal}/>
-                              </View>
-                            </ListItem>
-                        }>
-                </List>
-              </View>
-            </Swiper>
-
+            {getOnboardingView()}
             <Modal
               animationType={'none'}
               transparent={true}
@@ -247,8 +270,11 @@ const InstallationView = React.createClass({
     // disable onboarding
     this.props.setOnboarding(false);
 
+    // if not in onboarding mode return to previous view
+    if (!this.props.onboarding)
+      this.props.onNavigateBack();
     // if norauto user skip carstartinstallationview
-    if (this.locationFrance())
+    else if (this.locationFrance())
       this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
     else
       this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
