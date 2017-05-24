@@ -92,7 +92,7 @@ const RegisterView = React.createClass({
     );
   },
 
-  async authenticate(first, last, phone, code) {
+  async authenticate(first, last, code) {
     var login = new Login();
     var conn = new Connection();
 
