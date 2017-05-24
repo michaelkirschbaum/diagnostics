@@ -115,7 +115,10 @@ const InstallationView = React.createClass({
             </View>
           </Swiper>
         )
-      else
+      else {
+        // initiate scanning
+        this.setPage(4);
+
         return (
           <View style={styles.instructionsContainer}>
             <Text style={{marginTop: 17, textAlign: "left"}}>{loc.instructions.selectBLE}</Text>
@@ -132,6 +135,7 @@ const InstallationView = React.createClass({
             </List>
           </View>
         )
+      }
     }.bind(this);
 
     return (
