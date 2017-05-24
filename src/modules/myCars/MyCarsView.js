@@ -96,7 +96,7 @@ const MyCarsView = React.createClass({
               <View style={styles.carDetailsContainer}>
                 <Button transparent
                       textStyle={{color: colors.textPrimary}}
-                      onPress={() => this.props.newVehicle()}
+                      onPress={() => this.onNewVehiclePress()}
                 >{loc.myCars.changeMyCar}</Button>
               </View>
             </View>
@@ -133,6 +133,14 @@ const MyCarsView = React.createClass({
 
   onMyCarsPress() {
     this.props.pushRoute({key: 'Details', title: loc.settings.settings});
+  },
+
+  onNewVehiclePress() {
+    // enable onboarding modal
+    this.props.setOnboarding(true);
+
+    // redirect to installation route
+    this.props.newVehicle();
   }
 });
 
