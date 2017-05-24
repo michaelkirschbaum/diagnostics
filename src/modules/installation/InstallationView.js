@@ -168,7 +168,7 @@ const InstallationView = React.createClass({
     }, timeout);
 
     // if firmware needs updating, suppress reset instructions
-    if (this.state.updating)
+    if (this.props.navigationState.drawerOpen)
       clearTimeout(connection_alert);
 
     // connect device
