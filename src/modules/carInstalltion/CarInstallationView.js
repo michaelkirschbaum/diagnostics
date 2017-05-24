@@ -384,7 +384,7 @@ const CarInstallationStateView = React.createClass({
     this.props.setOdometerModal(true);
 
     // disable onboarding mode
-    this.props.setOnboarding(false);
+    // this.props.setOnboarding(false);
 
     if (this.locationFrance())
       this.props.pushRoute({key: 'Home', title: loc.settings.settings});
