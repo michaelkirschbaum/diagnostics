@@ -117,7 +117,7 @@ const initialState = fromJS({
     ]
   },
   drawerOpen: false,
-  updateProgress: ''
+  updateProgress: '0'
 });
 
 export default function NavigationReducer(state = initialState, action) {
