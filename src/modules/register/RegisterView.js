@@ -27,13 +27,13 @@ else
 import store from '../../redux/store';
 import Login from '../../carfit/login';
 import Connection from '../../carfit/connection';
+import PhoneInput from 'react-native-phone-input';
 
 const RegisterView = React.createClass({
   getInitialState() {
     return {
       first: '',
-      last: '',
-      phone: ''
+      last: ''
     };
   },
 
@@ -78,21 +78,14 @@ const RegisterView = React.createClass({
             </InputGroup>
           </View>
 
-          <View style={styles.inputGroup}>
-            <Text style={{textAlign: 'center'}}>{loc.register.phone}</Text>
-            <InputGroup borderType='rounded' style={styles.textInput}>
-              <Input
-                ref='phoneInput'
-                placeholder={loc.register.phoneInput}
-                onChangeText={(text) => this.setState({phone: text})}
-              />
-            </InputGroup>
+          <View style={styles.container}>
+            <PhoneInput ref='phone' />
           </View>
 
           <Button rounded
             style={{alignSelf: 'center', marginTop: 10}}
             textStyle={{color: colors.textPrimary}}
-            onPress={() => this.authenticate(this.state.first, this.state.last, this.state.phone, store.getState().get("norauto").get("user_code"))}
+            onPress={() => this.authenticate(this.state.first, this.state.last, store.getState().get("norauto").get("user_code"))}
           >{loc.general.continue}</Button>
         </Content>
       </Container>
@@ -103,30 +96,39 @@ const RegisterView = React.createClass({
     var login = new Login();
     var conn = new Connection();
 
-    // set phone number
-    // conn.addPhone(phone);
-
-    // user information
-    var demographics = {
-      firstName: first,
-      lastName: last,
-      phoneNumber: phone
-    };
-
-    var response = await login.norauto(code, demographics);
-    if (true) {
+    // validate phone number
+    if (!this.refs.phone.isValidNumber())
       Alert.alert(
         loc.login.login,
-        loc.login.success,
-        [{text: 'OK', onPress: () => this.props.pushRoute({key: 'Installation', title: loc.welcome.welcome})}],
-        {cancellable: false}
+        loc.login.invalidNumber,
+        [{text: 'OK', onPress: () => undefined}]
       );
-    } else {
-      Alert.alert(
-        loc.login.login,
-        loc.login.failure,
-        [{text: 'OK', onPress: () => console.log("Error: login failed")}]
-      );
+    else {
+      // set phone number
+      conn.addPhone(this.refs.phone.getValue());
+
+      // user information
+      var demographics = {
+        firstName: first,
+        lastName: last,
+        phoneNumber: this.refs.phone.getValue()
+      };
+
+      var response = await login.norauto(code, demographics);
+      if (true) {
+        Alert.alert(
+          loc.login.login,
+          loc.login.success,
+          [{text: 'OK', onPress: () => this.props.pushRoute({key: 'Installation', title: loc.welcome.welcome})}],
+          {cancellable: false}
+        );
+      } else {
+        Alert.alert(
+          loc.login.login,
+          loc.login.failure,
+          [{text: 'OK', onPress: () => console.log("Error: login failed")}]
+        );
+      }
     }
   }
 });
@@ -144,6 +146,13 @@ const styles = StyleSheet.create({
   },
   inputGroup: {
     marginTop: 20
+  },
+  container: {
+    backgroundColor: 'white',
+    marginTop: 20,
+    padding: 10,
+    marginLeft: 20,
+    marginRight: 20
   }
 });
 

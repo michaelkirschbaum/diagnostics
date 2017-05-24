@@ -29,7 +29,8 @@ const en = {
     bluetooth: 'Bluetooth is off. Turn on to continue.',
     login: 'Login',
     success: 'You are now logged in.',
-    failure: 'Log in failed. Try again.'
+    failure: 'Log in failed. Try again.',
+    invalidNumber: 'Phone number is invalid. Try again.'
   },
   verification: { // is this still required with Auth0?
     verification: 'Verification',

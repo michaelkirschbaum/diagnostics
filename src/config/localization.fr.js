@@ -29,7 +29,8 @@ const fr = {
     bluetooth: 'Bluetooth est éteint. Activez pour continuer.',
     login: '',
     success: 'Vous êtes maintenant connecté.',
-    failure: 'Échec de la connexion. Réessayer.'
+    failure: 'Échec de la connexion. Réessayer.',
+    invalidNumber: 'Le numéro de téléphone est invalide. Réessayer.'
   },
   verification: { // is this still required with Auth0?
     verification: 'Vérification',
