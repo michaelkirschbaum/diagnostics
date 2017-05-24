@@ -79,7 +79,10 @@ const RegisterView = React.createClass({
           </View>
 
           <View style={styles.container}>
-            <PhoneInput ref='phone' />
+            <PhoneInput
+              ref='phone'
+              initialCountry='fr'
+            />
           </View>
 
           <Button rounded
