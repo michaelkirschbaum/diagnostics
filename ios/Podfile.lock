@@ -21,7 +21,7 @@ PODS:
   - AWSCore (2.5.7)
   - AWSS3 (2.5.7):
     - AWSCore (= 2.5.7)
-  - BuddyBuildSDK (1.0.15)
+  - BuddyBuildSDK (1.0.16)
   - CarFitiOSSDK (0.0.73):
     - AWSAPIGateway
     - AWSCognito
@@ -80,7 +80,7 @@ SPEC CHECKSUMS:
   AWSCognito: 833e56f35762648f551ca77f60240a5d7c615e13
   AWSCore: 716d787cde0239b3e92f9b4151c052f55a117703
   AWSS3: a534d4f617fa1c3bd8f94a8b3bf12d7099536bd9
-  BuddyBuildSDK: b3038125612b1ad389c2aa89e4787dcb75cac89a
+  BuddyBuildSDK: 2c5469eee2981a3365386e46393e97068d75e4f4
   CarFitiOSSDK: 7dc7e0b170ea607261cd8c75b3a188f2ff5c4091
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
