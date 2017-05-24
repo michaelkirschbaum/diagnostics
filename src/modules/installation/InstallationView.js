@@ -267,17 +267,22 @@ const InstallationView = React.createClass({
     // reset spinner
     this.props.setSpinner(false);
 
-    // disable onboarding
-    this.props.setOnboarding(false);
-
     // if not in onboarding mode return to previous view
     if (!this.props.installation.onboarding)
       this.props.onNavigateBack();
     // if norauto user skip carstartinstallationview
-    else if (this.locationFrance())
+    else if (this.locationFrance()) {
+      // disable onboarding
+      this.props.setOnboarding(false);
+
       this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
-    else
+    }
+    else {
+      // disable onboarding
+      this.props.setOnboarding(false);
+
       this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
+    }
   },
 
   locationFrance() {
