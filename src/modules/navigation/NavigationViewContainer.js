@@ -42,7 +42,7 @@ export default connect(
       dispatch(updateFirmware(percent));
     },
     setInstallationModal(state) {
-      dispatch(setModalVisibile(state));
+      dispatch(setModalVisible(state));
     }
   })
 )(NavigationView);
