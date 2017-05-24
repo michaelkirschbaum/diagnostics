@@ -276,15 +276,9 @@ const InstallationView = React.createClass({
       this.props.onNavigateBack();
     // if norauto user skip carstartinstallationview
     else if (this.locationFrance()) {
-      // disable onboarding
-      this.props.setOnboarding(false);
-
       this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
     }
     else {
-      // disable onboarding
-      this.props.setOnboarding(false);
-
       this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
     }
   },

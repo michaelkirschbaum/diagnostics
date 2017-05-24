@@ -81,7 +81,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CarFitiOSSDK:
-    :commit: 9ad9e9e1f2301f3d4eea6aae9abe249ede8df28e
+    :commit: 8faaff682a15f845d867c6d8e41d971b69c4a43e
     :git: https://bitbucket.org/carfit_platform/sdk.ios.car.fit.git
 
 SPEC CHECKSUMS:

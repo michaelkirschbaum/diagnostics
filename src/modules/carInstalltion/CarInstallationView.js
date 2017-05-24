@@ -383,6 +383,9 @@ const CarInstallationStateView = React.createClass({
     // show modal when going to homeview
     this.props.setOdometerModal(true);
 
+    // disable onboarding mode
+    this.props.setOnboarding(false);
+
     if (this.locationFrance())
       this.props.pushRoute({key: 'Home', title: loc.settings.settings});
     else
