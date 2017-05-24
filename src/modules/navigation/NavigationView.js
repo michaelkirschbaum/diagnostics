@@ -158,7 +158,7 @@ const NavigationView = React.createClass({
             this.props.closeDrawer();
 
             // redirect to selectionview
-            this.props.pushRoute('Installation');
+            // this.props.pushRoute('Installation');
           }
         }
 
