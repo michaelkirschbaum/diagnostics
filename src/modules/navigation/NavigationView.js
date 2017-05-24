@@ -157,9 +157,6 @@ const NavigationView = React.createClass({
           else {
             this.props.closeDrawer();
 
-            // disable onboarding mode
-            this.props.setOnboarding(false);
-
             // redirect to selectionview
             this.props.pushRoute('Installation');
           }
