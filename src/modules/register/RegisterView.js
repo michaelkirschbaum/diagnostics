@@ -83,7 +83,7 @@ const RegisterView = React.createClass({
             <PhoneInput
               ref='phone'
               initialCountry='fr'
-              style={{padding: 8, backgroundColor: colors.inputBackground, borderColor: colors.primary, borderWidth: 2.5, marginLeft: 20, marginRight: 20, justifyContent: 'center', alignItems: 'center'}}
+              style={{borderRadius: 24, padding: 9, backgroundColor: colors.inputBackground, borderColor: colors.primary, borderWidth: 2.5, marginLeft: 20, marginRight: 20, justifyContent: 'center', alignItems: 'center'}}
             />
           </View>
 
