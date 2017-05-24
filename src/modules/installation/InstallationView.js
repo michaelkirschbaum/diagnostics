@@ -180,7 +180,7 @@ const InstallationView = React.createClass({
 
     // timeout interval
     var timeout = 15000;
-
+/*
     // timeout connection request and notify user of necessary action
     var connection_alert = setTimeout(function() {
       Alert.alert(
@@ -193,7 +193,7 @@ const InstallationView = React.createClass({
     // if firmware needs updating, suppress reset instructions
     if (this.props.navigationState.drawerOpen)
       clearTimeout(connection_alert);
-
+*/
     // connect device
     var conn = new Connection();
     var resp = await conn.connectDevice(device);

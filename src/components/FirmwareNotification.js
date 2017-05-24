@@ -15,7 +15,7 @@ export default class FirmwareNotification extends Component {
   render() {
     return (
       <Content style={styles.container}>
-        <Text style={styles.text}>{loc.device.update} {this.props.percent}</Text>
+        <Text style={styles.text}>{loc.device.update} {this.props.percent}%</Text>
       </Content>
     );
   }
