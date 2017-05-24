@@ -264,7 +264,7 @@ const InstallationView = React.createClass({
     }
   },
 
-  continue() {
+    continue() {
     // disable modal
     this.props.setModalVisible(false);
 
