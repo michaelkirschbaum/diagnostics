@@ -78,10 +78,12 @@ const RegisterView = React.createClass({
             </InputGroup>
           </View>
 
-          <View style={styles.container}>
+          <View style={styles.inputGroup}>
+            <Text style={{textAlign: 'center'}}>{loc.register.phone}</Text>
             <PhoneInput
               ref='phone'
               initialCountry='fr'
+              style={styles.textInput}
             />
           </View>
 
@@ -151,7 +153,7 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   container: {
-    backgroundColor: 'white',
+    backgroundColor: colors.inputBackground,
     marginTop: 20,
     padding: 10,
     marginLeft: 20,
