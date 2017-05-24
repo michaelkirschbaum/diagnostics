@@ -203,7 +203,7 @@ const InstallationView = React.createClass({
     var resp = await conn.connectDevice(device);
 
     // stop timeout
-    clearTimeout(connection_alert);
+    // clearTimeout(connection_alert);
 
     if (resp) {
       // stop refreshing signals
