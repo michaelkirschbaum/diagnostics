@@ -80,11 +80,14 @@ const RegisterView = React.createClass({
 
           <View style={styles.inputGroup}>
             <Text style={{textAlign: 'center'}}>{loc.register.phone}</Text>
-            {/* <Phone
-              placeholder="Enter phone number"
-              value={this.state.phone}
-              onChange={phone => this.setState({phone})}
-            /> */}
+            <InputGroup borderType='rounded' style={styles.textInput}>
+              <Input
+                ref='phoneInput'
+                placeholder={loc.register.phoneInput}
+                onChangeText={(text) => this.setState({phone: text})}
+              />
+            </InputGroup>
+
           </View>
 
           <Button rounded
