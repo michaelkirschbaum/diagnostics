@@ -271,7 +271,7 @@ const InstallationView = React.createClass({
     this.props.setOnboarding(false);
 
     // if not in onboarding mode return to previous view
-    if (!this.props.onboarding)
+    if (!this.props.installation.onboarding)
       this.props.onNavigateBack();
     // if norauto user skip carstartinstallationview
     else if (this.locationFrance())

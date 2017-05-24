@@ -87,7 +87,6 @@ const RegisterView = React.createClass({
                 onChangeText={(text) => this.setState({phone: text})}
               />
             </InputGroup>
-
           </View>
 
           <Button rounded
