@@ -179,7 +179,7 @@ const InstallationView = React.createClass({
   },
 
   async connect(device) {
-    // show spinner
+    // start spinner
     this.props.setModalVisible(true);
 
     // timeout interval
@@ -200,20 +200,19 @@ const InstallationView = React.createClass({
 */
     // connect device
     var conn = new Connection();
-    var resp = await conn.connectDevice(device);
+    var response = await conn.connectDevice(device);
 
     // stop timeout
     // clearTimeout(connection_alert);
 
-    if (resp) {
-      // stop refreshing signals
+    if (response) {
+      // stop refreshing device list
       clearInterval(this.state.rssi_refresh);
 
       // stop spinner
       this.props.setSpinner(true);
     }
     else {
-      // connection failed
       Alert.alert(
         loc.carInstallation.connect,
         loc.carInstallation.connectError,
@@ -222,10 +221,24 @@ const InstallationView = React.createClass({
     }
   },
 
-  popRoute() {
-    this.props.setPageIndex(0);
-    this.props.clearDevices();
-    this.props.onNavigateBack();
+  continue() {
+    // disable modal
+    this.props.setModalVisible(false);
+
+    // reset spinner
+    this.props.setSpinner(false);
+
+    // if not in onboarding mode return to previous view
+    if (!this.props.installation.onboarding)
+      this.props.onNavigateBack();
+    // if norauto user skip carstartinstallationview and continue onboarding
+    else if (this.locationFrance()) {
+      this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
+    }
+    // continue onboarding
+    else {
+      this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
+    }
   },
 
   setPage(index) {
@@ -264,23 +277,10 @@ const InstallationView = React.createClass({
     }
   },
 
-  continue() {
-    // disable modal
-    this.props.setModalVisible(false);
-
-    // reset spinner
-    this.props.setSpinner(false);
-
-    // if not in onboarding mode return to previous view
-    if (!this.props.installation.onboarding)
-      this.props.onNavigateBack();
-    // if norauto user skip carstartinstallationview
-    else if (this.locationFrance()) {
-      this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
-    }
-    else {
-      this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
-    }
+  popRoute() {
+    this.props.setPageIndex(0);
+    this.props.clearDevices();
+    this.props.onNavigateBack();
   },
 
   locationFrance() {
@@ -315,8 +315,7 @@ const styles = StyleSheet.create({
   spinnerContainer: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    // backgroundColor: 'black'
+    alignItems: 'center'
   },
   row: {
     height: 30,
