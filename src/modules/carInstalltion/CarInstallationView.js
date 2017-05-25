@@ -324,26 +324,31 @@ const CarInstallationStateView = React.createClass({
 
       // notify user whether vehicle has been added
       if (response) {
-        // add license plate
-        response["plate"] = plate;
-
-        // store vehicle to be accessed in verification
-        this.setState({vehicle: response});
-
-        // store vehicle info
-        this.props.setVehicle(response["vin"]);
-        var meters = await vehicle.getMileage();
-        if (meters)
-          this.props.setOdometer(meters);
+        // check if originauto returns invalid vin
+        if (response["vin"].includes("O"))
+          this.setState({failureModalVisible: true});
         else {
-          this.props.setOdometer(0);
+          // add license plate
+          response["plate"] = plate;
+
+          // store vehicle to be accessed in verification
+          this.setState({vehicle: response});
+
+          // store vehicle info
+          this.props.setVehicle(response["vin"]);
+          var meters = await vehicle.getMileage();
+          if (meters)
+            this.props.setOdometer(meters);
+          else {
+            this.props.setOdometer(0);
+          }
+
+          // disable back button before presenting modal
+          this.setState({returnDisabled: true});
+
+          // verify vehicle
+          this.setState({modalVisible: true});
         }
-
-        // disable back button before presenting modal
-        this.setState({returnDisabled: true});
-
-        // verify vehicle
-        this.setState({modalVisible: true});
       }
       else {
         this.setState({failureModalVisible: true});
