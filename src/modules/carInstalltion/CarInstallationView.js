@@ -265,11 +265,7 @@ const CarInstallationStateView = React.createClass({
               <Button transparent
                     textStyle={{color: 'black', textDecorationLine: 'underline'}}
                     style={{alignSelf: 'center'}}
-                    onPress={() => Alert.alert(
-                      loc.home.support,
-                      loc.home.call,
-                      {text: 'OK', onPress: () => console.log('OK pressed.')})
-                    }
+                    onPress={() => {text: 'Support', onPress: () => Linking.openURL("https://carfit.zendesk.com/").catch(err => console.error('An error occurred', err))}}
               >{loc.carInstallation.support}</Button>
             </View>
           </Modal>

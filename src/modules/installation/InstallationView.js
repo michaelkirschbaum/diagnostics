@@ -10,7 +10,8 @@ import {
   ActivityIndicator,
   Modal,
   Animated,
-  Alert
+  Alert,
+  Linking
 } from 'react-native';
 import {
   Container,
@@ -216,7 +217,8 @@ const InstallationView = React.createClass({
       Alert.alert(
         loc.carInstallation.connect,
         loc.carInstallation.connectError,
-        [{text: 'OK', onPress: () => this.props.setModalVisible(false)}]
+        [{text: 'Support', onPress: () => Linking.openURL("https://carfit.zendesk.com/").catch(err => console.error('An error occurred', err))},
+         {text: 'OK', onPress: () => this.props.setModalVisible(false)}]
       );
     }
   },

@@ -159,7 +159,8 @@ const NavigationView = React.createClass({
             Alert.alert(
               loc.device.connect,
               loc.device.failure,
-              [{text: 'OK', onPress: () => this.props.setInstallationModal(false)}]
+              [{text: 'Support', onPress: () => Linking.openURL("https://carfit.zendesk.com/").catch(err => console.error('An error occurred', err))},
+               {text: 'OK', onPress: () => this.props.setInstallationModal(false)}]
             );
           }
           else {
