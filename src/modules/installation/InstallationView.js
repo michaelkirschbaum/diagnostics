@@ -233,6 +233,9 @@ const InstallationView = React.createClass({
     // reset spinner
     this.props.setSpinner(false);
 
+    // reset swiper index
+    this.props.setPageIndex(0);
+
     // if not in onboarding mode return to previous view
     if (!this.props.installation.onboarding)
       this.props.onNavigateBack();
