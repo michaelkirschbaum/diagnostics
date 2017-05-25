@@ -146,13 +146,21 @@ const NavigationView = React.createClass({
       case "stop":
         // check whether update successful
         if (notification.status == "success")
-          this.props.closeDrawer();
+          Alert.alert(
+            loc.device.connect,
+            loc.device.success,
+            [{text: 'OK', onPress: () => this.props.closeDrawer()}]
+          );
         else {
           if (this.props.installation.modalVisible) {
             this.props.closeDrawer();
 
             // disable modal if in selection view
-            this.props.setInstallationModal(false);
+            Alert.alert(
+              loc.device.connect,
+              loc.device.failure,
+              [{text: 'OK', onPress: () => this.props.setInstallationModal(false)}]
+            );
           }
           else {
             this.props.closeDrawer();

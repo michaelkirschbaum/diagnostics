@@ -76,7 +76,9 @@ const fr = {
   },
   device: {
     connect: '',
-    update: 'Puls mise à jour du capteur'
+    update: 'Puls mise à jour du capteur',
+    success: 'Le capteur PULS a été mis à jour avec succès.',
+    failure: 'La mise à jour du capteur PULS a échouée.'
   },
   carInstallation: {
     installation: 'Installation',

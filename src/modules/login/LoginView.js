@@ -136,13 +136,6 @@ const LoginView = React.createClass({
             <Text style={styles.textTitle}>{loc.login.marketingTitle2a}</Text>
             <Text style={styles.textBody}>{loc.login.marketingText2a}</Text>
             <Text style={styles.textBody}>{loc.login.marketingText2b}</Text>
-          </View>
-          <View style={styles.instructionsContainer}>
-            <Image source={require('../../../images/intro-03.jpg')}
-                   style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width, marginBottom: 15}}/>
-            <Text style={styles.textTitle}>{loc.login.marketingTitle3a}</Text>
-            <Text style={styles.textBody}>{loc.login.marketingText3a}</Text>
-            <Text style={styles.textBody}>{loc.login.marketingText3b}</Text>
             <Footer theme={carfitTheme} style={styles.footer}>
               <View style={styles.bottomContainer}>
                 <Button rounded

@@ -76,7 +76,9 @@ const en = {
   },
   device: {
     connect: 'CONNECT',
-    update: 'Puls sensor update:'
+    update: 'PULS sensor update:',
+    success: 'PULS sensor was successfully upgraded.',
+    failure: 'PULS sensor failed to upgrade. Try again.'
   },
   carInstallation: {
     installation: 'Installation',
