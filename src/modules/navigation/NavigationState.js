@@ -104,7 +104,7 @@ const initialState = fromJS({
   },
   WelcomeRoute: {
     index: 0,
-    routes: [{key: 'Welcome', title: loc.welcome.welcome}]
+    routes: [{key: 'Installation', title: loc.welcome.welcome}]
   },
   Overview: {
     index: 0,
