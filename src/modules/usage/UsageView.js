@@ -88,7 +88,7 @@ const UsageView = React.createClass({
           <View style={styles.last_trip}>
             <View>
               <Text style={{textAlign: 'center'}}>
-                {this.locationFrance() ?
+                {!this.locationFrance() ?
                   <Image source={require('../../../images/icons/highway.png')} style={styles.icon}/> :
                   <Image source={require('../../../images/icons/highway-france.png')} style={styles.icon}/>
                 }
