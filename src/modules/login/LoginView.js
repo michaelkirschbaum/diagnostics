@@ -116,13 +116,17 @@ const LoginView = React.createClass({
           activeDot={<View style={{backgroundColor:colors.primary, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
           onMomentumScrollEnd={(e, state, context) => this.setPage(state.index)}
         >
+          
           <View style={styles.instructionsContainer}>
             <Image source={require('../../../images/norauto.png')} style={styles.logo}/>
-            <Text style={styles.textBody}>{loc.login.welcome1}</Text>
-            <Text style={styles.textBody}>{loc.login.welcome2}</Text>
-            <Text style={styles.textBody}>{loc.login.welcome3}</Text>
-            <Text style={styles.textBody}>{loc.login.attention}</Text>
+            <View style={styles.textContainer}>
+              <Text style={styles.textBody}>{loc.login.welcome1}</Text>
+              <Text style={styles.textBody}>{loc.login.welcome2}</Text>
+              <Text style={styles.textBody}>{loc.login.welcome3}</Text>
+              <Text style={styles.textBody}>{loc.login.attention}</Text>
+             </View> 
           </View>
+
           <View style={styles.instructionsContainer}>
             <Image source={require('../../../images/intro-01.jpg')}
                    style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width, marginBottom: 15}}/>
@@ -130,22 +134,29 @@ const LoginView = React.createClass({
             <Text style={styles.textTitle}>{loc.login.marketingTitle1b}</Text>
             <Text style={styles.textBody}>{loc.login.marketingText1a}</Text>
           </View>
+
           <View style={styles.instructionsContainer}>
-            <Image source={require('../../../images/intro-02.jpg')}
+              <Image source={require('../../../images/intro-02.jpg')}
                    style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width, marginBottom: 15}}/>
-            <Text style={styles.textTitle}>{loc.login.marketingTitle2a}</Text>
-            <Text style={styles.textBody}>{loc.login.marketingText2a}</Text>
-            <Text style={styles.textBody}>{loc.login.marketingText2b}</Text>
-            <Footer theme={carfitTheme} style={styles.footer}>
+              <Text style={styles.textTitle}>{loc.login.marketingTitle2a}</Text>
+              <Text style={styles.textBody2}>{loc.login.marketingText2a}</Text>
+              <Text style={styles.textBody2}>{loc.login.marketingText2b}</Text>
+          
               <View style={styles.bottomContainer}>
-                <Button rounded
-                        style={styles.button}
-                        textStyle={{color: colors.textPrimary}}
-                        onPress={this.continue}
-                >{loc.general.continue}</Button>
+                    <Footer theme={carfitTheme} style={styles.footer}>
+                          <Button rounded
+                                style={styles.button}
+                                textStyle={{color: colors.textPrimary}}
+                                onPress={this.continue}
+                          >{loc.general.continue}
+                          </Button>
+                     </Footer>
               </View>
-            </Footer>
-          </View>
+
+            </View>
+         
+        
+
 
           {/* <View style={{height: windowHeight, flex: 1, marginTop: 52}}>
             <Content
@@ -303,6 +314,17 @@ const styles = StyleSheet.create({
     marginRight: 16,
     textAlign: 'center'
   },
+  textBody2: {
+    color: colors.textPrimary,
+    fontFamily: (Platform.OS === 'ios' ) ? 'HelveticaNeue' : 'Roboto',
+    fontSize: responsiveFontSize(1.5),
+    marginTop: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 16,
+    marginRight: 16,
+    textAlign: 'center'
+  },
   container: {
     // flex: 1,
     justifyContent: 'center',
@@ -328,14 +350,8 @@ const styles = StyleSheet.create({
     marginBottom: 24
   },
   instructionsContainer: {
-    marginLeft: 0,
-    marginRight: 0,
     justifyContent: 'center',
     alignItems: 'center',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0
   },
   logo: {
     width: 300,
@@ -347,9 +363,12 @@ const styles = StyleSheet.create({
     marginTop: 17,
     marginBottom: 8
   },
+  textContainer: {
+    marginTop: -70
+  },
   bottomContainer: {
     // flex: 1,
-    marginTop: 17,
+    marginTop: 0,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -367,7 +386,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   button: {
-    alignSelf: 'center'
+    alignSelf: 'center',
   }
 });
 
