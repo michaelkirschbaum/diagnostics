@@ -9,7 +9,8 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   TouchableHighlight,
-  NativeEventEmitter
+  NativeEventEmitter,
+  Linking
 } from 'react-native';
 import {
   Container,

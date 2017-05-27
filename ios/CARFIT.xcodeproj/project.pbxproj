@@ -1388,7 +1388,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					$PODS_CONFIGURATION_BUILD_DIR,
+					"$PODS_CONFIGURATION_BUILD_DIR",
 					"$(SRCROOT)/../react-native/React/**",
 					"$(SRCROOT)/../../React/**",
 					"${SRCROOT}/../../ios/Pods/Headers/Public/**",
@@ -1437,7 +1437,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					$PODS_CONFIGURATION_BUILD_DIR,
+					"$PODS_CONFIGURATION_BUILD_DIR",
 					"$(SRCROOT)/../react-native/React/**",
 					"$(SRCROOT)/../../React/**",
 					"${SRCROOT}/../../ios/Pods/Headers/Public/**",

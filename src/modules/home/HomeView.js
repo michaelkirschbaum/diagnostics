@@ -369,7 +369,7 @@ const HomeView = React.createClass({
         console.error(e);
       }
     } else {
-      this.setState({alert: 'Not available'});
+      this.setState({alert: loc.home.error});
     }
   },
 
