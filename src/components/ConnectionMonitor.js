@@ -8,12 +8,14 @@ import {
 
 const ConnectionMonitor = React.createClass({
   render() {
+    let degree = this.props.angle.toString() + 'deg';
+
     return (
       <View>
         {!this.props.connected ?
           <Image
             source={require('../../images/car-circle-home.png')}
-            style={{transform: [{rotate: this.props.angle.toString() + 'deg'}], width: 100, height: 100, justifyContent: 'center', alignItems: 'center'}}
+            style={{transform: [{rotate: degree}], width: 100, height: 100, justifyContent: 'center', alignItems: 'center'}}
           /> :
           <Image
             source={require('../../images/icons/black-square.png')}
