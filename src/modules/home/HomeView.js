@@ -65,7 +65,8 @@ const HomeView = React.createClass({
       photo: '',
       total_distance: 0,
       new_meters: '',
-      distance_subscription: ''
+      distance_subscription: '',
+      wheel_angle: 0
     };
   },
 
@@ -100,7 +101,7 @@ const HomeView = React.createClass({
                 <Image source={require('../../../images/icons/settings.png')}
                        style={styles.icon}/>
               </TouchableOpacity>
-              <ConnectionMonitor connected={this.props.connected}/>
+              <ConnectionMonitor connected={this.props.connected} angle={this.state.wheelAngle}/>
               <TouchableOpacity onPress={this.onMilesPress}>
                 <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
               </TouchableOpacity>
@@ -242,6 +243,15 @@ const HomeView = React.createClass({
   // Forward setNativeProps to a child
   setNativeProps(nativeProps) {
     this._root.setNativeProps(nativeProps);
+  },
+
+  componentWillMount() {
+    var connectionEmitter = new NativeEventEmitter(CarFitManager);
+
+    var wheel_angle = connectionEmitter.addListener(
+      'TripSteeringWheelAngle',
+      (message) => this.setState({wheelAngle: message["TripSteeringWheelAngle"]});
+    );
   },
 
   componentDidMount() {
