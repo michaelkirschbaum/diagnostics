@@ -3,9 +3,7 @@ import {
   Image,
   Text,
   View,
-  StyleSheet,
-  Animated,
-  Easing
+  StyleSheet
 } from 'react-native';
 
 const ConnectionMonitor = React.createClass({
@@ -13,9 +11,9 @@ const ConnectionMonitor = React.createClass({
     return (
       <View>
         {!this.props.connected ?
-          <Animated.Image
+          <Image
             source={require('../../images/car-circle-home.png')}
-            style={{transform: [{rotate: this.props.angle}], width: 100, height: 100, justifyContent: 'center', alignItems: 'center'}}
+            style={{transform: [{rotate: this.props.angle.toString() + 'deg'}], width: 100, height: 100, justifyContent: 'center', alignItems: 'center'}}
           /> :
           <Image
             source={require('../../images/icons/black-square.png')}

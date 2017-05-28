@@ -66,7 +66,7 @@ const HomeView = React.createClass({
       total_distance: 0,
       new_meters: '',
       distance_subscription: '',
-      wheel_angle: 0
+      wheelAngle: 0
     };
   },
 
@@ -245,15 +245,6 @@ const HomeView = React.createClass({
     this._root.setNativeProps(nativeProps);
   },
 
-  componentWillMount() {
-    var connectionEmitter = new NativeEventEmitter(CarFitManager);
-
-    var wheel_angle = connectionEmitter.addListener(
-      'TripSteeringWheelAngle',
-      (message) => this.setState({wheelAngle: message["TripSteeringWheelAngle"]});
-    );
-  },
-
   componentDidMount() {
     // event listners
     var connectionEmitter = new NativeEventEmitter(CarFitManager);
@@ -294,6 +285,11 @@ const HomeView = React.createClass({
     setInterval(function() {
       this.loadUsage().done();
     }.bind(this), interval);
+
+    this.wheel_angle = connectionEmitter.addListener(
+      'TripSteeringWheelAngle',
+      (message) => this.rotateWheel(message["TripSteeringWheelAngle"])
+    );
   },
 
   componentWillUnmount() {
@@ -480,6 +476,10 @@ const HomeView = React.createClass({
 
     // set new cumulative distance
     this.setState({total_distance: distance});
+  },
+
+  rotateWheel(angle) {
+    this.setState({wheelAngle: angle});
   },
 
   convertToLocal(meters) {
