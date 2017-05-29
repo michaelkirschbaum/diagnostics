@@ -288,7 +288,7 @@ const HomeView = React.createClass({
 
     this.wheel_angle = connectionEmitter.addListener(
       'TripSteeringWheelAngle',
-      (message) => this.rotateWheel(message["TripSteeringWheelAngle"])
+      (message) => this.rotateWheel(message["angle"])
     );
   },
 
