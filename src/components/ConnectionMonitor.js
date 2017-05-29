@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  Image,
-  Text,
-  View,
-  StyleSheet
-} from 'react-native';
+import {Image, Text, View, StyleSheet} from 'react-native';
 
 const ConnectionMonitor = React.createClass({
   render() {
@@ -15,11 +10,11 @@ const ConnectionMonitor = React.createClass({
         {this.props.connected ?
           <Image
             source={require('../../images/car-circle-home.png')}
-            style={{transform: [{rotate: degree}], width: 100, height: 100, justifyContent: 'center', alignItems: 'center'}}
+            style={styles.image, {transform: [{rotate: degree}]}}
           /> :
           <Image
             source={require('../../images/icons/black-square.png')}
-            style={styles.placeholder}
+            style={styles.image}
           />
         }
       </View>
@@ -28,7 +23,7 @@ const ConnectionMonitor = React.createClass({
 });
 
 const styles = StyleSheet.create({
-  placeholder: {
+  image: {
     width: 100,
     height: 100,
     justifyContent: 'center',
