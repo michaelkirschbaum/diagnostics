@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "art": "^0.10.1",
-    "auth0-js": "^8.0.0",
+    "auth0-js": "^8.7.0",
     "auth0-react-native": "0.0.4",
     "bluebird": "^3.4.6",
     "cli-cursor": "^2.1.0",
