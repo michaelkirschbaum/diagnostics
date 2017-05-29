@@ -10,7 +10,7 @@ const ConnectionMonitor = React.createClass({
         {this.props.connected ?
           <Image
             source={require('../../images/car-circle-home.png')}
-            style={styles.image, {transform: [{rotate: degree}]}}
+            style={[styles.image, {transform: [{rotate: degree}]}]}
           /> :
           <Image
             source={require('../../images/icons/black-square.png')}
