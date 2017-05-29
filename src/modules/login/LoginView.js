@@ -180,17 +180,7 @@ const LoginView = React.createClass({
             <Text style={styles.textTitle}>{loc.login.marketingTitle3a}</Text>
             <Text style={styles.textBody}>{loc.login.marketingText3a}</Text>
             <Text style={styles.textBody}>{loc.login.marketingText3b}</Text>
-            <Footer theme={carfitTheme} style={styles.footer}>
-              <View style={styles.bottomContainer}>
-                <Button rounded
-                        style={styles.button}
-                        textStyle={{color: colors.textPrimary}}
-                        onPress={this.continue}
-                >{loc.general.continue}</Button>
-              </View>
-            </Footer>
           </View>
-
           <View style={{height: Dimensions.get('window').height, flex: 1, marginTop: 52}}>
             <Content
               padder={false}
@@ -276,7 +266,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 52,
+    marginTop: 0,
   },
   textInput: {
     backgroundColor: colors.inputBackground,
