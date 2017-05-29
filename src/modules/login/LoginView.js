@@ -42,15 +42,6 @@ const LoginView = React.createClass({
     auth: PropTypes.instanceOf(Authentication)
   },
 
-  onNextPress(email, password) {
-    // retrieve auth0 token
-    var auth = new Authentication();
-
-    auth.login(email, password);
-
-    this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
-  },
-
   continue() {
     var region = NativeModules.SettingsManager.settings.AppleLocale;
 
@@ -64,7 +55,7 @@ const LoginView = React.createClass({
         login.auth0('carfit.auth0.com', token);
       });
 
-      this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome});
+      this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
     }
   },
 
@@ -213,7 +204,7 @@ const LoginView = React.createClass({
                   <Button rounded
                           style={{alignSelf: 'auto'}}
                           textStyle={{color: colors.textPrimary}}
-                          onPress={() => this.onNextPress(this.state.email, this.state.password)}
+                          onPress={() => this.continue()}
                   >{loc.general.continue}</Button>
                 </View>
               </View>
