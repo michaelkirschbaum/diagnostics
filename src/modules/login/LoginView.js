@@ -191,7 +191,7 @@ const LoginView = React.createClass({
             </Footer>
           </View>
 
-          <View style={{height: windowHeight, flex: 1, marginTop: 52}}>
+          <View style={{height: Dimensions.get('window').height, flex: 1, marginTop: 52}}>
             <Content
               padder={false}
               keyboardShouldPersistTaps="always"
