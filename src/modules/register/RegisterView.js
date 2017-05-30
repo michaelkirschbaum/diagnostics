@@ -28,6 +28,10 @@ import store from '../../redux/store';
 import Login from '../../carfit/login';
 import Connection from '../../carfit/connection';
 import PhoneInput from 'react-native-phone-input';
+// Get an instance of `PhoneNumberUtil`.
+var phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
+// Require `PhoneNumberFormat`.
+var PNF = require('google-libphonenumber').PhoneNumberFormat;
 
 const RegisterView = React.createClass({
   getInitialState() {
@@ -100,7 +104,6 @@ const RegisterView = React.createClass({
   async authenticate(first, last, code) {
     var login = new Login();
     var conn = new Connection();
-
     // validate phone number
     if (!this.refs.phone.isValidNumber())
       Alert.alert(
@@ -109,14 +112,17 @@ const RegisterView = React.createClass({
         [{text: 'OK', onPress: () => undefined}]
       );
     else {
+      // Format the number according to E.164 rules
+      var phoneNumberNonFormatted = phoneUtil.parse(this.refs.phone.getValue(), this.refs.phone.state.iso2);
+      var phoneNumber = phoneUtil.format(phoneNumberNonFormatted, PNF.INTERNATIONAL);
       // set phone number
-      conn.addPhone(this.refs.phone.getValue());
+      conn.addPhone(phoneNumber);
 
       // user information
       var demographics = {
         firstName: first,
         lastName: last,
-        phoneNumber: this.refs.phone.getValue()
+        phoneNumber: phoneNumber
       };
 
       var response = await login.norauto(code, demographics);
