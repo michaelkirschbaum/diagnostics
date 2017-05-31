@@ -360,7 +360,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.backgroundPrimary,
     borderColor: colors.backgroundPrimary,
     height: 42,
-    marginTop: 325
+    marginTop: 315
   }
 });
 
