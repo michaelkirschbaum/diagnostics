@@ -53,11 +53,11 @@ const LoginView = React.createClass({
 
       const auth0 = new Auth0("carfit.auth0.com");
 
-      /* auth0
+      auth0
         .authentication("t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M")
-        .login()
-        .then()
-        .catch(); */
+        .login(this.state.email, this.state.password, "myconnection")
+        .then(credentials => console.log(credentials))
+        .catch(error => console.log(error));
 
       this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
     }
@@ -208,7 +208,7 @@ const LoginView = React.createClass({
                   <Button rounded
                           style={{alignSelf: 'auto'}}
                           textStyle={{color: colors.textPrimary}}
-                          onPress={() => this.continue()}
+                          onPress={() => this.continue}
                   >{loc.general.continue}</Button>
                 </View>
               </View>
