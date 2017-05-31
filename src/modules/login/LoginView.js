@@ -53,7 +53,11 @@ const LoginView = React.createClass({
 
       const auth0 = new Auth0("carfit.auth0.com");
 
-      // var lock = new Auth0Lock({clientId: "t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M", domain: "carfit.auth0.com"});
+      /* auth0
+        .authentication("t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M")
+        .login()
+        .then()
+        .catch(); */
 
       this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
     }
