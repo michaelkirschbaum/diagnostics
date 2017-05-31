@@ -51,11 +51,9 @@ const LoginView = React.createClass({
     } else {
       var login = new Login()
 
-      /* var lock = new Auth0Lock({clientId: "t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M", domain: "carfit.auth0.com"});
-      lock.show({}, (err, profile, token) => {
-        console.log('Logged in!' + ' ' + profile + ' ' + token);
-        login.auth0('carfit.auth0.com', token);
-      }); */
+      const auth0 = new Auth0("carfit.auth0.com");
+
+      // var lock = new Auth0Lock({clientId: "t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M", domain: "carfit.auth0.com"});
 
       this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
     }
