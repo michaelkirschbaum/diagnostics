@@ -104,7 +104,7 @@ const InstallationView = React.createClass({
             <View style={styles.instructionsContainer}>
               <Text style={{marginTop: 17, textAlign: "left"}}>{loc.instructions.selectBLE}</Text>
               <List dataArray={items}
-                    style={{width: windowWidth - 40, marginTop: 10}}
+                    style={{width: windowWidth - 25, marginTop: 10}}
                     renderRow={(item) =>
                           <ListItem>
                             <View style={styles.row}>
@@ -112,7 +112,7 @@ const InstallationView = React.createClass({
                                 <Signal strength={item.signal}/>
                                 <Text style={{marginLeft: 5}} onPress={() => this.connect(item.identifier)}>{item.name}</Text>
                               </View>
-                              {this.props.installation.modalVisible && this.state.selected == item.identifier &&
+                              {true &&
                                 <ConnectionSpinner loading={this.props.installation.paired}/>
                               }
                             </View>
@@ -330,7 +330,8 @@ const styles = StyleSheet.create({
   },
   device: {
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginTop: 13
   },
   firmware: {
     textAlign: 'center',
@@ -351,7 +352,7 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(2.35)
   },
   row: {
-    height: 30,
+    height: 35,
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
