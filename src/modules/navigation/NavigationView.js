@@ -137,7 +137,7 @@ const NavigationView = React.createClass({
           loc.home.support,
           JSON.stringify(message.response),
           {text: 'OK', onPress: () => undefined}
-        );
+        )
       );
     }
 
