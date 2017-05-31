@@ -240,7 +240,6 @@ const InstallationView = React.createClass({
       var counter = 0;
       const stop_count = 2;
 
-      // Start discovery of devices
       this.props.discover();
 
       var rssi_refresh = setInterval(function() {
