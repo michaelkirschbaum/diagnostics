@@ -112,7 +112,7 @@ const InstallationView = React.createClass({
                                 <Signal strength={item.signal}/>
                                 <Text style={{marginLeft: 5}} onPress={() => this.connect(item.identifier)}>{item.name}</Text>
                               </View>
-                              {true &&
+                              {this.props.installation.modalVisible && this.state.selected == item.identifier &&
                                 <ConnectionSpinner loading={this.props.installation.paired}/>
                               }
                             </View>
