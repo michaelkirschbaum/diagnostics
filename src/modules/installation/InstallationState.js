@@ -21,7 +21,7 @@ const initialState = Map({
   connected: 0,
   paired: false,
   modalVisible: false,
-  onboarding: true
+  onboarding: false
 });
 
 // Actions

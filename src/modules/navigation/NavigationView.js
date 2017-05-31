@@ -119,7 +119,7 @@ const NavigationView = React.createClass({
       (message) => this.props.setConnection(message["status"])
     );
 
-    if (this.locationFrance())
+    if (this.locationFrance()) {
       // listen for support click
       var support_subscription = connectionEmitter.addListener(
         'BLEButtonPress',
@@ -129,6 +129,13 @@ const NavigationView = React.createClass({
           {text: 'OK', onPress: () => console.log('OK Pressed')}
         )
       );
+
+      // support response
+      var support_queue_subscription = connectionEmitter.addListener(
+        'BLEButtonResponse',
+        (message) => undefined
+      );
+    }
 
     // update firmware
     var update_firmware_subscription = connectionEmitter.addListener(

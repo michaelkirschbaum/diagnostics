@@ -50,7 +50,7 @@ const en = {
   },
   welcome: {
     welcome: 'Welcome',
-    connect: 'Connect',
+    connect: 'Add Puls',
     welcomeToCarfit: 'Welcome to CARFIT!',
     helloMiles: 'Hello, I am Miles.',
     welcomeParagraph1: 'From now on I will be the voice of your car. Feel free to chat with me later!',
@@ -72,13 +72,13 @@ const en = {
     pressAndHold: 'Press & hold the center of the CARFIT PULS sensor for 10s to reset the sensor.',
     blePairing: 'Tap button to turn it on.',
     ensurePairing: 'Ensure the CARFIT PULS sensor in pairing mode with the center LED flashing.',
-    selectBLE: 'Select your CARFIT PULS sensor from the list to connect.',
+    selectBLE: 'Select your CARFIT PULS sensor to connect.',
   },
   device: {
     connect: 'CONNECT',
     update: 'CARFIT PULS update:',
-    success: 'PULS sensor was successfully upgraded.',
-    failure: 'PULS sensor failed to upgrade. Try again.'
+    success: 'Your PULS sensor has been successfully upgraded.',
+    failure: 'There was a problem upgraded your PULS sensor. Please try again.'
   },
   carInstallation: {
     installation: 'Installation',

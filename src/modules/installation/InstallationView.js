@@ -52,7 +52,8 @@ const InstallationView = React.createClass({
   getInitialState() {
     return {
       rssi_refresh: '',
-      bluetoothStatus: 'unknown'
+      bluetoothStatus: 'unknown',
+      selected: ''
     };
   },
 
@@ -103,16 +104,30 @@ const InstallationView = React.createClass({
             <View style={styles.instructionsContainer}>
               <Text style={{marginTop: 17, textAlign: "left"}}>{loc.instructions.selectBLE}</Text>
               <List dataArray={items}
-                    style={{width: windowWidth - 40, marginTop: 10}}
+                    style={{width: windowWidth - 25, marginTop: 10}}
                     renderRow={(item) =>
                           <ListItem>
                             <View style={styles.row}>
-                              <Text onPress={() => this.connect(item.identifier)}>{item.name}</Text>
-                              <Signal strength={item.signal}/>
+                              <View style={styles.device}>
+                                <Signal strength={item.signal}/>
+                                <Text style={{marginLeft: 5}} onPress={() => this.connect(item.identifier)}>{item.name}</Text>
+                              </View>
+                              {this.props.installation.modalVisible && this.state.selected == item.identifier &&
+                                <ConnectionSpinner loading={this.props.installation.paired}/>
+                              }
                             </View>
                           </ListItem>
                       }>
               </List>
+              <Footer style={styles.bottomContainer}>
+              {this.props.installation.paired &&
+                <Button rounded
+                  style={styles.button}
+                  textStyle={{color: colors.textPrimary}}
+                  onPress={() => this.continue()}
+                >{loc.general.continue}</Button>
+              }
+              </Footer>
             </View>
           </Swiper>
         )
@@ -127,7 +142,7 @@ const InstallationView = React.createClass({
                   style={{width: windowWidth - 40, marginTop: 10}}
                   renderRow={(item) =>
                         <ListItem>
-                          <View style={styles.row}>
+                          <View style={styles.device}>
                             <Text onPress={() => this.connect(item.identifier)}>{item.name}</Text>
                             <Signal strength={item.signal}/>
                           </View>
@@ -141,10 +156,9 @@ const InstallationView = React.createClass({
 
     return (
         <Container theme={carfitTheme}>
-          <Header>
-            <Title>{headerTitle}</Title>
+          <Header style={{backgroundColor: colors.primary}}>
+            <Title style={{color: 'white'}}>{headerTitle}</Title>
           </Header>
-          <View style={styles.headerLine} />
           <Content
             padder={false}
             keyboardShouldPersistTaps="always"
@@ -152,22 +166,6 @@ const InstallationView = React.createClass({
             ref={c => this._content = c}>
 
             {getOnboardingView()}
-            <Modal
-              animationType={'none'}
-              transparent={true}
-              closeOnTouchOutside={true}
-              visible={this.props.installation.modalVisible}>
-              <View style={styles.spinnerContainer}>
-                <ConnectionSpinner loading={this.props.installation.paired}/>
-                {this.props.installation.paired &&
-                  <Button rounded
-                    style={styles.button}
-                    textStyle={{color: colors.textPrimary}}
-                    onPress={() => this.continue()}
-                  >{loc.general.continue}</Button>
-                }
-              </View>
-            </Modal>
           </Content>
         </Container>
     );
@@ -180,43 +178,27 @@ const InstallationView = React.createClass({
   },
 
   async connect(device) {
+    // store device id
+    this.setState({selected: device});
+
     // start spinner
     this.props.setModalVisible(true);
 
-    // stop refreshing device list
-    clearInterval(this.state.rssi_refresh);
-
     // timeout interval
     var timeout = 15000;
-/*
-    // timeout connection request and notify user of necessary action
-    var connection_alert = setTimeout(function() {
-      Alert.alert(
-        loc.login.connection_error,
-        loc.login.reset,
-        {text: 'OK', onPress: () => undefined}
-      );
-    }, timeout);
 
-    // if firmware needs updating, suppress reset instructions
-    if (this.props.navigationState.drawerOpen)
-      clearTimeout(connection_alert);
-*/
     // connect device
     var conn = new Connection();
     var response = await conn.connectDevice(device);
 
-    // stop timeout
-    // clearTimeout(connection_alert);
-
     if (response) {
+      // stop refreshing device list
+      clearInterval(this.state.rssi_refresh);
+
       // stop spinner
       this.props.setSpinner(true);
     }
     else {
-      // refresh device list
-      this.scanDevices();
-
       Alert.alert(
         loc.carInstallation.connect,
         loc.carInstallation.connectError,
@@ -251,40 +233,40 @@ const InstallationView = React.createClass({
 
   setPage(index) {
     this.props.setPageIndex(index);
-    if (index == 4) this.scanDevices();
-  },
 
-  scanDevices() {
-    var interval = 2000;
-    var counter = 0;
-    const stop_count = 2;
+    // initiate device scan
+    if (index == 4) {
+      var interval = 2000;
+      var counter = 0;
+      const stop_count = 2;
 
-    // Start discovery of devices
-    this.props.discover();
-
-    var rssi_refresh = setInterval(function() {
-      if (counter == stop_count)
-        // notify user if bluetooth is off
-        if (this.props.navigationState.drawerOpen == "true")
-          Alert.alert(
-            loc.login.connection_error,
-            loc.login.bluetooth,
-            [{text: 'OK', onPress: () => undefined}]
-          );
-        // notify user if no devices are found
-        else if (!this.props.installation.foundDevices.length)
-          Alert.alert(
-            loc.login.connection_error,
-            loc.login.noneFound,
-            [{text: 'OK', onPress: () => this.setPage(0)}]
-          );
-
-      // refresh device list
+      // Start discovery of devices
       this.props.discover();
-      if (counter <= stop_count)
-        ++counter;
-    }.bind(this), interval);
-    this.setState({rssi_refresh});
+
+      var rssi_refresh = setInterval(function() {
+        if (counter == stop_count)
+          // notify user if bluetooth is off
+          if (this.props.navigationState.drawerOpen == "true")
+            Alert.alert(
+              loc.login.connection_error,
+              loc.login.bluetooth,
+              [{text: 'OK', onPress: () => undefined}]
+            );
+          // notify user if no devices are found
+          else if (!this.props.installation.foundDevices.length)
+            Alert.alert(
+              loc.login.connection_error,
+              loc.login.noneFound,
+              [{text: 'OK', onPress: () => this.setPage(0)}]
+            );
+
+        // refresh device list
+        this.props.discover();
+        if (counter <= stop_count)
+          ++counter;
+      }.bind(this), interval);
+      this.setState({rssi_refresh});
+    }
   },
 
   popRoute() {
@@ -327,20 +309,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  row: {
-    height: 30,
-    marginTop: 0,
+  device: {
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    marginTop: 13
   },
   firmware: {
     textAlign: 'center',
     marginTop: 150
   },
   button: {
-    alignSelf: 'center',
-    marginTop: 460
+    alignSelf: 'center'
   },
   header: {
     fontWeight: "bold",
@@ -352,6 +331,20 @@ const styles = StyleSheet.create({
     marginTop: 17,
     textAlign: "center",
     fontSize: responsiveFontSize(2.35)
+  },
+  row: {
+    height: 35,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  bottomContainer: {
+    backgroundColor: colors.backgroundPrimary,
+    borderColor: colors.backgroundPrimary,
+    height: 60,
+    width: 335,
+    position: 'absolute',
+    top: Dimensions.get('window').height - 195,
+    left: 0
   }
 });
 
