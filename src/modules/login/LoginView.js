@@ -56,7 +56,7 @@ const LoginView = React.createClass({
       auth0
         .authentication("t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M")
         .login(this.state.email, this.state.password, "myconnection")
-        .then(credentials => login.auth0("carfit.auth0.com", credentials)).
+        .then(credentials => login.auth0("carfit.auth0.com", credentials))
         .catch(error => console.log(error));
 
       this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
