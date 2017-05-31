@@ -189,20 +189,7 @@ const InstallationView = React.createClass({
 
     // timeout interval
     var timeout = 15000;
-/*
-    // timeout connection request and notify user of necessary action
-    var connection_alert = setTimeout(function() {
-      Alert.alert(
-        loc.login.connection_error,
-        loc.login.reset,
-        {text: 'OK', onPress: () => undefined}
-      );
-    }, timeout);
 
-    // if firmware needs updating, suppress reset instructions
-    if (this.props.navigationState.drawerOpen)
-      clearTimeout(connection_alert);
-*/
     // connect device
     var conn = new Connection();
     var response = await conn.connectDevice(device);
@@ -359,8 +346,11 @@ const styles = StyleSheet.create({
   bottomContainer: {
     backgroundColor: colors.backgroundPrimary,
     borderColor: colors.backgroundPrimary,
-    height: 42,
-    marginTop: 315
+    height: 60,
+    width: 335,
+    position: 'absolute',
+    top: Dimensions.get('window').height - 195,
+    left: 0
   }
 });
 
