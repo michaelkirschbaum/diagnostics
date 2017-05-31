@@ -50,7 +50,7 @@ const fr = {
   },
   welcome: {
     welcome: 'Bienvenue',
-    connect: 'Se connecter',
+    connect: 'Ajouter Puls',
     welcomeToCarfit: 'Bienvenue chez CARFIT!',
     helloMiles: 'Bonjour, je suis Miles.',
     welcomeParagraph1: 'Je suis la voix de votre voiture, vous pouvez discuter avec moi.',

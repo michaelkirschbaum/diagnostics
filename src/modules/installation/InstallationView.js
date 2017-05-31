@@ -52,7 +52,8 @@ const InstallationView = React.createClass({
   getInitialState() {
     return {
       rssi_refresh: '',
-      bluetoothStatus: 'unknown'
+      bluetoothStatus: 'unknown',
+      selected: ''
     };
   },
 
@@ -107,12 +108,26 @@ const InstallationView = React.createClass({
                     renderRow={(item) =>
                           <ListItem>
                             <View style={styles.row}>
-                              <Text onPress={() => this.connect(item.identifier)}>{item.name}</Text>
-                              <Signal strength={item.signal}/>
+                              <View style={styles.device}>
+                                <Signal strength={item.signal}/>
+                                <Text style={{marginLeft: 5}} onPress={() => this.connect(item.identifier)}>{item.name}</Text>
+                              </View>
+                              {this.props.installation.modalVisible && this.state.selected == item.identifier &&
+                                <ConnectionSpinner loading={this.props.installation.paired}/>
+                              }
                             </View>
                           </ListItem>
                       }>
               </List>
+              <Footer style={styles.bottomContainer}>
+              {this.props.installation.paired &&
+                <Button rounded
+                  style={styles.button}
+                  textStyle={{color: colors.textPrimary}}
+                  onPress={() => this.continue()}
+                >{loc.general.continue}</Button>
+              }
+              </Footer>
             </View>
           </Swiper>
         )
@@ -127,7 +142,7 @@ const InstallationView = React.createClass({
                   style={{width: windowWidth - 40, marginTop: 10}}
                   renderRow={(item) =>
                         <ListItem>
-                          <View style={styles.row}>
+                          <View style={styles.device}>
                             <Text onPress={() => this.connect(item.identifier)}>{item.name}</Text>
                             <Signal strength={item.signal}/>
                           </View>
@@ -141,10 +156,9 @@ const InstallationView = React.createClass({
 
     return (
         <Container theme={carfitTheme}>
-          <Header>
-            <Title>{headerTitle}</Title>
+          <Header style={{backgroundColor: colors.primary}}>
+            <Title style={{color: 'white'}}>{headerTitle}</Title>
           </Header>
-          <View style={styles.headerLine} />
           <Content
             padder={false}
             keyboardShouldPersistTaps="always"
@@ -152,22 +166,6 @@ const InstallationView = React.createClass({
             ref={c => this._content = c}>
 
             {getOnboardingView()}
-            <Modal
-              animationType={'none'}
-              transparent={true}
-              closeOnTouchOutside={true}
-              visible={this.props.installation.modalVisible}>
-              <View style={styles.spinnerContainer}>
-                <ConnectionSpinner loading={this.props.installation.paired}/>
-                {this.props.installation.paired &&
-                  <Button rounded
-                    style={styles.button}
-                    textStyle={{color: colors.textPrimary}}
-                    onPress={() => this.continue()}
-                  >{loc.general.continue}</Button>
-                }
-              </View>
-            </Modal>
           </Content>
         </Container>
     );
@@ -180,6 +178,9 @@ const InstallationView = React.createClass({
   },
 
   async connect(device) {
+    // store device id
+    this.setState({selected: device});
+
     // start spinner
     this.props.setModalVisible(true);
 
@@ -327,20 +328,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  row: {
-    height: 30,
-    marginTop: 0,
+  device: {
     alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between'
+    flexDirection: 'row'
   },
   firmware: {
     textAlign: 'center',
     marginTop: 150
   },
   button: {
-    alignSelf: 'center',
-    marginTop: 460
+    alignSelf: 'center'
   },
   header: {
     fontWeight: "bold",
@@ -352,6 +349,17 @@ const styles = StyleSheet.create({
     marginTop: 17,
     textAlign: "center",
     fontSize: responsiveFontSize(2.35)
+  },
+  row: {
+    height: 30,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  bottomContainer: {
+    backgroundColor: colors.backgroundPrimary,
+    borderColor: colors.backgroundPrimary,
+    height: 42,
+    marginTop: 325
   }
 });
 

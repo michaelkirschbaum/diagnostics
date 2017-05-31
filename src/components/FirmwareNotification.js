@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, NativeModules} from 'react-native';
-import {Text, Content} from 'native-base';
+import {Text, Content, View} from 'native-base';
 import colors from '../config/colors';
 import en from '../config/localization.en';
 import fr from '../config/localization.fr';
@@ -14,18 +14,22 @@ else
 export default class FirmwareNotification extends Component {
   render() {
     return (
-      <Content style={styles.container}>
+      <View style={styles.container}>
         <Text style={styles.text}>{loc.device.update} {this.props.percent}%</Text>
-      </Content>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.primary
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.headerTextColor
   },
   text: {
-    textAlign: 'center'
+    textAlign: 'center',
+    marginBottom: 4
   }
 });

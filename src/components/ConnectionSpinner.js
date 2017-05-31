@@ -56,16 +56,11 @@ const ConnectionSpinner = React.createClass({
 
 const styles = StyleSheet.create({
   spinner: {
-    height: 55,
-    width: 200,
-    position: 'absolute',
-    top: Dimensions.get('window').height / 2 - 27.5,
-    left: Dimensions.get('window').width / 2 - 100
+    height: 27.5,
+    width: 100
   },
   done: {
-    height: 89,
-    position: 'absolute',
-    top: Dimensions.get('window').height / 2 - 61.5
+    height: 44.5
   }
 });
 
