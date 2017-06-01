@@ -164,7 +164,9 @@ const fr = {
     supportError: 'Demande échoué. Réessayer.',
     save: 'Sauvegarder les modifications',
     cancel: 'Annuler',
-    error: 'Non disponible'
+    error: 'Non disponible',
+    success: 'Inscription terminée!',
+    instructions: 'Profitez de votre assistant personnel en appuyant sur le bouton de votre volant ou en cliquant sur le bouton vert.'
   },
   settings: {
     settings: 'Paramètres',
