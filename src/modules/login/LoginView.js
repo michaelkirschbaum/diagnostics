@@ -194,8 +194,14 @@ const LoginView = React.createClass({
                 <Image source={require('../../../images/carfit-logo-black-bg.png')} style={styles.logo}/>
               </View>
               <View style={styles.method}>
-                <Button>{loc.login.signin}</Button>
-                <Button>{loc.login.signup}</Button>
+                <Button
+                  style={styles.methodButton}
+                  textStyle={{color: colors.textPrimary}}
+                >{loc.login.signin}</Button>
+                <Button
+                  style={styles.methodButton}
+                  textStyle={{color: colors.textPrimary}}
+                >{loc.login.signup}</Button>
               </View>
               <View style={styles.social}>
                 <Button rounded
@@ -367,7 +373,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   socialButton: {
-    alignSelf: 'center'
+    alignSelf: 'center',
+    width: responsiveWidth(50)
+  },
+  methodButton: {
+    backgroundColor: 'black'
   }
 });
 
