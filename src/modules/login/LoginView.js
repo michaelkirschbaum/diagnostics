@@ -28,6 +28,7 @@ import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
 import {responsiveWidth, responsiveHeight, responsiveFontSize} from 'react-native-responsive-dimensions';
 // import Auth0 from 'react-native-auth0';
+var Auth0Lock = require('react-native-lock');
 
 // set language
 if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
