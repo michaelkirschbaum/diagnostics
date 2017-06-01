@@ -156,9 +156,10 @@ const InstallationView = React.createClass({
 
     return (
         <Container theme={carfitTheme}>
-          <Header style={{backgroundColor: colors.primary}}>
+          <Header>
             <Title style={{color: 'white'}}>{headerTitle}</Title>
           </Header>
+          <View style={styles.headerLine}/>
           <Content
             padder={false}
             keyboardShouldPersistTaps="always"
