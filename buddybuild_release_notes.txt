@@ -1,2 +1,13 @@
 WHAT'S NEW IN VERSION 00.00.0511
 --------------------------------
+
+App
+- Sensor update notification
+- International phone number input formatter
+- Zendesk support redirects
+- Bluetooth connection indicator responds to wheel angle
+- Onboarding success interaction
+- UI & bug fixes
+
+SDK
+- 
