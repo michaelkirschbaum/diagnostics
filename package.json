@@ -24,6 +24,7 @@
     "es6-symbol": "^3.1.0",
     "exit-hook": "^1.1.1",
     "figures": "^2.0.0",
+    "fs.realpath": "^1.0.0",
     "graphql": "^0.9.1",
     "highcharts": "^5.0.9",
     "immutable": "^3.8.1",

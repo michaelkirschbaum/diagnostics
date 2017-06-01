@@ -1,7 +1,2 @@
 WHAT'S NEW IN VERSION 00.00.0511
 --------------------------------
-
-- Crash fix (affects kilometrage)
-- Scales to different device sizes
-- Terms and Privacy included
-- Bug fixes
