@@ -47,6 +47,7 @@
   if (self.connectBLEDeviceAsyncRejectBlock) {
     self.connectBLEDeviceAsyncRejectBlock(@"BLEDeviceConnectionFailed", error.localizedDescription, error);
     self.connectBLEDeviceAsyncRejectBlock = nil;
+    self.connectBLEDeviceAsyncResolveBlock = nil;
   }
 }
 
@@ -54,18 +55,25 @@
   if (self.connectBLEDeviceAsyncResolveBlock) {
     self.connectBLEDeviceAsyncResolveBlock(@1);
     self.connectBLEDeviceAsyncResolveBlock = nil;
-  }
-  if (hasRCTListeners) {
-    [self sendEventWithName:@"BLEDeviceConnectionStatus" body:@{@"name": @"BLEDeviceConnectionStatus", @"status" : @1}];
+    self.connectBLEDeviceAsyncRejectBlock = nil;
+  } else {
+    if (hasRCTListeners) {
+      [self sendEventWithName:@"BLEDeviceConnectionStatus" body:@{@"name": @"BLEDeviceConnectionStatus", @"status" : @1}];
+    }
   }
 }
 
 - (void) didDisconnectDevice {
-  // use event propagation to notify
-  NSLog(@"%s - and hasRCTListeners is: %@", __FUNCTION__, hasRCTListeners ? @"YES" : @"NO");
-  if (hasRCTListeners) {
-    [self sendEventWithName:@"BLEDeviceConnectionStatus" body:@{@"name": @"BLEDeviceConnectionStatus", @"status" : @0}];
-  }
+//  if (self.connectBLEDeviceAsyncRejectBlock) {
+//    NSError * error = [NSError errorWithDomain:@"fit.car.iOSSDK.BLE" code:1 userInfo:nil];
+//    self.connectBLEDeviceAsyncRejectBlock(@"BLEDeviceConnectionFailed", error.localizedDescription, error);
+//    self.connectBLEDeviceAsyncRejectBlock = nil;
+//    self.connectBLEDeviceAsyncResolveBlock = nil;
+//  } else {
+    if (hasRCTListeners) {
+      [self sendEventWithName:@"BLEDeviceConnectionStatus" body:@{@"name": @"BLEDeviceConnectionStatus", @"status" : @0}];
+    }
+//  }
 }
 
 - (void) didDiscoverDevice {
