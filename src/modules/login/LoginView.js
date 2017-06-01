@@ -184,14 +184,20 @@ const LoginView = React.createClass({
               <View style={styles.container}>
                 <Image source={require('../../../images/carfit-logo-black-bg.png')} style={styles.logo}/>
               </View>
-              <View>
+              <View style={styles.method}>
                 <Button>{loc.login.signin}</Button>
                 <Button>{loc.login.signup}</Button>
               </View>
-              <View>
-                <Button>{loc.login.twitter}</Button>
-                <Button>{loc.login.google}</Button>
-                <Button>{loc.login.facebook}</Button>
+              <View style={styles.social}>
+                <Button rounded
+                  style={styles.socialButton}
+                >{loc.login.twitter}</Button>
+                <Button rounded
+                  style={styles.socialButton}
+                >{loc.login.google}</Button>
+                <Button rounded
+                  style={styles.socialButton}
+                >{loc.login.facebook}</Button>
               </View>
               <View style={styles.divider}>
                 <Text>{loc.login.method}</Text>
@@ -275,11 +281,12 @@ const styles = StyleSheet.create({
   textInput: {
     backgroundColor: colors.inputBackground,
     borderColor: colors.primary,
-    borderWidth: 2.5
+    borderWidth: 2.5,
+    marginBottom: 13
   },
   inputContainer: {
     marginLeft: 20,
-    marginRight: 20,
+    marginRight: 20
   },
   image: {
     left: 0,
@@ -332,7 +339,26 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline'
   },
   divider: {
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 20,
+    marginBottom: 20
+  },
+  social: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: 130,
+    marginTop: 35,
+    flex: 1
+  },
+  method: {
+    flexDirection: 'row',
+    marginTop: 20,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  socialButton: {
+    alignSelf: 'center'
   }
 });
 
