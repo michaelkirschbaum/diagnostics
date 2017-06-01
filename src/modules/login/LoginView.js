@@ -55,8 +55,9 @@ const LoginView = React.createClass({
 
       auth0
         .authentication("t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M")
-        .login(this.state.email, this.state.password, "Username-Password-Authentication")
+        .login(this.state.email, this.state.password, "Username-Password-Authentication", {scope: 'openid offline_access', device: 'SOMEDEVICE'})
         .then((credentials) => {
+          console.log(credentials);
           login.auth0("carfit.auth0.com", credentials);
         }).catch(error => console.log(error));
 
