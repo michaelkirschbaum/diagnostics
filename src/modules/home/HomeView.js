@@ -349,6 +349,7 @@ const HomeView = React.createClass({
 
         // turn of onboarding mode
         this.props.setOnboarding(false);
+      }
     }
   },
 
