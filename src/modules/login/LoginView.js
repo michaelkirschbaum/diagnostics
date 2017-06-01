@@ -57,13 +57,14 @@ const LoginView = React.createClass({
         .authentication("t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M")
         .login(this.state.email, this.state.password, "Username-Password-Authentication", {scope: 'openid offline_access', device: 'SOMEDEVICE'})
         .then((credentials) => {
-          // change key names
           var token = {}
 
+          // change key names
           var keys = Object.keys(credentials);
           for (i = 0; i < keys.length; i++)
             token[keys[i].replace("_t", "T")] = credentials[keys[i]];
 
+          // call login api
           login.auth0("carfit.auth0.com", token);
         }).catch(error => console.log(error));
 
