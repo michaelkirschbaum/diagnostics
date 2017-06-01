@@ -27,7 +27,7 @@ import Login from '../../carfit/login';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
 import {responsiveWidth, responsiveHeight, responsiveFontSize} from 'react-native-responsive-dimensions';
-import Auth0 from 'react-native-auth0';
+// import Auth0 from 'react-native-auth0';
 
 // set language
 if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
