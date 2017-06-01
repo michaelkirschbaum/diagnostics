@@ -59,7 +59,7 @@ const LoginView = React.createClass({
         .then((credentials) => {
           // change key names
           var token = {}
-          
+
           var keys = Object.keys(credentials);
           for (i = 0; i < keys.length; i++)
             token[keys[i].replace("_t", "T")] = credentials[keys[i]];
@@ -67,7 +67,8 @@ const LoginView = React.createClass({
           login.auth0("carfit.auth0.com", token);
         }).catch(error => console.log(error));
 
-      this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
+      // this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
+      this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome});
     }
   },
 
