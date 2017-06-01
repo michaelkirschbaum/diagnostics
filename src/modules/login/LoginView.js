@@ -337,8 +337,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 100,
-    height: 100,
+    width: 300,
+    height: 300,
     resizeMode: 'contain',
     alignSelf: 'center'
   },
