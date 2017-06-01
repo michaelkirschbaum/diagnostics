@@ -19,8 +19,7 @@ const initialState = Map({
   in_drive: false,
   connected: 0,
   paired: false,
-  modalVisible: false,
-  onboarding: true
+  modalVisible: false
 });
 
 // Actions

@@ -343,11 +343,13 @@ const HomeView = React.createClass({
 
       // if finished onboarding show instructions
       if (this.props.navigationState.onboarding) {
-        Alert.alert(
-          loc.home.success,
-          loc.home.instructions,
-          {text: 'OK', onPress: () => console.log('OK Pressed.')}
-        );
+        setTimeout(function() {
+          Alert.alert(
+            loc.home.success,
+            loc.home.instructions,
+            {text: 'OK', onPress: () => console.log('OK Pressed.')}
+          );
+        }, 1000);
 
         // turn of onboarding mode
         this.props.setOnboarding(false);
