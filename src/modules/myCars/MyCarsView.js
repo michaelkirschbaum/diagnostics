@@ -136,9 +136,6 @@ const MyCarsView = React.createClass({
   },
 
   onNewVehiclePress() {
-    // enable onboarding modal
-    // this.props.setOnboarding(true);
-
     // redirect to installation route
     this.props.newVehicle();
   }

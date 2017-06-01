@@ -3,7 +3,6 @@ import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCom
 import {setPageIndex, setEnterMode, setVehicle, addVehicle, setOdometer} from './CarInstallationState';
 import {setModal} from '../home/HomeState';
 import InstallationView from './CarInstallationView';
-import {setOnboarding} from '../installation/InstallationState';
 
 export default connect(
   state => ({
@@ -43,9 +42,6 @@ export default connect(
     },
     setOdometerModal(status) {
       dispatch(setModal(status));
-    },
-    setOnboarding(state) {
-      dispatch(setOnboarding(state));
     }
   })
 )(InstallationView);

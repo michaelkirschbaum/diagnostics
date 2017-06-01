@@ -30,7 +30,13 @@ const fr = {
     login: '',
     success: 'Vous êtes maintenant connecté.',
     failure: 'Échec de la connexion. Réessayer.',
-    invalidNumber: 'Le numéro de téléphone est invalide. Réessayer.'
+    invalidNumber: 'Le numéro de téléphone est invalide. Réessayer.',
+    method: 'OU',
+    twitter: 'Connectez-vous avec Twitter',
+    google: 'Connectez-vous avec Google',
+    facebook: 'Connectez-vous avec Facebook',
+    signin: 'S\'IDENTIFIER',
+    signup: 'S\'INSCRIRE'
   },
   verification: { // is this still required with Auth0?
     verification: 'Vérification',

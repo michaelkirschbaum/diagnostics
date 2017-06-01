@@ -1,7 +1,6 @@
 import {connect} from 'react-redux';
 import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted, newVehicle} from '../navigation/NavigationState';
 import MyCarsView from './MyCarsView';
-import {setOnboarding} from '../installation/InstallationState';
 
 export default connect(
   state => ({
@@ -26,9 +25,6 @@ export default connect(
     },
     newVehicle() {
       dispatch(newVehicle());
-    },
-    setOnboarding() {
-      dispatch(setOnboarding());
     }
   })
 )(MyCarsView);
