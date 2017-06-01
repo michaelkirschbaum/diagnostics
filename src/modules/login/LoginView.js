@@ -57,7 +57,14 @@ const LoginView = React.createClass({
         .authentication("t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M")
         .login(this.state.email, this.state.password, "Username-Password-Authentication", {scope: 'openid offline_access', device: 'SOMEDEVICE'})
         .then((credentials) => {
-          login.auth0("carfit.auth0.com", credentials);
+          // change key names
+          var token = {}
+          
+          var keys = Object.keys(credentials);
+          for (i = 0; i < keys.length; i++)
+            token[keys[i].replace("_t", "T")] = credentials[keys[i]];
+
+          login.auth0("carfit.auth0.com", token);
         }).catch(error => console.log(error));
 
       this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
