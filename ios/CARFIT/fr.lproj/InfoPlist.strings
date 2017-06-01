@@ -7,6 +7,6 @@
 */
 
 NSCameraUsageDescription = "CARFIT utilise la camera pour prendre des photos de votre véhicule";
-NSLocationAlwaysUsageDescription = "CARFIT utilise constament le service de localisation";
+NSLocationAlwaysUsageDescription = "CARFIT utilise le service de localisation quand le bouton est appuyé et pour calculer la distance et la vitesse même en cours d'exécution en arrière-plan";
 NSPhotoLibraryUsageDescription = "CARFIT utilise votre librairie pour les photos de votre véhicule";
-NSBluetoothPeripheralUsageDescription = "CARFIT utilist Bluetooth pour connecter au capteur Puls";
+NSBluetoothPeripheralUsageDescription = "CARFIT utilise Bluetooth pour connecter au capteur Puls";

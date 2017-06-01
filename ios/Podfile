@@ -8,10 +8,11 @@ target 'CARFIT' do
 use_frameworks!
 
   # Pods for CARFIT
-  pod 'CarFitiOSSDK' # , :path => '../../sdk.ios.car.fit'
+  pod 'CarFitiOSSDK'#  , :path => '../../sdk.ios.car.fit'
   pod 'Lock', '~> 1.26'
   pod 'Lock/TouchID'
   pod 'Lock/SMS'
+  pod 'Lock/Safari'
   pod 'Lock/Email'
   pod 'BuddyBuildSDK'
   pod 'Fabric'
