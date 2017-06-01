@@ -57,7 +57,6 @@ const LoginView = React.createClass({
         .authentication("t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M")
         .login(this.state.email, this.state.password, "Username-Password-Authentication", {scope: 'openid offline_access', device: 'SOMEDEVICE'})
         .then((credentials) => {
-          console.log(credentials);
           login.auth0("carfit.auth0.com", credentials);
         }).catch(error => console.log(error));
 
@@ -66,10 +65,7 @@ const LoginView = React.createClass({
   },
 
   onPasswordPress() {
-    // this.props.dispatch(NavigationState.pushRoute({
-    //   key: 'ResetPasswordCode',
-    //   title: 'Reset Password'
-    // }));
+    // this.props.dispatch(NavigationState.pushRoute({key: 'ResetPasswordCode', title: 'Reset Password'}));
   },
 
   setPage(index) {
@@ -188,26 +184,36 @@ const LoginView = React.createClass({
               <View style={styles.container}>
                 <Image source={require('../../../images/carfit-logo-black-bg.png')} style={styles.logo}/>
               </View>
+              <View>
+                <Button>{loc.login.signin}</Button>
+                <Button>{loc.login.signup}</Button>
+              </View>
+              <View>
+                <Button>{loc.login.twitter}</Button>
+                <Button>{loc.login.google}</Button>
+                <Button>{loc.login.facebook}</Button>
+              </View>
+              <View style={styles.divider}>
+                <Text>{loc.login.method}</Text>
+              </View>
               <View style={styles.inputContainer}>
-                <H3 style={styles.titles}>{loc.login.email}</H3>
                 <InputGroup borderType='rounded' style={styles.textInput}>
                   <Input
-                    placeholder='Email Address'
+                    placeholder='yours@example.com'
                     onSubmitEditing={(event) => {
                   this.refs.PasswordInput._textInput.focus();
                 }}
                     onChangeText = {(text) => this.setState({email: text})}/>
                 </InputGroup>
-                <H3 style={styles.titles}>{loc.login.password}</H3>
                 <InputGroup borderType='rounded' style={styles.textInput}>
                   <Input
                     ref='PasswordInput'
-                    placeholder='Password'
+                    placeholder='your password'
                     secureTextEntry={true}
                     onChangeText = {(text) => this.setState({password: text})}/>
                 </InputGroup>
                 <View style={styles.bottomContainer}>
-                  <Text style={{marginBottom: 12}} onPress={this.onPasswordPress}>{loc.login.forgotPassword}</Text>
+                  <Text style={styles.changePassword} onPress={this.onPasswordPress}>{loc.login.forgotPassword}</Text>
                   <Button rounded
                           style={{alignSelf: 'auto'}}
                           textStyle={{color: colors.textPrimary}}
@@ -288,8 +294,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 300,
-    height: 300,
+    width: 100,
+    height: 100,
     resizeMode: 'contain',
     alignSelf: 'center'
   },
@@ -320,6 +326,13 @@ const styles = StyleSheet.create({
   },
   button: {
     alignSelf: 'center',
+  },
+  changePassword: {
+    marginBottom: 12,
+    textDecorationLine: 'underline'
+  },
+  divider: {
+    alignItems: 'center'
   }
 });
 

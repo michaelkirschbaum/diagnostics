@@ -30,7 +30,13 @@ const en = {
     login: 'Login',
     success: 'You are now logged in.',
     failure: 'Log in failed. Try again.',
-    invalidNumber: 'Phone number is invalid. Try again.'
+    invalidNumber: 'Phone number is invalid. Try again.',
+    method: 'OR',
+    twitter: 'Sign in with Twitter',
+    google: 'Sign in with Google',
+    facebook: 'Sign in with Facebook',
+    signin: 'LOG IN',
+    signup: 'SIGN UP'
   },
   verification: { // is this still required with Auth0?
     verification: 'Verification',
