@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted} from '../navigation/NavigationState';
+import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted, setOnboarding} from '../navigation/NavigationState';
 import {setPageIndex, setEnterMode, setVehicle, addVehicle, setOdometer} from './CarInstallationState';
 import {setModal} from '../home/HomeState';
 import InstallationView from './CarInstallationView';
@@ -42,6 +42,9 @@ export default connect(
     },
     setOdometerModal(status) {
       dispatch(setModal(status));
+    },
+    setOnboarding(state) {
+      dispatch(setOnboarding(state));
     }
   })
 )(InstallationView);
