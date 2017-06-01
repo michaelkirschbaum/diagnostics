@@ -20,6 +20,7 @@ const DRAWER_OPEN = 'NavigationState/DRAWER_OPEN';
 const DRAWER_CLOSE = 'NavigationState/DRAWER_CLOSE';
 const NEW_VEHICLE = 'NavigationState/NEW_VEHICLE';
 const UPDATE_FIRMWARE = 'NavigationState/UPDATE_PROGRESS';
+const SET_ONBOARDING = 'NavigationState/SET_ONBOARDING';
 
 // Action creators
 export function pushRoute(route) {
@@ -86,6 +87,13 @@ export function updateFirmware(percent) {
   }
 }
 
+export function setOnboarding(state) {
+  return {
+    type: SET_ONBOARDING,
+    payload: state
+  }
+}
+
 const initialState = fromJS({
   roots: {
     index: 0,
@@ -117,7 +125,8 @@ const initialState = fromJS({
     ]
   },
   drawerOpen: false,
-  updateProgress: '0'
+  updateProgress: '0',
+  onboarding: false
 });
 
 export default function NavigationReducer(state = initialState, action) {
@@ -184,6 +193,10 @@ export default function NavigationReducer(state = initialState, action) {
 
     case UPDATE_FIRMWARE: {
       return state.set('updateProgress', action.payload);
+    }
+
+    case SET_ONBOARDING: {
+      return state.set('onboarding', action.payload);
     }
 
     default:
