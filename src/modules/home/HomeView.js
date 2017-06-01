@@ -217,22 +217,7 @@ const HomeView = React.createClass({
               <Button transparent
                     textStyle={{color: 'black'}}
                     style={{alignSelf: 'center'}}
-                    onPress={() => {
-                      // turn off modal
-                      this.props.setModal(false)
-
-                      // if finished onboarding show instructions
-                      if (this.props.navigationState.onboarding) {
-                        Alert.alert(
-                          loc.home.success,
-                          loc.home.instructions,
-                          {text: 'OK', onPress: () => console.log('OK Pressed.')}
-                        );
-
-                        // turn of onboarding mode
-                        this.props.setOnboarding(false);
-                      }
-                    }}
+                    onPress={() => this.props.setModal(false)}
               >{loc.home.cancel}</Button>
             </View>
           </Modal>

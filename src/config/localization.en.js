@@ -165,9 +165,7 @@ const en = {
     supportError: 'Request failed. Try again.',
     save: 'Save changes',
     cancel: 'Cancel',
-    error: 'Not available',
-    success: 'Congratulations!',
-    instructions: 'You have successfullly installed your CARFIT PULS. Now you can track your usage and receive alerts when CARFIT detects an issue.'
+    error: 'Not available'
   },
   settings: {
     settings: 'Settings',
