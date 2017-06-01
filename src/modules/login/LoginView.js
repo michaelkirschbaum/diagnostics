@@ -23,7 +23,6 @@ import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import {Field, reduxForm} from 'redux-form';
 import Authentication from '../../utils/authentication';
-var Auth0Lock = require('react-native-lock');
 import Login from '../../carfit/login';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
