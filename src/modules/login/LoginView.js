@@ -205,13 +205,15 @@ const LoginView = React.createClass({
               </View>
               <View style={styles.social}>
                 <Button rounded
-                  style={styles.socialButton}
+                  style={[styles.socialButton, {backgroundColor: 'lightblue'}]}
+                  textStyle={{color: 'white'}}
                 >{loc.login.twitter}</Button>
                 <Button rounded
-                  style={styles.socialButton}
+                  style={[styles.socialButton, {backgroundColor: 'white'}]}
                 >{loc.login.google}</Button>
                 <Button rounded
-                  style={styles.socialButton}
+                  style={[styles.socialButton, {backgroundColor: 'blue'}]}
+                  textStyle={{color: 'white'}}
                 >{loc.login.facebook}</Button>
               </View>
               <View style={styles.divider}>
@@ -297,7 +299,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.inputBackground,
     borderColor: colors.primary,
     borderWidth: 2.5,
-    marginBottom: 13
+    marginBottom: 13,
+    width: responsiveWidth(75),
+    alignSelf: 'center'
   },
   inputContainer: {
     marginLeft: 20,
