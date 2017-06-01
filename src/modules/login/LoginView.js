@@ -51,7 +51,14 @@ const LoginView = React.createClass({
     } else {
       var login = new Login()
 
-      const auth0 = new Auth0("carfit.auth0.com");
+      var lock = new Auth0Lock({clientId: "t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M", domain: "carfit.auth0.com"});
+      lock.show({}, (err, profile, token) => {
+        console.log('Logged in!' + ' ' + profile + ' ' + token);
+        login.auth0('carfit.auth0.com', token);
+      });
+
+      // custom login
+      /* const auth0 = new Auth0("carfit.auth0.com");
 
       auth0
         .authentication("t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M")
@@ -69,7 +76,7 @@ const LoginView = React.createClass({
         }).catch(error => console.log(error));
 
       // this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
-      this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome});
+      this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome}); */
     }
   },
 
@@ -183,7 +190,17 @@ const LoginView = React.createClass({
             <Text style={styles.textBody}>{loc.login.marketingText3a}</Text>
             <Text style={styles.textBody}>{loc.login.marketingText3b}</Text>
           </View>
-          <View style={{height: Dimensions.get('window').height, flex: 1, marginTop: 52}}>
+          <View style={styles.bottomContainer}>
+                <Footer theme={carfitTheme} style={styles.footer}>
+                      <Button rounded
+                            style={styles.button}
+                            textStyle={{color: colors.textPrimary}}
+                            onPress={this.continue}
+                      >{loc.general.continue}
+                      </Button>
+                 </Footer>
+          </View>
+          {/* <View style={{height: Dimensions.get('window').height, flex: 1, marginTop: 52}}>
             <Content
               padder={false}
               keyboardShouldPersistTaps="always"
@@ -245,7 +262,7 @@ const LoginView = React.createClass({
                 </View>
               </View>
             </Content>
-          </View>
+          </View> */}
         </Swiper>
       );
     }
