@@ -28,6 +28,7 @@ import Login from '../../carfit/login';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
 import {responsiveWidth, responsiveHeight, responsiveFontSize} from 'react-native-responsive-dimensions';
+import Auth0 from 'react-native-auth0';
 
 // set language
 if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
@@ -42,15 +43,6 @@ const LoginView = React.createClass({
     auth: PropTypes.instanceOf(Authentication)
   },
 
-  onNextPress(email, password) {
-    // retrieve auth0 token
-    var auth = new Authentication();
-
-    auth.login(email, password);
-
-    this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
-  },
-
   continue() {
     var region = NativeModules.SettingsManager.settings.AppleLocale;
 
@@ -58,21 +50,31 @@ const LoginView = React.createClass({
       this.props.pushRoute({key: 'Norauto', title: ''})
     } else {
       var login = new Login()
-      var lock = new Auth0Lock({clientId: "t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M", domain: "carfit.auth0.com"});
-      lock.show({}, (err, profile, token) => {
-        console.log('Logged in!' + ' ' + profile + ' ' + token);
-        login.auth0('carfit.auth0.com', token);
-      });
 
+      const auth0 = new Auth0("carfit.auth0.com");
+
+      auth0
+        .authentication("t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M")
+        .login(this.state.email, this.state.password, "Username-Password-Authentication", {scope: 'openid offline_access', device: 'SOMEDEVICE'})
+        .then((credentials) => {
+          var token = {}
+
+          // change key names
+          var keys = Object.keys(credentials);
+          for (i = 0; i < keys.length; i++)
+            token[keys[i].replace("_t", "T")] = credentials[keys[i]];
+
+          // call login api
+          login.auth0("carfit.auth0.com", token);
+        }).catch(error => console.log(error));
+
+      // this.props.pushRoute({key: 'Verification', title: loc.verification.verification});
       this.props.pushRoute({key: 'Welcome', title: loc.verification.welcome});
     }
   },
 
   onPasswordPress() {
-    // this.props.dispatch(NavigationState.pushRoute({
-    //   key: 'ResetPasswordCode',
-    //   title: 'Reset Password'
-    // }));
+    // this.props.dispatch(NavigationState.pushRoute({key: 'ResetPasswordCode', title: 'Reset Password'}));
   },
 
   setPage(index) {
@@ -116,7 +118,6 @@ const LoginView = React.createClass({
           activeDot={<View style={{backgroundColor:colors.primary, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
           onMomentumScrollEnd={(e, state, context) => this.setPage(state.index)}
         >
-          
           <View style={styles.instructionsContainer}>
             <Image source={require('../../../images/norauto.png')} style={styles.logo}/>
             <View style={styles.textContainer}>
@@ -124,9 +125,8 @@ const LoginView = React.createClass({
               <Text style={styles.textBody}>{loc.login.welcome2}</Text>
               <Text style={styles.textBody}>{loc.login.welcome3}</Text>
               <Text style={styles.textBody}>{loc.login.attention}</Text>
-             </View> 
+             </View>
           </View>
-
           <View style={styles.instructionsContainer}>
             <Image source={require('../../../images/intro-01.jpg')}
                    style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width, marginBottom: 15}}/>
@@ -134,14 +134,12 @@ const LoginView = React.createClass({
             <Text style={styles.textTitle}>{loc.login.marketingTitle1b}</Text>
             <Text style={styles.textBody}>{loc.login.marketingText1a}</Text>
           </View>
-
           <View style={styles.instructionsContainer}>
               <Image source={require('../../../images/intro-02.jpg')}
                    style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width, marginBottom: 15}}/>
               <Text style={styles.textTitle}>{loc.login.marketingTitle2a}</Text>
               <Text style={styles.textBody2}>{loc.login.marketingText2a}</Text>
               <Text style={styles.textBody2}>{loc.login.marketingText2b}</Text>
-          
               <View style={styles.bottomContainer}>
                     <Footer theme={carfitTheme} style={styles.footer}>
                           <Button rounded
@@ -152,50 +150,7 @@ const LoginView = React.createClass({
                           </Button>
                      </Footer>
               </View>
-
             </View>
-         
-        
-
-
-          {/* <View style={{height: windowHeight, flex: 1, marginTop: 52}}>
-            <Content
-              padder={false}
-              keyboardShouldPersistTaps="always"
-              theme={carfitTheme}
-              style={{backgroundColor: colors.backgroundPrimary, paddingLeft: 0}}
-              ref={c => this._content = c}>
-              <View style={styles.container}>
-                <Image source={require('../../../images/carfit-logo-black-bg.png')} style={styles.logo}/>
-              </View>
-              <View style={styles.inputContainer}>
-                <H3 style={styles.titles}>{loc.login.email}</H3>
-                <InputGroup borderType='rounded' style={styles.textInput}>
-                  <Input
-                    placeholder='Email Address'
-                    onSubmitEditing={(event) => {
-                  this.refs.PasswordInput._textInput.focus();
-                }}
-                    onChangeText = {(text) => this.setState({email: text})}/>
-                </InputGroup>
-                <H3 style={styles.titles}>{loc.login.password}</H3>
-                <InputGroup borderType='rounded' style={styles.textInput}>
-                  <Input
-                    ref='PasswordInput'
-                    placeholder='Password'
-                    onChangeText = {(text) => this.setState({password: text})}/>
-                </InputGroup>
-                <View style={styles.bottomContainer}>
-                  <Text style={{marginBottom: 12}} onPress={this.onPasswordPress}>{loc.login.forgotPassword}</Text>
-                  <Button rounded
-                          style={{alignSelf: 'auto'}}
-                          textStyle={{color: colors.textPrimary}}
-                          onPress={() => this.onNextPress(this.state.email, this.state.password)}
-                  >{loc.general.continue}</Button>
-                </View>
-              </View>
-            </Content>
-          </View> */}
         </Swiper>
       );
     } else {
@@ -227,18 +182,8 @@ const LoginView = React.createClass({
             <Text style={styles.textTitle}>{loc.login.marketingTitle3a}</Text>
             <Text style={styles.textBody}>{loc.login.marketingText3a}</Text>
             <Text style={styles.textBody}>{loc.login.marketingText3b}</Text>
-            <Footer theme={carfitTheme} style={styles.footer}>
-              <View style={styles.bottomContainer}>
-                <Button rounded
-                        style={styles.button}
-                        textStyle={{color: colors.textPrimary}}
-                        onPress={this.continue}
-                >{loc.general.continue}</Button>
-              </View>
-            </Footer>
           </View>
-
-          {/* <View style={{height: windowHeight, flex: 1, marginTop: 52}}>
+          <View style={{height: Dimensions.get('window').height, flex: 1, marginTop: 52}}>
             <Content
               padder={false}
               keyboardShouldPersistTaps="always"
@@ -248,48 +193,60 @@ const LoginView = React.createClass({
               <View style={styles.container}>
                 <Image source={require('../../../images/carfit-logo-black-bg.png')} style={styles.logo}/>
               </View>
+              <View style={styles.method}>
+                <Button>{loc.login.signin}</Button>
+                <Button>{loc.login.signup}</Button>
+              </View>
+              <View style={styles.social}>
+                <Button rounded
+                  style={styles.socialButton}
+                >{loc.login.twitter}</Button>
+                <Button rounded
+                  style={styles.socialButton}
+                >{loc.login.google}</Button>
+                <Button rounded
+                  style={styles.socialButton}
+                >{loc.login.facebook}</Button>
+              </View>
+              <View style={styles.divider}>
+                <Text>{loc.login.method}</Text>
+              </View>
               <View style={styles.inputContainer}>
-                <H3 style={styles.titles}>{loc.login.email}</H3>
                 <InputGroup borderType='rounded' style={styles.textInput}>
                   <Input
-                    placeholder='Email Address'
+                    placeholder='yours@example.com'
                     onSubmitEditing={(event) => {
                   this.refs.PasswordInput._textInput.focus();
                 }}
                     onChangeText = {(text) => this.setState({email: text})}/>
                 </InputGroup>
-                <H3 style={styles.titles}>{loc.login.password}</H3>
                 <InputGroup borderType='rounded' style={styles.textInput}>
                   <Input
                     ref='PasswordInput'
-                    placeholder='Password'
+                    placeholder='your password'
+                    secureTextEntry={true}
                     onChangeText = {(text) => this.setState({password: text})}/>
                 </InputGroup>
                 <View style={styles.bottomContainer}>
-                  <Text style={{marginBottom: 12}} onPress={this.onPasswordPress}>{loc.login.forgotPassword}</Text>
+                  <Text style={styles.changePassword} onPress={this.onPasswordPress}>{loc.login.forgotPassword}</Text>
                   <Button rounded
                           style={{alignSelf: 'auto'}}
                           textStyle={{color: colors.textPrimary}}
-                          onPress={() => this.onNextPress(this.state.email, this.state.password)}
+                          onPress={() => this.continue()}
                   >{loc.general.continue}</Button>
                 </View>
               </View>
             </Content>
-          </View> */}
+          </View>
         </Swiper>
       );
     }
   }
 });
 
-LoginView = reduxForm({
-  form: 'login'
-})(LoginView);
-
 const styles = StyleSheet.create({
   scrollContainer: {
     backgroundColor: colors.backgroundPrimary,
-    // flex: 1
   },
   textTitle: {
     color: colors.textPrimary,
@@ -326,20 +283,19 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   container: {
-    // flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 52,
-    // marginBottom: 20,
+    marginTop: 0,
   },
   textInput: {
     backgroundColor: colors.inputBackground,
     borderColor: colors.primary,
-    borderWidth: 2.5
+    borderWidth: 2.5,
+    marginBottom: 13
   },
   inputContainer: {
     marginLeft: 20,
-    marginRight: 20,
+    marginRight: 20
   },
   image: {
     left: 0,
@@ -354,8 +310,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 300,
-    height: 300,
+    width: 100,
+    height: 100,
     resizeMode: 'contain',
     alignSelf: 'center'
   },
@@ -367,7 +323,6 @@ const styles = StyleSheet.create({
     marginTop: -70
   },
   bottomContainer: {
-    // flex: 1,
     marginTop: 0,
     justifyContent: 'center',
     alignItems: 'center'
@@ -387,6 +342,32 @@ const styles = StyleSheet.create({
   },
   button: {
     alignSelf: 'center',
+  },
+  changePassword: {
+    marginBottom: 12,
+    textDecorationLine: 'underline'
+  },
+  divider: {
+    alignItems: 'center',
+    marginTop: 20,
+    marginBottom: 20
+  },
+  social: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: 130,
+    marginTop: 35,
+    flex: 1
+  },
+  method: {
+    flexDirection: 'row',
+    marginTop: 20,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  socialButton: {
+    alignSelf: 'center'
   }
 });
 
