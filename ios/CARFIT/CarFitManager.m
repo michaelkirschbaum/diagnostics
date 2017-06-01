@@ -88,8 +88,15 @@
 }
 
 - (void) buttonResponse:(AWSTask *) response {
+  NSString * responseString = nil;
+  if (response.error) {
+    responseString = [NSString stringWithFormat:@"@{domain:%@, code:%ld}", response.error.domain, response.error.code];
+  } else {
+    responseString = @"@{}";
+  }
+  
   if (hasRCTListeners) {
-    [self sendEventWithName:@"BLEButtonResponse" body:@{@"name": @"BLEButtonResponse", @"response" : response}];
+    [self sendEventWithName:@"BLEButtonResponse" body:@{@"name": @"BLEButtonResponse", @"response" : responseString}];
   }
 }
 
