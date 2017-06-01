@@ -338,6 +338,17 @@ const HomeView = React.createClass({
 
       // hide modal
       this.props.setModal(false);
+
+      // if finished onboarding show instructions
+      if (this.props.navigationState.onboarding) {
+        Alert.alert(
+          loc.home.success,
+          loc.home.instructions,
+          {text: 'OK', onPress: () => console.log('OK Pressed.')}
+        );
+
+        // turn of onboarding mode
+        this.props.setOnboarding(false);
     }
   },
 
