@@ -10,7 +10,6 @@ const PAIRING_ATTEMPTING = 'PAIRING_ATTEMPTING';
 const PAIRING_RESPONSE = 'PAIRING_RESPONSE';
 const PAIRING_FAILURE = 'PAIRING_FAILURE';
 const PAIRING_SUCCESS = 'PAIRING_SUCCESS';
-const SET_ONBOARDING = 'InstallationState/SET_ONBOARDING';
 
 // Initial state
 const initialState = Map({
@@ -20,8 +19,7 @@ const initialState = Map({
   in_drive: false,
   connected: 0,
   paired: false,
-  modalVisible: false,
-  onboarding: true
+  modalVisible: false
 });
 
 // Actions
@@ -89,13 +87,6 @@ export function setModalVisible(state) {
   }
 }
 
-export function setOnboarding(state) {
-  return {
-    type: SET_ONBOARDING,
-    payload: state
-  }
-}
-
 // Reducer
 export default function InstallationStateReducer(state = initialState, action = {}) {
   switch (action.type) {
@@ -136,9 +127,6 @@ export default function InstallationStateReducer(state = initialState, action = 
 
     case SET_MODAL_VISIBLE:
       return state.set('modalVisible', action.payload);
-
-    case SET_ONBOARDING:
-      return state.set('onboarding', action.payload);
 
     default:
       return state;
