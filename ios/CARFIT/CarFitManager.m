@@ -92,7 +92,7 @@
   if (response.error) {
     responseString = [NSString stringWithFormat:@"@{domain:%@, code:%ld}", response.error.domain, response.error.code];
   } else {
-    responseString = @"@{}";
+    responseString = nil;
   }
   
   if (hasRCTListeners) {
