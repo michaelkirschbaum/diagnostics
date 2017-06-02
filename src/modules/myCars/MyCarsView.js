@@ -136,6 +136,9 @@ const MyCarsView = React.createClass({
   },
 
   onNewVehiclePress() {
+    // reset installation instructions index
+    this.props.setPageIndex(0);
+
     // redirect to installation route
     this.props.newVehicle();
   }

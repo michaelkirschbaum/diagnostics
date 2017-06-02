@@ -21,6 +21,7 @@ const DRAWER_CLOSE = 'NavigationState/DRAWER_CLOSE';
 const NEW_VEHICLE = 'NavigationState/NEW_VEHICLE';
 const UPDATE_FIRMWARE = 'NavigationState/UPDATE_PROGRESS';
 const SET_ONBOARDING = 'NavigationState/SET_ONBOARDING';
+const RECONNECT = 'NavigationState/RECONNECT';
 
 // Action creators
 export function pushRoute(route) {
@@ -91,6 +92,12 @@ export function setOnboarding(state) {
   return {
     type: SET_ONBOARDING,
     payload: state
+  }
+}
+
+export function reconnect() {
+  return {
+    type: RECONNECT
   }
 }
 
@@ -188,6 +195,12 @@ export default function NavigationReducer(state = initialState, action) {
     }
 
     case NEW_VEHICLE: {
+      var temp = initialState.set('roots', initialState.get('roots').set('index', 1));
+
+      return temp.set('onboarding', true);
+    }
+
+    case RECONNECT: {
       return initialState.set('roots', initialState.get('roots').set('index', 1));
     }
 

@@ -46,6 +46,9 @@ const LoginView = React.createClass({
   continue() {
     var region = NativeModules.SettingsManager.settings.AppleLocale;
 
+    // enable onboarding mogde
+    this.props.setOnboarding(true);
+
     if (region.endsWith('FR')) {
       this.props.pushRoute({key: 'Norauto', title: ''})
     } else {

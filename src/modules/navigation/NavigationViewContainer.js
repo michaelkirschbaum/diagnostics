@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted, updateFirmware} from './NavigationState';
+import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted, updateFirmware, newVehicle, reconnect} from './NavigationState';
 import NavigationView from './NavigationView';
 import {setDrive, setConnection, setModalVisible} from '../installation/InstallationState';
 
@@ -43,6 +43,12 @@ export default connect(
     },
     setInstallationModal(state) {
       dispatch(setModalVisible(state));
+    },
+    newVehicle() {
+      dispatch(newVehicle());
+    },
+    reconnect() {
+      dispatch(reconnect());
     }
   })
 )(NavigationView);

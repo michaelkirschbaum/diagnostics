@@ -180,8 +180,8 @@ const NavigationView = React.createClass({
           else {
             this.props.closeDrawer();
 
-            // redirect to selectionview
-            // this.props.pushRoute('Installation');
+            // route to installationview
+            this.props.reconnect();
           }
         }
 

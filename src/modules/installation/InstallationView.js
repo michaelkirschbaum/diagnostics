@@ -192,7 +192,7 @@ const InstallationView = React.createClass({
     var conn = new Connection();
     var response = await conn.connectDevice(device);
 
-    if (response) {
+    if (true) {
       // stop refreshing device list
       clearInterval(this.state.rssi_refresh);
 
@@ -216,20 +216,15 @@ const InstallationView = React.createClass({
     // reset spinner
     this.props.setSpinner(false);
 
-    // reset swiper index
-    this.props.setPageIndex(0);
-
-    // if not in onboarding mode return to previous view
-    if (false)
-      this.props.onNavigateBack();
-    // if norauto user skip carstartinstallationview and continue onboarding
-    else if (this.locationFrance()) {
+    // if not onboarding go to homeview
+    if (!this.props.navigationState.onboarding)
+      this.props.pushRoute({key: 'Home', title: loc.settings.settings});
+    // if norauto skip carstartinstallation
+    else if (this.locationFrance())
       this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
-    }
     // continue onboarding
-    else {
+    else
       this.props.pushRoute({key: 'CarStartInstallation', title: loc.carInstallation.inCarInstallation});
-    }
   },
 
   setPage(index) {

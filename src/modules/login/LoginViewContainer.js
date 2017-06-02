@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted} from '../navigation/NavigationState';
+import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted, setOnboarding} from '../navigation/NavigationState';
 import {setPageIndex, discover, clearDevices} from './LoginState';
 import LoginView from './LoginView';
 
@@ -33,5 +33,8 @@ export default connect(
     setPageIndex(index) {
       dispatch(setPageIndex(index));
     },
+    setOnboarding(state) {
+      dispatch(setOnboarding(state));
+    }
   })
 )(LoginView);
