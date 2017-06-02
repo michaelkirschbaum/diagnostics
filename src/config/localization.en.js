@@ -84,7 +84,8 @@ const en = {
     connect: 'CONNECT',
     update: 'CARFIT PULS update:',
     success: 'Your PULS sensor has been successfully upgraded.',
-    failure: 'There was a problem upgraded your PULS sensor. Please try again.'
+    failure: 'There was a problem upgraded your PULS sensor. Please try again.',
+    offline: 'Your support request has been received and will be forwarded when a network becomes available.'
   },
   carInstallation: {
     installation: 'Installation',
