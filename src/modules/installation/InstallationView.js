@@ -70,7 +70,7 @@ const InstallationView = React.createClass({
     let items = this.props.installation.foundDevices;
 
     getOnboardingView = function() {
-      if (this.props.navigationState.onboarding)
+      if (true)
         return (
           <Swiper
             loop={false}
@@ -133,36 +133,22 @@ const InstallationView = React.createClass({
         )
       else {
         // initiate scanning
-        this.props.discover();
+        this.setPage(4);
 
         return (
           <View style={styles.instructionsContainer}>
             <Text style={{marginTop: 17, textAlign: "left"}}>{loc.instructions.selectBLE}</Text>
             <List dataArray={items}
-                  style={{width: windowWidth - 25, marginTop: 10}}
+                  style={{width: windowWidth - 40, marginTop: 10}}
                   renderRow={(item) =>
                         <ListItem>
-                          <View style={styles.row}>
-                            <View style={styles.device}>
-                              <Signal strength={item.signal}/>
-                              <Text style={{marginLeft: 5}} onPress={() => this.connect(item.identifier)}>{item.name}</Text>
-                            </View>
-                            {this.props.installation.modalVisible && this.state.selected == item.identifier &&
-                              <ConnectionSpinner loading={this.props.installation.paired}/>
-                            }
+                          <View style={styles.device}>
+                            <Text onPress={() => this.connect(item.identifier)}>{item.name}</Text>
+                            <Signal strength={item.signal}/>
                           </View>
                         </ListItem>
                     }>
             </List>
-            <Footer style={styles.bottomContainer}>
-            {this.props.installation.paired &&
-              <Button rounded
-                style={styles.button}
-                textStyle={{color: colors.textPrimary}}
-                onPress={() => this.continue()}
-              >{loc.general.continue}</Button>
-            }
-            </Footer>
           </View>
         )
       }
@@ -243,6 +229,8 @@ const InstallationView = React.createClass({
 
   setPage(index) {
     this.props.setPageIndex(index);
+
+    // initiate device scan
     if (index == 4) {
       var interval = 2000;
       var counter = 0;
