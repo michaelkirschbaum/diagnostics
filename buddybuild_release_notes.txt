@@ -1,9 +1,6 @@
-WHAT'S NEW IN VERSION 00.00.0617
+WHAT'S NEW IN VERSION 00.00.0630
 --------------------------------
 
-- Sensor update notification
-- International phone number input formatter
-- Zendesk support redirects
-- Bluetooth connection indicator responds to wheel angle
-- Onboarding success interaction
-- UI & bug fixes
+- Offline support feedback
+- Firmware upgrade redirects to device selection list upon failure
+- UI fixes
