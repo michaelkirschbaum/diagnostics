@@ -60,8 +60,8 @@ function Slide2EN(props) {
             </View>
             <View>
                   <Text style={styles.textTitle}>{loc.login.marketingTitle2a}</Text>
-                  <Text style={styles.textTitle}>{loc.login.marketingTitle2b}</Text>
                   <Text style={styles.textBody}>{loc.login.marketingText2a}</Text>
+                  <Text style={styles.textBody}>{loc.login.marketingText2b}</Text>
             </View>
       </View>
   );
@@ -76,7 +76,7 @@ function Slide3EN(props) {
                   </View>
                   <View>
                         <Text style={styles.textTitle}>{loc.login.marketingTitle3a}</Text>
-                        <Text style={styles.textTitle}>{loc.login.marketingText3a}</Text>
+                        <Text style={styles.textBody}>{loc.login.marketingText3a}</Text>
                         <Text style={styles.textBody}>{loc.login.marketingText3b}</Text>
                   </View>
             </View>  

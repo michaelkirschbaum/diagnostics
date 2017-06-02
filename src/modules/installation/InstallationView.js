@@ -48,6 +48,63 @@ if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
 else
   var loc = en;
 
+function Slide1(props) {
+  return (
+      <View style={styles.instructionsContainer}>
+            <View>
+                  <Image source={require('../../../images/pull-tab-02.png')} style={styles.image}/>
+            </View>
+            <View>
+                  <H3 style={styles.header}>{loc.instructions.enableBattery}</H3>
+                  <Text style={styles.text}>{loc.instructions.pullTab}</Text>
+            </View>
+      </View>
+  );
+}
+
+
+function Slide2(props) {
+  return (
+      <View style={styles.instructionsContainer}>
+            <View>
+                  <Image source={require('../../../images/activate-ble-02.png')} style={styles.image}/>
+            </View>
+            <View>
+                  <H3 style={styles.header}>{loc.instructions.activateBluetooth}</H3>
+                  <Text style={styles.text}>{loc.instructions.turnOnBLE}</Text>
+            </View>
+      </View>
+  );
+}
+
+function Slide3(props) {
+  return (
+      <View style={styles.instructionsContainer}>
+            <View>
+                  <Image source={require('../../../images/reset-connection-01.png')} style={styles.image}/>
+            </View>
+            <View>
+                  <H3 style={styles.header}>{loc.instructions.resetConnection}</H3>
+                  <Text style={styles.text}>{loc.instructions.pressAndHold}</Text>
+            </View>
+      </View>
+  );
+}
+
+function Slide4(props) {
+  return (
+      <View style={styles.instructionsContainer}>
+            <View>
+                  <Image source={require('../../../images/ble-pairing-02.png')} style={styles.image}/>
+            </View>
+            <View>
+                  <H3 style={styles.header}>{loc.instructions.blePairing}</H3>
+                  <Text style={styles.text}>{loc.instructions.ensurePairing}</Text>
+            </View>
+      </View>
+  );
+}
+
 const InstallationView = React.createClass({
   getInitialState() {
     return {
@@ -81,26 +138,12 @@ const InstallationView = React.createClass({
             activeDot={<View style={{backgroundColor:colors.primary, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
             onMomentumScrollEnd={(e, state, context) => this.setPage(state.index)}
           >
-            <View style={styles.instructionsContainer}>
-              <Image source={require('../../../images/pull-tab-02.png')} style={styles.image} />
-              <H3 style={styles.header}>{loc.instructions.enableBattery}</H3>
-              <Text style={styles.text}>{loc.instructions.pullTab}</Text>
-            </View>
-            <View style={styles.instructionsContainer}>
-              <Image source={require('../../../images/activate-ble-02.png')} style={styles.image} />
-              <H3 style={styles.header}>{loc.instructions.activateBluetooth}</H3>
-              <Text style={styles.text}>{loc.instructions.turnOnBLE}</Text>
-            </View>
-            <View style={styles.instructionsContainer}>
-              <Image source={require('../../../images/reset-connection-01.png')} style={styles.image} />
-              <H3 style={styles.header}>{loc.instructions.resetConnection}</H3>
-              <Text style={styles.text}>{loc.instructions.pressAndHold}</Text>
-            </View>
-            <View style={styles.instructionsContainer}>
-              <Image source={require('../../../images/ble-pairing-02.png')} style={styles.image} />
-              <H3 style={styles.header}>{loc.instructions.blePairing}</H3>
-              <Text style={styles.text}>{loc.instructions.ensurePairing}</Text>
-            </View>
+            
+            <Slide1 />
+            <Slide2 />
+            <Slide3 />
+            <Slide4 />
+
             <View style={styles.instructionsContainer}>
               <Text style={{marginTop: 17, textAlign: "left"}}>{loc.instructions.selectBLE}</Text>
               <List dataArray={items}
@@ -192,7 +235,8 @@ const InstallationView = React.createClass({
     var conn = new Connection();
     var response = await conn.connectDevice(device);
 
-    if (response) {
+    //response
+    if (true) {
       // stop refreshing device list
       clearInterval(this.state.rssi_refresh);
 

@@ -95,12 +95,18 @@ const CarInstallationStartView = React.createClass({
   }
 });
 
+//need to massively overhaul styles here
+
+
 const styles = StyleSheet.create({
   headerLine: {
     height: 1,
     backgroundColor: colors.headerTextColor
   },
-  header: {fontWeight: "bold", marginTop: 0},
+  header: {
+    fontWeight: "bold", 
+    textAlign: 'center'
+  },
   message: {marginTop: 2},
   container: {
     flex: 1,
@@ -109,8 +115,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20
   },
-  subContainer: {
-    flex: 1,
+  subContainer: { 
     flexDirection: 'row',
     marginTop: 25,
     marginBottom: 8
