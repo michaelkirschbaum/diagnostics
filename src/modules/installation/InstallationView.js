@@ -133,8 +133,7 @@ const InstallationView = React.createClass({
         )
       else {
         // initiate scanning
-        for (i = 0; i <= 5; i++)
-          this.props.discover();
+        this.props.discover();
 
         return (
           <View style={styles.instructionsContainer}>
