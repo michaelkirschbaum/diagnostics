@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.headerTextColor
+    backgroundColor: colors.primary
   },
   text: {
     textAlign: 'center',
