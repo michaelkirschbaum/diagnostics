@@ -84,7 +84,8 @@ const fr = {
     connect: '',
     update: 'Mise à jour de CARFIT PULS:',
     success: 'Le capteur PULS a été mis à jour avec succès.',
-    failure: 'La mise à jour du capteur PULS a échouée.'
+    failure: 'Il y a eu un problème lors de la mise à niveau de votre capteur PULS. Veuillez réessayer.',
+    offline: 'Votre demande de support a été reçue et sera transmise lorsqu\'un réseau sera disponible.'
   },
   carInstallation: {
     installation: 'Installation',
