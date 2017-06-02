@@ -36,6 +36,66 @@ if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
 else
   var loc = en;
 
+
+function Slide1EN(props) {
+  return (
+      <View style={styles.instructionsContainer}>
+            <View>
+                  <Image source={require('../../../images/intro-01.jpg')} style={styles.img}/>
+            </View>
+            <View>
+                  <Text style={styles.textTitle}>{loc.login.marketingTitle1a}</Text>
+                  <Text style={styles.textTitle}>{loc.login.marketingTitle1b}</Text>
+                  <Text style={styles.textBody}>{loc.login.marketingText1a}</Text>
+            </View>
+      </View>
+  );
+}
+
+function Slide2EN(props) {
+  return (
+      <View style={styles.instructionsContainer}>
+            <View>
+                  <Image source={require('../../../images/intro-02.jpg')} style={styles.img}/>
+            </View>
+            <View>
+                  <Text style={styles.textTitle}>{loc.login.marketingTitle2a}</Text>
+                  <Text style={styles.textTitle}>{loc.login.marketingTitle2b}</Text>
+                  <Text style={styles.textBody}>{loc.login.marketingText2a}</Text>
+            </View>
+      </View>
+  );
+}
+
+function Slide3EN(props) {
+  return (
+      <View>
+            <View style={styles.instructionsContainer}>
+                  <View>
+                        <Image source={require('../../../images/intro-03.jpg')} style={styles.img}/>
+                  </View>
+                  <View>
+                        <Text style={styles.textTitle}>{loc.login.marketingTitle3a}</Text>
+                        <Text style={styles.textTitle}>{loc.login.marketingText3a}</Text>
+                        <Text style={styles.textBody}>{loc.login.marketingText3b}</Text>
+                  </View>
+            </View>  
+            <View style={styles.bottomContainer}>
+                  <Footer theme={carfitTheme} style={styles.footer}>
+                        <Button rounded
+                                     style={styles.button}
+                                     textStyle={{color: colors.textPrimary}}
+                                     onPress={this.continue}
+                              >
+                        {loc.general.continue}
+                        </Button>
+                  </Footer>
+            </View>
+      </View>
+  );
+}
+
+
 const LoginView = React.createClass({
   propTypes: {
     // dispatch: PropTypes.func.isRequired,
@@ -172,37 +232,12 @@ const LoginView = React.createClass({
           activeDot={<View style={{backgroundColor:colors.primary, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
           onMomentumScrollEnd={(e, state, context) => this.setPage(state.index)}
         >
-          <View style={styles.instructionsContainer}>
-            <Image source={require('../../../images/intro-01.jpg')}
-                   style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width, marginBottom: 15}}/>
-            <Text style={styles.textTitle}>{loc.login.marketingTitle1a}</Text>
-            <Text style={styles.textTitle}>{loc.login.marketingTitle1b}</Text>
-            <Text style={styles.textBody}>{loc.login.marketingText1a}</Text>
-          </View>
-          <View style={styles.instructionsContainer}>
-            <Image source={require('../../../images/intro-02.jpg')}
-                   style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width, marginBottom: 15}}/>
-            <Text style={styles.textTitle}>{loc.login.marketingTitle2a}</Text>
-            <Text style={styles.textBody}>{loc.login.marketingText2a}</Text>
-            <Text style={styles.textBody}>{loc.login.marketingText2b}</Text>
-          </View>
-          <View style={styles.instructionsContainer}>
-            <Image source={require('../../../images/intro-03.jpg')}
-                   style={{width: Dimensions.get('window').width, height: Dimensions.get('window').width, marginBottom: 15}}/>
-            <Text style={styles.textTitle}>{loc.login.marketingTitle3a}</Text>
-            <Text style={styles.textBody}>{loc.login.marketingText3a}</Text>
-            <Text style={styles.textBody}>{loc.login.marketingText3b}</Text>
-            <View style={styles.bottomContainer}>
-                  <Footer theme={carfitTheme} style={styles.footer}>
-                        <Button rounded
-                              style={styles.button}
-                              textStyle={{color: colors.textPrimary}}
-                              onPress={this.continue}
-                        >{loc.general.continue}
-                        </Button>
-                   </Footer>
-            </View>
-          </View>
+
+      <Slide1EN /> 
+      <Slide2EN />          
+      <Slide3EN />          
+
+
           {/* <View style={{height: Dimensions.get('window').height, flex: 1, marginTop: 52}}>
             <Content
               padder={false}
@@ -272,14 +307,24 @@ const LoginView = React.createClass({
   }
 });
 
+//responsiveFontSize fx is breaking text!!!
+
 const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1
+  },
+  img: {
+    width: Dimensions.get('window').width, 
+    height: Dimensions.get('window').width,
+    marginBottom: 15
+  },
   scrollContainer: {
     backgroundColor: colors.backgroundPrimary,
   },
   textTitle: {
     color: colors.textPrimary,
     fontFamily: (Platform.OS === 'ios' ) ? 'HelveticaNeue' : 'Roboto',
-    fontSize: responsiveFontSize(2.35),
+    // fontSize: responsiveFontSize(2.35),
     fontWeight: 'bold',
     marginTop: 5,
     justifyContent: 'center',
@@ -291,7 +336,7 @@ const styles = StyleSheet.create({
   textBody: {
     color: colors.textPrimary,
     fontFamily: (Platform.OS === 'ios' ) ? 'HelveticaNeue' : 'Roboto',
-    fontSize: responsiveFontSize(2.35),
+    // fontSize: responsiveFontSize(2.35),
     marginTop: 15,
     justifyContent: 'center',
     alignItems: 'center',
@@ -302,7 +347,7 @@ const styles = StyleSheet.create({
   textBody2: {
     color: colors.textPrimary,
     fontFamily: (Platform.OS === 'ios' ) ? 'HelveticaNeue' : 'Roboto',
-    fontSize: responsiveFontSize(1.5),
+    // fontSize: responsiveFontSize(1.5),
     marginTop: 0,
     justifyContent: 'center',
     alignItems: 'center',
@@ -371,7 +416,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   button: {
-    alignSelf: 'center',
+    marginTop: 20,
+    alignSelf: 'center'
   },
   changePassword: {
     marginBottom: 12,
@@ -403,6 +449,6 @@ const styles = StyleSheet.create({
   methodButton: {
     backgroundColor: 'black'
   }
-});
+ });
 
 export default LoginView;

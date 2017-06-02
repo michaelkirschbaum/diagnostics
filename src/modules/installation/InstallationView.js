@@ -278,6 +278,9 @@ const InstallationView = React.createClass({
   }
 });
 
+
+//again an issue with responsiveFontSize (bad package im guessing)
+
 const styles = StyleSheet.create({
   headerLine: {
     height: 1,
@@ -320,12 +323,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     marginTop: 25,
-    fontSize: responsiveFontSize(2.35)
+    // fontSize: responsiveFontSize(2.35)
   },
   text: {
     marginTop: 17,
     textAlign: "center",
-    fontSize: responsiveFontSize(2.35)
+    // fontSize: responsiveFontSize(2.35)
   },
   row: {
     height: 35,

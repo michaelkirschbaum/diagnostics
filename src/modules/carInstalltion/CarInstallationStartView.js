@@ -100,8 +100,8 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: colors.headerTextColor
   },
-  header: {fontWeight: "bold", marginTop: 0, fontSize: responsiveFontSize(2.35)},
-  message: {marginTop: 2, fontSize: responsiveFontSize(2.35)},
+  header: {fontWeight: "bold", marginTop: 0},
+  message: {marginTop: 2},
   container: {
     flex: 1,
     marginTop: 20,
