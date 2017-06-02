@@ -77,7 +77,7 @@ const NavigationView = React.createClass({
 
     return (
       <Drawer
-        open={true}
+        open={this.props.navigationState.drawerOpen}
         ref={(ref) => { this._drawer = ref;}}
         type="overlay"
         content={<FirmwareNotification percent={this.props.navigationState.updateProgress}/>}
