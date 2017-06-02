@@ -134,7 +134,6 @@ const NavigationView = React.createClass({
       var support_queue_subscription = connectionEmitter.addListener(
         'BLEButtonResponse',
         (message) => {
-          console.warn(JSON.stringify(message))
           if (Object.keys(message.response) != 0)
             Alert.alert(
               loc.home.support,
