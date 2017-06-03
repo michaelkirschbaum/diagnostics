@@ -53,7 +53,8 @@ const InstallationView = React.createClass({
     return {
       rssi_refresh: '',
       bluetoothStatus: 'unknown',
-      selected: ''
+      selected: '',
+      rssi_refresh2: ''
     };
   },
 
@@ -133,7 +134,7 @@ const InstallationView = React.createClass({
         )
       else {
         // initiate scanning
-        this.props.discover();
+        this.scanDevices();
 
         return (
           <View style={styles.instructionsContainer}>
@@ -206,9 +207,9 @@ const InstallationView = React.createClass({
     var conn = new Connection();
     var response = await conn.connectDevice(device);
 
-    if (true) {
+    if (response) {
       // stop refreshing device list
-      clearInterval(this.state.rssi_refresh);
+      clearInterval(this.rssi_refresh);
 
       // stop spinner
       this.props.setSpinner(response);
@@ -243,37 +244,41 @@ const InstallationView = React.createClass({
 
   setPage(index) {
     this.props.setPageIndex(index);
-    if (index == 4) {
-      var interval = 2000;
-      var counter = 0;
-      const stop_count = 2;
+    if (index == 4) this.scanDevices();
+  },
 
+  scanDevices() {
+    var interval = 2000;
+    var counter = 0;
+    const stop_count = 2;
+
+    this.props.discover();
+    this.rssi_refresh = setInterval(function() {
+      if (counter == stop_count)
+        // notify user if bluetooth is off
+        if (this.props.navigationState.drawerOpen == "true")
+          Alert.alert(
+            loc.login.connection_error,
+            loc.login.bluetooth,
+            [{text: 'OK', onPress: () => undefined}]
+          );
+        // notify user if no devices are found
+        else if (!this.props.installation.foundDevices.length)
+          Alert.alert(
+            loc.login.connection_error,
+            loc.login.noneFound,
+            [{text: 'OK', onPress: () => this.setPage(0)}]
+          );
+
+      // refresh device list
       this.props.discover();
+      if (counter <= stop_count)
+        ++counter;
+    }.bind(this), interval);
+  },
 
-      var rssi_refresh = setInterval(function() {
-        if (counter == stop_count)
-          // notify user if bluetooth is off
-          if (this.props.navigationState.drawerOpen == "true")
-            Alert.alert(
-              loc.login.connection_error,
-              loc.login.bluetooth,
-              [{text: 'OK', onPress: () => undefined}]
-            );
-          // notify user if no devices are found
-          else if (!this.props.installation.foundDevices.length)
-            Alert.alert(
-              loc.login.connection_error,
-              loc.login.noneFound,
-              [{text: 'OK', onPress: () => this.setPage(0)}]
-            );
-
-        // refresh device list
-        this.props.discover();
-        if (counter <= stop_count)
-          ++counter;
-      }.bind(this), interval);
-      this.setState({rssi_refresh});
-    }
+  setInterval(interval) {
+    this.setState({rssi_refresh: interval});
   },
 
   popRoute() {

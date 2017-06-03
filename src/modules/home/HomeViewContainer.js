@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted, setOnboarding, reconnect} from '../navigation/NavigationState';
+import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted, setOnboarding} from '../navigation/NavigationState';
 import HomeView from './HomeView';
 import {fetchOdometer, setModal} from './HomeState';
 import {setDrive, setConnection} from '../installation/InstallationState';
@@ -45,9 +45,6 @@ export default connect(
     },
     setOnboarding(state) {
       dispatch(setOnboarding(state));
-    },
-    reconnect() {
-      dispatch(reconnect());
     }
   })
 )(HomeView);

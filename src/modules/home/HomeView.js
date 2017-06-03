@@ -315,8 +315,7 @@ const HomeView = React.createClass({
   },
 
   onSettingsPress() {
-    // this.props.pushRoute({key: 'Settings', title: loc.settings.settings});
-    this.props.reconnect();
+    this.props.pushRoute({key: 'Settings', title: loc.settings.settings});
   },
 
   onMilesPress() {
