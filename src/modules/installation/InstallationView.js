@@ -68,10 +68,8 @@ const InstallationView = React.createClass({
 
     let items = this.props.installation.foundDevices;
 
-    let deviceUpgradeMode = this.props.navigationState.drawerOpen;
-
     getOnboardingView = function() {
-      if (!deviceUpgradeMode)
+      if (this.props.navigationState.onboarding)
         return (
           <Swiper
             loop={false}
@@ -121,7 +119,7 @@ const InstallationView = React.createClass({
                       }>
               </List>
               <Footer style={styles.bottomContainer}>
-              {this.props.installation.paired &&
+              {true &&
                 <Button rounded
                   style={styles.button}
                   textStyle={{color: colors.textPrimary}}
@@ -207,7 +205,7 @@ const InstallationView = React.createClass({
     var conn = new Connection();
     var response = await conn.connectDevice(device);
 
-    if (response) {
+    if (true) {
       // stop refreshing device list
       clearInterval(this.rssi_refresh);
 
@@ -232,7 +230,7 @@ const InstallationView = React.createClass({
     this.props.setSpinner(false);
 
     // if not onboarding go to homeview
-    if (this.props.navigationState.drawerOpen)
+    if (!this.props.navigationState.onboarding)
       this.props.pushRoute({key: 'Home', title: loc.settings.settings});
     // if norauto skip carstartinstallation
     else if (this.locationFrance())
@@ -275,6 +273,10 @@ const InstallationView = React.createClass({
       if (counter <= stop_count)
         ++counter;
     }.bind(this), interval);
+  },
+
+  setUpgradingMode(state) {
+    this.setState({upgradingMode: state});
   },
 
   popRoute() {

@@ -382,9 +382,6 @@ const CarInstallationStateView = React.createClass({
     // set odometer when going to home view
     this.props.setOdometerModal(true);
 
-    // show success message after setting odometer
-    this.props.setOnboarding(true);
-
     // save vehicle
     this.props.addVehicle(vehicle);
 

@@ -23,6 +23,7 @@ const UPDATE_FIRMWARE = 'NavigationState/UPDATE_PROGRESS';
 const SET_ONBOARDING = 'NavigationState/SET_ONBOARDING';
 const RECONNECT = 'NavigationState/RECONNECT';
 
+
 // Action creators
 export function pushRoute(route) {
   return {
