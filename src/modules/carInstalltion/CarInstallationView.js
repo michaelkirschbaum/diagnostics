@@ -379,11 +379,14 @@ const CarInstallationStateView = React.createClass({
   },
 
   verifyVehicle(vehicle) {
+    // set odometer when going to home view
+    this.props.setOdometerModal(true);
+
+    // show success message after setting odometer
+    this.props.setOnboarding(true);
+
     // save vehicle
     this.props.addVehicle(vehicle);
-
-    // show modal when going to homeview
-    this.props.setOdometerModal(true);
 
     if (this.locationFrance())
       this.props.pushRoute({key: 'Home', title: loc.settings.settings});

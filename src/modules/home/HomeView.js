@@ -193,7 +193,7 @@ const HomeView = React.createClass({
             }
           </View>
 
-          {/* Set odometer */}
+          {/* odometer */}
           <Modal
             open={this.props.home.modalVisible}
             modalDidOpen={() => undefined}
@@ -214,12 +214,14 @@ const HomeView = React.createClass({
                 onChangeText={(text) => this.setState({new_meters: text})}
               />
 
+              {/* set */}
               <Button rounded
                     style={{alignSelf: 'center'}}
                     textStyle={{color: colors.textPrimary}}
                     onPress={() => this.setOdometer(this.state.new_meters)}
               >{loc.home.save}</Button>
 
+              {/* cancel */}
               <Button transparent
                     textStyle={{color: 'black'}}
                     style={{alignSelf: 'center'}}
@@ -252,6 +254,11 @@ const HomeView = React.createClass({
   // Forward setNativeProps to a child
   setNativeProps(nativeProps) {
     this._root.setNativeProps(nativeProps);
+  },
+
+  componentWillMount() {
+    if (this.props.navigationState.drawerOpen)
+      this.props.closeDrawer();
   },
 
   componentDidMount() {
