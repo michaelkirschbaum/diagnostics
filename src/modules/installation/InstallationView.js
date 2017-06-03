@@ -119,7 +119,7 @@ const InstallationView = React.createClass({
                       }>
               </List>
               <Footer style={styles.bottomContainer}>
-              {true &&
+              {this.props.installation.paired &&
                 <Button rounded
                   style={styles.button}
                   textStyle={{color: colors.textPrimary}}
@@ -205,7 +205,7 @@ const InstallationView = React.createClass({
     var conn = new Connection();
     var response = await conn.connectDevice(device);
 
-    if (true) {
+    if (response) {
       // stop refreshing device list
       clearInterval(this.rssi_refresh);
 
