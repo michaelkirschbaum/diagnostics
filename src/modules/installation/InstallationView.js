@@ -192,7 +192,6 @@ const InstallationView = React.createClass({
     var conn = new Connection();
     var response = await conn.connectDevice(device);
 
-    // if (response) {
     if (response) {
       // stop refreshing device list
       clearInterval(this.state.rssi_refresh);

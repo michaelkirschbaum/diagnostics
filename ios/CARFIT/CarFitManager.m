@@ -94,7 +94,7 @@
   } else {
     responseDictionary = @{};
   }
-  
+
   if (hasRCTListeners) {
     [self sendEventWithName:@"BLEButtonResponse" body:@{@"name": @"BLEButtonResponse", @"response" : responseDictionary}];
   }
@@ -261,6 +261,8 @@ RCT_REMAP_METHOD(clickButton,
     return nil;
   }];
 }
+
+// get firmware version
 
 #pragma RCTEventEmitter
 
