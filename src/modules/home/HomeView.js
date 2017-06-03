@@ -56,17 +56,15 @@ else
 const HomeView = React.createClass({
   getInitialState() {
     return {
-      alert: '',
-      modalVisible: false,
-      meters: '',
-      trips: '',
       title: '',
       description: '',
       photo: '',
+      meters: '',
+      wheelAngle: 0,
+      alert: '',
+      trips: '',
       total_distance: 0,
-      new_meters: '',
-      distance_subscription: '',
-      wheelAngle: 0
+      new_meters: ''
     };
   },
 
@@ -95,6 +93,7 @@ const HomeView = React.createClass({
           style={{backgroundColor: colors.backgroundPrimary}}
           ref={c => this._content = c}>
 
+          {/* Navigation */}
           <View style={styles.container}>
             <View style={styles.profileContainer}>
               <TouchableOpacity onPress={this.onSettingsPress}>
@@ -115,9 +114,9 @@ const HomeView = React.createClass({
                       onPress={() => this.props.setModal(true)}
               >{this.state.meters}</Button>
             </View>
-
             <View style={styles.divider}/>
 
+            {/* Support */}
             {this.locationFrance() &&
               <View style={{flexDirection: 'column'}}>
                 <View style={styles.dataBlockContainer}>
@@ -140,6 +139,7 @@ const HomeView = React.createClass({
               </View>
             }
 
+            {/* Service alerts */}
             {!this.locationFrance() &&
               <View style={styles.dataBlockContainer}>
                 <View style={styles.dataIcon}>
@@ -159,6 +159,7 @@ const HomeView = React.createClass({
               </View>
             }
 
+            {/* Usage data */}
             <View style={styles.dataBlockContainer}>
               <View style={styles.dataIcon}>
                 <Image source={require('../../../images/icons/usage.png')} style={styles.icon}/>
@@ -176,6 +177,7 @@ const HomeView = React.createClass({
               </View>
             </View>
 
+            {/* Value */}
             {!this.locationFrance() &&
               <View style={styles.dataBlockContainer}>
                 <View style={styles.dataIcon}>
@@ -191,6 +193,7 @@ const HomeView = React.createClass({
             }
           </View>
 
+          {/* Set odometer */}
           <Modal
             open={this.props.home.modalVisible}
             modalDidOpen={() => undefined}
@@ -202,6 +205,7 @@ const HomeView = React.createClass({
               borderRadius: 7,
               height: 160
             }}>
+
             <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center'}}>
               <Text style={{color: 'black', alignSelf: 'center'}}>{this.useMetric() ? loc.home.updateKm : loc.home.updateMi}</Text>
               <Input style={styles.textInput}
@@ -209,11 +213,13 @@ const HomeView = React.createClass({
                 placeholder={this.useMetric() ? loc.home.kilometrage : loc.home.mileage}
                 onChangeText={(text) => this.setState({new_meters: text})}
               />
+
               <Button rounded
                     style={{alignSelf: 'center'}}
                     textStyle={{color: colors.textPrimary}}
                     onPress={() => this.setOdometer(this.state.new_meters)}
               >{loc.home.save}</Button>
+
               <Button transparent
                     textStyle={{color: 'black'}}
                     style={{alignSelf: 'center'}}
@@ -239,20 +245,6 @@ const HomeView = React.createClass({
             </View>
           </Modal>
         </Content>
-
-        {/*
-          <Footer theme={carfitTheme} style={styles.footer}>
-            <View style={styles.bottomContainer}>
-              <Button rounded
-                      bordered={false}
-                      style={{alignSelf: 'auto', width: 120, height: 45}}
-                      textStyle={{color: colors.textPrimary}}
-                      onPress={this.onButtonPress}>
-                <Image source={require('../../../images/icons/phone.png')} style={styles.icon}/>
-              </Button>
-            </View>
-          </Footer>
-        */}
       </Container>
     );
   },
@@ -280,11 +272,10 @@ const HomeView = React.createClass({
     this.setState({meters: this.convertToLocal(this.props.vehicle.odometer).toString() + (this.useMetric() ? ' km' : ' mi')})
 
     // update odometer while driving
-    var distance_subscription = connectionEmitter.addListener(
+    this.distance_subscription = connectionEmitter.addListener(
       'TripMetersTraveled',
       (notification) => this.addDistance(notification["metersTraveled"])
     );
-    this.setState({distance_subscription});
 
     // update odometer while not driving
     setInterval(function() {
@@ -311,7 +302,7 @@ const HomeView = React.createClass({
 
   componentWillUnmount() {
     // stop updating distance traveled
-    this.state.distance_subscription.remove();
+    this.distance_subscription.remove();
   },
 
   onSettingsPress() {
@@ -319,7 +310,6 @@ const HomeView = React.createClass({
   },
 
   onMilesPress() {
-    // go to zendesk
     Linking.openURL("https://carfit.zendesk.com/").catch(err => console.error('An error occurred', err));
   },
 
@@ -374,6 +364,36 @@ const HomeView = React.createClass({
         {text: 'OK', onPress: () => console.log('OK Pressed.')}
       );
     }
+  },
+
+  // todo: maintenance
+  addDistance(meters) {
+    // convert
+    var distance = this.convertToLocal(meters);
+
+    // subtract previous total distance from odometer
+    var odometer = this.state.meters;
+
+    if (odometer == '')
+      odometer = '0 mi';
+
+    // parse odometer
+    var current = parseInt(odometer.split(" ")[0]) - this.state.total_distance;
+    var units = odometer.split(" ")[1];
+
+    // add distance traveled to current total
+    updated = current + distance;
+
+    // update odometer
+    this.setState({meters: updated.toString() + ' ' + units});
+    this.props.setOdometer(this.convertToMeters(updated));
+
+    // set new cumulative distance
+    this.setState({total_distance: distance});
+  },
+
+  rotateWheel(angle) {
+    this.setState({wheelAngle: angle});
   },
 
   async loadOdometer() {
@@ -481,36 +501,6 @@ const HomeView = React.createClass({
     } else {
       console.log("photo not loaded");
     }
-  },
-
-  // todo: maintenance
-  addDistance(meters) {
-    // convert
-    var distance = this.convertToLocal(meters);
-
-    // subtract previous total distance from odometer
-    var odometer = this.state.meters;
-
-    if (odometer == '')
-      odometer = '0 mi';
-
-    // parse odometer
-    var current = parseInt(odometer.split(" ")[0]) - this.state.total_distance;
-    var units = odometer.split(" ")[1];
-
-    // add distance traveled to current total
-    updated = current + distance;
-
-    // update odometer
-    this.setState({meters: updated.toString() + ' ' + units});
-    this.props.setOdometer(this.convertToMeters(updated));
-
-    // set new cumulative distance
-    this.setState({total_distance: distance});
-  },
-
-  rotateWheel(angle) {
-    this.setState({wheelAngle: angle});
   },
 
   convertToLocal(meters) {
