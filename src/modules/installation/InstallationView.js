@@ -71,7 +71,7 @@ const InstallationView = React.createClass({
     let items = this.props.installation.foundDevices;
 
     getOnboardingView = function() {
-      if (this.props.navigationState.onboarding)
+      if (true)
         return (
           <Swiper
             loop={false}
@@ -232,7 +232,7 @@ const InstallationView = React.createClass({
     this.props.setSpinner(false);
 
     // if not onboarding go to homeview
-    if (!this.props.navigationState.onboarding)
+    if (false)
       this.props.pushRoute({key: 'Home', title: loc.settings.settings});
     // if norauto skip carstartinstallation
     else if (this.locationFrance())
