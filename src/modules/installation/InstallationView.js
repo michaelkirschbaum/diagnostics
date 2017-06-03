@@ -277,10 +277,6 @@ const InstallationView = React.createClass({
     }.bind(this), interval);
   },
 
-  setInterval(interval) {
-    this.setState({rssi_refresh: interval});
-  },
-
   popRoute() {
     this.props.setPageIndex(0);
     this.props.clearDevices();
