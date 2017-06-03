@@ -180,8 +180,13 @@ const NavigationView = React.createClass({
           else {
             this.props.closeDrawer();
 
-            // route to installationview
-            this.props.reconnect();
+            // route to installation view
+            Alert.alert(
+              loc.device.connect,
+              loc.device.failure,
+              [{text: 'Support', onPress: () => Linking.openURL("https://carfit.zendesk.com/").catch(err => console.error('An error occurred', err))},
+               {text: 'OK', onPress: () => this.props.reconnect()}]
+            );
           }
         }
 
