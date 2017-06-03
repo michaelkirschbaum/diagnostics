@@ -34,17 +34,14 @@ else
 import carfitTheme from '../../config/carfit-theme';
 import Swiper from 'react-native-swiper';
 import * as NavigationState from '../navigation/NavigationState';
-import Login from '../../carfit/login'
+import Login from '../../carfit/login';
+import Connection from '../../carfit/connection';
 
-/**
- * Login view
- * Likely to be the main app view, but will only display login dialog when needed.
- * Otherwise pass by.
- */
 const AccountView = React.createClass({
   getInitialState() {
     return {
-      userID: ''
+      userID: '',
+      firmwareVersion: ''
     };
   },
 
@@ -54,15 +51,9 @@ const AccountView = React.createClass({
 
     let headerTitle = loc.account.myAccount;
 
-    let name = "Sam's Car";
-    let mileage = "10,345 km";
-    let image = "PICTURE";
-
-    let connected = "Connected";
-    let phone = "Sam's iPhone 6";
-
     let accountDetailsData = {
-      identifier: this.state.userID
+      identifier: this.state.userID,
+      firmware: this.state.firmwareVersion
     };
 
     let accountDetails = _.map(_.toPairs(accountDetailsData), infoPairs => {
@@ -79,7 +70,6 @@ const AccountView = React.createClass({
           <View style={{height: 1,backgroundColor: colors.headerTextColor,marginTop: 17,marginBottom: 17}}/>
         </View>
       )
-
     });
 
     return (
@@ -120,6 +110,7 @@ const AccountView = React.createClass({
 
   componentDidMount() {
     this.getUserID().done();
+    this.getFirmwareVersion().done();
   },
 
   popRoute() {
@@ -130,6 +121,12 @@ const AccountView = React.createClass({
     var login = new Login();
     var userID = await login.getUser();
     this.setState({userID});
+  },
+
+  async getFirmwareVersion() {
+    var conn = new Connection();
+    var firmwareVersion = await conn.getFirmwareVersion();
+    this.setState({firmwareVersion});
   }
 });
 
@@ -147,7 +144,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     marginTop: 4
   },
-
   sectionContainer: {
     flex: 1,
     flexDirection: 'row',
@@ -167,20 +163,16 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontWeight: 'bold'
   },
-
-
   textInput: {
     backgroundColor: colors.inputBackground,
     borderColor: colors.primary,
     borderWidth: 2.5,
     marginTop: 22
   },
-
   menuText: {
     marginBottom: 24,
     fontWeight: "bold"
   },
-
   image: {
     width: 300,
     height: 300,
@@ -194,7 +186,6 @@ const styles = StyleSheet.create({
   },
   footer: {
     height: 200,
-    // backgroundColor: colors.backgroundPrimary,
     backgroundColor: '#550000',
     borderColor: colors.backgroundPrimary,
     alignItems: 'flex-start',

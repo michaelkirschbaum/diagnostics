@@ -51,13 +51,15 @@ export default class Connection {
     }
   }
 
-  addPhone(number) {
+  async addPhone(number) {
     this.manager.setPhone(number);
-    /*
-    Alert.alert(
-      'Support',
-      'Your phone number has been added.',
-      {text: 'OK', onPress: () => console.log('OK Pressed.')},
-    ); */
+  }
+
+  getFirmwareVersion() {
+    try {
+      return 'Not available';
+    } catch(e) {
+      return null;
+    }
   }
 }

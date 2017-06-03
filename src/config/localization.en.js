@@ -216,7 +216,8 @@ const en = {
     identifier: 'User ID',
     password: 'Password',
     changePassword: 'Change Password',
-    myAccount: 'My account'
+    myAccount: 'My account',
+    firmware: 'Puls Version'
   },
   legal: {
     privacy: 'Privacy Policy',
