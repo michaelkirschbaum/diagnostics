@@ -125,7 +125,8 @@ const AccountView = React.createClass({
 
   async getFirmwareVersion() {
     var conn = new Connection();
-    var firmwareVersion = await conn.getFirmwareVersion();
+    // var firmwareVersion = await conn.getFirmwareVersion();
+    var firmwareVersion = '14';
     this.setState({firmwareVersion});
   }
 });
