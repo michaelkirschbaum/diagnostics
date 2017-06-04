@@ -62,10 +62,9 @@ const HomeView = React.createClass({
       wheelAngle: 0,
       alert: '',
       trips: '',
-
       meters: '',
-      total_distance: 0,
-      new_meters: ''
+      new_meters: '',
+      total_distance: 0
     };
   },
 
@@ -210,7 +209,7 @@ const HomeView = React.createClass({
             <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center'}}>
               <Text style={{color: 'black', alignSelf: 'center'}}>{this.useMetric() ? loc.home.updateKm : loc.home.updateMi}</Text>
               <Input style={styles.textInput}
-                ref='mileageInput'
+                ref='odometerInput'
                 placeholder={this.useMetric() ? loc.home.kilometrage : loc.home.mileage}
                 onChangeText={(text) => this.setState({new_meters: text})}
               />
@@ -255,11 +254,6 @@ const HomeView = React.createClass({
   // Forward setNativeProps to a child
   setNativeProps(nativeProps) {
     this._root.setNativeProps(nativeProps);
-  },
-
-  componentWillMount() {
-    if (this.props.navigationState.drawerOpen)
-      this.props.closeDrawer();
   },
 
   componentDidMount() {
