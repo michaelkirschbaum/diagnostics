@@ -260,9 +260,6 @@ const HomeView = React.createClass({
     // event listners
     var connectionEmitter = new NativeEventEmitter(CarFitManager);
 
-    // data sync
-    var interval = 60000;
-
     // get vehicle
     const vin = this.props.vehicle.vin;
     var vehicle = new Vehicle(vin);
@@ -285,7 +282,7 @@ const HomeView = React.createClass({
         this.loadOdometer(vehicle).done();
         this.setState({total_distance: 0});
       }
-    }.bind(this), interval);
+    }.bind(this), 60000);
 
     // display most current vehicle alert
     this.loadAlerts().done();
@@ -294,25 +291,12 @@ const HomeView = React.createClass({
     this.loadUsage().done();
     setInterval(function() {
       this.loadUsage().done();
-    }.bind(this), interval);
+    }.bind(this), 60000);
 
     this.wheel_angle = connectionEmitter.addListener(
       'TripSteeringWheelAngle',
       (message) => this.rotateWheel(message["angle"])
     );
-  },
-
-  componentWillUnmount() {
-    // stop updating distance traveled
-    this.distance_subscription.remove();
-  },
-
-  onSettingsPress() {
-    this.props.pushRoute({key: 'Settings', title: loc.settings.settings});
-  },
-
-  onMilesPress() {
-    Linking.openURL("https://carfit.zendesk.com/").catch(err => console.error('An error occurred', err));
   },
 
   async setOdometer(distance) {
@@ -349,26 +333,6 @@ const HomeView = React.createClass({
     }
   },
 
-  async onButtonPress() {
-    var conn = new Connection();
-    var resp = await conn.simulateButtonClick();
-
-    if (resp)
-      Alert.alert(
-        loc.home.support,
-        loc.home.call,
-        {text: 'OK', onPress: () => console.log('OK pressed.')}
-      );
-    else {
-      Alert.alert(
-        loc.home.support,
-        loc.home.supportError,
-        {text: 'OK', onPress: () => console.log('OK Pressed.')}
-      );
-    }
-  },
-
-  // todo: maintenance
   addDistance(meters) {
     // convert
     var distance = this.convertToLocal(meters);
@@ -503,6 +467,38 @@ const HomeView = React.createClass({
     } else {
       console.log("photo not loaded");
     }
+  },
+
+  async onButtonPress() {
+    var conn = new Connection();
+    var resp = await conn.simulateButtonClick();
+
+    if (resp)
+      Alert.alert(
+        loc.home.support,
+        loc.home.call,
+        {text: 'OK', onPress: () => console.log('OK pressed.')}
+      );
+    else {
+      Alert.alert(
+        loc.home.support,
+        loc.home.supportError,
+        {text: 'OK', onPress: () => console.log('OK Pressed.')}
+      );
+    }
+  },
+
+  componentWillUnmount() {
+    // stop updating distance traveled
+    this.distance_subscription.remove();
+  },
+
+  onSettingsPress() {
+    this.props.pushRoute({key: 'Settings', title: loc.settings.settings});
+  },
+
+  onMilesPress() {
+    Linking.openURL("https://carfit.zendesk.com/").catch(err => console.error('An error occurred', err));
   },
 
   convertToLocal(meters) {
