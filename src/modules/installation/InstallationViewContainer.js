@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted} from '../navigation/NavigationState';
+import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted, switchToMain} from '../navigation/NavigationState';
 import {setPageIndex, discover, clearDevices, setDrive, setConnection, setSpinner, setModalVisible} from './InstallationState';
 import InstallationView from './InstallationView';
 
@@ -44,6 +44,9 @@ export default connect(
     },
     setModalVisible(state) {
       dispatch(setModalVisible(state));
+    },
+    switchToMain() {
+      dispatch(switchToMain());
     }
   })
 )(InstallationView);
