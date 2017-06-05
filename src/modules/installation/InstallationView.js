@@ -275,10 +275,6 @@ const InstallationView = React.createClass({
     }.bind(this), interval);
   },
 
-  setUpgradingMode(state) {
-    this.setState({upgradingMode: state});
-  },
-
   popRoute() {
     this.props.setPageIndex(0);
     this.props.clearDevices();
