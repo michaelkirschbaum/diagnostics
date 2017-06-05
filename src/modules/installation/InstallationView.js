@@ -231,7 +231,7 @@ const InstallationView = React.createClass({
 
     // if not onboarding go to homeview
     if (!this.props.navigationState.onboarding)
-      this.props.pushRoute({key: 'Home', title: loc.settings.settings});
+      this.props.switchToMain();
     // if norauto skip carstartinstallation
     else if (this.locationFrance())
       this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});

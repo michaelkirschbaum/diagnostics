@@ -102,13 +102,13 @@ const NavigationView = React.createClass({
     var connectionEmitter = new NativeEventEmitter(CarFitManager);
 
     // set flag for start of trip
-    var trip_subscription = connectionEmitter.addListener(
+    this.trip_subscription = connectionEmitter.addListener(
       'TripStartOfTravel',
       (notification) => this.props.setDrive(true)
     );
 
     // set flag for end of trip
-    var trip_subscription = connectionEmitter.addListener(
+    this.trip_subscription = connectionEmitter.addListener(
       'TripEndOfTravel',
       (notification) => this.props.setDrive(false)
     );
@@ -121,7 +121,7 @@ const NavigationView = React.createClass({
 
     if (this.locationFrance()) {
       // listen for support click
-      var support_subscription = connectionEmitter.addListener(
+      this.support_subscription = connectionEmitter.addListener(
         'BLEButtonPress',
         (reminder) => Alert.alert(
           loc.home.support,
@@ -131,7 +131,7 @@ const NavigationView = React.createClass({
       );
 
       // support response
-      var support_queue_subscription = connectionEmitter.addListener(
+      this.support_queue_subscription = connectionEmitter.addListener(
         'BLEButtonResponse',
         (message) => {
           if (Object.keys(message.response) != 0)
@@ -145,7 +145,7 @@ const NavigationView = React.createClass({
     }
 
     // update firmware
-    var update_firmware_subscription = connectionEmitter.addListener(
+    this.update_firmware_subscription = connectionEmitter.addListener(
       'BLEOADNotification',
       (notification) => this.setFirmware(notification)
     );
