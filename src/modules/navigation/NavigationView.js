@@ -167,27 +167,25 @@ const NavigationView = React.createClass({
           );
         else {
           if (this.props.installation.modalVisible) {
+            this.props.closeDrawer();
+
             // disable modal if in selection view
             Alert.alert(
               loc.device.connect,
               loc.device.failure,
               [{text: 'Support', onPress: () => Linking.openURL("https://carfit.zendesk.com/").catch(err => console.error('An error occurred', err))},
-               {text: 'OK', onPress: () => {
-                 this.props.closeDrawer();
-                 this.props.setInstallationModal(false);
-               }}]
+               {text: 'OK', onPress: () => this.props.setInstallationModal(false);}]
             );
           }
           else {
+            this.props.closeDrawer();
+
             // route to installation view
             Alert.alert(
               loc.device.connect,
               loc.device.failure,
               [{text: 'Support', onPress: () => Linking.openURL("https://carfit.zendesk.com/").catch(err => console.error('An error occurred', err))},
-               {text: 'OK', onPress: () => {
-                 this.props.closeDrawer();
-                 this.props.reconnect();
-               }}]
+               {text: 'OK', onPress: () => this.props.reconnect();}]
             );
           }
         }
