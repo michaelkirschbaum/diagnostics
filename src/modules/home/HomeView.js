@@ -491,6 +491,9 @@ const HomeView = React.createClass({
   componentWillUnmount() {
     // stop updating distance traveled
     this.distance_subscription.remove();
+
+    // stop updating wheel angle
+    this.wheel_angle.remove();
   },
 
   onSettingsPress() {

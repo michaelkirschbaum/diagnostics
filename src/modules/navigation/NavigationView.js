@@ -114,7 +114,7 @@ const NavigationView = React.createClass({
     );
 
     // flag bluetooth connection status
-    var connection_subscription = connectionEmitter.addListener(
+    this.connection_subscription = connectionEmitter.addListener(
       'BLEDeviceConnectionStatus',
       (message) => this.props.setConnection(message["status"])
     );
