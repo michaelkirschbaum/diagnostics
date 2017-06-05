@@ -191,7 +191,7 @@ const NavigationView = React.createClass({
         }
 
         // reset progress indicator
-        this.props.updateFirmware('');
+        this.props.updateFirmware('0');
         break;
       default:
         this.props.updateFirmware(notification.percent);
