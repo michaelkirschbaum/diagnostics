@@ -132,10 +132,10 @@ const HomeView = React.createClass({
                 </View>
                 <Button rounded
                           bordered={false}
-                          style={{alignSelf: 'center', width: 115, height: 43}}
+                          style={styles.syncbtn}
                           textStyle={{color: colors.textPrimary}}
                           onPress={this.onButtonPress}>
-                  <Image source={require('../../../images/icons/push-button.png')} style={styles.icon}/>
+                  <Image source={require('../../../images/icons/push-button.png')} style={styles.syncimg}/>
                 </Button>
               </View>
             }
@@ -586,11 +586,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.textSecondary,
     alignSelf: 'auto',
     marginTop: 16,
+    height: responsiveHeight(4),
   },
   dataBlockContainer: {
     flex: 1,
     flexDirection: 'row',
-    marginTop: 16
+    marginTop: 20 //16
   },
   dataIcon: {
     marginRight: 16
@@ -639,11 +640,12 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   text: {
-    // fontSize: responsiveFontSize(2.35)
+    
   },
   button: {
     color: colors.textPrimary,
-    // fontSize: responsiveFontSize(2.35)
+    width: responsiveHeight(10),
+    textAlign: 'center'
   },
   divider: {
     height: 1,
@@ -652,6 +654,19 @@ const styles = StyleSheet.create({
     marginRight: 5,
     marginTop: 5,
     marginBottom: 5,
+  },
+  syncbtn: {
+    alignSelf: 'center',
+    height: responsiveHeight(2),
+    width: responsiveHeight(2),
+    marginTop:20,
+    marginBottom: 20
+  },
+  syncimg: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    // height: responsiveHeight(3.5),
+    // width: responsiveHeight(3.5)
   },
   title: {},
   description: {
