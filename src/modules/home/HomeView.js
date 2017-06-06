@@ -497,8 +497,7 @@ const HomeView = React.createClass({
   },
 
   onSettingsPress() {
-    // this.props.pushRoute({key: 'Settings', title: loc.settings.settings});
-    this.props.pushRoute({key: 'Installation', title: loc.welcome.welcome})
+    this.props.pushRoute({key: 'Settings', title: loc.settings.settings});
   },
 
   onMilesPress() {
