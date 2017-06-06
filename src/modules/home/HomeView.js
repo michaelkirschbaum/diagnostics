@@ -586,7 +586,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.textSecondary,
     alignSelf: 'auto',
     marginTop: 16,
-    height: responsiveHeight(4),
+    // height: responsiveHeight(4),
   },
   dataBlockContainer: {
     flex: 1,
@@ -644,7 +644,7 @@ const styles = StyleSheet.create({
   },
   button: {
     color: colors.textPrimary,
-    width: responsiveHeight(10),
+    // width: responsiveHeight(10),
     textAlign: 'center'
   },
   divider: {
@@ -665,8 +665,6 @@ const styles = StyleSheet.create({
   syncimg: {
     justifyContent: 'center',
     alignItems: 'center',
-    // height: responsiveHeight(3.5),
-    // width: responsiveHeight(3.5)
   },
   title: {},
   description: {
