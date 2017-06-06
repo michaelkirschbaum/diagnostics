@@ -130,6 +130,14 @@ const HomeView = React.createClass({
                     <H3 style={styles.text}>{buttonAction}</H3>
                   </View>
                 </View>
+
+                    <Button rounded
+                                    bordered={false}
+                                    style={styles.syncbtn}
+                                    textStyle={{color: colors.textPrimary}}
+                                    onPress={this.onButtonPress}>
+                        <Image source={require('../../../images/icons/push-button.png')} style={styles.syncimg}/>
+                    </Button>
               </View>
             }
 
@@ -186,14 +194,6 @@ const HomeView = React.createClass({
               </View>
             }
           </View>
-
-          <Button rounded
-                            bordered={false}
-                            style={styles.syncbtn}
-                            textStyle={{color: colors.textPrimary}}
-                            onPress={this.onButtonPress}>
-                <Image source={require('../../../images/icons/push-button.png')} style={styles.syncimg}/>
-            </Button>
 
           <Modal
             open={this.props.home.modalVisible}
@@ -664,10 +664,12 @@ const styles = StyleSheet.create({
   },
   syncbtn: {
     alignItems: 'center',
-    height: responsiveHeight(.02),
-    width: responsiveHeight(.02),
-    marginTop: 75,
-    marginLeft: 175,
+    width: 20,
+    height: 20,
+    // width: responsiveHeight(5),
+    // height: responsiveHeight(5),
+    marginTop: 45,
+    marginLeft: 158,
     marginBottom: 20
   },
   syncimg: {
