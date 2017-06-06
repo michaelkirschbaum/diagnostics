@@ -162,7 +162,8 @@ const InstallationView = React.createClass({
                           </ListItem>
                       }>
               </List>
-              <Footer style={styles.bottomContainer}>
+              
+             <Footer style={styles.bottomContainer}>
               {this.props.installation.paired &&
                 <Button rounded
                   style={styles.button}
@@ -170,7 +171,10 @@ const InstallationView = React.createClass({
                   onPress={() => this.continue()}
                 >{loc.general.continue}</Button>
               }
-              </Footer>
+              </Footer> 
+
+
+
             </View>
           </Swiper>
         )
@@ -383,10 +387,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.backgroundPrimary,
     borderColor: colors.backgroundPrimary,
     height: 60,
-    width: 335,
+    width: Dimensions.get('window').width,
     position: 'absolute',
     top: Dimensions.get('window').height - 195,
-    left: 0
+    // marginBottom: 50
+    marginRight: 80
   }
 });
 
