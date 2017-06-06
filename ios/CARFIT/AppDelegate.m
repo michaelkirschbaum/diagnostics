@@ -22,16 +22,16 @@
 {
   [BuddyBuildSDK setup];
   [Fabric with:@[[Crashlytics class]]];
-
+  
   NSURL *jsCodeLocation;
-
-
+  
+  
 #ifdef DEBUG
-    jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
+  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
 #else
-    jsCodeLocation = [CodePush bundleURL];
+  jsCodeLocation = [CodePush bundleURL];
 #endif
-
+  
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"CARFIT"
                                                initialProperties:nil
