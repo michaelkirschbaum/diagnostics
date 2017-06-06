@@ -39,7 +39,7 @@ import ConnectionSpinner from '../../components/ConnectionSpinner';
 import FirmwareSpinner from '../../components/FirmwareSpinner';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
-import {responsiveWidth, responseiveHeight, responsiveFontSize} from 'react-native-responsive-dimensions';
+import {responsiveWidth, responsiveHeight, responsiveFontSize} from 'react-native-responsive-dimensions';
 const {CarFitManager} = NativeModules;
 
 // set language
@@ -347,10 +347,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.backgroundPrimary,
     borderColor: colors.backgroundPrimary,
     height: 60,
-    width: 335,
-    position: 'absolute',
-    top: Dimensions.get('window').height - 195,
-    left: 0
+    marginTop: responsiveHeight(55)
+    // position: 'absolute',
+    // top: Dimensions.get('window').height - 195
   }
 });
 
