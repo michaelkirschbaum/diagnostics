@@ -132,7 +132,7 @@ const InstallationView = React.createClass({
         )
       else {
         // initiate scanning
-        this.scanDevices();
+        // this.scanDevices();
 
         return (
           <View style={styles.instructionsContainer}>
