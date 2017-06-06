@@ -44,7 +44,7 @@ const WelcomeView = React.createClass({
             ref={c => this._content = c}>
 
             <View style={styles.container}>
-              <Text style={{fontSize: responsiveFontSize(2.35)}}>{loc.welcome.welcomeToCarfit}</Text>
+              <Text>{loc.welcome.welcomeToCarfit}</Text>
               <Text style={styles.textBody}>{loc.welcome.helloMiles}</Text>
               <Text style={styles.textBody}>{loc.welcome.welcomeParagraph1}</Text>
               <Text style={styles.textBody}>{loc.welcome.welcomeParagraph2}</Text>
@@ -53,15 +53,15 @@ const WelcomeView = React.createClass({
 
               <Text style={styles.textBody}>
                 <Text style={styles.textBold}>1. {loc.welcome.step1}</Text>
-                <Text style={{fontSize: responsiveFontSize(2.35)}}>{loc.welcome.stepDescription1}</Text>
+                <Text>{loc.welcome.stepDescription1}</Text>
               </Text>
-              <Text style={{marginTop: 3, fontSize: responsiveFontSize(2.35)}}>
+              <Text style={{marginTop: 3}}>
                 <Text style={styles.textBold}>2. {loc.welcome.step2}</Text>
-                <Text style={{fontSize: responsiveFontSize(2.35)}}>{loc.welcome.stepDescription1}</Text>
+                <Text>{loc.welcome.stepDescription1}</Text>
               </Text>
-              <Text style={{marginTop: 3, fontSize: responsiveFontSize(2.35)}}>
+              <Text style={{marginTop: 3}}>
                 <Text style={styles.textBold}>3. {loc.welcome.step3}</Text>
-                <Text style={{fontSize: responsiveFontSize(2.35)}}>{loc.welcome.stepDescription2}</Text>
+                <Text>{loc.welcome.stepDescription2}</Text>
               </Text>
             </View>
           </Content>
@@ -122,11 +122,11 @@ const styles = StyleSheet.create({
   },
   textBody: {
     marginTop: 12,
-    fontSize: responsiveFontSize(2.35)
+    // fontSize: responsiveFontSize(2.35)
   },
   textBold: {
     fontWeight: "bold",
-    fontSize: responsiveFontSize(2.35)
+    // fontSize: responsiveFontSize(2.35)
   }
 });
 

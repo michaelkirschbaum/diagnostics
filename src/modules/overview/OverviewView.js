@@ -19,6 +19,57 @@ if (NativeModules.SettingsManager.settings.AppleLocale.startsWith("fr"))
 else
   var loc = en;
 
+
+function Slide1(props) {
+    return (
+    <View style={styles.subContainer}>
+      <Image source={require('../../../images/icons/device.png')} style={styles.icon}/>
+            <View>
+                  <H3 style={styles.header}>{loc.overview.header1}</H3>
+                  <Text style={styles.message}>{loc.overview.message1}</Text>
+            </View>
+      </View>  
+    );  
+}
+
+function Slide2(props) {
+    return (
+     <View style={styles.subContainer}>
+      <Image source={require('../../../images/icons/phone.png')} style={styles.icon}/>
+            <View>
+                <H3 style={styles.header}>{loc.overview.header2}</H3>
+                <Text style={styles.message}>{loc.overview.message2}</Text>
+            </View>
+      </View>
+    );  
+}
+
+function Slide3(props) {
+    return (
+     <View style={styles.subContainer}>
+      <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
+            <View>
+                <H3 style={styles.header}>{loc.overview.header3}</H3>
+                <Text style={styles.message}>{loc.overview.message3}</Text>
+            </View>
+      </View>
+    );  
+}
+
+function Slide4(props) {
+    return (
+      <View style={styles.subContainer}>
+      <Image source={require('../../../images/icons/usage.png')} style={styles.icon}/>
+          <View>
+                <H3 style={styles.header}>{loc.overview.header4}</H3>
+                <Text style={styles.message}>{loc.overview.message4}</Text>
+            </View>
+      </View>
+    );  
+}
+
+
+
 const OverviewView = React.createClass({
   render() {
     return (
@@ -34,34 +85,13 @@ const OverviewView = React.createClass({
             ref={c => this._content = c}>
 
             <View style={styles.container}>
-              <View style={styles.subContainer}>
-                <Image source={require('../../../images/icons/device.png')} style={styles.icon}/>
-                <View>
-              <H3 style={styles.header}>{loc.overview.header1}</H3>
-              <Text style={styles.message}>{loc.overview.message1}</Text>
-                </View>
-              </View>
-              <View style={styles.subContainer}>
-                <Image source={require('../../../images/icons/phone.png')} style={styles.icon}/>
-                <View>
-              <H3 style={styles.header}>{loc.overview.header2}</H3>
-              <Text style={styles.message}>{loc.overview.message2}</Text>
-                </View>
-              </View>
-              <View style={styles.subContainer}>
-                <Image source={require('../../../images/icons/miles.png')} style={styles.icon}/>
-                <View>
-              <H3 style={styles.header}>{loc.overview.header3}</H3>
-              <Text style={styles.message}>{loc.overview.message3}</Text>
-                </View>
-              </View>
-              <View style={styles.subContainer}>
-                <Image source={require('../../../images/icons/usage.png')} style={styles.icon}/>
-                <View>
-              <H3 style={styles.header}>{loc.overview.header4}</H3>
-              <Text style={styles.message}>{loc.overview.message4}</Text>
-                </View>
-              </View>
+              
+             <Slide1/> 
+             <Slide2/> 
+             <Slide3/> 
+             <Slide4/> 
+              
+             
               <View style={styles.subContainer}>
                 <Image source={require('../../../images/icons/service.png')} style={styles.icon}/>
                 <View>
@@ -84,16 +114,16 @@ const OverviewView = React.createClass({
                 </View>
               </View>
             </View>
-          </Content>
-          <Footer theme={carfitTheme} style={styles.footer}>
-            <View style={styles.bottomContainer}>
-              <Button rounded
-                      style={styles.button}
-                      textStyle={{color: colors.textPrimary}}
-                      onPress={this.onNextPress}
-              >{loc.general.continue}</Button>
-            </View>
-          </Footer>
+            <Footer style={styles.footer}>
+                  <Button rounded
+                          style={styles.button}
+                          textStyle={{color: colors.textPrimary}}
+                          onPress={this.onNextPress}
+                          >{loc.general.continue}
+                  </Button>
+            </Footer>
+          </Content> 
+          
         </Container>
     );
   },
@@ -110,10 +140,10 @@ const styles = StyleSheet.create({
   },
   header: {
     fontWeight: "bold",
-    fontSize: responsiveFontSize(2.35)
+    // fontSize: responsiveFontSize(2.35)
   },
   message: {
-    fontSize: responsiveFontSize(2.35)
+    // fontSize: responsiveFontSize(2.35)
   },
   container: {
     flex: 1,

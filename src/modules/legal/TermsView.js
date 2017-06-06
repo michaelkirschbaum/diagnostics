@@ -116,17 +116,17 @@ const styles = StyleSheet.create({
   },
   header: {
     textAlign: 'center',
-    fontSize: responsiveFontSize(3.2)
+    // fontSize: responsiveFontSize(3.2)
   },
   header2: {
-    fontSize: responsiveFontSize(3),
+    // fontSize: responsiveFontSize(3),
     marginTop: 15
   },
   body: {
-    fontSize: responsiveFontSize(2.35)
+    // fontSize: responsiveFontSize(2.35)
   },
   copyright: {
-    fontSize: responsiveFontSize(2.7),
+    // fontSize: responsiveFontSize(2.7),
     marginTop: 15
   }
 });

@@ -208,12 +208,14 @@ const CarInstallationStateView = React.createClass({
               <H3 style={styles.header}>{loc.carInstallation.header2}</H3>
               <Text style={styles.text}>{loc.carInstallation.detail2a}</Text>
             </View>
+
             <View style={styles.instructionsContainer}>
               <Image source={require('../../../images/place-02.png')} style={styles.image}/>
               <H3 style={styles.header}>{loc.carInstallation.header3}</H3>
               <Text style={styles.text}>{loc.carInstallation.detail3a}</Text>
               <Text style={styles.text}>{loc.carInstallation.detail3b}</Text>
             </View>
+
             <View style={styles.instructionsContainer}>
               {getFinalView()}
             </View>
@@ -482,12 +484,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     marginTop: responsiveHeight(3),
-    fontSize: responsiveFontSize(2.35)
+    // fontSize: responsiveFontSize(2.35)
   },
   text: {
     marginTop: responsiveHeight(2),
     textAlign: "center",
-    fontSize: responsiveFontSize(2.35)
+    // fontSize: responsiveFontSize(2.35)
   },
   container: {
     height: 300,
@@ -496,7 +498,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: colors.primary,
     textDecorationLine: 'underline',
-    fontSize: responsiveFontSize(2.35),
+    // fontSize: responsiveFontSize(2.35),
     marginTop: responsiveHeight(2)
   },
   button: {

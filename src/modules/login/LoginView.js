@@ -67,33 +67,36 @@ function Slide2EN(props) {
   );
 }
 
-function Slide3EN(props) {
-  return (
-      <View>
-            <View style={styles.instructionsContainer}>
-                  <View>
-                        <Image source={require('../../../images/intro-03.jpg')} style={styles.img}/>
-                  </View>
-                  <View>
-                        <Text style={styles.textTitle}>{loc.login.marketingTitle3a}</Text>
-                        <Text style={styles.textBody}>{loc.login.marketingText3a}</Text>
-                        <Text style={styles.textBody}>{loc.login.marketingText3b}</Text>
-                  </View>
-            </View>  
-            <View style={styles.bottomContainer}>
-                  <Footer theme={carfitTheme} style={styles.footer}>
-                        <Button rounded
-                                     style={styles.button}
-                                     textStyle={{color: colors.textPrimary}}
-                                     onPress={this.continue}
-                              >
-                        {loc.general.continue}
-                        </Button>
-                  </Footer>
-            </View>
-      </View>
-  );
-}
+
+//refactor later 
+
+// function Slide3EN(props) {
+//   return (
+//       <View>
+//             <View style={styles.instructionsContainer}>
+//                   <View>
+//                         <Image source={require('../../../images/intro-03.jpg')} style={styles.img}/>
+//                   </View>
+//                   <View>
+//                         <Text style={styles.textTitle}>{loc.login.marketingTitle3a}</Text>
+//                         <Text style={styles.textBody}>{loc.login.marketingText3a}</Text>
+//                         <Text style={styles.textBody}>{loc.login.marketingText3b}</Text>
+//                   </View>
+//             </View>  
+//             <View style={styles.bottomContainer}>
+//                   <Footer theme={carfitTheme} style={styles.footer}>
+//                         <Button rounded
+//                                      style={styles.button}
+//                                      textStyle={{color: colors.textPrimary}}
+//                                      onPress={this.continue}
+//                               >
+//                         {loc.general.continue}
+//                         </Button>
+//                   </Footer>
+//             </View>
+//       </View>
+//   );
+// }
 
 
 const LoginView = React.createClass({
@@ -115,6 +118,7 @@ const LoginView = React.createClass({
       var login = new Login()
 
       var lock = new Auth0Lock({clientId: "t2mDZ2JX86H2iKiM9QhAutQkgHo0x42M", domain: "carfit.auth0.com"});
+      console.log(lock + 'This is the log');
       lock.show({}, (err, profile, token) => {
         console.log('Logged in!' + ' ' + profile + ' ' + token);
         login.auth0('carfit.auth0.com', token);
@@ -235,8 +239,30 @@ const LoginView = React.createClass({
 
       <Slide1EN /> 
       <Slide2EN />          
-      <Slide3EN />          
-
+     
+      <View>
+            <View style={styles.instructionsContainer}>
+                  <View>
+                        <Image source={require('../../../images/intro-03.jpg')} style={styles.img}/>
+                  </View>
+                  <View>
+                        <Text style={styles.textTitle}>{loc.login.marketingTitle3a}</Text>
+                        <Text style={styles.textBody}>{loc.login.marketingText3a}</Text>
+                        <Text style={styles.textBody}>{loc.login.marketingText3b}</Text>
+                  </View>
+            </View>  
+            <View style={styles.bottomContainer}>
+                  <Footer theme={carfitTheme} style={styles.footer}>
+                        <Button rounded
+                                     style={styles.button}
+                                     textStyle={{color: colors.textPrimary}}
+                                     onPress={this.continue}
+                              >
+                        {loc.general.continue}
+                        </Button>
+                  </Footer>
+            </View>
+      </View>
 
           {/* <View style={{height: Dimensions.get('window').height, flex: 1, marginTop: 52}}>
             <Content

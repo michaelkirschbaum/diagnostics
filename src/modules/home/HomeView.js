@@ -125,7 +125,7 @@ const HomeView = React.createClass({
                     <Image source={require('../../../images/icons/push.png')} style={styles.icon}/>
                   </View>
                   <View style={styles.dataBlock}>
-                    <H3 style={{fontWeight: "bold", color: actionColor, fontSize: responsiveFontSize(2.35)}}>{loc.home.button}</H3>
+                    <H3 style={{fontWeight: "bold", color: actionColor}}>{loc.home.button}</H3>
                     <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
                     <H3 style={styles.text}>{buttonAction}</H3>
                   </View>
@@ -146,7 +146,7 @@ const HomeView = React.createClass({
                   <Image source={require('../../../images/icons/service.png')} style={styles.icon}/>
                 </View>
                 <View style={styles.dataBlock}>
-                  <H3 style={{fontWeight: "bold", color: alertColor, fontSize: responsiveFontSize(2.35)}}>{loc.home.alert}</H3>
+                  <H3 style={{fontWeight: "bold", color: alertColor}}>{loc.home.alert}</H3>
                   <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
                   <H3 style={styles.text}>{alertAction}</H3>
                   <Text style={styles.text}>{this.state.alert}</Text>
@@ -164,7 +164,7 @@ const HomeView = React.createClass({
                 <Image source={require('../../../images/icons/usage.png')} style={styles.icon}/>
               </View>
               <View style={styles.dataBlock}>
-                <H3 style={{fontWeight: "bold", color: actionColor, fontSize: responsiveFontSize(2.35)}}>{loc.home.usage}</H3>
+                <H3 style={{fontWeight: "bold", color: actionColor}}>{loc.home.usage}</H3>
                 <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
                 <H3 style={styles.text}>{usageAction}</H3>
                 <Text>{this.state.trips}</Text>
@@ -182,10 +182,10 @@ const HomeView = React.createClass({
                   <Image source={require('../../../images/icons/value.png')} style={styles.icon}/>
                 </View>
                 <View style={styles.dataBlock}>
-                  <H3 style={{fontWeight: "bold", color: colors.headerTextColor, fontSize: responsiveFontSize(2.35)}}>{loc.home.value}</H3>
+                  <H3 style={{fontWeight: "bold", color: colors.headerTextColor}}>{loc.home.value}</H3>
                   <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
-                  <H3 style={{color: colors.headerTextColor, fontSize: responsiveFontSize(2.35)}}>{valueAction}</H3>
-                  <Text style={{color: colors.headerTextColor, fontSize: responsiveFontSize(2.35)}}>{valueDescription}</Text>
+                  <H3 style={{color: colors.headerTextColor}}>{valueAction}</H3>
+                  <Text style={{color: colors.headerTextColor}}>{valueDescription}</Text>
                 </View>
               </View>
             }
@@ -639,11 +639,11 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   text: {
-    fontSize: responsiveFontSize(2.35)
+    // fontSize: responsiveFontSize(2.35)
   },
   button: {
     color: colors.textPrimary,
-    fontSize: responsiveFontSize(2.35)
+    // fontSize: responsiveFontSize(2.35)
   },
   divider: {
     height: 1,

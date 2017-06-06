@@ -114,14 +114,11 @@ const styles = StyleSheet.create({
   },
   header: {
     textAlign: 'center',
-    fontSize: responsiveFontSize(3),
     marginTop: 15
   },
   body: {
-    fontSize: responsiveFontSize(2.35)
   },
   copyright: {
-    fontSize: responsiveFontSize(2.7),
     marginTop: 15
   }
 });
