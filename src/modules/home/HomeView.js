@@ -130,15 +130,10 @@ const HomeView = React.createClass({
                     <H3 style={styles.text}>{buttonAction}</H3>
                   </View>
                 </View>
-                <Button rounded
-                          bordered={false}
-                          style={styles.syncbtn}
-                          textStyle={{color: colors.textPrimary}}
-                          onPress={this.onButtonPress}>
-                  <Image source={require('../../../images/icons/push-button.png')} style={styles.syncimg}/>
-                </Button>
               </View>
             }
+
+
 
             {!this.locationFrance() &&
               <View style={styles.dataBlockContainer}>
@@ -160,20 +155,21 @@ const HomeView = React.createClass({
             }
 
             <View style={styles.dataBlockContainer}>
-              <View style={styles.dataIcon}>
-                <Image source={require('../../../images/icons/usage.png')} style={styles.icon}/>
-              </View>
-              <View style={styles.dataBlock}>
-                <H3 style={{fontWeight: "bold", color: actionColor}}>{loc.home.usage}</H3>
-                <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
-                <H3 style={styles.text}>{usageAction}</H3>
-                <Text>{this.state.trips}</Text>
-              </View>
-              <View style={styles.dataAction}>
-                <Button transparent onPress={() => this.props.pushRoute({key: 'Usage', title: loc.home.usage})}>
-                  <Icon active name="ios-arrow-forward"></Icon>
-                </Button>
-              </View>
+                <View style={styles.dataIcon}>
+                  <Image source={require('../../../images/icons/usage.png')} style={styles.icon}/>
+                </View>
+                <View style={styles.dataBlock}>
+                  <H3 style={{fontWeight: "bold", color: actionColor}}>{loc.home.usage}</H3>
+                  <View style={{ height: 1, backgroundColor: colors.headerTextColor, marginTop: 2, marginBottom: 2}}/>
+                  <H3 style={styles.text}>{usageAction}</H3>
+                  <Text>{this.state.trips}</Text>
+                </View>
+                <View style={styles.dataAction}>
+                  <Button transparent onPress={() => this.props.pushRoute({key: 'Usage', title: loc.home.usage})}>
+                    <Icon active name="ios-arrow-forward"></Icon>
+                  </Button>
+                </View>
+                
             </View>
 
             {!this.locationFrance() &&
@@ -190,6 +186,14 @@ const HomeView = React.createClass({
               </View>
             }
           </View>
+
+          <Button rounded
+                            bordered={false}
+                            style={styles.syncbtn}
+                            textStyle={{color: colors.textPrimary}}
+                            onPress={this.onButtonPress}>
+                <Image source={require('../../../images/icons/push-button.png')} style={styles.syncimg}/>
+            </Button>
 
           <Modal
             open={this.props.home.modalVisible}
@@ -238,6 +242,7 @@ const HomeView = React.createClass({
               >{loc.home.cancel}</Button>
             </View>
           </Modal>
+
         </Content>
 
         {/*
@@ -253,6 +258,8 @@ const HomeView = React.createClass({
             </View>
           </Footer>
         */}
+
+        
       </Container>
     );
   },
@@ -656,15 +663,16 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   syncbtn: {
-    alignSelf: 'center',
-    height: responsiveHeight(2),
-    width: responsiveHeight(2),
-    marginTop:20,
+    alignItems: 'center',
+    height: responsiveHeight(.02),
+    width: responsiveHeight(.02),
+    marginTop: 75,
+    marginLeft: 175,
     marginBottom: 20
   },
   syncimg: {
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center',  
   },
   title: {},
   description: {
