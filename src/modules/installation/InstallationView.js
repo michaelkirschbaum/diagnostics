@@ -68,7 +68,7 @@ const InstallationView = React.createClass({
     let items = this.props.installation.foundDevices;
 
     getOnboardingView = function() {
-      if (true)
+      if (this.props.navigationState.onboarding)
         return (
           <Swiper
             loop={false}
