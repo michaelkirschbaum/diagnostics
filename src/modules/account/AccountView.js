@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
   layoutContainer: {
     flex: 1,
     flexDirection: 'column',
-    marginTop: 4
+    marginTop: 14,
   },
 
   sectionContainer: {
@@ -158,7 +158,8 @@ const styles = StyleSheet.create({
   sectionDetails: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
   sectionAction: {},
   sectionHeader: {
@@ -185,7 +186,6 @@ const styles = StyleSheet.create({
     width: 300,
     height: 300,
     justifyContent: 'center',
-    alignItems: 'center',
     marginTop: 25,
   },
   titles: {

@@ -386,12 +386,12 @@ const styles = StyleSheet.create({
   bottomContainer: {
     backgroundColor: colors.backgroundPrimary,
     borderColor: colors.backgroundPrimary,
+    marginLeft: -18,
+    marginBottom: 100,
     height: 60,
     width: Dimensions.get('window').width,
     position: 'absolute',
     top: Dimensions.get('window').height - 195,
-    // marginBottom: 50
-    marginRight: 80
   }
 });
 
