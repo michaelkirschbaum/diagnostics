@@ -130,9 +130,6 @@ const InstallationView = React.createClass({
           </Swiper>
         )
       else {
-        // initiate scanning
-        // this.props.discover();
-
         return (
           <View style={styles.instructionsContainer}>
             <Text style={{marginTop: 17, textAlign: "left"}}>{loc.instructions.selectBLE}</Text>
@@ -185,7 +182,33 @@ const InstallationView = React.createClass({
   },
 
   componentDidMount() {
-    this.scanDevices();
+    var interval = 2000;
+    var counter = 0;
+    const stop_count = 2;
+
+    this.props.discover();
+    this.rssi_refresh = setInterval(function() {
+      if (counter == stop_count)
+        // notify user if bluetooth is off
+        if (this.props.navigationState.drawerOpen == "true")
+          Alert.alert(
+            loc.login.connection_error,
+            loc.login.bluetooth,
+            [{text: 'OK', onPress: () => undefined}]
+          );
+        // notify user if no devices are found
+        else if (!this.props.installation.foundDevices.length)
+          Alert.alert(
+            loc.login.connection_error,
+            loc.login.noneFound,
+            [{text: 'OK', onPress: () => this.setPage(0)}]
+          );
+
+      // refresh device list
+      this.props.discover();
+      if (counter <= stop_count)
+        ++counter;
+    }.bind(this), interval);
   },
 
   componentWillUpdate(nextProps, nextState) {
@@ -213,9 +236,6 @@ const InstallationView = React.createClass({
     var response = await conn.connectDevice(device);
 
     if (response) {
-      // stop refreshing device list
-      // clearInterval(this.rssi_refresh);
-
       // stop spinner
       this.props.setSpinner(response);
     }
@@ -249,37 +269,6 @@ const InstallationView = React.createClass({
 
   setPage(index) {
     this.props.setPageIndex(index);
-    // if (index == 4) this.scanDevices();
-  },
-
-  scanDevices() {
-    var interval = 2000;
-    var counter = 0;
-    const stop_count = 2;
-
-    this.props.discover();
-    this.rssi_refresh = setInterval(function() {
-      if (counter == stop_count)
-        // notify user if bluetooth is off
-        if (this.props.navigationState.drawerOpen == "true")
-          Alert.alert(
-            loc.login.connection_error,
-            loc.login.bluetooth,
-            [{text: 'OK', onPress: () => undefined}]
-          );
-        // notify user if no devices are found
-        else if (!this.props.installation.foundDevices.length)
-          Alert.alert(
-            loc.login.connection_error,
-            loc.login.noneFound,
-            [{text: 'OK', onPress: () => this.setPage(0)}]
-          );
-
-      // refresh device list
-      this.props.discover();
-      if (counter <= stop_count)
-        ++counter;
-    }.bind(this), interval);
   },
 
   popRoute() {
