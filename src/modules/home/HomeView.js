@@ -277,7 +277,7 @@ const HomeView = React.createClass({
     );
 
     // update odometer while not driving
-    setInterval(function() {
+    this.odometer_update = setInterval(function() {
       if (!store.getState().get("installation").get("in_drive")) {
         this.loadOdometer(vehicle).done();
         this.setState({total_distance: 0});
@@ -289,7 +289,7 @@ const HomeView = React.createClass({
 
     // display and update last trip distance
     this.loadUsage().done();
-    setInterval(function() {
+    this.usage_update = setInterval(function() {
       this.loadUsage().done();
     }.bind(this), 60000);
 
@@ -497,7 +497,8 @@ const HomeView = React.createClass({
   },
 
   onSettingsPress() {
-    this.props.pushRoute({key: 'Settings', title: loc.settings.settings});
+    // this.props.pushRoute({key: 'Settings', title: loc.settings.settings});
+    this.props.pushRoute({key: 'Installation', title: loc.welcome.welcome})
   },
 
   onMilesPress() {
