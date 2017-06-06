@@ -51,7 +51,6 @@ else
 const InstallationView = React.createClass({
   getInitialState() {
     return {
-      bluetoothStatus: 'unknown',
       selected: ''
     };
   },
@@ -69,7 +68,7 @@ const InstallationView = React.createClass({
     let items = this.props.installation.foundDevices;
 
     getOnboardingView = function() {
-      if (this.props.navigationState.onboarding)
+      if (true)
         return (
           <Swiper
             loop={false}
@@ -132,7 +131,7 @@ const InstallationView = React.createClass({
         )
       else {
         // initiate scanning
-        // this.scanDevices();
+        // this.props.discover();
 
         return (
           <View style={styles.instructionsContainer}>
@@ -185,10 +184,18 @@ const InstallationView = React.createClass({
     );
   },
 
+  componentDidMount() {
+    this.scanDevices();
+  },
+
   componentWillUpdate(nextProps, nextState) {
     this.numberOfItems = nextProps.installation.foundDevices.length;
 
     return true;
+  },
+
+  componentWillUnmount() {
+    clearInterval(this.rssi_fresh);
   },
 
   async connect(device) {
@@ -207,7 +214,7 @@ const InstallationView = React.createClass({
 
     if (response) {
       // stop refreshing device list
-      clearInterval(this.rssi_refresh);
+      // clearInterval(this.rssi_refresh);
 
       // stop spinner
       this.props.setSpinner(response);
@@ -242,7 +249,7 @@ const InstallationView = React.createClass({
 
   setPage(index) {
     this.props.setPageIndex(index);
-    if (index == 4) this.scanDevices();
+    // if (index == 4) this.scanDevices();
   },
 
   scanDevices() {
