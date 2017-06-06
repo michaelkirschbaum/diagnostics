@@ -347,7 +347,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.backgroundPrimary,
     borderColor: colors.backgroundPrimary,
     height: 60,
-    marginTop: responsiveHeight(55)
+    marginTop: responsiveHeight(43)
     // position: 'absolute',
     // top: Dimensions.get('window').height - 195
   }
