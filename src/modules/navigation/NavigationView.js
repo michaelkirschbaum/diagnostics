@@ -102,26 +102,26 @@ const NavigationView = React.createClass({
     var connectionEmitter = new NativeEventEmitter(CarFitManager);
 
     // set flag for start of trip
-    var trip_subscription = connectionEmitter.addListener(
+    this.trip_subscription = connectionEmitter.addListener(
       'TripStartOfTravel',
       (notification) => this.props.setDrive(true)
     );
 
     // set flag for end of trip
-    var trip_subscription = connectionEmitter.addListener(
+    this.trip_subscription = connectionEmitter.addListener(
       'TripEndOfTravel',
       (notification) => this.props.setDrive(false)
     );
 
     // flag bluetooth connection status
-    var connection_subscription = connectionEmitter.addListener(
+    this.connection_subscription = connectionEmitter.addListener(
       'BLEDeviceConnectionStatus',
       (message) => this.props.setConnection(message["status"])
     );
 
     if (this.locationFrance()) {
       // listen for support click
-      var support_subscription = connectionEmitter.addListener(
+      this.support_subscription = connectionEmitter.addListener(
         'BLEButtonPress',
         (reminder) => Alert.alert(
           loc.home.support,
@@ -131,7 +131,7 @@ const NavigationView = React.createClass({
       );
 
       // support response
-      var support_queue_subscription = connectionEmitter.addListener(
+      this.support_queue_subscription = connectionEmitter.addListener(
         'BLEButtonResponse',
         (message) => {
           if (Object.keys(message.response) != 0)
@@ -145,7 +145,7 @@ const NavigationView = React.createClass({
     }
 
     // update firmware
-    var update_firmware_subscription = connectionEmitter.addListener(
+    this.update_firmware_subscription = connectionEmitter.addListener(
       'BLEOADNotification',
       (notification) => this.setFirmware(notification)
     );
@@ -180,13 +180,18 @@ const NavigationView = React.createClass({
           else {
             this.props.closeDrawer();
 
-            // route to installationview
-            this.props.reconnect();
+            // route to installation view
+            Alert.alert(
+              loc.device.connect,
+              loc.device.failure,
+              [{text: 'Support', onPress: () => Linking.openURL("https://carfit.zendesk.com/").catch(err => console.error('An error occurred', err))},
+               {text: 'OK', onPress: () => this.props.reconnect()}]
+            );
           }
         }
 
         // reset progress indicator
-        this.props.updateFirmware('');
+        this.props.updateFirmware('0');
         break;
       default:
         this.props.updateFirmware(notification.percent);

@@ -1,6 +1,7 @@
-WHAT'S NEW IN VERSION 00.00.0630
---------------------------------
+WHAT'S NEW IN THIS VERSION
+--------------------------
 
-- Offline support feedback
-- Firmware upgrade redirects to device selection list upon failure
+- Improved error handling and recovery of failed OAD process
 - UI fixes
+- Multiple End of Trip problem.
+- Crashlytics reported Realm crash

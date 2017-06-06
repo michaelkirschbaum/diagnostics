@@ -22,6 +22,7 @@ const NEW_VEHICLE = 'NavigationState/NEW_VEHICLE';
 const UPDATE_FIRMWARE = 'NavigationState/UPDATE_PROGRESS';
 const SET_ONBOARDING = 'NavigationState/SET_ONBOARDING';
 const RECONNECT = 'NavigationState/RECONNECT';
+const MAIN = 'NavigationState/MAIN';
 
 // Action creators
 export function pushRoute(route) {
@@ -85,20 +86,26 @@ export function updateFirmware(percent) {
   return {
     type: UPDATE_FIRMWARE,
     payload: percent
-  }
+  };
 }
 
 export function setOnboarding(state) {
   return {
     type: SET_ONBOARDING,
     payload: state
-  }
+  };
 }
 
 export function reconnect() {
   return {
     type: RECONNECT
-  }
+  };
+}
+
+export function switchToMain() {
+  return {
+    type: MAIN
+  };
 }
 
 const initialState = fromJS({
@@ -178,7 +185,6 @@ export default function NavigationReducer(state = initialState, action) {
       // Gets the current list of possible roots.
       const roots = state.get('roots').toJS();
       const nextTabs = NavigationStateUtils.jumpToIndex(roots, action.payload);
-        // console.log("roots  ", roots);
         console.log("nextTabs  ", nextTabs);
       if (roots !== nextTabs) {
         state.set('roots', fromJS(nextTabs));
@@ -210,6 +216,10 @@ export default function NavigationReducer(state = initialState, action) {
 
     case SET_ONBOARDING: {
       return state.set('onboarding', action.payload);
+    }
+
+    case MAIN: {
+      return state.set('roots', initialState.get('roots').set('index', 3));
     }
 
     default:

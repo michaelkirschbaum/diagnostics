@@ -14,15 +14,15 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - AWSAPIGateway (2.5.7):
-    - AWSCore (= 2.5.7)
-  - AWSCognito (2.5.7):
-    - AWSCore (= 2.5.7)
-  - AWSCore (2.5.7)
-  - AWSS3 (2.5.7):
-    - AWSCore (= 2.5.7)
+  - AWSAPIGateway (2.5.8):
+    - AWSCore (= 2.5.8)
+  - AWSCognito (2.5.8):
+    - AWSCore (= 2.5.8)
+  - AWSCore (2.5.8)
+  - AWSS3 (2.5.8):
+    - AWSCore (= 2.5.8)
   - BuddyBuildSDK (1.0.16)
-  - CarFitiOSSDK (0.0.77):
+  - CarFitiOSSDK (0.0.79):
     - AWSAPIGateway
     - AWSCognito
     - AWSCore
@@ -58,9 +58,9 @@ PODS:
   - Lock/WebView (1.29.1):
     - Lock/CoreUI
   - Masonry (0.6.4)
-  - Realm (2.7.0):
-    - Realm/Headers (= 2.7.0)
-  - Realm/Headers (2.7.0)
+  - Realm (2.8.0):
+    - Realm/Headers (= 2.8.0)
+  - Realm/Headers (2.8.0)
   - SimpleKeychain (0.7.0)
   - TouchIDAuth (0.2.0):
     - SimpleKeychain (~> 0.3)
@@ -79,18 +79,18 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  AWSAPIGateway: 7f348ed004998ccdafb6765e85d0b6e8284f72fe
-  AWSCognito: 833e56f35762648f551ca77f60240a5d7c615e13
-  AWSCore: 716d787cde0239b3e92f9b4151c052f55a117703
-  AWSS3: a534d4f617fa1c3bd8f94a8b3bf12d7099536bd9
+  AWSAPIGateway: 8e652734914fdf10e3aa345127d261c7e36f8dec
+  AWSCognito: 8eb74039f4dc5f2d929999c4f531eeb4bd83e6cb
+  AWSCore: cf101c44d2cc5da32abc27d5529cddc63c010415
+  AWSS3: addf558f9cf2368e7fb520440867fea5596db0fb
   BuddyBuildSDK: 2c5469eee2981a3365386e46393e97068d75e4f4
-  CarFitiOSSDK: ce95f1a1887f652f5de37a875274e046f7bd4bd3
+  CarFitiOSSDK: 8004efc824ec956535e489ef29635e0b68ad8509
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   iOSDFULibrary: 3b8a3014e3e4d1bec99b634b2f79fa856e28e556
   Lock: 8dcce0f7b77961141f11431f30d8fcc07a2708d3
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
-  Realm: 07e5d3a9e0e41d65fd5f9f05150ed6295d0f093b
+  Realm: 929243ad2b618b3232e70658bedc61110e7563f1
   SimpleKeychain: b50cef3b87939d480ea1143425c00f5b4b70fe21
   TouchIDAuth: 0cf861f58a2cacfc1c12cb02de4850729d943c81
   Zip: e34513299ac38c0686d5b24504da7ce343799ab9

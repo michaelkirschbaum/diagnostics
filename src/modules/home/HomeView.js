@@ -56,17 +56,15 @@ else
 const HomeView = React.createClass({
   getInitialState() {
     return {
-      alert: '',
-      modalVisible: false,
-      meters: '',
-      trips: '',
       title: '',
       description: '',
       photo: '',
-      total_distance: 0,
+      wheelAngle: 0,
+      alert: '',
+      trips: '',
+      meters: '',
       new_meters: '',
-      distance_subscription: '',
-      wheelAngle: 0
+      total_distance: 0
     };
   },
 
@@ -95,6 +93,7 @@ const HomeView = React.createClass({
           style={{backgroundColor: colors.backgroundPrimary}}
           ref={c => this._content = c}>
 
+          {/* Navigation */}
           <View style={styles.container}>
             <View style={styles.profileContainer}>
               <TouchableOpacity onPress={this.onSettingsPress}>
@@ -115,9 +114,9 @@ const HomeView = React.createClass({
                       onPress={() => this.props.setModal(true)}
               >{this.state.meters}</Button>
             </View>
-
             <View style={styles.divider}/>
 
+            {/* Support */}
             {this.locationFrance() &&
               <View style={{flexDirection: 'column'}}>
                 <View style={styles.dataBlockContainer}>
@@ -141,8 +140,7 @@ const HomeView = React.createClass({
               </View>
             }
 
-
-
+            {/* Service alerts */}
             {!this.locationFrance() &&
               <View style={styles.dataBlockContainer}>
                 <View style={styles.dataIcon}>
@@ -162,6 +160,7 @@ const HomeView = React.createClass({
               </View>
             }
 
+            {/* Usage data */}
             <View style={styles.dataBlockContainer}>
                 <View style={styles.dataIcon}>
                   <Image source={require('../../../images/icons/usage.png')} style={styles.icon}/>
@@ -177,9 +176,10 @@ const HomeView = React.createClass({
                     <Icon active name="ios-arrow-forward"></Icon>
                   </Button>
                 </View>
-                
+
             </View>
 
+            {/* Value */}
             {!this.locationFrance() &&
               <View style={styles.dataBlockContainer}>
                 <View style={styles.dataIcon}>
@@ -195,6 +195,7 @@ const HomeView = React.createClass({
             }
           </View>
 
+          {/* odometer */}
           <Modal
             open={this.props.home.modalVisible}
             modalDidOpen={() => undefined}
@@ -206,18 +207,23 @@ const HomeView = React.createClass({
               borderRadius: 7,
               height: 160
             }}>
+
             <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center'}}>
               <Text style={{color: 'black', alignSelf: 'center'}}>{this.useMetric() ? loc.home.updateKm : loc.home.updateMi}</Text>
               <Input style={styles.textInput}
-                ref='mileageInput'
+                ref='odometerInput'
                 placeholder={this.useMetric() ? loc.home.kilometrage : loc.home.mileage}
                 onChangeText={(text) => this.setState({new_meters: text})}
               />
+
+              {/* set */}
               <Button rounded
                     style={{alignSelf: 'center'}}
                     textStyle={{color: colors.textPrimary}}
                     onPress={() => this.setOdometer(this.state.new_meters)}
               >{loc.home.save}</Button>
+
+              {/* cancel */}
               <Button transparent
                     textStyle={{color: 'black'}}
                     style={{alignSelf: 'center'}}
@@ -244,22 +250,6 @@ const HomeView = React.createClass({
           </Modal>
 
         </Content>
-
-        {/*
-          <Footer theme={carfitTheme} style={styles.footer}>
-            <View style={styles.bottomContainer}>
-              <Button rounded
-                      bordered={false}
-                      style={{alignSelf: 'auto', width: 120, height: 45}}
-                      textStyle={{color: colors.textPrimary}}
-                      onPress={this.onButtonPress}>
-                <Image source={require('../../../images/icons/phone.png')} style={styles.icon}/>
-              </Button>
-            </View>
-          </Footer>
-        */}
-
-        
       </Container>
     );
   },
@@ -273,9 +263,6 @@ const HomeView = React.createClass({
     // event listners
     var connectionEmitter = new NativeEventEmitter(CarFitManager);
 
-    // data sync
-    var interval = 60000;
-
     // get vehicle
     const vin = this.props.vehicle.vin;
     var vehicle = new Vehicle(vin);
@@ -287,47 +274,32 @@ const HomeView = React.createClass({
     this.setState({meters: this.convertToLocal(this.props.vehicle.odometer).toString() + (this.useMetric() ? ' km' : ' mi')})
 
     // update odometer while driving
-    var distance_subscription = connectionEmitter.addListener(
+    this.distance_subscription = connectionEmitter.addListener(
       'TripMetersTraveled',
       (notification) => this.addDistance(notification["metersTraveled"])
     );
-    this.setState({distance_subscription});
 
     // update odometer while not driving
-    setInterval(function() {
+    this.odometer_update = setInterval(function() {
       if (!store.getState().get("installation").get("in_drive")) {
         this.loadOdometer(vehicle).done();
         this.setState({total_distance: 0});
       }
-    }.bind(this), interval);
+    }.bind(this), 60000);
 
     // display most current vehicle alert
     this.loadAlerts().done();
 
     // display and update last trip distance
     this.loadUsage().done();
-    setInterval(function() {
+    this.usage_update = setInterval(function() {
       this.loadUsage().done();
-    }.bind(this), interval);
+    }.bind(this), 60000);
 
     this.wheel_angle = connectionEmitter.addListener(
       'TripSteeringWheelAngle',
       (message) => this.rotateWheel(message["angle"])
     );
-  },
-
-  componentWillUnmount() {
-    // stop updating distance traveled
-    this.state.distance_subscription.remove();
-  },
-
-  onSettingsPress() {
-    this.props.pushRoute({key: 'Settings', title: loc.settings.settings});
-  },
-
-  onMilesPress() {
-    // go to zendesk
-    Linking.openURL("https://carfit.zendesk.com/").catch(err => console.error('An error occurred', err));
   },
 
   async setOdometer(distance) {
@@ -364,23 +336,33 @@ const HomeView = React.createClass({
     }
   },
 
-  async onButtonPress() {
-    var conn = new Connection();
-    var resp = await conn.simulateButtonClick();
+  addDistance(meters) {
+    // convert
+    var distance = this.convertToLocal(meters);
 
-    if (resp)
-      Alert.alert(
-        loc.home.support,
-        loc.home.call,
-        {text: 'OK', onPress: () => console.log('OK pressed.')}
-      );
-    else {
-      Alert.alert(
-        loc.home.support,
-        loc.home.supportError,
-        {text: 'OK', onPress: () => console.log('OK Pressed.')}
-      );
-    }
+    // subtract previous total distance from odometer
+    var odometer = this.state.meters;
+
+    if (odometer == '')
+      odometer = '0 mi';
+
+    // parse odometer
+    var current = parseInt(odometer.split(" ")[0]) - this.state.total_distance;
+    var units = odometer.split(" ")[1];
+
+    // add distance traveled to current total
+    updated = current + distance;
+
+    // update odometer
+    this.setState({meters: updated.toString() + ' ' + units});
+    this.props.setOdometer(this.convertToMeters(updated));
+
+    // set new cumulative distance
+    this.setState({total_distance: distance});
+  },
+
+  rotateWheel(angle) {
+    this.setState({wheelAngle: angle});
   },
 
   async loadOdometer() {
@@ -490,34 +472,39 @@ const HomeView = React.createClass({
     }
   },
 
-  // todo: maintenance
-  addDistance(meters) {
-    // convert
-    var distance = this.convertToLocal(meters);
+  async onButtonPress() {
+    var conn = new Connection();
+    var resp = await conn.simulateButtonClick();
 
-    // subtract previous total distance from odometer
-    var odometer = this.state.meters;
-
-    if (odometer == '')
-      odometer = '0 mi';
-
-    // parse odometer
-    var current = parseInt(odometer.split(" ")[0]) - this.state.total_distance;
-    var units = odometer.split(" ")[1];
-
-    // add distance traveled to current total
-    updated = current + distance;
-
-    // update odometer
-    this.setState({meters: updated.toString() + ' ' + units});
-    this.props.setOdometer(this.convertToMeters(updated));
-
-    // set new cumulative distance
-    this.setState({total_distance: distance});
+    if (resp)
+      Alert.alert(
+        loc.home.support,
+        loc.home.call,
+        {text: 'OK', onPress: () => console.log('OK pressed.')}
+      );
+    else {
+      Alert.alert(
+        loc.home.support,
+        loc.home.supportError,
+        {text: 'OK', onPress: () => console.log('OK Pressed.')}
+      );
+    }
   },
 
-  rotateWheel(angle) {
-    this.setState({wheelAngle: angle});
+  componentWillUnmount() {
+    // stop updating distance traveled
+    this.distance_subscription.remove();
+
+    // stop updating wheel angle
+    this.wheel_angle.remove();
+  },
+
+  onSettingsPress() {
+    this.props.pushRoute({key: 'Settings', title: loc.settings.settings});
+  },
+
+  onMilesPress() {
+    Linking.openURL("https://carfit.zendesk.com/").catch(err => console.error('An error occurred', err));
   },
 
   convertToLocal(meters) {
@@ -647,7 +634,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   text: {
-    
+
   },
   button: {
     color: colors.textPrimary,
@@ -674,7 +661,7 @@ const styles = StyleSheet.create({
   },
   syncimg: {
     justifyContent: 'center',
-    alignItems: 'center',  
+    alignItems: 'center',
   },
   title: {},
   description: {

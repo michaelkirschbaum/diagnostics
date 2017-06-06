@@ -136,6 +136,8 @@ const MyCarsView = React.createClass({
   },
 
   onNewVehiclePress() {
+    this.props.setOnboarding(true);
+
     // reset installation instructions index
     this.props.setInstallationIndex(0);
 

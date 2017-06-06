@@ -129,7 +129,7 @@ const OverviewView = React.createClass({
   },
 
   onNextPress() {
-    this.props.pushRoute({key: 'Home', title: loc.settings.settings});
+    this.props.switchToMain();
   }
 });
 

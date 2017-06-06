@@ -39,7 +39,7 @@ import ConnectionSpinner from '../../components/ConnectionSpinner';
 import FirmwareSpinner from '../../components/FirmwareSpinner';
 import en from '../../config/localization.en';
 import fr from '../../config/localization.fr';
-import {responsiveWidth, responseiveHeight, responsiveFontSize} from 'react-native-responsive-dimensions';
+import {responsiveWidth, responsiveHeight, responsiveFontSize} from 'react-native-responsive-dimensions';
 const {CarFitManager} = NativeModules;
 
 // set language
@@ -108,8 +108,6 @@ function Slide4(props) {
 const InstallationView = React.createClass({
   getInitialState() {
     return {
-      rssi_refresh: '',
-      bluetoothStatus: 'unknown',
       selected: ''
     };
   },
@@ -127,7 +125,7 @@ const InstallationView = React.createClass({
     let items = this.props.installation.foundDevices;
 
     getOnboardingView = function() {
-      if (true)
+      if (this.props.navigationState.onboarding)
         return (
           <Swiper
             loop={false}
@@ -138,7 +136,7 @@ const InstallationView = React.createClass({
             activeDot={<View style={{backgroundColor:colors.primary, width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
             onMomentumScrollEnd={(e, state, context) => this.setPage(state.index)}
           >
-            
+
             <Slide1 />
             <Slide2 />
             <Slide3 />
@@ -162,7 +160,7 @@ const InstallationView = React.createClass({
                           </ListItem>
                       }>
               </List>
-              
+
              <Footer style={styles.bottomContainer}>
               {this.props.installation.paired &&
                 <Button rounded
@@ -171,7 +169,7 @@ const InstallationView = React.createClass({
                   onPress={() => this.continue()}
                 >{loc.general.continue}</Button>
               }
-              </Footer> 
+              </Footer>
 
 
 
@@ -179,23 +177,34 @@ const InstallationView = React.createClass({
           </Swiper>
         )
       else {
-        // initiate scanning
-        this.setPage(4);
-
         return (
           <View style={styles.instructionsContainer}>
             <Text style={{marginTop: 17, textAlign: "left"}}>{loc.instructions.selectBLE}</Text>
             <List dataArray={items}
-                  style={{width: windowWidth - 40, marginTop: 10}}
+                  style={{width: windowWidth - 25, marginTop: 10}}
                   renderRow={(item) =>
                         <ListItem>
-                          <View style={styles.device}>
-                            <Text onPress={() => this.connect(item.identifier)}>{item.name}</Text>
-                            <Signal strength={item.signal}/>
+                          <View style={styles.row}>
+                            <View style={styles.device}>
+                              <Signal strength={item.signal}/>
+                              <Text style={{marginLeft: 5}} onPress={() => this.connect(item.identifier)}>{item.name}</Text>
+                            </View>
+                            {this.props.installation.modalVisible && this.state.selected == item.identifier &&
+                              <ConnectionSpinner loading={this.props.installation.paired}/>
+                            }
                           </View>
                         </ListItem>
                     }>
             </List>
+            <Footer style={styles.bottomContainer}>
+            {this.props.installation.paired &&
+              <Button rounded
+                style={styles.button}
+                textStyle={{color: colors.textPrimary}}
+                onPress={() => this.continue()}
+              >{loc.general.continue}</Button>
+            }
+            </Footer>
           </View>
         )
       }
@@ -219,10 +228,44 @@ const InstallationView = React.createClass({
     );
   },
 
+  componentDidMount() {
+    var interval = 2000;
+    var counter = 0;
+    const stop_count = 2;
+
+    this.props.discover();
+    this.rssi_refresh = setInterval(function() {
+      if (counter == stop_count)
+        // notify user if bluetooth is off
+        if (this.props.navigationState.drawerOpen == "true")
+          Alert.alert(
+            loc.login.connection_error,
+            loc.login.bluetooth,
+            [{text: 'OK', onPress: () => undefined}]
+          );
+        // notify user if no devices are found
+        else if (!this.props.installation.foundDevices.length)
+          Alert.alert(
+            loc.login.connection_error,
+            loc.login.noneFound,
+            [{text: 'OK', onPress: () => this.setPage(0)}]
+          );
+
+      // refresh device list
+      this.props.discover();
+      if (counter <= stop_count)
+        ++counter;
+    }.bind(this), interval);
+  },
+
   componentWillUpdate(nextProps, nextState) {
     this.numberOfItems = nextProps.installation.foundDevices.length;
 
     return true;
+  },
+
+  componentWillUnmount() {
+    clearInterval(this.rssi_fresh);
   },
 
   async connect(device) {
@@ -239,13 +282,9 @@ const InstallationView = React.createClass({
     var conn = new Connection();
     var response = await conn.connectDevice(device);
 
-    //response
-    if (true) {
-      // stop refreshing device list
-      clearInterval(this.state.rssi_refresh);
-
+    if (response) {
       // stop spinner
-      this.props.setSpinner(true);
+      this.props.setSpinner(response);
     }
     else {
       Alert.alert(
@@ -266,7 +305,7 @@ const InstallationView = React.createClass({
 
     // if not onboarding go to homeview
     if (!this.props.navigationState.onboarding)
-      this.props.pushRoute({key: 'Home', title: loc.settings.settings});
+      this.props.switchToMain();
     // if norauto skip carstartinstallation
     else if (this.locationFrance())
       this.props.pushRoute({key: 'CarInstallation', title: loc.carInstallation.inCarInstallation});
@@ -277,39 +316,6 @@ const InstallationView = React.createClass({
 
   setPage(index) {
     this.props.setPageIndex(index);
-
-    // initiate device scan
-    if (index == 4) {
-      var interval = 2000;
-      var counter = 0;
-      const stop_count = 2;
-
-      this.props.discover();
-
-      var rssi_refresh = setInterval(function() {
-        if (counter == stop_count)
-          // notify user if bluetooth is off
-          if (this.props.navigationState.drawerOpen == "true")
-            Alert.alert(
-              loc.login.connection_error,
-              loc.login.bluetooth,
-              [{text: 'OK', onPress: () => undefined}]
-            );
-          // notify user if no devices are found
-          else if (!this.props.installation.foundDevices.length)
-            Alert.alert(
-              loc.login.connection_error,
-              loc.login.noneFound,
-              [{text: 'OK', onPress: () => this.setPage(0)}]
-            );
-
-        // refresh device list
-        this.props.discover();
-        if (counter <= stop_count)
-          ++counter;
-      }.bind(this), interval);
-      this.setState({rssi_refresh});
-    }
   },
 
   popRoute() {

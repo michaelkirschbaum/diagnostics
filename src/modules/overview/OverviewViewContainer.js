@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted} from '../navigation/NavigationState';
+import {pushRoute, popRoute, switchRoute, openDrawer, closeDrawer, navigationCompleted, switchToMain} from '../navigation/NavigationState';
 import OverviewView from './OverviewView';
 
 export default connect(
@@ -22,5 +22,8 @@ export default connect(
     closeDrawer() {
       dispatch(closeDrawer());
     },
+    switchToMain() {
+      dispatch(switchToMain());
+    }
   })
 )(OverviewView);
