@@ -244,12 +244,12 @@ const InstallationView = React.createClass({
             [{text: 'OK', onPress: () => undefined}]
           );
         // notify user if no devices are found
-        else if (!this.props.installation.foundDevices.length)
+        /* else if (!this.props.installation.foundDevices.length)
           Alert.alert(
             loc.login.connection_error,
             loc.login.noneFound,
             [{text: 'OK', onPress: () => this.setPage(0)}]
-          );
+          ); */
 
       // refresh device list
       this.props.discover();
